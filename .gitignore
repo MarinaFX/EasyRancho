@@ -1,6 +1,10 @@
 #MacOSX File System configuration
 .DS_Store
 
+# Adding test folders
+SuperlistaTests/
+SuperlistaUITests/
+
 ### Carthage ###
 # Carthage
 #
