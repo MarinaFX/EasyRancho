@@ -13,6 +13,9 @@
 		1BFA5FA9263C72940030AE03 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA8263C72940030AE03 /* Preview Assets.xcassets */; };
 		1BFA5FB4263C72940030AE03 /* SuperlistaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FB3263C72940030AE03 /* SuperlistaTests.swift */; };
 		1BFA5FBF263C72940030AE03 /* SuperlistaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FBE263C72940030AE03 /* SuperlistaUITests.swift */; };
+		1BFA604F2641DAFB0030AE03 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA604E2641DAFB0030AE03 /* ModelData.swift */; };
+		1BFA60572641DB770030AE03 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA60562641DB770030AE03 /* Item.swift */; };
+		1BFA60682641DE9B0030AE03 /* itemList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA60672641DE9B0030AE03 /* itemList.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		1BFA5FBA263C72940030AE03 /* SuperlistaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperlistaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFA5FBE263C72940030AE03 /* SuperlistaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperlistaUITests.swift; sourceTree = "<group>"; };
 		1BFA5FC0263C72940030AE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BFA604E2641DAFB0030AE03 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		1BFA60562641DB770030AE03 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		1BFA60672641DE9B0030AE03 /* itemList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = itemList.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +101,8 @@
 		1BFA5FA0263C72900030AE03 /* Superlista */ = {
 			isa = PBXGroup;
 			children = (
+				1BFA605B2641DBB30030AE03 /* resources */,
+				1BFA604D2641DAEF0030AE03 /* Model */,
 				1BFA5FA1263C72900030AE03 /* SuperlistaApp.swift */,
 				1BFA5FA3263C72900030AE03 /* ContentView.swift */,
 				1BFA5FA5263C72940030AE03 /* Assets.xcassets */,
@@ -128,6 +136,23 @@
 				1BFA5FC0263C72940030AE03 /* Info.plist */,
 			);
 			path = SuperlistaUITests;
+			sourceTree = "<group>";
+		};
+		1BFA604D2641DAEF0030AE03 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1BFA604E2641DAFB0030AE03 /* ModelData.swift */,
+				1BFA60562641DB770030AE03 /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1BFA605B2641DBB30030AE03 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				1BFA60672641DE9B0030AE03 /* itemList.json */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFA60682641DE9B0030AE03 /* itemList.json in Resources */,
 				1BFA5FA9263C72940030AE03 /* Preview Assets.xcassets in Resources */,
 				1BFA5FA6263C72940030AE03 /* Assets.xcassets in Resources */,
 			);
@@ -259,8 +285,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFA60572641DB770030AE03 /* Item.swift in Sources */,
 				1BFA5FA4263C72900030AE03 /* ContentView.swift in Sources */,
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
+				1BFA604F2641DAFB0030AE03 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
