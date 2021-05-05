@@ -7,9 +7,9 @@
 
 import Foundation
 
-class ProductListViewModel: ObservableObject {
+class ProductListViewModel {
     
-    @Published var products: [ProductModel] = []
+    public let products: [ProductModel]
         
     init() {
         self.products = load("productList.json")

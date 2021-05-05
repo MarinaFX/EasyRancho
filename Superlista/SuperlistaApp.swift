@@ -9,14 +9,14 @@ import SwiftUI
 
 @main
 struct SuperlistaApp: App {
-    @StateObject var productListViewModel: ProductListViewModel = ProductListViewModel()
-    
+    @StateObject var listViewModel: ListViewModel = ListViewModel()
+
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                ProductListView()
             }
-            .environmentObject(productListViewModel)
+            .environmentObject(listViewModel)
         }
     }
 }
