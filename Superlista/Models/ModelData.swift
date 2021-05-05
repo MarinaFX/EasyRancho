@@ -6,7 +6,7 @@
 //
 
 import Foundation
-var items: [Item] = load("itemList.json")
+//var items: [Item] = load("itemList.json")
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data
