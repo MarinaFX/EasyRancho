@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @EnvironmentObject var productListViewModel: ProductListViewModel
+struct ProductListView: View {
+    let products = ProductListViewModel().products
     
     var body: some View {
         VStack {
             List {
-                ForEach(productListViewModel.products) { item in
+                ForEach(products) { item in
                     Text(item.name)
                 }
             }
@@ -25,8 +25,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ContentView()
+            ProductListView()
         }
-        .environmentObject(ProductListViewModel())
     }
 }
