@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainScreen: View {
     
+    var customView: AnyView?
     let headerColor = Color("HeaderColor")
     
     var body: some View {
@@ -17,7 +18,7 @@ struct MainScreen: View {
                 .ignoresSafeArea()
             
             VStack{
-                Text("Nova Lista")
+                customView
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.white)
@@ -25,7 +26,7 @@ struct MainScreen: View {
             .cornerRadius(30)
             .padding(.bottom, -80)
             
-                
+            
         }
     }
 }
@@ -33,7 +34,7 @@ struct MainScreen: View {
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            MainScreen()
+            MainScreen(customView: AnyView(NovaLista()))
                 .navigationTitle("Adicionar Capa")
         }
         .accentColor(.white)
