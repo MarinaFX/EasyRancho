@@ -8,6 +8,8 @@
 import Foundation
 
 class ListViewModel: ObservableObject {
+    let products = ProductListViewModel().products
+
     @Published var list: [ItemModel] = [] {
         didSet {
             saveItems()
@@ -21,12 +23,26 @@ class ListViewModel: ObservableObject {
     }
     
     func getItems() {
-        guard
-            let data = UserDefaults.standard.data(forKey: itemsKey),
-            let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
-        else { return }
+//        guard
+//            let data = UserDefaults.standard.data(forKey: itemsKey),
+//            let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
+//        else { return }
         
-        self.list = savedItems
+        //self.list = savedItems
+        self.list = [
+            ItemModel(product: products[0]),
+            ItemModel(product: products[10]),
+            ItemModel(product: products[22]),
+            ItemModel(product: products[23]),
+            ItemModel(product: products[34]),
+            ItemModel(product: products[200]),
+            ItemModel(product: products[100]),
+            ItemModel(product: products[110]),
+            ItemModel(product: products[90]),
+            ItemModel(product: products[91]),
+            ItemModel(product: products[92]),
+            ItemModel(product: products[70])
+        ]
     }
     
     func deleteItem(indexSet: IndexSet) {
