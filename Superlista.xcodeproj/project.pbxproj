@@ -11,11 +11,10 @@
 		1BFA5FA4263C72900030AE03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA3263C72900030AE03 /* ContentView.swift */; };
 		1BFA5FA6263C72940030AE03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA5263C72940030AE03 /* Assets.xcassets */; };
 		1BFA5FA9263C72940030AE03 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA8263C72940030AE03 /* Preview Assets.xcassets */; };
-		1BFA5FB4263C72940030AE03 /* SuperlistaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FB3263C72940030AE03 /* SuperlistaTests.swift */; };
-		1BFA5FBF263C72940030AE03 /* SuperlistaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FBE263C72940030AE03 /* SuperlistaUITests.swift */; };
 		1BFA604F2641DAFB0030AE03 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA604E2641DAFB0030AE03 /* ModelData.swift */; };
-		1BFA60572641DB770030AE03 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA60562641DB770030AE03 /* Item.swift */; };
-		1BFA60682641DE9B0030AE03 /* itemList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA60672641DE9B0030AE03 /* itemList.json */; };
+		1BFA60572641DB770030AE03 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA60562641DB770030AE03 /* ProductModel.swift */; };
+		1BFA60682641DE9B0030AE03 /* productList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA60672641DE9B0030AE03 /* productList.json */; };
+		898D645B264316300019ABCE /* ProductListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898D645A264316300019ABCE /* ProductListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,14 +42,11 @@
 		1BFA5FA8263C72940030AE03 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1BFA5FAA263C72940030AE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BFA5FAF263C72940030AE03 /* SuperlistaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperlistaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BFA5FB3263C72940030AE03 /* SuperlistaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperlistaTests.swift; sourceTree = "<group>"; };
-		1BFA5FB5263C72940030AE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BFA5FBA263C72940030AE03 /* SuperlistaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuperlistaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1BFA5FBE263C72940030AE03 /* SuperlistaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperlistaUITests.swift; sourceTree = "<group>"; };
-		1BFA5FC0263C72940030AE03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BFA604E2641DAFB0030AE03 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
-		1BFA60562641DB770030AE03 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		1BFA60672641DE9B0030AE03 /* itemList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = itemList.json; sourceTree = "<group>"; };
+		1BFA60562641DB770030AE03 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		1BFA60672641DE9B0030AE03 /* productList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = productList.json; sourceTree = "<group>"; };
+		898D645A264316300019ABCE /* ProductListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				1BFA5FA0263C72900030AE03 /* Superlista */,
-				1BFA5FB2263C72940030AE03 /* SuperlistaTests */,
-				1BFA5FBD263C72940030AE03 /* SuperlistaUITests */,
 				1BFA5F9F263C72900030AE03 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,10 +95,11 @@
 		1BFA5FA0263C72900030AE03 /* Superlista */ = {
 			isa = PBXGroup;
 			children = (
+				898D64572643155C0019ABCE /* ViewModels */,
+				898D64282641E99B0019ABCE /* Views */,
 				1BFA605B2641DBB30030AE03 /* resources */,
-				1BFA604D2641DAEF0030AE03 /* Model */,
+				1BFA604D2641DAEF0030AE03 /* Models */,
 				1BFA5FA1263C72900030AE03 /* SuperlistaApp.swift */,
-				1BFA5FA3263C72900030AE03 /* ContentView.swift */,
 				1BFA5FA5263C72940030AE03 /* Assets.xcassets */,
 				1BFA5FAA263C72940030AE03 /* Info.plist */,
 				1BFA5FA7263C72940030AE03 /* Preview Content */,
@@ -120,39 +115,37 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1BFA5FB2263C72940030AE03 /* SuperlistaTests */ = {
-			isa = PBXGroup;
-			children = (
-				1BFA5FB3263C72940030AE03 /* SuperlistaTests.swift */,
-				1BFA5FB5263C72940030AE03 /* Info.plist */,
-			);
-			path = SuperlistaTests;
-			sourceTree = "<group>";
-		};
-		1BFA5FBD263C72940030AE03 /* SuperlistaUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1BFA5FBE263C72940030AE03 /* SuperlistaUITests.swift */,
-				1BFA5FC0263C72940030AE03 /* Info.plist */,
-			);
-			path = SuperlistaUITests;
-			sourceTree = "<group>";
-		};
-		1BFA604D2641DAEF0030AE03 /* Model */ = {
+		1BFA604D2641DAEF0030AE03 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1BFA604E2641DAFB0030AE03 /* ModelData.swift */,
-				1BFA60562641DB770030AE03 /* Item.swift */,
+				1BFA60562641DB770030AE03 /* ProductModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1BFA605B2641DBB30030AE03 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				1BFA60672641DE9B0030AE03 /* itemList.json */,
+				1BFA60672641DE9B0030AE03 /* productList.json */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		898D64282641E99B0019ABCE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1BFA5FA3263C72900030AE03 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		898D64572643155C0019ABCE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				898D645A264316300019ABCE /* ProductListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BFA60682641DE9B0030AE03 /* itemList.json in Resources */,
+				1BFA60682641DE9B0030AE03 /* productList.json in Resources */,
 				1BFA5FA9263C72940030AE03 /* Preview Assets.xcassets in Resources */,
 				1BFA5FA6263C72940030AE03 /* Assets.xcassets in Resources */,
 			);
@@ -285,10 +278,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BFA60572641DB770030AE03 /* Item.swift in Sources */,
+				1BFA60572641DB770030AE03 /* ProductModel.swift in Sources */,
 				1BFA5FA4263C72900030AE03 /* ContentView.swift in Sources */,
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
 				1BFA604F2641DAFB0030AE03 /* ModelData.swift in Sources */,
+				898D645B264316300019ABCE /* ProductListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +290,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BFA5FB4263C72940030AE03 /* SuperlistaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +297,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BFA5FBF263C72940030AE03 /* SuperlistaUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +439,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Superlista/Preview Content\"";
-				DEVELOPMENT_TEAM = GYMDP69744;
+				DEVELOPMENT_TEAM = 7UW5874D4F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Superlista/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -469,7 +461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Superlista/Preview Content\"";
-				DEVELOPMENT_TEAM = GYMDP69744;
+				DEVELOPMENT_TEAM = 7UW5874D4F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Superlista/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
