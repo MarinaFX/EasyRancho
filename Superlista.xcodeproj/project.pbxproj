@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725AFE264460AF0006D410 /* CustomHeader.swift */; };
+		09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B0426446C710006D410 /* CustomNavigationBar.swift */; };
+		09725B09264470EE0006D410 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B08264470EE0006D410 /* MainScreen.swift */; };
 		1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA1263C72900030AE03 /* SuperlistaApp.swift */; };
 		1BFA5FA4263C72900030AE03 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA3263C72900030AE03 /* ProductListView.swift */; };
 		1BFA5FA6263C72940030AE03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA5263C72940030AE03 /* Assets.xcassets */; };
@@ -38,6 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09725AFE264460AF0006D410 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
+		09725B0426446C710006D410 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		09725B08264470EE0006D410 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		1BFA5F9E263C72900030AE03 /* Superlista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Superlista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFA5FA1263C72900030AE03 /* SuperlistaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperlistaApp.swift; sourceTree = "<group>"; };
 		1BFA5FA3263C72900030AE03 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
@@ -144,6 +150,9 @@
 			children = (
 				1BFA5FA3263C72900030AE03 /* ProductListView.swift */,
 				898D645C2643202D0019ABCE /* ListView.swift */,
+				09725AFE264460AF0006D410 /* CustomHeader.swift */,
+				09725B0426446C710006D410 /* CustomNavigationBar.swift */,
+				09725B08264470EE0006D410 /* MainScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,14 +296,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */,
 				1BFA60572641DB770030AE03 /* ProductModel.swift in Sources */,
 				1BFA5FA4263C72900030AE03 /* ProductListView.swift in Sources */,
 				898D6461264321CB0019ABCE /* ItemModel.swift in Sources */,
 				898D645F264321950019ABCE /* ListViewModel.swift in Sources */,
+				09725B09264470EE0006D410 /* MainScreen.swift in Sources */,
 				898D645D2643202D0019ABCE /* ListView.swift in Sources */,
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
 				1BFA604F2641DAFB0030AE03 /* DataModel.swift in Sources */,
 				898D645B264316300019ABCE /* ProductListViewModel.swift in Sources */,
+				09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +463,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Superlista/Preview Content\"";
-				DEVELOPMENT_TEAM = 7UW5874D4F;
+				DEVELOPMENT_TEAM = 4A7DB99C3F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Superlista/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -459,7 +471,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pazzi.marina.Superlista;
+				PRODUCT_BUNDLE_IDENTIFIER = zorzo.Superlista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -473,7 +485,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Superlista/Preview Content\"";
-				DEVELOPMENT_TEAM = 7UW5874D4F;
+				DEVELOPMENT_TEAM = 4A7DB99C3F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Superlista/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -481,7 +493,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.pazzi.marina.Superlista;
+				PRODUCT_BUNDLE_IDENTIFIER = zorzo.Superlista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
