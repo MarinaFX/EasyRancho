@@ -1,8 +1,8 @@
 //
-//  ListView.swift
+//  TestView.swift
 //  Superlista
 //
-//  Created by Thaís Fernandes on 05/05/21.
+//  Created by Thaís Fernandes on 06/05/21.
 //
 
 import SwiftUI
@@ -12,53 +12,48 @@ struct ListView: View {
     let products = ProductListViewModel().products
     
     var body: some View {
-        ZStack {
-            if listViewModel.list.isEmpty {
-                Text("No items")
-            } else {
-                List {
-                    ForEach(listViewModel.list) { item in
-                        HStack(alignment: .top) {
+        List {
+            ForEach(0..<listViewModel.categories.count, id: \.self) { category in
+                
+                Section(header: Text(listViewModel.categories[category])) {
+                    
+                    ForEach(listViewModel.rows(from: category)) { item in
+                        
+                        HStack {
                             Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
-                                .foregroundColor(item.isCompleted ? .green : .red)
                                 .onTapGesture {
-                                    listViewModel.updateItemCompletion(item: item)
+                                    listViewModel.toggleCompletion(of: item, from: category)
                                 }
                             
-                            VStack(alignment: .leading) {
-                                Text(item.product.name)
-                                    .fontWeight(.semibold)
-                                
-                                if let comment = item.comment {
-                                    Text(comment)
-                                        .foregroundColor(.gray)
-                                }
-                            }
-                            
-                            Spacer()
+                            Text(item.product.name)
                             
                             Image(systemName: "plus.bubble")
-                                .foregroundColor(.purple)
                                 .onTapGesture {
-                                    listViewModel.updateItemComment(item: item, comment: "Comment :)")
+                                    listViewModel.addComment("teste", to: item, from: category)
                                 }
+                            
+                            if let comment = item.comment {
+                                Text(comment)
+                            }
                         }
+                        
+                    }.onDelete { row in
+                        listViewModel.deleteItem(from: row, of: category)
                     }
-                    .onDelete(perform: listViewModel.deleteItem)
-                    
                 }
             }
         }
-        .navigationTitle("Groceries List 📝")
+        .navigationBarTitle("Groceries List 📝")
         .navigationBarItems(leading: EditButton(),
                             trailing: Button("Add") {
-                                listViewModel.addItem(product: products[0])
-                                listViewModel.addItem(product: products[1])
+                                let index = Int.random(in: 0..<products.count)
+                                listViewModel.addItem(product: products[index])
                             }
         )
+        
     }
+    
 }
-
 
 struct ListView_Previews: PreviewProvider {
     static var previews: some View {
