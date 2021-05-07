@@ -11,5 +11,4 @@ struct ProductModel : Hashable, Codable, Identifiable {
     var id: Int
     var name: String
     var category: String
-//    var comment: String?
 }
