@@ -8,7 +8,7 @@ class ListViewModel: ObservableObject {
             saveItems()
         }
     }
-        
+    
     let itemsKey: String = "list"
     
     init() {
@@ -21,7 +21,13 @@ class ListViewModel: ObservableObject {
             let savedItems = try? JSONDecoder().decode([String : [ItemModel]].self, from: data)
         else { return }
         
-        self.list = savedItems
+        //self.list = savedItems
+        
+        self.list = [
+            "Bazar": [ItemModel(product: products[0]), ItemModel(product: products[1]), ItemModel(product: products[2]), ItemModel(product: products[3])],
+            "Bebidas": [ItemModel(product: products[11]), ItemModel(product: products[12]), ItemModel(product: products[13]), ItemModel(product: products[14]), ItemModel(product: products[15])]
+        ]
+        
     }
     
     func addItem(product: ProductModel) {
