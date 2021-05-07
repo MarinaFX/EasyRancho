@@ -8,7 +8,6 @@
 import Foundation
 
 struct ItemModel: Identifiable, Codable {
-    
     let id: String
     let product: ProductModel
     let comment: String?

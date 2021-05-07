@@ -1,21 +1,14 @@
-//
-//  ListViewModel.swift
-//  Superlista
-//
-//  Created by Thaís Fernandes on 05/05/21.
-//
-
 import Foundation
 
 class ListViewModel: ObservableObject {
     let products = ProductListViewModel().products
-
-    @Published var list: [ItemModel] = [] {
+    
+    @Published var list: [String : [ItemModel]] = [:] {
         didSet {
             saveItems()
         }
     }
-    
+        
     let itemsKey: String = "list"
     
     init() {
@@ -23,54 +16,49 @@ class ListViewModel: ObservableObject {
     }
     
     func getItems() {
-//        guard
-//            let data = UserDefaults.standard.data(forKey: itemsKey),
-//            let savedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
-//        else { return }
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([String : [ItemModel]].self, from: data)
+        else { return }
         
-        //self.list = savedItems
-        self.list = [
-            ItemModel(product: products[0]),
-            ItemModel(product: products[10]),
-            ItemModel(product: products[22]),
-            ItemModel(product: products[23]),
-            ItemModel(product: products[34]),
-            ItemModel(product: products[200]),
-            ItemModel(product: products[100]),
-            ItemModel(product: products[110]),
-            ItemModel(product: products[90]),
-            ItemModel(product: products[91]),
-            ItemModel(product: products[92]),
-            ItemModel(product: products[70])
-        ]
-    }
-    
-    func deleteItem(indexSet: IndexSet) {
-        list.remove(atOffsets: indexSet)
+        self.list = savedItems
     }
     
     func addItem(product: ProductModel) {
-        let newItem = ItemModel(product: product)
-        list.append(newItem)
-    }
-    
-    func updateItemCompletion(item: ItemModel) {
-        if let index = list.firstIndex(where: { $0.id == item.id }) {
-            list[index] = item.toggleCompletion()
+        if let _ = list[product.category] {
+            list[product.category]?.append(ItemModel(product: product))
+        } else {
+            list[product.category] = [ItemModel(product: product)]
         }
     }
-
-    func updateItemComment(item: ItemModel, comment: String) {
-        if let index = list.firstIndex(where: { $0.id == item.id }) {
-            list[index] = item.editComment(newComment: comment)
-        }
-    }
-    
     
     func saveItems() {
         if let encodedData = try? JSONEncoder().encode(list) {
             UserDefaults.standard.set(encodedData, forKey: itemsKey)
         }
     }
+    
+    var categories: [String] { list.keys.map { $0 } }
+    
+    func rows(from category: Int) -> [ItemModel] { list[categories[category]]! }
+    
+    func deleteItem(from row: IndexSet, of category: Int) {
+        list[categories[category]]?.remove(atOffsets: row)
+        
+        if rows(from: category).count == 0 {
+            list.removeValue(forKey: categories[category])
+        }
+    }
+    
+    func addComment(_ comment: String, to item: ItemModel, from category: Int) {
+        if let index = rows(from: category).firstIndex(where: { $0.id == item.id }) {
+            list[categories[category]]?[index] = item.editComment(newComment: comment)
+        }
+    }
+    
+    func toggleCompletion(of item: ItemModel, from category: Int) {
+        if let index = rows(from: category).firstIndex(where: { $0.id == item.id }) {
+            list[categories[category]]?[index] = item.toggleCompletion()
+        }
+    }
 }
-

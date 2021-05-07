@@ -14,7 +14,7 @@ struct SuperlistaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ProductListView()
+                ListView()
             }
             .environmentObject(listViewModel)
         }
