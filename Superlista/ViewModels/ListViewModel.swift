@@ -5,7 +5,7 @@ class ListViewModel: ObservableObject {
     
     @Published var list: [String : [ItemModel]] = [:] {
         didSet {
-            saveItems()
+            //saveItems()
         }
     }
     
@@ -16,10 +16,10 @@ class ListViewModel: ObservableObject {
     }
     
     func getItems() {
-        guard
-            let data = UserDefaults.standard.data(forKey: itemsKey),
-            let savedItems = try? JSONDecoder().decode([String : [ItemModel]].self, from: data)
-        else { return }
+//        guard
+//            let data = UserDefaults.standard.data(forKey: itemsKey),
+//            let savedItems = try? JSONDecoder().decode([String : [ItemModel]].self, from: data)
+//        else { return }
         
         //self.list = savedItems
         
@@ -39,9 +39,9 @@ class ListViewModel: ObservableObject {
     }
     
     func saveItems() {
-        if let encodedData = try? JSONEncoder().encode(list) {
-            UserDefaults.standard.set(encodedData, forKey: itemsKey)
-        }
+//        if let encodedData = try? JSONEncoder().encode(list) {
+//            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+//        }
     }
     
     var categories: [String] { list.keys.map { $0 } }
