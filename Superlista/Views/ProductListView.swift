@@ -12,11 +12,24 @@ struct ProductListView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(products) { item in
-                    Text(item.name)
-                }
-            }
+//            List {
+//                ForEach(products) { item in
+//                    Text(item.name)
+//                }
+//            }
+            
+            NavigationLink(
+                destination: AddNewItemView(text: ""),
+                label: {
+                    Text("Navigate")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(height: 40)
+                        .frame(width: 165)
+                        .background(Color.orange)
+                        .cornerRadius(30)
+                        .shadow(radius: 10)
+                })
         }
         .navigationTitle("Itens")
     }

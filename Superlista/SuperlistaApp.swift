@@ -14,8 +14,9 @@ struct SuperlistaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ListView()
+                ProductListView()
             }
+            .accentColor(.red)
             .environmentObject(listViewModel)
         }
     }
