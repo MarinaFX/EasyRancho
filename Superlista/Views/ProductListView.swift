@@ -11,12 +11,18 @@ struct ProductListView: View {
     let products = ProductListViewModel().products
     
     var body: some View {
-        VStack {
+        ZStack(alignment: .bottom) {
             List {
                 ForEach(products) { item in
                     Text(item.name)
                 }
             }
+            Button(action: {}, label: {
+                Text("top")
+            })
+            .frame(maxWidth: .infinity)
+            .background(Color.white)
+            .edgesIgnoringSafeArea(.bottom)
         }
         .navigationTitle("Itens")
     }

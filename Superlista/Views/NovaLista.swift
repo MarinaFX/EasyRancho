@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct NovaLista: View {
-    
     @State var listaTitulo: String = ""
-    
     
     var body: some View {
         ScrollView{
