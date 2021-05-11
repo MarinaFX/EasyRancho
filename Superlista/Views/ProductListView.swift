@@ -10,35 +10,41 @@ import SwiftUI
 struct ProductListView: View {
     let products = ProductListViewModel().products
     
+    @State var selectedItems: Set<String> = []
+    
+    @Binding var filter: String
+    
     var body: some View {
-        VStack {
-//            List {
-//                ForEach(products) { item in
-//                    Text(item.name)
-//                }
-//            }
-            
-            NavigationLink(
-                destination: AddNewItemView(text: ""),
-                label: {
-                    Text("Navigate")
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .frame(height: 40)
-                        .frame(width: 165)
-                        .background(Color.orange)
-                        .cornerRadius(30)
-                        .shadow(radius: 10)
-                })
+        GeometryReader { geometry in
+            VStack {
+                List {
+                    ForEach(filter.isEmpty ? products : products.filter({$0.name.contains(filter)})) { item in
+                        HStack {
+                            Image(systemName: selectedItems.contains(item.name) ? "checkmark" : "plus")
+                            Text(item.name)
+                        }
+                        .onTapGesture {
+                            if selectedItems.contains(item.name) {
+                                selectedItems.remove(item.name)
+                            }
+                            else {
+                                selectedItems.insert(item.name)
+                            }
+                        }
+                    }
+                }
+                .listStyle(PlainListStyle())
+            }
         }
-        .navigationTitle("Itens")
+            
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
+
         NavigationView {
-            ProductListView()
+            ProductListView(filter: .constant(""))
         }
     }
 }

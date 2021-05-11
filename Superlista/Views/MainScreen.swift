@@ -34,7 +34,7 @@ struct MainScreen: View {
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            MainScreen(customView: AnyView(NovaLista()))
+            MainScreen(customView: AnyView(ListView()))
                 .navigationTitle("Adicionar Capa")
         }
         .accentColor(.white)
