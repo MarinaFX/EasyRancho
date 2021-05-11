@@ -11,18 +11,25 @@ struct ProductListView: View {
     let products = ProductListViewModel().products
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            List {
-                ForEach(products) { item in
-                    Text(item.name)
-                }
-            }
-            Button(action: {}, label: {
-                Text("top")
-            })
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .edgesIgnoringSafeArea(.bottom)
+        VStack {
+//            List {
+//                ForEach(products) { item in
+//                    Text(item.name)
+//                }
+//            }
+            
+            NavigationLink(
+                destination: AddNewItemView(text: ""),
+                label: {
+                    Text("Navigate")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(height: 40)
+                        .frame(width: 165)
+                        .background(Color.orange)
+                        .cornerRadius(30)
+                        .shadow(radius: 10)
+                })
         }
         .navigationTitle("Itens")
     }

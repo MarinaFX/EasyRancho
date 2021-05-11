@@ -16,7 +16,8 @@ struct SuperlistaApp: App {
             NavigationView {
                 ProductListView()
             }
-            .environmentObject(listsViewModel)
+            .accentColor(.red)
+            .environmentObject(listViewModel)
         }
     }
 }
