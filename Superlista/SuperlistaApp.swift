@@ -17,7 +17,7 @@ struct SuperlistaApp: App {
                 AddNewItemView(searchText: "")
             }
             .accentColor(.red)
-            .environmentObject(listViewModel)
+            .environmentObject(listsViewModel)
         }
     }
 }
