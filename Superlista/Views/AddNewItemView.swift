@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var listViewModel: ListViewModel
     
     @State var selectedItems: Set<String> = []
     @State var searchText: String
@@ -21,10 +20,6 @@ struct AddNewItemView: View {
             MainScreen(customView: AnyView(
                 VStack {
                     ProductListView(filter: $searchText)
-                        .frame(height: geometry.size.height * 0.9)
-                        .offset(y: geometry.size.height * (0.01))
-
-                    Spacer()
                     
                     Button(action: prontoButtonPressed, label: {
                         Text("Pronto")
@@ -36,13 +31,10 @@ struct AddNewItemView: View {
                             .cornerRadius(30)
                             .shadow(color: Color.orange.opacity(0.5), radius: 10)
                     })
-                    .offset(y: geometry.size.height * (0.02))
-                    //.padding(.top, geometry.safeAreaInsets.top * 0.01)
-                    //.padding(.bottom, geometry.safeAreaInsets.bottom * 0.01)
-                    .padding(.bottom, geometry.size.height * 0.19)
-                    .padding(.top, geometry.size.height * (-0.01))
+                    .padding(.bottom, geometry.size.height * 0.12)
+                    .padding(.top, geometry.size.height * (0.01))
+                    
                 }
-                //.padding(.bottom, geometry.size.height * 0.2)
                 
             ))
             
@@ -68,9 +60,7 @@ struct AddNewItemView_Previews: PreviewProvider {
             AddNewItemView(searchText: "")
                 .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
                 .previewDisplayName("iPhone 12")
-        }
-        .environmentObject(ListViewModel())
-        
+        }        
         
     }
 }

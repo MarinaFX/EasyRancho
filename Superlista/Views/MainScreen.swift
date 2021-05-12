@@ -15,27 +15,26 @@ struct MainScreen: View {
     var body: some View {
         ZStack{
             headerColor
-                .ignoresSafeArea()
+                .edgesIgnoringSafeArea(.top)
             
             VStack{
-                customView
+                customView.padding(.vertical)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity)
             .background(Color.white)
             .foregroundColor(.black)
             .cornerRadius(30)
             .padding(.bottom, -80)
-            
-            
         }
+        .padding(.bottom)
     }
 }
 
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            MainScreen(customView: AnyView(ListView()))
-                .navigationTitle("Adicionar Capa")
+            AddNewItemView(searchText: "")
+                //.navigationTitle("Adicionar Capa")
         }
         .accentColor(.white)
       
