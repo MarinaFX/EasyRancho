@@ -84,9 +84,9 @@ class ListsViewModel: ObservableObject {
         }
     }
     
-    func editListTitle(of item: ListModel, newTitle: String) {
-        if let index = list.firstIndex(where: { $0.id == item.id }) {
-            list[index] = item.editTitle(newTitle: newTitle)
+    func editListTitle(of listModel: ListModel, newTitle: String) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.editTitle(newTitle: newTitle)
         }
     }
     
