@@ -9,15 +9,15 @@ import SwiftUI
 
 @main
 struct SuperlistaApp: App {
-    @StateObject var listViewModel: ListViewModel = ListViewModel()
+    @StateObject var listsViewModel: ListsViewModel = ListsViewModel()
 
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                ProductListView()
+                AddNewItemView(searchText: "")
             }
             .accentColor(.red)
-            .environmentObject(listViewModel)
+            .environmentObject(listsViewModel)
         }
     }
 }
