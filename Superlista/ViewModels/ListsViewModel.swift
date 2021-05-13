@@ -10,7 +10,6 @@ import Foundation
 class ListsViewModel: ObservableObject {
     @Published var list: [ListModel] = [] {
         didSet {
-            print("setou")
             saveItems()
         }
     }
@@ -97,8 +96,15 @@ class ListsViewModel: ObservableObject {
     /* CRUD Itens Lista */
     
     func addItem(_ product: ProductModel, to listModel: ListModel) {
+        print(listModel)
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.addItem(product)
+        }
+    }
+    
+    func addItems(_ products: [ProductModel], to listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.addItems(products)
         }
     }
     

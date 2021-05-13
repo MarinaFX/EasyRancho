@@ -41,7 +41,6 @@ struct AddNewItemView: View {
                 }
                 
             ))
-            
             .toolbar {
                 ToolbarItem(placement: .principal){
                     SearchBar(text: $searchText)
@@ -52,9 +51,7 @@ struct AddNewItemView: View {
     }
     
     func prontoButtonPressed(){
-        listsViewModel.addItem(selectedProducts[0], to: list)
-        listsViewModel.addItem(selectedProducts[1], to: list)
-        listsViewModel.addItem(selectedProducts[2], to: list)
+        listsViewModel.addItems(selectedProducts, to: list)
         presentationMode.wrappedValue.dismiss()
     }
 }

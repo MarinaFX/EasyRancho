@@ -41,6 +41,20 @@ struct ListModel: Identifiable, Decodable, Encodable {
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
     
+    func addItems(_ products: [ProductModel]) -> ListModel {
+        var newItemsList = items
+        
+        products.forEach { product in
+            if let _ = items[product.category] {
+                newItemsList[product.category]?.append(ItemModel(product: product))
+            } else {
+                newItemsList[product.category] = [ItemModel(product: product)]
+            }
+        }
+        
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+    }
+    
     func removeItem(from row: IndexSet, of category: String) -> ListModel {
         var newItemsList = items
         
