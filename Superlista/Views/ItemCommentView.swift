@@ -10,7 +10,7 @@ import SwiftUI
 struct ItemCommentView: View {
     
     @EnvironmentObject var listsViewModel: ListsViewModel
-    let products = ProductListViewModel().products
+    let products = ProductListViewModel().productsOrdered
 
     let purpleColor = Color("HeaderColor")
     @State var canComment: Bool = false

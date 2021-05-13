@@ -10,7 +10,7 @@ import SwiftUI
 struct ListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
-    let products = ProductListViewModel().products
+    let products = ProductListViewModel().productsOrdered
     
     let listId: String
     
@@ -46,12 +46,16 @@ struct ListView: View {
                                     Text("Nova Lista")
                                         .foregroundColor(color1)
                                         .font(.system(size: 24, weight: .bold)) }
-                                    TextField("", text: $listaTitulo)
-                                        .font(.system(size: 24, weight: .bold))
+
+                                TextField("", text: $listaTitulo)
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 24, weight: .bold))
+                                    
                             }
+                            
                             if !canEditTitle {
                                 HStack(){
-                                    Text(listaTitulo).font(.system(size: 24, weight: .bold))
+                                    Text(getList().title).font(.system(size: 24, weight: .bold))
                                         .lineLimit(2)
                                     Spacer()
                                 }
@@ -86,21 +90,18 @@ struct ListView: View {
                 .padding(.leading, 20)
                 .padding(.trailing, 10)
                 
-                Button(action: {
-                    print("oi")
-                }, label: {
+                NavigationLink(destination: AddNewItemView(list: getList(), searchText: "")){
                     FakeSearchBar()
                         .padding(.leading, 20)
-                })
+                }
                 
                 ListPerItemsView(list: getList())
-                    .navigationBarTitle(getList().title)
-                    .navigationBarItems(trailing: Button("Add") {
-                        let index = Int.random(in: 0..<products.count)
-                        listsViewModel.addItem(products[index], to: getList())
-                    })
+                    
             }
             .padding(.horizontal)
+            .onAppear(){
+                listaTitulo = getList().title
+            }
         ))
     }
 }

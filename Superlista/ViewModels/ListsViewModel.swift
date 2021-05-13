@@ -17,7 +17,7 @@ class ListsViewModel: ObservableObject {
     
     @Published var currentList: ListModel?
     
-    let products = ProductListViewModel().products
+    let products = ProductListViewModel().productsOrdered
     
     let itemsKey: String = "lists"
     

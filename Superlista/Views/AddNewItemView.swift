@@ -10,16 +10,20 @@ import SwiftUI
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @State var selectedItems: Set<String> = []
+    @EnvironmentObject var listsViewModel: ListsViewModel
+    
+    var list: ListModel
+    
+    @State var selectedProducts: Array<ProductModel> = []
     @State var searchText: String
     
-    let products = ProductListViewModel().products
+    let products = ProductListViewModel().productsOrdered
     
     var body: some View {
         GeometryReader { geometry in
             MainScreen(customView: AnyView(
                 VStack {
-                    ProductListView(filter: $searchText)
+                    ProductListView(selectedItems: $selectedProducts, filter: $searchText)
                     
                     Button(action: prontoButtonPressed, label: {
                         Text("Pronto")
@@ -48,19 +52,22 @@ struct AddNewItemView: View {
     }
     
     func prontoButtonPressed(){
+        listsViewModel.addItem(selectedProducts[0], to: list)
+        listsViewModel.addItem(selectedProducts[1], to: list)
+        listsViewModel.addItem(selectedProducts[2], to: list)
         presentationMode.wrappedValue.dismiss()
     }
 }
 
-struct AddNewItemView_Previews: PreviewProvider {
-    @State static var testing: String = ""
-    
-    static var previews: some View {
-        NavigationView {
-            AddNewItemView(searchText: "")
-                .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-                .previewDisplayName("iPhone 12")
-        }        
-        
-    }
-}
+//struct AddNewItemView_Previews: PreviewProvider {
+//    @State static var testing: String = ""
+//
+//    static var previews: some View {
+//        NavigationView {
+//            AddNewItemView(searchText: "")
+//                .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+//                .previewDisplayName("iPhone 12")
+//        }
+//
+//    }
+//}

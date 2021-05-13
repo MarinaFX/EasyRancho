@@ -10,7 +10,7 @@ import SwiftUI
 struct ListPerItemsView: View {
     
     @EnvironmentObject var listsViewModel: ListsViewModel
-    let products = ProductListViewModel().products
+    let products = ProductListViewModel().productsOrdered
     
     var list: ListModel
     
