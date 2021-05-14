@@ -14,8 +14,9 @@ struct SuperlistaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                AddNewItemView(searchText: "")
+                ListsView()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .accentColor(.red)
             .environmentObject(listsViewModel)
         }
