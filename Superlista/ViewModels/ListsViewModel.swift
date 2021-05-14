@@ -71,14 +71,14 @@ class ListsViewModel: ObservableObject {
     }
     
     /* CRUD listas */
-    func toggleListFavorite(of item: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == item.id }) {
-            list[index] = item.toggleFavorite()
+    func toggleListFavorite(of listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.toggleFavorite()
         }
     }
     
-    func removeList(_ item: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == item.id }) {
+    func removeList(_ listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list.remove(at: index)
         }
     }
