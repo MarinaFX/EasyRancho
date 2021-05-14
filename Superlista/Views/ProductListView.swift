@@ -20,7 +20,9 @@ struct ProductListView: View {
             ForEach(filter.isEmpty ? products : products.filter({$0.name.contains(filter)})) { item in
                 HStack {
                     Image(systemName: selectedItems.contains(item) ? "checkmark" : "plus")
+                        .foregroundColor(Color.primary)
                     Text(item.name)
+                        .foregroundColor(Color.primary)
                 }
                 .onTapGesture {
                     if selectedItems.contains(item) {

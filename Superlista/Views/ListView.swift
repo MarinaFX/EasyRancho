@@ -27,6 +27,7 @@ struct ListView: View {
     @State var canComment: Bool = false
     @State var comentario: String = ""
     @State var canEditTitle: Bool = true
+    @State var isFavorite: Bool = false
     
     let purpleColor = Color("HeaderColor")
     let color1 = Color("Color1")
@@ -46,17 +47,18 @@ struct ListView: View {
                                     Text("Nova Lista")
                                         .foregroundColor(color1)
                                         .font(.system(size: 24, weight: .bold)) }
-
+                                
                                 TextField("", text: $listaTitulo)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(color1)
                                     .font(.system(size: 24, weight: .bold))
-                                    
+                                
                             }
                             
                             if !canEditTitle {
                                 HStack(){
                                     Text(getList().title).font(.system(size: 24, weight: .bold))
                                         .lineLimit(2)
+                                        .foregroundColor(Color.primary)
                                     Spacer()
                                 }
                                 
@@ -69,9 +71,13 @@ struct ListView: View {
                             .foregroundColor(color1)
                     }
                     
+                    Spacer()
+                    
                     
                     Image(systemName: "pencil")
-                        .foregroundColor(.gray)
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                        .foregroundColor(color1)
                         .onTapGesture {
                             if canEditTitle && !listaTitulo.isEmpty{
                                 listsViewModel.editListTitle(of: getList(), newTitle: listaTitulo)
@@ -81,11 +87,34 @@ struct ListView: View {
                             }
                         }
                     
+                    Spacer()
+                    
                     Image(systemName: "square.grid.2x2.fill")
+                        .resizable()
+                        .frame(width: 22, height: 22)
                         .foregroundColor(color1)
                     
-                    Image(systemName: "heart")
-                        .foregroundColor(color1)
+                    Spacer()
+                    
+                    if !isFavorite{
+                        Image(systemName: "heart")
+                            .resizable()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(color1)
+                            .onTapGesture {
+                                isFavorite = true
+                                listsViewModel.toggleListFavorite(of: getList())
+                            }
+                    } else {
+                        Image(systemName: "heart.fill")
+                            .resizable()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(.red)
+                            .onTapGesture {
+                                isFavorite = true
+                                listsViewModel.toggleListFavorite(of: getList())
+                            }
+                    }
                 }
                 .padding(.leading, 20)
                 .padding(.trailing, 10)
@@ -96,11 +125,13 @@ struct ListView: View {
                 }
                 
                 ListPerItemsView(list: getList())
-                    
+                
             }
             .padding(.horizontal)
             .onAppear(){
                 listaTitulo = getList().title
+                isFavorite = getList().favorite
+                canEditTitle = false
             }
         ))
     }
