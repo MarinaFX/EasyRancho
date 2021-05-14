@@ -16,6 +16,7 @@ struct SuperlistaApp: App {
             NavigationView {
                 MainView()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
         }
     }

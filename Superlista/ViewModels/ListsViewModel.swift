@@ -16,7 +16,7 @@ class ListsViewModel: ObservableObject {
     
     @Published var currentList: ListModel?
     
-    let products = ProductListViewModel().products
+    let products = ProductListViewModel().productsOrdered
     
     let itemsKey: String = "lists"
     
@@ -95,9 +95,16 @@ class ListsViewModel: ObservableObject {
     
     /* CRUD Itens Lista */
     
-    func addItem(of product: ProductModel, to listModel: ListModel) {
+    func addItem(_ product: ProductModel, to listModel: ListModel) {
+        print(listModel)
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.addItem(product)
+        }
+    }
+    
+    func addItems(_ products: [ProductModel], to listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.addItems(products)
         }
     }
     

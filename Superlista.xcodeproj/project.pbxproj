@@ -10,6 +10,10 @@
 		09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725AFE264460AF0006D410 /* CustomHeader.swift */; };
 		09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B0426446C710006D410 /* CustomNavigationBar.swift */; };
 		09725B09264470EE0006D410 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B08264470EE0006D410 /* MainScreen.swift */; };
+		09725B1B264C5FE40006D410 /* FakeSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B1A264C5FE40006D410 /* FakeSearchBar.swift */; };
+		09725B1D264C60BC0006D410 /* ItemCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B1C264C60BC0006D410 /* ItemCommentView.swift */; };
+		09725B1F264C63510006D410 /* ListPerItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B1E264C63510006D410 /* ListPerItemsView.swift */; };
+		09725B21264C64F90006D410 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B20264C64F90006D410 /* ColorModel.swift */; };
 		1B4678B426447F850014B288 /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4678B326447F850014B288 /* AddNewItemView.swift */; };
 		1B4678BA26447FC40014B288 /* SeachBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4678B926447FC40014B288 /* SeachBar.swift */; };
 		1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA1263C72900030AE03 /* SuperlistaApp.swift */; };
@@ -49,6 +53,10 @@
 		09725AFE264460AF0006D410 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		09725B0426446C710006D410 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		09725B08264470EE0006D410 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		09725B1A264C5FE40006D410 /* FakeSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSearchBar.swift; sourceTree = "<group>"; };
+		09725B1C264C60BC0006D410 /* ItemCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCommentView.swift; sourceTree = "<group>"; };
+		09725B1E264C63510006D410 /* ListPerItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPerItemsView.swift; sourceTree = "<group>"; };
+		09725B20264C64F90006D410 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		1B4678B326447F850014B288 /* AddNewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemView.swift; sourceTree = "<group>"; };
 		1B4678B926447FC40014B288 /* SeachBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachBar.swift; sourceTree = "<group>"; };
 		1BFA5F9E263C72900030AE03 /* Superlista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Superlista.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				1B4678B926447FC40014B288 /* SeachBar.swift */,
+				09725B1A264C5FE40006D410 /* FakeSearchBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -153,6 +162,7 @@
 				1BFA60562641DB770030AE03 /* ProductModel.swift */,
 				898D6460264321CB0019ABCE /* ItemModel.swift */,
 				890913832649BCCA00C619A3 /* ListModel.swift */,
+				09725B20264C64F90006D410 /* ColorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -176,6 +186,8 @@
 				890913852649BEC800C619A3 /* ListsView.swift */,
 				1B4678B326447F850014B288 /* AddNewItemView.swift */,
 				894948BC264C5DB5006C8AA5 /* MainView.swift */,
+				09725B1C264C60BC0006D410 /* ItemCommentView.swift */,
+				09725B1E264C63510006D410 /* ListPerItemsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -319,6 +331,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09725B21264C64F90006D410 /* ColorModel.swift in Sources */,
+				09725B1B264C5FE40006D410 /* FakeSearchBar.swift in Sources */,
 				09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */,
 				890913862649BEC800C619A3 /* ListsView.swift in Sources */,
 				1BFA60572641DB770030AE03 /* ProductModel.swift in Sources */,
@@ -327,11 +341,13 @@
 				8980E9CA2644AF91002A5073 /* ListView.swift in Sources */,
 				09725B09264470EE0006D410 /* MainScreen.swift in Sources */,
 				1B4678BA26447FC40014B288 /* SeachBar.swift in Sources */,
+				09725B1F264C63510006D410 /* ListPerItemsView.swift in Sources */,
 				1B4678B426447F850014B288 /* AddNewItemView.swift in Sources */,
 				894948BD264C5DB5006C8AA5 /* MainView.swift in Sources */,
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
 				1BFA604F2641DAFB0030AE03 /* DataModel.swift in Sources */,
 				898D645B264316300019ABCE /* ProductListViewModel.swift in Sources */,
+				09725B1D264C60BC0006D410 /* ItemCommentView.swift in Sources */,
 				890913822649BC8100C619A3 /* ListsViewModel.swift in Sources */,
 				890913842649BCCA00C619A3 /* ListModel.swift in Sources */,
 				09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */,
