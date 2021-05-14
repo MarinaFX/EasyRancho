@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct TestScreen: View {
+    @State var items: [ItemModel] =
+        [
+            ItemModel(id: "599", product: ProductModel(id: 599, name: "Flemis food", category: "Flemis cookie"), comment: "Flemisflemis", isCompleted: true),
+            ItemModel(id: "600", product: ProductModel(id: 600, name: "Flemis drink", category: "Flemis drink"), comment: "Flemisflemis", isCompleted: true),
+            ItemModel(id: "601", product: ProductModel(id: 601, name: "Flemis veggie", category: "Flemis vegetables"), comment: "Flemisflemis", isCompleted: true),
+            ItemModel(id: "602", product: ProductModel(id: 602, name: "Flemis oil", category: "Flemis oils"), comment: "Flemisflemis", isCompleted: true)
+        ]
+    
     var body: some View {
         NavigationLink(
-            destination: GridListView(items: <#Binding<[ItemModel]>#>, currentItem: <#Binding<ItemModel?>#>),
+            destination: GridListView(),
             label: {
                 Text("Navigate")
                     .fontWeight(.bold)

@@ -9,28 +9,28 @@ import Foundation
 import SwiftUI
 
 struct DropViewDelegate: DropDelegate {
-    var item: ItemModel
-    @Binding var items: [ItemModel]
-    var currentItem: ItemModel?
+    var listsViewModel: ListsViewModel
+    
+    var list: ListModel
     
     func performDrop(info: DropInfo) -> Bool {
         return true
     }
     
     func dropEntered(info: DropInfo) {
-        let fromIndex = items.firstIndex{ item -> Bool in
-            return item.id == currentItem?.id
+        let fromIndex = listsViewModel.list.firstIndex{ list -> Bool in
+            return list.id == listsViewModel.currentList?.id
         } ?? 0
         
-        let toIndex = items.firstIndex{ item -> Bool in
-            return item.id == self.item.id
+        let toIndex = listsViewModel.list.firstIndex{ list -> Bool in
+            return list.id == self.list.id
         } ?? 0
         
         if fromIndex != toIndex {
             withAnimation {
-                let fromItem = items[fromIndex]
-                items[fromIndex] = items[toIndex]
-                items[toIndex] = fromItem
+                let fromList = listsViewModel.list[fromIndex]
+                listsViewModel.list[fromIndex] = listsViewModel.list[toIndex]
+                listsViewModel.list[toIndex] = fromList
             }
         }
     }

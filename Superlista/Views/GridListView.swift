@@ -8,46 +8,73 @@
 import SwiftUI
 
 struct GridListView: View {
-    @Binding var items: [ItemModel]
-    @Binding var currentItem: ItemModel?
+    @EnvironmentObject var listsViewModel: ListsViewModel
+    
+    @State var isEditing: Bool = false
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var body: some View {
         ScrollView(showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 20, content: {
-                ForEach(self.items) { item in
-                    ZStack {
+                ForEach(listsViewModel.list) { list in
+                    ZStack(alignment: .bottom) {
                         Rectangle()
-                            .fill(Color.orange)
+                            .fill(Color.white)
                             .frame(width: 150, height: 150)
                             .cornerRadius(15)
+                            .shadow(radius: 10)
                         
-                        Text(item.product.name)
+                        Text(list.title)
+                            .frame(alignment: .bottom)
+                            .padding(.bottom)
+                        
+                        Image(systemName: list.favorite ? "heart.fill" : "heart")
+                            .foregroundColor(list.favorite ? Color.red : Color.black)
+                            .position(x: 145, y: 22)
+                            .onTapGesture {
+                                listsViewModel.toggleListFavorite(of: list)
+                            }
+                        
+                        Image(systemName: isEditing ? "minus.circle.fill" : "")
+                            .position(x: 30, y: 5)
+                            .scaleEffect(1.1)
+                            
                     }
+                    .onLongPressGesture {
+                        isEditing.toggle()
+                    }
+                    //.background(Color.green)
                     .onDrag({
-                        self.currentItem = item
-                        return NSItemProvider(contentsOf: URL(string: "\(item.id)")!)!
+                        listsViewModel.currentList = list
+                        return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
                     })
-                    .onDrop(of: [.url], delegate: DropViewDelegate(item: item, items: $items, currentItem: self.currentItem))
+                    .onDrop(of: [.url], delegate: DropViewDelegate(listsViewModel: listsViewModel, list: list))
                 }
-            })
+            })//.background(Color.orange)
+            .padding(.top)
         }
+        //.background(Color.blue)
         .padding()
         .padding(.top)
+        
+        .toolbar{
+            ToolbarItem(placement: .destructiveAction){
+                EditButton()
+            }
+        }
+        .navigationTitle("Listas")
     }
 }
 
 struct GridListView_Previews: PreviewProvider {
+    static var listsViewModel: ListsViewModel = ListsViewModel()
     static var previews: some View {
         NavigationView {
-            GridListView(items: .constant([
-            ItemModel(id: "5", product: ProductModel(id: 599, name: "Flemis food", category: "Flemis cookie"), comment: "Flemisflemis", isCompleted: true),
-            ItemModel(id: "600", product: ProductModel(id: 600, name: "Flemis drink", category: "Flemis drink"), comment: "Flemisflemis", isCompleted: true),
-            ItemModel(id: "601", product: ProductModel(id: 601, name: "Flemis veggie", category: "Flemis vegetables"), comment: "Flemisflemis", isCompleted: true),
-            ItemModel(id: "602", product: ProductModel(id: 602, name: "Flemis oil", category: "Flemis oils"), comment: "Flemisflemis", isCompleted: true)]), currentItem: .constant(nil))
-            
+            GridListView()
+                
                 .navigationTitle("Listas")
         }
+        .environmentObject(listsViewModel)
     }
 }
