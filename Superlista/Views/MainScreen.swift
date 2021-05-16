@@ -12,6 +12,8 @@ struct MainScreen: View {
     var customView: AnyView?
     let headerColor = Color("HeaderColor")
     
+    let background = Color("background")
+    
     var body: some View {
         ZStack{
             headerColor
@@ -21,7 +23,7 @@ struct MainScreen: View {
                 customView.padding(.vertical)
             }
             .frame(maxWidth: .infinity)
-            .background(Color.white)
+            .background(background)
             .foregroundColor(.black)
             .cornerRadius(30)
             .padding(.bottom, -80)
@@ -30,13 +32,13 @@ struct MainScreen: View {
     }
 }
 
-struct MainScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView{
-            AddNewItemView(searchText: "")
-                //.navigationTitle("Adicionar Capa")
-        }
-        .accentColor(.white)
-      
-    }
-}
+//struct MainScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView{
+//            AddNewItemView(searchText: "")
+//                //.navigationTitle("Adicionar Capa")
+//        }
+//        .accentColor(.white)
+//      
+//    }
+//}

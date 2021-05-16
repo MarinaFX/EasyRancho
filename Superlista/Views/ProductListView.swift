@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ProductListView: View {
-    let products = ProductListViewModel().products
+    let products = ProductListViewModel().productsOrdered
     
-    @State var selectedItems: Set<String> = []
+    @Binding var selectedItems: Array<ProductModel>
     
     @Binding var filter: String
     
@@ -19,15 +19,20 @@ struct ProductListView: View {
         List {
             ForEach(filter.isEmpty ? products : products.filter({$0.name.contains(filter)})) { item in
                 HStack {
-                    Image(systemName: selectedItems.contains(item.name) ? "checkmark" : "plus")
+                    Image(systemName: selectedItems.contains(item) ? "checkmark" : "plus")
+                        .foregroundColor(Color.primary)
                     Text(item.name)
+                        .foregroundColor(Color.primary)
                 }
                 .onTapGesture {
-                    if selectedItems.contains(item.name) {
-                        selectedItems.remove(item.name)
+                    if selectedItems.contains(item) {
+                        let index = selectedItems.firstIndex(where: {
+                            $0 == item
+                        })
+                        selectedItems.remove(at: index!)
                     }
                     else {
-                        selectedItems.insert(item.name)
+                        selectedItems.append(item)
                     }
                 }
             }
@@ -39,11 +44,11 @@ struct ProductListView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        NavigationView {
-            ProductListView(filter: .constant(""))
-        }
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        
+//        NavigationView {
+//            ProductListView(filter: .constant(""))
+//        }
+//    }
+//}

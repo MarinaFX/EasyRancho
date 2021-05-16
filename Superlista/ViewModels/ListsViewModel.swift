@@ -10,14 +10,13 @@ import Foundation
 class ListsViewModel: ObservableObject {
     @Published var list: [ListModel] = [] {
         didSet {
-            print("setou")
             saveItems()
         }
     }
     
     @Published var currentList: ListModel?
     
-    let products = ProductListViewModel().products
+    let products = ProductListViewModel().productsOrdered
     
     let itemsKey: String = "lists"
     
@@ -72,21 +71,21 @@ class ListsViewModel: ObservableObject {
     }
     
     /* CRUD listas */
-    func toggleListFavorite(of item: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == item.id }) {
-            list[index] = item.toggleFavorite()
+    func toggleListFavorite(of listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.toggleFavorite()
         }
     }
     
-    func removeList(_ item: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == item.id }) {
+    func removeList(_ listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list.remove(at: index)
         }
     }
     
-    func editListTitle(of item: ListModel, newTitle: String) {
-        if let index = list.firstIndex(where: { $0.id == item.id }) {
-            list[index] = item.editTitle(newTitle: newTitle)
+    func editListTitle(of listModel: ListModel, newTitle: String) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.editTitle(newTitle: newTitle)
         }
     }
     
@@ -97,8 +96,15 @@ class ListsViewModel: ObservableObject {
     /* CRUD Itens Lista */
     
     func addItem(_ product: ProductModel, to listModel: ListModel) {
+        print(listModel)
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.addItem(product)
+        }
+    }
+    
+    func addItems(_ products: [ProductModel], to listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.addItems(products)
         }
     }
     
