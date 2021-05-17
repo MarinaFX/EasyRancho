@@ -89,10 +89,11 @@ struct ListView: View {
                     
                     Spacer()
                     
-                    Image(systemName: "square.grid.2x2.fill")
-                        .resizable()
-                        .frame(width: 22, height: 22)
-                        .foregroundColor(color1)
+                        Image(systemName: "square.grid.2x2.fill")
+                            .resizable()
+                            .frame(width: 22, height: 22)
+                            .foregroundColor(color1)
+                
                     
                     Spacer()
                     
