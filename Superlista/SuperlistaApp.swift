@@ -15,9 +15,9 @@ struct SuperlistaApp: App {
         WindowGroup {
             NavigationView {
                 ListByCategoryView(categoryName: "Matinais", list: listsViewModel.list[0])
+
             }
             .navigationViewStyle(StackNavigationViewStyle())
-            .accentColor(.red)
             .environmentObject(listsViewModel)
         }
     }

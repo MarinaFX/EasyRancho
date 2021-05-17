@@ -22,7 +22,7 @@ struct ListsView: View {
                         NavigationLink(destination: ListView(listId: list.id), label: {
                             ZStack {
                                 Rectangle()
-                                    .fill(Color.orange)
+                                    .fill(Color(UIColor.systemGray6))
                                     .frame(width: 150, height: 150)
                                     .cornerRadius(15)
 
@@ -52,7 +52,6 @@ struct ListsView: View {
                 }
             )
         }
-        .padding()
         .navigationBarTitle("Your Lists 📝")
         .navigationBarItems(trailing: Button("Add") {
             listsViewModel.addList(newItem: ListModel(title: "Nova Lista!!!"))
