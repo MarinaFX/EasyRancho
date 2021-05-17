@@ -31,9 +31,9 @@ struct ListByCategoryView: View {
                         .foregroundColor(getColor(category: categoryName))
                     
                     
-                    Rectangle()
-                        .frame(width: 200, height: 1)
-                        .foregroundColor(color1)
+//                    Rectangle()
+//                        .frame(width: 200, height: 1)
+//                        .foregroundColor(color1)
                 }
                 .padding(.leading, 20)
                 .padding(.trailing, 10)
