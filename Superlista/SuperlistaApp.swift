@@ -14,7 +14,8 @@ struct SuperlistaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                TestScreen()
+                ListByCategoryView(categoryName: "Matinais", list: listsViewModel.list[0])
+
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
