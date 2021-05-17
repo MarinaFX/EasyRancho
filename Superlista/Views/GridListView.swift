@@ -10,7 +10,10 @@ import SwiftUI
 struct GridListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
-    @State var isEditing: Bool = false
+    @GestureState var longPressTap: Bool = false
+    
+    @State private var isPressed = false
+    @State var cardWiggles: Bool = false
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
@@ -36,20 +39,27 @@ struct GridListView: View {
                                 listsViewModel.toggleListFavorite(of: list)
                             }
                         
-                        Image(systemName: isEditing ? "minus.circle.fill" : "")
-                            .position(x: 30, y: 5)
-                            .scaleEffect(1.1)
-                            
+                        Image(systemName: "minus.circle.fill")
+                            .font(.title)
+                            .foregroundColor(Color(.systemGray))
+                            .offset(x: -75, y: -135)
+                        
                     }
-                    .onLongPressGesture {
-                        isEditing.toggle()
-                    }
-                    //.background(Color.green)
-                    .onDrag({
-                        listsViewModel.currentList = list
-                        return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
-                    })
-                    .onDrop(of: [.url], delegate: DropViewDelegate(listsViewModel: listsViewModel, list: list))
+                    .opacity(longPressTap ? 0.4 : 1.0)
+                    .rotationEffect(.degrees(cardWiggles ? 2.5 : 0))
+                    .animation(Animation.easeInOut(duration: 0.15))
+                    .gesture(
+                        LongPressGesture(minimumDuration: 1.0)
+                            .updating($longPressTap, body: { (currentState, state, transaction) in
+                                state = currentState
+                            })
+                            .onEnded({ _ in
+                                self.isPressed.toggle()
+                            })
+                    )
+                    
+                    
+                    
                 }
             })//.background(Color.orange)
             .padding(.top)
@@ -58,12 +68,30 @@ struct GridListView: View {
         .padding()
         .padding(.top)
         
-        .toolbar{
-            ToolbarItem(placement: .destructiveAction){
-                EditButton()
-            }
-        }
+        //        .toolbar{
+        //            ToolbarItem(placement: .destructiveAction){
+        //                EditButton()
+        //            }
+        //        }
         .navigationTitle("Listas")
+    }
+    
+    func animation(){
+        Animation.easeInOut(duration: 0.15).repeatForever(autoreverses: true)
+    }
+    
+    func DragAndDrop(list: ListModel){
+        //        Gesture {
+        //            .onLongPressGesture {
+        //                isEditing.toggle()
+        //            }
+        //            //.background(Color.green)
+        //            .onDrag({
+        //                listsViewModel.currentList = list
+        //                return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
+        //            })
+        //            .onDrop(of: [.url], delegate: DropViewDelegate(listsViewModel: listsViewModel, list: list))
+        //        }
     }
 }
 
