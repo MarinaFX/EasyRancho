@@ -17,6 +17,7 @@
 		1B43E5AE264B0F61002C6D64 /* GridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5AD264B0F61002C6D64 /* GridListView.swift */; };
 		1B43E5B3264B13BE002C6D64 /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5B2264B13BE002C6D64 /* DropViewDelegate.swift */; };
 		1B43E5B8264B1595002C6D64 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5B7264B1595002C6D64 /* TestScreen.swift */; };
+		09725B232652DCAD0006D410 /* ListByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B222652DCAD0006D410 /* ListByCategoryView.swift */; };
 		1B4678B426447F850014B288 /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4678B326447F850014B288 /* AddNewItemView.swift */; };
 		1B4678BA26447FC40014B288 /* SeachBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B4678B926447FC40014B288 /* SeachBar.swift */; };
 		1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA1263C72900030AE03 /* SuperlistaApp.swift */; };
@@ -63,6 +64,7 @@
 		1B43E5AD264B0F61002C6D64 /* GridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridListView.swift; sourceTree = "<group>"; };
 		1B43E5B2264B13BE002C6D64 /* DropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
 		1B43E5B7264B1595002C6D64 /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
+		09725B222652DCAD0006D410 /* ListByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListByCategoryView.swift; sourceTree = "<group>"; };
 		1B4678B326447F850014B288 /* AddNewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewItemView.swift; sourceTree = "<group>"; };
 		1B4678B926447FC40014B288 /* SeachBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachBar.swift; sourceTree = "<group>"; };
 		1BFA5F9E263C72900030AE03 /* Superlista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Superlista.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +198,7 @@
 				894948BC264C5DB5006C8AA5 /* MainView.swift */,
 				09725B1C264C60BC0006D410 /* ItemCommentView.swift */,
 				09725B1E264C63510006D410 /* ListPerItemsView.swift */,
+				09725B222652DCAD0006D410 /* ListByCategoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				09725B09264470EE0006D410 /* MainScreen.swift in Sources */,
 				1B4678BA26447FC40014B288 /* SeachBar.swift in Sources */,
 				09725B1F264C63510006D410 /* ListPerItemsView.swift in Sources */,
+				09725B232652DCAD0006D410 /* ListByCategoryView.swift in Sources */,
 				1B4678B426447F850014B288 /* AddNewItemView.swift in Sources */,
 				894948BD264C5DB5006C8AA5 /* MainView.swift in Sources */,
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
