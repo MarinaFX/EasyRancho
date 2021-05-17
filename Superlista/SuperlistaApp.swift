@@ -14,11 +14,10 @@ struct SuperlistaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-        //        ListByCategoryView(categoryName: "Hortifruti", list: listsViewModel.list[0])
-            ListsView()
+                ListByCategoryView(categoryName: "Matinais", list: listsViewModel.list[0])
+
             }
             .navigationViewStyle(StackNavigationViewStyle())
-            .accentColor(.red)
             .environmentObject(listsViewModel)
         }
     }
