@@ -12,8 +12,6 @@ struct ListView: View {
     
     let products = ProductListViewModel().productsOrdered
     
-    @State var isNew: Bool = true
-    
     let listId: String
     
     var categories: [String] { listsViewModel.list.first(where: { $0.id == listId })!.items.keys.map { $0 } }
@@ -132,9 +130,6 @@ struct ListView: View {
             }
             .padding(.horizontal)
             .onAppear(){
-                if !getList().title.isEmpty{
-                    isNew = false
-                }
                 listaTitulo = getList().title
                 isFavorite = getList().favorite
                 canEditTitle = false
