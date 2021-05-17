@@ -96,7 +96,7 @@ struct ListView: View {
                     
                     Spacer()
                     
-                    if !isFavorite{
+                    if !getList().favorite{
                         Image(systemName: "heart")
                             .resizable()
                             .frame(width: 22, height: 22)
