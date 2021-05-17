@@ -9,37 +9,35 @@ import SwiftUI
 
 struct ListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
+    
+    @State var listId: String?
+    
+    func getList() -> ListModel? {
+        if let listId = listId,
+           let list = listsViewModel.list.first(where: { $0.id == listId }) {
+            return list
+        }
         
-    let listId: String
-    
-    func getList() -> ListModel {
-        return listsViewModel.list.first(where: { $0.id == listId })!
+        return nil
     }
-    
-    @State var listaTitulo: String = ""
-    
-    @State var canComment: Bool = false
-    @State var comentario: String = ""
-    @State var canEditTitle: Bool = true
-    @State var isFavorite: Bool = false
-    
-    let purpleColor = Color("HeaderColor")
-    let color1 = Color("Color1")
     
     var body: some View {
         MainScreen(customView: AnyView(
             VStack {
-                ListHeader(list: getList())
+                ListHeader(list: getList(), listId: $listId)
+                    .padding(.horizontal, 30)
+                    .padding(.top, 4)
                 
-                NavigationLink(destination: AddNewItemView(list: getList(), searchText: "")){
-                    FakeSearchBar()
-                        .padding(.leading, 20)
+                if let list = getList() {
+                    NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
+                        FakeSearchBar()
+                            .padding(.vertical)
+                            .padding(.horizontal, 26)
+                    }
+                    
+                    ListPerItemsView(list: list)
                 }
-                
-                ListPerItemsView(list: getList())
-                
             }
-            .padding(.horizontal)
         ))
     }
 }

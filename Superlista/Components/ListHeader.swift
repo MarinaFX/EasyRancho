@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListHeader: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
-        
+    
     @State var listaTitulo: String = ""
     
     @State var canComment: Bool = false
@@ -19,15 +19,16 @@ struct ListHeader: View {
     
     let purpleColor = Color("HeaderColor")
     let color1 = Color("Color1")
-
-    let list: ListModel
+    
+    let list: ListModel?
+    @Binding var listId: String?
     
     var body: some View {
         HStack{
             VStack(alignment: .leading){
                 
                 ZStack(alignment: .leading) {
-                    if canEditTitle{
+                    if canEditTitle {
                         if listaTitulo.isEmpty {
                             Text("Nova Lista")
                                 .foregroundColor(color1)
@@ -39,8 +40,8 @@ struct ListHeader: View {
                         
                     }
                     
-                    if !canEditTitle {
-                        HStack(){
+                    if !canEditTitle, let list = list {
+                        HStack {
                             Text(list.title).font(.system(size: 24, weight: .bold))
                                 .lineLimit(2)
                                 .foregroundColor(Color.primary)
@@ -58,17 +59,23 @@ struct ListHeader: View {
             
             Spacer()
             
-            
             Image(systemName: "pencil")
                 .resizable()
                 .frame(width: 22, height: 22)
                 .foregroundColor(color1)
                 .onTapGesture {
-                    if canEditTitle && !listaTitulo.isEmpty{
-                        listsViewModel.editListTitle(of: list, newTitle: listaTitulo)
-                        canEditTitle = false
+                    if let list = list {
+                        if canEditTitle && !listaTitulo.isEmpty {
+                            listsViewModel.editListTitle(of: list, newTitle: listaTitulo)
+                            canEditTitle = false
+                        } else {
+                            canEditTitle = true
+                        }
                     } else {
-                        canEditTitle = true
+                        let newList = ListModel(title: "Nova Lista")
+                        listsViewModel.addList(newItem: newList)
+                        self.listId = newList.id
+                        canEditTitle = false
                     }
                 }
             
@@ -81,32 +88,25 @@ struct ListHeader: View {
             
             Spacer()
             
-            if !list.favorite{
-                Image(systemName: "heart")
-                    .resizable()
-                    .frame(width: 22, height: 22)
-                    .foregroundColor(color1)
-                    .onTapGesture {
-                        isFavorite = true
+            Image(systemName: (list?.favorite ?? false) ? "heart.fill" : "heart")
+                .resizable()
+                .frame(width: 22, height: 22)
+                .foregroundColor((list?.favorite ?? false) ? .red : Color("Color1"))
+                .onTapGesture {
+                    if let list = list {
+                        isFavorite.toggle()
                         listsViewModel.toggleListFavorite(of: list)
                     }
-            } else {
-                Image(systemName: "heart.fill")
-                    .resizable()
-                    .frame(width: 22, height: 22)
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        isFavorite = true
-                        listsViewModel.toggleListFavorite(of: list)
-                    }
-            }
+                }
         }
-        .padding(.leading, 20)
-        .padding(.trailing, 10)
+//        .padding(.leading, 20)
+//        .padding(.trailing, 10)
         .onAppear {
-            listaTitulo = list.title
-            isFavorite = list.favorite
-            canEditTitle = false
+            if let list = list {
+                listaTitulo = list.title
+                isFavorite = list.favorite
+                canEditTitle = false
+            }
         }
     }
     

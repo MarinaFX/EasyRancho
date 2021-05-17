@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ItemCommentView: View {
-    
     @EnvironmentObject var listsViewModel: ListsViewModel
-    let products = ProductListViewModel().productsOrdered
 
     let purpleColor = Color("HeaderColor")
     @State var canComment: Bool = false
@@ -25,14 +23,16 @@ struct ItemCommentView: View {
                 HStack {
                     Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
                         .foregroundColor(Color.primary)
-                        .font(.system(size: 15, weight: .light))
+                        .font(.system(size: 18, weight: .light))
                         .onTapGesture {
                             listsViewModel.toggleCompletion(of: item, from: list)
                         }
                     
                     Text(item.product.name)
                         .foregroundColor(Color.primary)
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        //.font(.system(size: 15, weight: .semibold))
                     
                     Spacer()
                     
@@ -51,7 +51,13 @@ struct ItemCommentView: View {
                     
                     HStack {
                         ZStack(alignment: .leading){
-                            if ((comentario) == "") { Text("Insira um comentário").foregroundColor(Color(UIColor.secondaryLabel)).font(.system(size: 13)).padding(.leading, 30) }
+                            if ((comentario) == "") {
+                                Text("Insira um comentário")
+                                    .foregroundColor(Color(UIColor.secondaryLabel))
+                                    .font(.system(size: 13))
+                                    .padding(.leading, 30)
+    
+                            }
                             TextField("", text: $comentario)
                                 .font(.system(size: 13))
                                 .foregroundColor(Color(UIColor.secondaryLabel))
@@ -62,7 +68,7 @@ struct ItemCommentView: View {
                         
                         Text("OK")
                             .foregroundColor(Color.primary)
-                            .font(.system(size: 15))
+                            .font(.subheadline)
                             .onTapGesture {
                                 listsViewModel.addComent(comentario, to: item, from: list)
                                 canComment = false

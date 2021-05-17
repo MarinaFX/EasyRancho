@@ -21,8 +21,10 @@ struct MainScreen: View {
             
             VStack{
                 customView.padding(.vertical)
+                
+                Spacer()
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(background)
             .foregroundColor(.black)
             .cornerRadius(30)
