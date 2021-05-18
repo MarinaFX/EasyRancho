@@ -22,6 +22,7 @@ struct ListHeader: View {
     
     let list: ListModel?
     @Binding var listId: String?
+
     
     var body: some View {
         HStack (spacing: 5){
@@ -83,10 +84,15 @@ struct ListHeader: View {
             
             Spacer()
             
-            Image(systemName: "square.grid.2x2.fill")
-                .resizable()
-                .frame(width: 22, height: 22)
-                .foregroundColor(color1)
+            
+        
+            Image(systemName: listsViewModel.isGrid ? "list.bullet" : "square.grid.2x2.fill")
+                    .resizable()
+                    .frame(width: 22, height: 22)
+                    .foregroundColor(color1)
+                .onTapGesture {
+                    listsViewModel.isGrid.toggle()
+                }
             
             Spacer()
             

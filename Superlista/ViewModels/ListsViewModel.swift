@@ -20,6 +20,8 @@ class ListsViewModel: ObservableObject {
     
     let itemsKey: String = "lists"
     
+   @Published var isGrid: Bool = false
+    
     init() {
         getItems()
     }
