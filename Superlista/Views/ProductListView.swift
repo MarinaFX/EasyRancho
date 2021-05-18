@@ -38,9 +38,6 @@ struct ProductListView: View {
             }
         }
         .listStyle(PlainListStyle())
-        
-        
-        
     }
 }
 

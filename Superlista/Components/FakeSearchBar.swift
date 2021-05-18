@@ -13,7 +13,7 @@ struct FakeSearchBar: View {
             Text("Adicionar novos itens")
                 .foregroundColor(.gray)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(10)
+                .padding(8)
                 .padding(.leading, 30)
                 .background(Color(.systemGray6))
                 .cornerRadius(50)
@@ -25,8 +25,6 @@ struct FakeSearchBar: View {
                             .padding(.leading, 15)
                     }
                 )
-                .padding(.trailing, 8)
-            
         }
     }
 }

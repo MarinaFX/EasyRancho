@@ -15,15 +15,11 @@ struct MainView: View {
                     Image(systemName: "list.bullet.rectangle")
                 }
             
-            ListsView()
+            ListView()
                 .tabItem {
                     Image(systemName: "plus.circle.fill")
                 }
             
-            ListsView()
-                .tabItem {
-                    Image(systemName: "gearshape")
-                }
         }
         .onAppear {
             UITabBar.appearance().isTranslucent = false

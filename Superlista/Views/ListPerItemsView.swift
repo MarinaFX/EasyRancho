@@ -10,7 +10,6 @@ import SwiftUI
 struct ListPerItemsView: View {
     
     @EnvironmentObject var listsViewModel: ListsViewModel
-    let products = ProductListViewModel().productsOrdered
     
     var list: ListModel
     
@@ -19,7 +18,11 @@ struct ListPerItemsView: View {
     var categories: [String] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
     func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
-        
+    
+    func isLast(_ item: ItemModel, from category: Int) -> Bool {
+        return rows(from: category).last?.id == item.id
+    }
+    
     var body: some View {
         ZStack {
             Color.white
@@ -47,7 +50,9 @@ struct ListPerItemsView: View {
                     ) {
                         
                         ForEach(rows(from: category)) { item in
+                            
                             ItemCommentView(item: item, list: list)
+                                .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                         }
                         .onDelete { row in
                             listsViewModel.removeItem(from: row, of: categories[category], of: list)
@@ -56,8 +61,10 @@ struct ListPerItemsView: View {
                     }
                     
                 }
-                
             }
+        }
+        .onAppear {
+            UITableView.appearance().showsVerticalScrollIndicator = false
         }
     }
 }
