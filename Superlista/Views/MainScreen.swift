@@ -12,6 +12,7 @@ struct MainScreen: View {
     
     var height: CGFloat = .infinity
     var bottomPadding: CGFloat = -80
+    var topPadding: CGFloat = 0
     
     let purpleColor = Color("HeaderColor")
     let background = Color("background")
@@ -30,6 +31,7 @@ struct MainScreen: View {
             .foregroundColor(.black)
             .cornerRadius(30)
             .padding(.bottom, bottomPadding)
+            .padding(.top, topPadding)
         }
     }
 }

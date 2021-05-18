@@ -31,7 +31,7 @@ struct ListPerCategoryView: View {
                                     .fill(getColor(category: categories[category]))
                                     .frame(width: 160, height: 75)
                                     .cornerRadius(15)
-                                    .shadow(radius: 5)
+                                    .shadow(color: Color("Shadow"), radius: 5)
                                 
                                 Text(categories[category])
                                     .bold()
