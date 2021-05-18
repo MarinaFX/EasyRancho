@@ -28,8 +28,6 @@ struct ListView: View {
     @State var canEditTitle: Bool = true
     @State var isFavorite: Bool = false
     
-    let purpleColor = Color("HeaderColor")
-    let color1 = Color("Color1")
     
     @State var listaTitulo: String = ""
     
