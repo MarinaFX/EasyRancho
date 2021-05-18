@@ -24,7 +24,7 @@ struct ListHeader: View {
     @Binding var listId: String?
     
     var body: some View {
-        HStack{
+        HStack (spacing: 5){
             VStack(alignment: .leading){
                 
                 ZStack(alignment: .leading) {
@@ -33,11 +33,11 @@ struct ListHeader: View {
                             Text("Nova Lista")
                                 .foregroundColor(color1)
                                 .font(.system(size: 24, weight: .bold))
-
+                            
                         }
                         
                         TextField("", text: $listaTitulo)
-                            .foregroundColor(.black)
+                            .foregroundColor(canEditTitle ? .gray : .black)
                             .font(.system(size: 24, weight: .bold))
                         
                     }
@@ -64,7 +64,7 @@ struct ListHeader: View {
             Image(systemName: "pencil")
                 .resizable()
                 .frame(width: 22, height: 22)
-                .foregroundColor(color1)
+                .foregroundColor(canEditTitle ? .gray : color1)
                 .onTapGesture {
                     if let list = list {
                         if canEditTitle && !listaTitulo.isEmpty {
@@ -101,6 +101,7 @@ struct ListHeader: View {
                     }
                 }
         }
+        .padding(.horizontal, 30)
         .onAppear {
             if let list = list {
                 listaTitulo = list.title
