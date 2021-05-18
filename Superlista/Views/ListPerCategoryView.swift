@@ -40,10 +40,10 @@ struct ListPerCategoryView: View {
                                 
                             }
                             .onDrag({
-                                listsViewModel.currentList = list
-                                return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
+                                listsViewModel.currentCategory = categories[category]
+                                return NSItemProvider(contentsOf: URL(string: "\(category)")!)!
                             })
-                            .onDrop(of: [.url], delegate: DropViewDelegate(listsViewModel: listsViewModel, list: list))
+                            .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: categories[category]))
                     }
                      
                 })

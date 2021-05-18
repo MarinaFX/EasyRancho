@@ -60,7 +60,7 @@ struct GridListView: View {
                                 listsViewModel.currentList = list
                                 return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
                             })
-                            .onDrop(of: [.url], delegate: DropViewDelegate(listsViewModel: listsViewModel, list: list))
+                            .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: listsViewModel, list: list))
                             
                         }
                         

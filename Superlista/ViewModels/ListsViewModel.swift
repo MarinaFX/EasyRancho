@@ -16,110 +16,45 @@ class ListsViewModel: ObservableObject {
     
     @Published var currentList: ListModel?
     
+    @Published var currentCategory: String?
+    
     let products = ProductListViewModel().productsOrdered
     
     let itemsKey: String = "lists"
     
-   @Published var isGrid: Bool = false
+    @Published var isGrid: Bool = false
     
     init() {
         getItems()
     }
     
     func getItems() {
-//        guard
-//            let data = UserDefaults.standard.data(forKey: itemsKey),
-//            let savedItems = try? JSONDecoder().decode([ListModel].self, from: data)
-//        else { return }
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([ListModel].self, from: data)
+        else { return }
         
-        //if savedItems.isEmpty {
-        self.list = [
-            ListModel(title: "Churras", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false),
-            ListModel(title: "Aniver", items: [
-                "Congelados" : [
-                    ItemModel(product: products[61])
-                ],
-                "Bomboniere" : [
-                    ItemModel(product: products[32]),
-                    ItemModel(product: products[33]),
-                    ItemModel(product: products[34]),
-                    ItemModel(product: products[35]),
-                ],
-            ], favorite: true),
-            ListModel(title: "Flemis", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false),
-            ListModel(title: "Testes", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false),
-            ListModel(title: "Testesss", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false),
-            ListModel(title: "Testeees", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false)
-        ]
-        
-        //} else {
-//        self.list = savedItems
-        //}
+        if savedItems.isEmpty {
+            self.list = [
+                ListModel(title: "Churras", items: [
+                    "Carnes" : [
+                        ItemModel(product: products[43], comment: "Picanha"),
+                        ItemModel(product: products[44])
+                    ],
+                    "Bebidas" : [
+                        ItemModel(product: products[15], comment: "Coca"),
+                        ItemModel(product: products[10]),
+                        ItemModel(product: products[28]),
+                    ],
+                    "Temperos" : [
+                        ItemModel(product: products[303], comment: "Sal grosso"),
+                    ],
+                ], favorite: false)
+            ]
+            
+        } else {
+            self.list = savedItems
+        }
     }
     
     func saveItems() {
