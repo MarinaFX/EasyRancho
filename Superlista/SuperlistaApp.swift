@@ -14,8 +14,9 @@ struct SuperlistaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                GridListView()
+                MainView()
             }
+            .accentColor(.white)
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
         }

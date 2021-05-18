@@ -8,77 +8,73 @@
 import SwiftUI
 
 struct ItemCommentView: View {
-    
     @EnvironmentObject var listsViewModel: ListsViewModel
-    let products = ProductListViewModel().productsOrdered
-
+    
     let purpleColor = Color("HeaderColor")
-    @State var canComment: Bool = false
-    @State var comentario: String = ""
+    @State var isCommenting: Bool = false
+    @State var comment: String = ""
     
     var item: ItemModel
     var list: ListModel
     
     var body: some View {
-        ZStack {
-            VStack (alignment: .leading, spacing: -1) {
-                HStack {
-                    Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
-                        .foregroundColor(Color.primary)
-                        .font(.system(size: 15, weight: .light))
+        
+        VStack (alignment: .leading, spacing: 0) {
+            
+            HStack(alignment: .center) {
+                
+                Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
+                    .foregroundColor(Color.primary)
+                    .font(.system(size: 18, weight: .light))
+                    .onTapGesture {
+                        listsViewModel.toggleCompletion(of: item, from: list)
+                    }
+                
+                Text(item.product.name)
+                    .foregroundColor(Color.primary)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                
+                
+                Spacer()
+                
+                if !isCommenting{
+                    Image(systemName: "text.bubble")
+                        .resizable()
+                        .frame(width: 22, height: 22)
+                        .foregroundColor(purpleColor)
                         .onTapGesture {
-                            listsViewModel.toggleCompletion(of: item, from: list)
+                            isCommenting = true
                         }
-                    
-                    Text(item.product.name)
-                        .foregroundColor(Color.primary)
-                        .font(.system(size: 15, weight: .semibold))
+                }
+                
+            }
+            
+            if isCommenting {
+                HStack {
+                    TextField(comment == "" ? "Insira um comentário" : comment, text: $comment)
+                        .font(.footnote)
+                        .foregroundColor(Color(UIColor.secondaryLabel))
+                        .padding(.leading, 30)
                     
                     Spacer()
                     
-                    if !canComment{
-                        Image(systemName: "text.bubble")
-                            .resizable()
-                            .frame(width: 22, height: 22)
-                            .foregroundColor(purpleColor)
-                            .onTapGesture {
-                                canComment = true
-                            }
-                    }
-                    
-                }
-                if canComment {
-                    
-                    HStack {
-                        ZStack(alignment: .leading){
-                            if ((comentario) == "") { Text("Insira um comentário").foregroundColor(Color(UIColor.secondaryLabel)).font(.system(size: 13)).padding(.leading, 30) }
-                            TextField("", text: $comentario)
-                                .font(.system(size: 13))
-                                .foregroundColor(Color(UIColor.secondaryLabel))
-                                .padding(.leading, 28)
+                    Text("OK")
+                        .foregroundColor(Color.primary)
+                        .font(.subheadline)
+                        .onTapGesture {
+                            listsViewModel.addComent(comment, to: item, from: list)
+                            isCommenting = false
                         }
-                        
-                        Spacer()
-                        
-                        Text("OK")
-                            .foregroundColor(Color.primary)
-                            .font(.system(size: 15))
-                            .onTapGesture {
-                                listsViewModel.addComent(comentario, to: item, from: list)
-                                canComment = false
-                                
-                            }
-                    }
                 }
-                
-                if !canComment{
-                    Text(item.comment ?? "")
-                        .font(.system(size: 13))
-                        .foregroundColor(Color(UIColor.secondaryLabel))
-                        .padding(.leading, 28)
-                }
+            } else if item.comment != "" {
+                Text(item.comment ?? "")
+                    .font(.footnote)
+                    .foregroundColor(Color(UIColor.secondaryLabel))
+                    .padding(.leading, 30)
             }
         }
+        .padding(.vertical, 5)
     }
 }
 
