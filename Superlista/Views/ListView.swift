@@ -36,9 +36,9 @@ struct ListView: View {
     
     var body: some View {
         MainScreen(customView: AnyView(
-            VStack {
+            VStack (spacing: 20) {
                 
-                HStack{
+                HStack(spacing: 5){
                     VStack(alignment: .leading){
                         
                         ZStack(alignment: .leading) {
@@ -77,7 +77,7 @@ struct ListView: View {
                     Image(systemName: "pencil")
                         .resizable()
                         .frame(width: 22, height: 22)
-                        .foregroundColor(color1)
+                        .foregroundColor(canEditTitle ? .gray : color1)
                         .onTapGesture {
                             if canEditTitle && !listaTitulo.isEmpty{
                                 listsViewModel.editListTitle(of: getList(), newTitle: listaTitulo)
