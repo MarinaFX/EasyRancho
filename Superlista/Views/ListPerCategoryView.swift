@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CategoryView: View {
+struct ListPerCategoryView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
     @State var isEditing : Bool = false
@@ -26,16 +26,18 @@ struct CategoryView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20, content: {
                     ForEach(0..<(list.items.count), id: \.self) { category in
-                            ZStack(alignment: .bottom) {
+                            ZStack(alignment: .center) {
                                 Rectangle()
-                                    .fill(Color.white)
-                                    .frame(width: 150, height: 150)
+                                    .fill(getColor(category: categories[category]))
+                                    .frame(width: 160, height: 75)
                                     .cornerRadius(15)
-                                    .shadow(radius: 10)
+                                    .shadow(radius: 5)
                                 
                                 Text(categories[category])
-                                    .frame(alignment: .bottom)
-                                    .padding(.bottom)
+                                    .bold()
+                                    .frame(alignment: .center)
+                                    .frame(maxWidth: 150)
+                                    .foregroundColor(.white)
                                 
                             }
                             .onDrag({

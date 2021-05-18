@@ -25,10 +25,18 @@ struct ListView: View {
         return nil
     }
     
+    @State var canEditTitle: Bool = true
+    @State var isFavorite: Bool = false
+    
+    
+    @State var listaTitulo: String = ""
+    
     var body: some View {
         MainScreen(customView: AnyView(
             VStack (spacing: 20) {
+                
                 ListHeader(list: getList(), listId: $listId)
+                
                 
                 if let list = getList() {
                     NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
@@ -36,21 +44,27 @@ struct ListView: View {
                             .padding(.horizontal, 20)
                     }
                     
-                    ListPerItemsView(list: list)
-                        .padding(.horizontal)
+                    if !listsViewModel.isGrid {
+                        ListPerItemsView(list: list)
+                            .padding(.horizontal)
+                            .padding(.bottom, 30)
+                    } else {
+                        ListPerCategoryView(list: list)
+                            .padding(.horizontal)
                         .padding(.bottom, 30)
+                    }
                     
                 } else {
                     Spacer()
                 }
             }
         ))
-
+        
         .toolbar {
             ToolbarItem(placement: .principal) {
-               Text(navigationTitle)
-                .bold()
-                .foregroundColor(.white)
+                Text(navigationTitle)
+                    .bold()
+                    .foregroundColor(.white)
             }
         }
     }
