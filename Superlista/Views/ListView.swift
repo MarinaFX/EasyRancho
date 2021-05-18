@@ -12,6 +12,10 @@ struct ListView: View {
     
     @State var listId: String?
     
+    var navigationTitle: String {
+        return getList() != nil ? "Sua Lista" : "Nova Lista"
+    }
+    
     func getList() -> ListModel? {
         if let listId = listId,
            let list = listsViewModel.list.first(where: { $0.id == listId }) {
@@ -31,13 +35,26 @@ struct ListView: View {
                 if let list = getList() {
                     NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
                         FakeSearchBar()
-                            .padding(.vertical)
+                            .padding(.top, 10)
+                            .padding(.bottom, 20)
                             .padding(.horizontal, 26)
                     }
                     
                     ListPerItemsView(list: list)
+                        .padding(.horizontal)
+                        .padding(.bottom, 30)
+                } else {
+                    Spacer()
                 }
             }
         ))
+
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+               Text(navigationTitle)
+                .bold()
+                .foregroundColor(.white)
+            }
+        }
     }
 }

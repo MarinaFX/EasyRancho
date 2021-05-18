@@ -16,6 +16,7 @@ struct SuperlistaApp: App {
             NavigationView {
                 MainView()
             }
+            .accentColor(.white)
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
         }

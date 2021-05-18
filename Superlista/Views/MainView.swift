@@ -20,10 +20,6 @@ struct MainView: View {
                     Image(systemName: "plus.circle.fill")
                 }
             
-            ListsView()
-                .tabItem {
-                    Image(systemName: "gearshape")
-                }
         }
         .onAppear {
             UITabBar.appearance().isTranslucent = false

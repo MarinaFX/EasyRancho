@@ -8,29 +8,29 @@
 import SwiftUI
 
 struct MainScreen: View {
-    
     var customView: AnyView?
-    let headerColor = Color("HeaderColor")
     
+    var height: CGFloat = .infinity
+    var bottomPadding: CGFloat = -80
+    
+    let headerColor = Color("HeaderColor")
     let background = Color("background")
     
     var body: some View {
-        ZStack{
+        ZStack() {
             headerColor
                 .edgesIgnoringSafeArea(.top)
             
-            VStack{
-                customView.padding(.vertical)
-                
-                Spacer()
+            VStack {
+                customView
+                    .padding(.vertical)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: height)
             .background(background)
             .foregroundColor(.black)
             .cornerRadius(30)
-            .padding(.bottom, -80)
+            .padding(.bottom, bottomPadding)
         }
-        .padding(.bottom)
     }
 }
 

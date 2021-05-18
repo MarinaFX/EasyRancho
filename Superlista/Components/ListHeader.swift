@@ -32,10 +32,12 @@ struct ListHeader: View {
                         if listaTitulo.isEmpty {
                             Text("Nova Lista")
                                 .foregroundColor(color1)
-                                .font(.system(size: 24, weight: .bold)) }
+                                .font(.system(size: 24, weight: .bold))
+
+                        }
                         
                         TextField("", text: $listaTitulo)
-                            .foregroundColor(color1)
+                            .foregroundColor(.black)
                             .font(.system(size: 24, weight: .bold))
                         
                     }
@@ -72,7 +74,7 @@ struct ListHeader: View {
                             canEditTitle = true
                         }
                     } else {
-                        let newList = ListModel(title: "Nova Lista")
+                        let newList = ListModel(title: listaTitulo)
                         listsViewModel.addList(newItem: newList)
                         self.listId = newList.id
                         canEditTitle = false
@@ -99,8 +101,6 @@ struct ListHeader: View {
                     }
                 }
         }
-//        .padding(.leading, 20)
-//        .padding(.trailing, 10)
         .onAppear {
             if let list = list {
                 listaTitulo = list.title
@@ -111,9 +111,3 @@ struct ListHeader: View {
     }
     
 }
-
-//struct ListHeader_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListHeader()
-//    }
-//}
