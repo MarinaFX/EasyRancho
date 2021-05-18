@@ -6,8 +6,15 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct GridListView: View {
+    
+//    init() {
+//            //Use this if NavigationBarTitle is with displayMode = .inline
+//        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "San-Francisco", size: 36)!]
+//        }
+    
     @EnvironmentObject var listsViewModel: ListsViewModel
     
     @State var isEditing : Bool = false
@@ -15,15 +22,6 @@ struct GridListView: View {
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var body: some View {
-        VStack{
-            HStack{
-                Text("Listas")
-                    .font(.system(size: 36, weight: .bold))
-                    .foregroundColor(Color.primary)
-                Spacer()
-                Button(action: {isEditing.toggle()}, label: {Text("Edit")})
-            }
-            .padding(.horizontal)
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20, content: {
                     ForEach(listsViewModel.list) { list in
@@ -46,16 +44,12 @@ struct GridListView: View {
                                         listsViewModel.toggleListFavorite(of: list)
                                     }
                                 
-                                //                                                Image(systemName: "minus.circle.fill")
-                                //                                                    .font(.title)
-                                //                                                    .foregroundColor(Color(.systemGray))
-                                //                                                    .offset(x: -75, y: -135)
                             }
                             .overlay(
                                 Image(systemName: "minus.circle.fill")
                                     .font(.title2)
                                     .foregroundColor(Color(.systemGray))
-                                    .offset(x: -80, y: -80)
+                                    .offset(x: -70, y: -70)
                                     .onTapGesture {
                                         listsViewModel.removeList(list)
                                     }
@@ -71,45 +65,45 @@ struct GridListView: View {
                         }
                         
                         else {
-                            ZStack(alignment: .bottom) {
-                                Rectangle()
-                                    .fill(Color.white)
-                                    .frame(width: 150, height: 150)
-                                    .cornerRadius(15)
-                                    .shadow(radius: 10)
-                                
-                                Text(list.title)
-                                    .frame(alignment: .bottom)
-                                    .padding(.bottom)
-                                
-                                Image(systemName: list.favorite ? "heart.fill" : "heart")
-                                    .foregroundColor(list.favorite ? Color.red : Color.black)
-                                    .position(x: 145, y: 22)
-                                    .onTapGesture {
-                                        listsViewModel.toggleListFavorite(of: list)
-                                    }
-                                
-                                //                                                Image(systemName: "minus.circle.fill")
-                                //                                                    .font(.title)
-                                //                                                    .foregroundColor(Color(.systemGray))
-                                //                                                    .offset(x: -75, y: -135)
-                            }
+                            NavigationLink(destination: ListView(listId: list.id), label: {
+                                ZStack(alignment: .bottom) {
+                                    Rectangle()
+                                        .fill(Color.white)
+                                        .frame(width: 150, height: 150)
+                                        .cornerRadius(15)
+                                        .shadow(radius: 10)
+                                    
+                                    Text(list.title)
+                                        .frame(alignment: .bottom)
+                                        .padding(.bottom)
+                                    
+                                    Image(systemName: list.favorite ? "heart.fill" : "heart")
+                                        .foregroundColor(list.favorite ? Color.red : Color.black)
+                                        .position(x: 145, y: 22)
+                                        .onTapGesture {
+                                            listsViewModel.toggleListFavorite(of: list)
+                                        }
+                                }
+                            })
                         }
                     }
-                    
+                     
                 })
                 .padding(.top)
             }
-        }
-        .padding()
-        //.padding(.top)
         
-        //        .toolbar{
-        //            ToolbarItem(placement: .destructiveAction){
-        //                Button(action: {isEditing.toggle()}, label: {Text("Edit")})
-        //            }
-        //        }
-        //        .navigationTitle("Listas")
+                .toolbar{
+                    ToolbarItem(placement: .navigationBarLeading){
+                        Button(action: {isEditing.toggle()}, label: {
+                                Text(isEditing ? "Concluir": "Editar")})
+                    }
+                    ToolbarItem(placement: .principal){
+                        Text("Listas").font(.system(size: 36, weight: .bold)).foregroundColor(Color.primary)
+                    }
+                    ToolbarItem(placement: .destructiveAction){
+                        Button(action: {listsViewModel.addList(newItem: ListModel(title: "Nova Lista"))}, label: {Text("Nova lista")})
+                    }
+                }
     }
 }
 

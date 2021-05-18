@@ -10,12 +10,15 @@ import SwiftUI
 @main
 struct SuperlistaApp: App {
     @StateObject var listsViewModel: ListsViewModel = ListsViewModel()
+    
+    let purpleColor = Color("HeaderColor")
 
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 GridListView()
             }
+            .accentColor(.black)
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
         }
