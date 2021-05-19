@@ -16,7 +16,7 @@ struct ListPerCategoryView: View {
     
     var list: ListModel
     
-   // let background = Color("background") // DEPOIS PRO DARK MODE
+    // let background = Color("background") // DEPOIS PRO DARK MODE
     
     var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
@@ -27,32 +27,35 @@ struct ListPerCategoryView: View {
     }
     
     var body: some View {
-            ScrollView(showsIndicators: false) {
-                LazyVGrid(columns: columns, spacing: 20, content: {
-                    ForEach(getCategories(), id: \.self) { category in
-                            ZStack(alignment: .center) {
-                                Rectangle()
-                                    .fill(getColor(category: category.title))
-                                    .frame(width: 160, height: 75)
-                                    .cornerRadius(15)
-                                    .shadow(color: Color("Shadow"), radius: 5)
-                                
-                                Text(category.title)
-                                    .bold()
-                                    .frame(alignment: .center)
-                                    .frame(maxWidth: 150)
-                                    .foregroundColor(.white)
-                                
-                            }
-                            .onDrag({
-                                listsViewModel.currentCategory = category
-                                return NSItemProvider(contentsOf: URL(string: "\(category.id)")!)!
-                            })
-                            .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: category))
+        ScrollView(showsIndicators: false) {
+            LazyVGrid(columns: columns, spacing: 20, content: {
+                ForEach(getCategories(), id: \.self) { category in
+                    ZStack(alignment: .center) {
+                        NavigationLink(destination: ListByCategoryView(categoryName: category, list: list)) {
+                            Rectangle()
+                                .fill(getColor(category: category.title))
+                                .frame(width: 160, height: 75)
+                                .cornerRadius(15)
+                                .shadow(color: Color("Shadow"), radius: 5)
+                        }
+                        
+                        Text(category.title)
+                            .bold()
+                            .frame(alignment: .center)
+                            .frame(maxWidth: 150)
+                            .foregroundColor(.white)
+                        
                     }
-                     
-                })
-                .padding(.top)
-            }
+                    .onDrag({
+                        listsViewModel.currentCategory = category
+                        return NSItemProvider(contentsOf: URL(string: "\(category.id)")!)!
+                    })
+                    .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: category))
+                    
+                }
+                
+            })
+            .padding(.top)
+        }
     }
 }
