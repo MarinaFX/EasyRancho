@@ -19,8 +19,16 @@ struct ListPerItemsView: View {
     
     func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
     
-    func isLast(_ item: ItemModel, from category: Int) -> Bool {
-        return rows(from: category).last?.id == item.id
+    func isLast(_ item: ItemModel, from category: CategoryModel) -> Bool {
+        return getRows(from: category).last?.id == item.id
+    }
+    
+    func getCategories() -> [CategoryModel] {
+        return Array(list.items.keys.map { $0 }).sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
+    }
+    
+    func getRows(from category: CategoryModel) -> [ItemModel] {
+        return list.items[category] ?? []
     }
     
     var body: some View {
@@ -28,12 +36,12 @@ struct ListPerItemsView: View {
             Color.white
             
             List {
-                ForEach(0..<(list.items.count), id: \.self) { category in
+                ForEach(getCategories(), id: \.self) { category in
                     
                     Section(header: HStack{
-                        Text(categories[category].title)
+                        Text(category.title)
                             .font(.headline)
-                            .foregroundColor(getColor(category: categories[category].title))
+                            .foregroundColor(getColor(category: category.title))
                             .padding()
                         
                         Spacer()
@@ -49,13 +57,13 @@ struct ListPerItemsView: View {
                     
                     ) {
                         
-                        ForEach(rows(from: category)) { item in
+                        ForEach(getRows(from: category)) { item in
                             
                             ItemCommentView(item: item, list: list)
                                 .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                         }
                         .onDelete { row in
-                            listsViewModel.removeItem(from: row, of: categories[category], of: list)
+                            listsViewModel.removeItem(from: row, of: category, of: list)
                         }
                         
                     }
