@@ -18,10 +18,6 @@ struct ListPerCategoryView: View {
     
     // let background = Color("background") // DEPOIS PRO DARK MODE
     
-    var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
-    
-    func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
-    
     func getCategories() -> [CategoryModel] {
         return Array(list.items.keys.map { $0 }).sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
     }
