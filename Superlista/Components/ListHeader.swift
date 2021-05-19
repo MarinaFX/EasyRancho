@@ -18,7 +18,7 @@ struct ListHeader: View {
     @State var isFavorite: Bool = false
     
     let purpleColor = Color("HeaderColor")
-    let color1 = Color("Color1")
+    let secondary = Color("Secondary")
     
     let list: ListModel?
     @Binding var listId: String?
@@ -32,7 +32,7 @@ struct ListHeader: View {
                     if canEditTitle {
                         if listaTitulo.isEmpty {
                             Text("Nova Lista")
-                                .foregroundColor(color1)
+                                .foregroundColor(secondary)
                                 .font(.system(size: 24, weight: .bold))
                             
                         }
@@ -57,7 +57,7 @@ struct ListHeader: View {
                 
                 Rectangle()
                     .frame(width: 200, height: 1)
-                    .foregroundColor(color1)
+                    .foregroundColor(secondary)
             }
             
             Spacer()
@@ -65,7 +65,7 @@ struct ListHeader: View {
             Image(systemName: "pencil")
                 .resizable()
                 .frame(width: 22, height: 22)
-                .foregroundColor(canEditTitle ? .gray : color1)
+                .foregroundColor(canEditTitle ? .gray : secondary)
                 .onTapGesture {
                     if let list = list {
                         if canEditTitle && !listaTitulo.isEmpty {
@@ -89,7 +89,7 @@ struct ListHeader: View {
             Image(systemName: listsViewModel.isGrid ? "list.bullet" : "square.grid.2x2.fill")
                     .resizable()
                     .frame(width: 22, height: 22)
-                    .foregroundColor(color1)
+                    .foregroundColor(secondary)
                 .onTapGesture {
                     listsViewModel.isGrid.toggle()
                 }
@@ -99,7 +99,7 @@ struct ListHeader: View {
             Image(systemName: (list?.favorite ?? false) ? "heart.fill" : "heart")
                 .resizable()
                 .frame(width: 22, height: 22)
-                .foregroundColor((list?.favorite ?? false) ? .red : Color("Color1"))
+                .foregroundColor((list?.favorite ?? false) ? .red : Color("Secondary"))
                 .onTapGesture {
                     if let list = list {
                         isFavorite.toggle()

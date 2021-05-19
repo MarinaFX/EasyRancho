@@ -16,8 +16,6 @@ struct ListByCategoryView: View {
     
     func rows() -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categoryName]! }
     
-    let color1 = Color("Color1")
-    
     
     
     var body: some View {

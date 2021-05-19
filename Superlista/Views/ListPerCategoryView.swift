@@ -33,13 +33,14 @@ struct ListPerCategoryView: View {
                             ZStack(alignment: .center) {
                                 Rectangle()
                                     .fill(getColor(category: category.title))
-                                    .frame(width: 150, height: 75)
+                                    .frame(width: 160, height: 75)
                                     .cornerRadius(15)
-                                    .shadow(radius: 10)
+                                    .shadow(radius: 5)
                                 
                                 Text(category.title)
                                     .bold()
                                     .frame(alignment: .center)
+                                    .frame(maxWidth: 150)
                                     .foregroundColor(.white)
                                 
                             }
@@ -55,9 +56,3 @@ struct ListPerCategoryView: View {
             }
     }
 }
-
-//struct CategoryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CategoryView()
-//    }
-//}

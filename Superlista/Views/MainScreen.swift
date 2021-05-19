@@ -13,19 +13,19 @@ struct MainScreen: View {
     var height: CGFloat = .infinity
     var bottomPadding: CGFloat = -80
     
-    let headerColor = Color("HeaderColor")
+    let purpleColor = Color("HeaderColor")
     let background = Color("background")
     
     var body: some View {
         ZStack() {
-            headerColor
+            purpleColor
                 .edgesIgnoringSafeArea(.top)
             
             VStack {
                 customView
                     .padding(.vertical)
             }
-            .frame(maxWidth: .infinity, maxHeight: height)
+            .frame(maxWidth: .infinity, maxHeight: height) 
             .background(background)
             .foregroundColor(.black)
             .cornerRadius(30)
