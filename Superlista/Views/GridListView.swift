@@ -55,7 +55,7 @@ struct GridListView: View {
                                 Image(systemName: "minus.circle.fill")
                                     .font(.title2)
                                     .foregroundColor(Color(.systemGray))
-                                    .offset(x: -70, y: -70)
+                                    .offset(x: -75, y: -35)
                                     .onTapGesture {
                                         listsViewModel.removeList(list)
                                     }

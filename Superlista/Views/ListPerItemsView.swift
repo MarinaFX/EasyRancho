@@ -48,6 +48,7 @@ struct ListPerItemsView: View {
                     }
                     .frame(maxHeight: 30)
                     .textCase(nil) // TALVEZ TENHA QUE TIRAR
+               
                     .background(background)
                     .listRowInsets(EdgeInsets(
                                     top: -5,
