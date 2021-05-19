@@ -15,10 +15,9 @@
 		09725B1F264C63510006D410 /* ListPerItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B1E264C63510006D410 /* ListPerItemsView.swift */; };
 		09725B21264C64F90006D410 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B20264C64F90006D410 /* ColorModel.swift */; };
 		09725B232652DCAD0006D410 /* ListByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B222652DCAD0006D410 /* ListByCategoryView.swift */; };
-		09725B29265437E80006D410 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B28265437E80006D410 /* CategoryView.swift */; };
+		09725B29265437E80006D410 /* ListPerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B28265437E80006D410 /* ListPerCategoryView.swift */; };
 		1B325E2126545176001A0F28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B325E2026545176001A0F28 /* LaunchScreen.storyboard */; };
 		1B325E29265452C7001A0F28 /* DefaultLS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B325E28265452C7001A0F28 /* DefaultLS.png */; };
-		09725B29265437E80006D410 /* ListPerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B28265437E80006D410 /* ListPerCategoryView.swift */; };
 		1B43E5AE264B0F61002C6D64 /* GridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5AD264B0F61002C6D64 /* GridListView.swift */; };
 		1B43E5B3264B13BE002C6D64 /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5B2264B13BE002C6D64 /* DropViewDelegate.swift */; };
 		1B43E5B8264B1595002C6D64 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5B7264B1595002C6D64 /* TestScreen.swift */; };
@@ -67,10 +66,9 @@
 		09725B1E264C63510006D410 /* ListPerItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPerItemsView.swift; sourceTree = "<group>"; };
 		09725B20264C64F90006D410 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		09725B222652DCAD0006D410 /* ListByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListByCategoryView.swift; sourceTree = "<group>"; };
-		09725B28265437E80006D410 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		09725B28265437E80006D410 /* ListPerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPerCategoryView.swift; sourceTree = "<group>"; };
 		1B325E2026545176001A0F28 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B325E28265452C7001A0F28 /* DefaultLS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultLS.png; sourceTree = "<group>"; };
-		09725B28265437E80006D410 /* ListPerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPerCategoryView.swift; sourceTree = "<group>"; };
 		1B43E5AD264B0F61002C6D64 /* GridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridListView.swift; sourceTree = "<group>"; };
 		1B43E5B2264B13BE002C6D64 /* DropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
 		1B43E5B7264B1595002C6D64 /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				09725B1C264C60BC0006D410 /* ItemCommentView.swift */,
 				09725B1E264C63510006D410 /* ListPerItemsView.swift */,
 				09725B222652DCAD0006D410 /* ListByCategoryView.swift */,
-				09725B28265437E80006D410 /* CategoryView.swift */,
 				1B325E2026545176001A0F28 /* LaunchScreen.storyboard */,
 				09725B28265437E80006D410 /* ListPerCategoryView.swift */,
 			);
@@ -542,7 +539,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Superlista/Preview Content\"";
-				DEVELOPMENT_TEAM = YM283LC5H4;
+				DEVELOPMENT_TEAM = 7UW5874D4F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Superlista/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -550,7 +547,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = luiz.superlista;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thaisrfernandes.superlista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -564,7 +561,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Superlista/Preview Content\"";
-				DEVELOPMENT_TEAM = YM283LC5H4;
+				DEVELOPMENT_TEAM = 7UW5874D4F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Superlista/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -572,7 +569,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = luiz.superlista;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thaisrfernandes.superlista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
