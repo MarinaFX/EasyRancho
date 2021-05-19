@@ -10,10 +10,10 @@ import Foundation
 struct ListModel: Identifiable, Decodable, Encodable {
     let id: String
     let title: String
-    let items: [String: [ItemModel]]
+    let items: [CategoryModel: [ItemModel]]
     let favorite: Bool
     
-    init(id: String = UUID().uuidString, title: String, items: [String: [ItemModel]] = [:], favorite: Bool = false) {
+    init(id: String = UUID().uuidString, title: String, items: [CategoryModel: [ItemModel]] = [:], favorite: Bool = false) {
         
         self.id = id
         self.title = title
@@ -32,10 +32,10 @@ struct ListModel: Identifiable, Decodable, Encodable {
     func addItem(_ product: ProductModel) -> ListModel {
         var newItemsList = items
         
-        if let _ = items[product.category] {
-            newItemsList[product.category]?.append(ItemModel(product: product))
+        if let _ = items[product.getCategory()] {
+            newItemsList[product.getCategory()]?.append(ItemModel(product: product))
         } else {
-            newItemsList[product.category] = [ItemModel(product: product)]
+            newItemsList[product.getCategory()] = [ItemModel(product: product)]
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
@@ -45,17 +45,17 @@ struct ListModel: Identifiable, Decodable, Encodable {
         var newItemsList = items
         
         products.forEach { product in
-            if let _ = items[product.category] {
-                newItemsList[product.category]?.append(ItemModel(product: product))
+            if let _ = items[product.getCategory()] {
+                newItemsList[product.getCategory()]?.append(ItemModel(product: product))
             } else {
-                newItemsList[product.category] = [ItemModel(product: product)]
+                newItemsList[product.getCategory()] = [ItemModel(product: product)]
             }
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
     
-    func removeItem(from row: IndexSet, of category: String) -> ListModel {
+    func removeItem(from row: IndexSet, of category: CategoryModel) -> ListModel {
         var newItemsList = items
         
         newItemsList[category]?.remove(atOffsets: row)
@@ -75,10 +75,10 @@ struct ListModel: Identifiable, Decodable, Encodable {
         
         var newItemsList = items
         
-        if let rows = items[item.product.category],
+        if let rows = items[item.product.getCategory()],
            let index = rows.firstIndex(where: { $0.id == item.id }) {
             
-            newItemsList[item.product.category]?[index] = item.editComment(newComment: comment)
+            newItemsList[item.product.getCategory()]?[index] = item.editComment(newComment: comment)
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
@@ -88,10 +88,10 @@ struct ListModel: Identifiable, Decodable, Encodable {
         
         var newItemsList = items
         
-        if let rows = items[item.product.category],
+        if let rows = items[item.product.getCategory()],
            let index = rows.firstIndex(where: { $0.id == item.id }) {
             
-            newItemsList[item.product.category]?[index] = item.toggleCompletion()
+            newItemsList[item.product.getCategory()]?[index] = item.toggleCompletion()
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)

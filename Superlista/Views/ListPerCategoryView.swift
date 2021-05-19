@@ -18,7 +18,7 @@ struct ListPerCategoryView: View {
     
    // let background = Color("background") // DEPOIS PRO DARK MODE
     
-    var categories: [String] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
+    var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
     func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
     
@@ -28,22 +28,22 @@ struct ListPerCategoryView: View {
                     ForEach(0..<(list.items.count), id: \.self) { category in
                             ZStack(alignment: .center) {
                                 Rectangle()
-                                    .fill(getColor(category: categories[category]))
+                                    .fill(getColor(category: categories[category].title))
                                     .frame(width: 150, height: 75)
                                     .cornerRadius(15)
                                     .shadow(radius: 10)
                                 
-                                Text(categories[category])
+                                Text(categories[category].title)
                                     .bold()
                                     .frame(alignment: .center)
                                     .foregroundColor(.white)
                                 
                             }
-                            .onDrag({
-                                listsViewModel.currentCategory = categories[category]
-                                return NSItemProvider(contentsOf: URL(string: "\(category)")!)!
-                            })
-                            .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: categories[category]))
+//                            .onDrag({
+//                                listsViewModel.currentCategory = categories[category]
+//                                return NSItemProvider(contentsOf: URL(string: "\(category)")!)!
+//                            })
+//                            .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: categories[category].title))
                     }
                      
                 })

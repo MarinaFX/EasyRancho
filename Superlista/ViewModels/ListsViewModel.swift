@@ -37,16 +37,16 @@ class ListsViewModel: ObservableObject {
         if savedItems.isEmpty {
             self.list = [
                 ListModel(title: "Churras", items: [
-                    "Carnes" : [
+                    CategoryModel(title: "Carnes") : [
                         ItemModel(product: products[43], comment: "Picanha"),
                         ItemModel(product: products[44])
                     ],
-                    "Bebidas" : [
+                    CategoryModel(title: "Bebidas") : [
                         ItemModel(product: products[15], comment: "Coca"),
                         ItemModel(product: products[10]),
                         ItemModel(product: products[28]),
                     ],
-                    "Temperos" : [
+                    CategoryModel(title: "Temperos") : [
                         ItemModel(product: products[303], comment: "Sal grosso"),
                     ],
                 ], favorite: false)
@@ -101,7 +101,7 @@ class ListsViewModel: ObservableObject {
         }
     }
     
-    func removeItem(from row: IndexSet, of category: String, of listModel: ListModel) {
+    func removeItem(from row: IndexSet, of category: CategoryModel, of listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.removeItem(from: row, of: category)
         }
