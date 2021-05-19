@@ -52,6 +52,7 @@ struct AddNewItemView: View {
     
     func prontoButtonPressed(){
         listsViewModel.addItems(selectedProducts, to: list)
+
         presentationMode.wrappedValue.dismiss()
     }
 }

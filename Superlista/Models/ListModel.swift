@@ -45,10 +45,11 @@ struct ListModel: Identifiable, Decodable, Encodable {
         var newItemsList = items
         
         products.forEach { product in
-            if let _ = items[product.getCategory()] {
-                newItemsList[product.getCategory()]?.append(ItemModel(product: product))
+            if let category = newItemsList.first(where: { $0.key.title == product.category })?.key {
+                newItemsList[category]?.append(ItemModel(product: product))
             } else {
-                newItemsList[product.getCategory()] = [ItemModel(product: product)]
+                let lastOrder = Array(newItemsList.keys).last?.order
+                newItemsList[CategoryModel(title: product.category, order: (lastOrder ?? 0) + 1)] = [ItemModel(product: product)]
             }
         }
         
@@ -96,4 +97,29 @@ struct ListModel: Identifiable, Decodable, Encodable {
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
+    
+    func switchOrder(from cat1: CategoryModel, to cat2: CategoryModel) -> ListModel {
+        var newItemsList = items
+        
+        if let category1 = items.first(where: { $0.key.id == cat1.id }),
+           let category2 = items.first(where: { $0.key.id == cat2.id }){
+            newItemsList.removeValue(forKey: category1.key)
+            newItemsList.removeValue(forKey: category2.key)
+                
+            newItemsList[CategoryModel(id: category1.key.id, title: category1.key.title, order: category2.key.order)] = category1.value
+            newItemsList[CategoryModel(id: category2.key.id, title: category2.key.title, order: category1.key.order)] = category2.value
+        }
+        
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+    }
+    
+//    func switchCategories(from: CategoryModel, to: CategoryModel) -> ListModel {
+//        var newItemsList = items
+//        
+//        let fromList = newItemsList[from]
+//        newItemsList[from] = newItemsList[to]
+//        newItemsList[to] = fromList
+//        
+//        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+//    }
 }

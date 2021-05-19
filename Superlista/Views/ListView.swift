@@ -36,9 +36,7 @@ struct ListView: View {
     var body: some View {
         MainScreen(customView: AnyView(
             VStack (spacing: 20) {
-                
                 ListHeader(list: getList(), listId: $listId)
-                
                 
                 if let list = getList() {
                     NavigationLink(destination: AddNewItemView(list: list, searchText: "")){

@@ -16,7 +16,7 @@ class ListsViewModel: ObservableObject {
     
     @Published var currentList: ListModel?
     
-    @Published var currentCategory: String?
+    @Published var currentCategory: CategoryModel?
     
     let products = ProductListViewModel().productsOrdered
     
@@ -51,7 +51,7 @@ class ListsViewModel: ObservableObject {
                     ],
                 ], favorite: false)
             ]
-            
+
         } else {
             self.list = savedItems
         }
@@ -118,5 +118,17 @@ class ListsViewModel: ObservableObject {
             list[index] = listModel.toggleCompletion(of: item)
         }
     }
+    
+    func switchOrder(of category1: CategoryModel, to category2: CategoryModel, from listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.switchOrder(from: category1, to: category2)
+        }
+    }
+    
+//    func switchCategories(from: CategoryModel, to: CategoryModel, from listModel: ListModel) {
+//        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+//            list[index] = listModel.switchCategories(from: from, to: to)
+//        }
+//    }
     
 }

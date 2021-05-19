@@ -45,28 +45,25 @@ struct CategoryDropViewDelegate: DropDelegate {
     
     var list: ListModel
     
-    var category: String
+    var category: CategoryModel
     
     func performDrop(info: DropInfo) -> Bool {
         return true
     }
     
     func dropEntered(info: DropInfo) {
-//        let fromIndex = listsViewModel.list.firstIndex{ list -> Bool in
-//            return list.id == listsViewModel.currentList?.id
-//        } ?? 0
-//
-//        let toIndex = listsViewModel.list.firstIndex{ list -> Bool in
-//            return list.id == self.list.id
-//        } ?? 0
-//
-//        if fromIndex != toIndex {
-//            withAnimation {
-//                let fromList = listsViewModel.list[fromIndex]
-//                listsViewModel.list[fromIndex] = listsViewModel.list[toIndex]
-//                listsViewModel.list[toIndex] = fromList
-//            }
-//        }
+        
+        if let fromCat = list.items.first(where: { $0.key == listsViewModel.currentCategory }),
+           let toCat = list.items.first(where: { $0.key == self.category }),
+           fromCat.key != toCat.key {
+            
+            print("fromCat", fromCat)
+            print("toCat", toCat)
+            
+            withAnimation {
+                listsViewModel.switchOrder(of: fromCat.key, to: toCat.key, from: list)
+            }
+        }
     }
     
     func dropUpdated(info: DropInfo) -> DropProposal? {

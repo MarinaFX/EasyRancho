@@ -22,28 +22,32 @@ struct ListPerCategoryView: View {
     
     func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
     
+    func getCategories() -> [CategoryModel] {
+        return Array(list.items.keys.map { $0 }).sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
+    }
+    
     var body: some View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20, content: {
-                    ForEach(0..<(list.items.count), id: \.self) { category in
+                    ForEach(getCategories(), id: \.self) { category in
                             ZStack(alignment: .center) {
                                 Rectangle()
-                                    .fill(getColor(category: categories[category].title))
+                                    .fill(getColor(category: category.title))
                                     .frame(width: 150, height: 75)
                                     .cornerRadius(15)
                                     .shadow(radius: 10)
                                 
-                                Text(categories[category].title)
+                                Text(category.title)
                                     .bold()
                                     .frame(alignment: .center)
                                     .foregroundColor(.white)
                                 
                             }
-//                            .onDrag({
-//                                listsViewModel.currentCategory = categories[category]
-//                                return NSItemProvider(contentsOf: URL(string: "\(category)")!)!
-//                            })
-//                            .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: categories[category].title))
+                            .onDrag({
+                                listsViewModel.currentCategory = category
+                                return NSItemProvider(contentsOf: URL(string: "\(category.id)")!)!
+                            })
+                            .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: category))
                     }
                      
                 })
