@@ -125,10 +125,5 @@ class ListsViewModel: ObservableObject {
         }
     }
     
-//    func switchCategories(from: CategoryModel, to: CategoryModel, from listModel: ListModel) {
-//        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-//            list[index] = listModel.switchCategories(from: from, to: to)
-//        }
-//    }
     
 }

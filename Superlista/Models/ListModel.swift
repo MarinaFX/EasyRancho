@@ -73,26 +73,24 @@ struct ListModel: Identifiable, Decodable, Encodable {
     }
     
     func addComment(_ comment: String, to item: ItemModel) -> ListModel {
-        
         var newItemsList = items
         
-        if let rows = items[item.product.getCategory()],
-           let index = rows.firstIndex(where: { $0.id == item.id }) {
-            
-            newItemsList[item.product.getCategory()]?[index] = item.editComment(newComment: comment)
+        if let category = items.first(where: { $0.key.title == item.product.category }),
+           let itemIndex = category.value.firstIndex(where: { $0.id == item.id }),
+           let newItem = newItemsList[category.key]?[itemIndex] {
+            newItemsList[category.key]?[itemIndex] = newItem.editComment(newComment: comment)
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
     
     func toggleCompletion(of item: ItemModel) -> ListModel {
-        
         var newItemsList = items
-        
-        if let rows = items[item.product.getCategory()],
-           let index = rows.firstIndex(where: { $0.id == item.id }) {
-            
-            newItemsList[item.product.getCategory()]?[index] = item.toggleCompletion()
+
+        if let category = items.first(where: { $0.key.title == item.product.category }),
+           let itemIndex = category.value.firstIndex(where: { $0.id == item.id }),
+           let newItem = newItemsList[category.key]?[itemIndex] {
+            newItemsList[category.key]?[itemIndex] = newItem.toggleCompletion()
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
@@ -112,14 +110,4 @@ struct ListModel: Identifiable, Decodable, Encodable {
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
-    
-//    func switchCategories(from: CategoryModel, to: CategoryModel) -> ListModel {
-//        var newItemsList = items
-//        
-//        let fromList = newItemsList[from]
-//        newItemsList[from] = newItemsList[to]
-//        newItemsList[to] = fromList
-//        
-//        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
-//    }
 }

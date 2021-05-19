@@ -52,10 +52,19 @@ struct ItemCommentView: View {
             
             if isCommenting {
                 HStack {
-                    TextField(comment == "" ? "Insira um comentário" : comment, text: $comment)
-                        .font(.footnote)
-                        .foregroundColor(Color(UIColor.secondaryLabel))
-                        .padding(.leading, 30)
+                    ZStack(alignment: .leading){
+                        if (comment == "") {
+                            Text("Insira um comentário")
+                                .foregroundColor(Color(UIColor.secondaryLabel))
+                                .font(.system(size: 13))
+                                .padding(.leading, 30)
+                        }
+                        
+                        TextField(comment , text: $comment)
+                            .font(.system(size: 13))
+                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .padding(.leading, 28)
+                    }
                     
                     Spacer()
                     
@@ -74,17 +83,9 @@ struct ItemCommentView: View {
                     .padding(.leading, 30)
             }
         }
+        .onAppear {
+            self.comment = item.comment ?? ""
+        }
         .padding(.vertical, 5)
     }
 }
-
-//struct ItemCommentView_Previews: PreviewProvider {
-//    static let products = ProductListViewModel().products
-//
-//    static var previews: some View {
-//        NavigationView{
-//            ItemCommentView(item: ItemModel(product: products[0]), category: 0)
-//                .previewLayout(.sizeThatFits)
-//        } .environmentObject(ListsViewModel())
-//    }
-//}

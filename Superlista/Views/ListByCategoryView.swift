@@ -16,8 +16,6 @@ struct ListByCategoryView: View {
     
     func rows() -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categoryName]! }
     
-    
-    
     var body: some View {
         MainScreen(customView: AnyView(
             VStack (alignment: .leading){
@@ -28,10 +26,7 @@ struct ListByCategoryView: View {
                         .lineLimit(2)
                         .foregroundColor(getColor(category: categoryName.title))
                     
-                    
-//                    Rectangle()
-//                        .frame(width: 200, height: 1)
-//                        .foregroundColor(color1)
+                
                 }
                 .padding(.leading, 20)
                 .padding(.trailing, 10)
