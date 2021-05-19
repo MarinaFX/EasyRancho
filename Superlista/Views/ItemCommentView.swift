@@ -42,7 +42,7 @@ struct ItemCommentView: View {
                     Image(systemName: "text.bubble")
                         .resizable()
                         .frame(width: 22, height: 22)
-                        .foregroundColor(purpleColor)
+                        .foregroundColor(Color("Comment"))
                         .onTapGesture {
                             isCommenting = true
                         }

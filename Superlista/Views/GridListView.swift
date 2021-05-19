@@ -35,15 +35,16 @@ struct GridListView: View {
                                     .fill(Color("HeaderColor"))
                                     .frame(width: 160, height: 75)
                                     .cornerRadius(15)
-                                    .shadow(color: Color("Shadow"), radius: 10)
+                                    .shadow(color: Color("Shadow"), radius: 5)
                                 
                                 Text(list.title)
                                     .bold()
+                                    .foregroundColor(Color.white)
                                     .frame(alignment: .center)
                                     .padding(.bottom)
                                 
                                 Image(systemName: list.favorite ? "heart.fill" : "heart")
-                                    .foregroundColor(list.favorite ? Color("Favorite") : Color("Link"))
+                                    .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
                                     .position(x: 150, y: 22)
                                     .onTapGesture {
                                         listsViewModel.toggleListFavorite(of: list)
@@ -76,15 +77,17 @@ struct GridListView: View {
                                         .fill(Color("HeaderColor"))
                                         .frame(width: 160, height: 75)
                                         .cornerRadius(15)
-                                        .shadow(color: Color("Shadow"), radius: 10)
+                                        .shadow(color: Color("Shadow"), radius: 5)
                                     
                                     Text(list.title)
                                         .bold()
+                                        
+                                        .foregroundColor(Color.white)
                                         .frame(alignment: .center)
                                         .padding(.bottom)
                                     
                                     Image(systemName: list.favorite ? "heart.fill" : "heart")
-                                        .foregroundColor(list.favorite ? Color("Favorite") : Color("Link"))
+                                        .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
                                         .position(x: 145, y: 22)
                                         .onTapGesture {
                                             listsViewModel.toggleListFavorite(of: list)
