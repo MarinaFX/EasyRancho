@@ -99,7 +99,7 @@ struct ListHeader: View {
             Image(systemName: (list?.favorite ?? false) ? "heart.fill" : "heart")
                 .resizable()
                 .frame(width: 22, height: 22)
-                .foregroundColor((list?.favorite ?? false) ? .red : Color("Secondary"))
+                .foregroundColor((list?.favorite ?? false) ? Color("Favorite") : Color("Secondary"))
                 .onTapGesture {
                     if let list = list {
                         isFavorite.toggle()

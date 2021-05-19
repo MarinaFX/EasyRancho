@@ -22,23 +22,29 @@ struct GridListView: View {
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var body: some View {
+        ZStack{
+//            Color("HeaderColor")
+//                .ignoresSafeArea()
+            
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20, content: {
                     ForEach(listsViewModel.list) { list in
                         if isEditing{
                             ZStack(alignment: .bottom) {
                                 Rectangle()
-                                    .fill(Color.white)
-                                    .frame(width: 150, height: 150)
+                                    .fill(Color("HeaderColor"))
+                                    .frame(width: 160, height: 75)
                                     .cornerRadius(15)
-                                    .shadow(radius: 10)
+                                    .shadow(color: Color("Shadow"), radius: 5)
                                 
                                 Text(list.title)
-                                    .frame(alignment: .bottom)
+                                    .bold()
+                                    .foregroundColor(Color.white)
+                                    .frame(alignment: .center)
                                     .padding(.bottom)
                                 
                                 Image(systemName: list.favorite ? "heart.fill" : "heart")
-                                    .foregroundColor(list.favorite ? Color.red : Color.black)
+                                    .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
                                     .position(x: 150, y: 22)
                                     .onTapGesture {
                                         listsViewModel.toggleListFavorite(of: list)
@@ -68,17 +74,20 @@ struct GridListView: View {
                             NavigationLink(destination: ListView(listId: list.id), label: {
                                 ZStack(alignment: .bottom) {
                                     Rectangle()
-                                        .fill(Color.white)
-                                        .frame(width: 150, height: 150)
+                                        .fill(Color("HeaderColor"))
+                                        .frame(width: 160, height: 75)
                                         .cornerRadius(15)
-                                        .shadow(radius: 10)
+                                        .shadow(color: Color("Shadow"), radius: 5)
                                     
                                     Text(list.title)
-                                        .frame(alignment: .bottom)
+                                        .bold()
+                                        
+                                        .foregroundColor(Color.white)
+                                        .frame(alignment: .center)
                                         .padding(.bottom)
                                     
                                     Image(systemName: list.favorite ? "heart.fill" : "heart")
-                                        .foregroundColor(list.favorite ? Color.red : Color.black)
+                                        .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
                                         .position(x: 145, y: 22)
                                         .onTapGesture {
                                             listsViewModel.toggleListFavorite(of: list)
@@ -91,6 +100,7 @@ struct GridListView: View {
                 })
                 .padding(.top)
             }
+            .padding(.horizontal)
         
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
@@ -103,7 +113,8 @@ struct GridListView: View {
                     ToolbarItem(placement: .destructiveAction){
                         Button(action: {listsViewModel.addList(newItem: ListModel(title: "Nova Lista"))}, label: {Text("Nova lista")})
                     }
-                }
+                } 
+    }
     }
 }
 

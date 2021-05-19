@@ -18,7 +18,7 @@ struct SuperlistaApp: App {
             NavigationView {
                 GridListView()
             }
-            .accentColor(.black)
+            .accentColor(Color("Link"))
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
         }

@@ -26,12 +26,14 @@ struct ListPerCategoryView: View {
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20, content: {
                     ForEach(0..<(list.items.count), id: \.self) { category in
+                        
+                        NavigationLink(destination: ListByCategoryView(categoryName: categories[category], list: list)){
                             ZStack(alignment: .center) {
                                 Rectangle()
                                     .fill(getColor(category: categories[category]))
                                     .frame(width: 160, height: 75)
                                     .cornerRadius(15)
-                                    .shadow(radius: 5)
+                                    .shadow(color: Color("Shadow"), radius: 5)
                                 
                                 Text(categories[category])
                                     .bold()
@@ -45,6 +47,7 @@ struct ListPerCategoryView: View {
                                 return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
                             })
                             .onDrop(of: [.url], delegate: DropViewDelegate(listsViewModel: listsViewModel, list: list))
+                        }
                     }
                      
                 })
