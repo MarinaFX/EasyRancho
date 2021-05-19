@@ -12,10 +12,6 @@ struct ListView: View {
     
     @State var listId: String?
     
-    var navigationTitle: String {
-        return getList() != nil ? "Sua Lista" : "Nova Lista"
-    }
-    
     func getList() -> ListModel? {
         if let listId = listId,
            let list = listsViewModel.list.first(where: { $0.id == listId }) {
@@ -56,14 +52,7 @@ struct ListView: View {
                     Spacer()
                 }
             }
-        ))
+        ), topPadding: -30)
         
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text(navigationTitle)
-                    .bold()
-                    .foregroundColor(.white)
-            }
-        }
     }
 }
