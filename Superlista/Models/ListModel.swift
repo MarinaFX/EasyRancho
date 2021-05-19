@@ -10,10 +10,10 @@ import Foundation
 struct ListModel: Identifiable, Decodable, Encodable {
     let id: String
     let title: String
-    let items: [String: [ItemModel]]
+    let items: [CategoryModel: [ItemModel]]
     let favorite: Bool
     
-    init(id: String = UUID().uuidString, title: String, items: [String: [ItemModel]] = [:], favorite: Bool = false) {
+    init(id: String = UUID().uuidString, title: String, items: [CategoryModel: [ItemModel]] = [:], favorite: Bool = false) {
         
         self.id = id
         self.title = title
@@ -32,10 +32,10 @@ struct ListModel: Identifiable, Decodable, Encodable {
     func addItem(_ product: ProductModel) -> ListModel {
         var newItemsList = items
         
-        if let _ = items[product.category] {
-            newItemsList[product.category]?.append(ItemModel(product: product))
+        if let _ = items[product.getCategory()] {
+            newItemsList[product.getCategory()]?.append(ItemModel(product: product))
         } else {
-            newItemsList[product.category] = [ItemModel(product: product)]
+            newItemsList[product.getCategory()] = [ItemModel(product: product)]
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
@@ -45,17 +45,18 @@ struct ListModel: Identifiable, Decodable, Encodable {
         var newItemsList = items
         
         products.forEach { product in
-            if let _ = items[product.category] {
-                newItemsList[product.category]?.append(ItemModel(product: product))
+            if let category = newItemsList.first(where: { $0.key.title == product.category })?.key {
+                newItemsList[category]?.append(ItemModel(product: product))
             } else {
-                newItemsList[product.category] = [ItemModel(product: product)]
+                let lastOrder = Array(newItemsList.keys).last?.order
+                newItemsList[CategoryModel(title: product.category, order: (lastOrder ?? 0) + 1)] = [ItemModel(product: product)]
             }
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
     
-    func removeItem(from row: IndexSet, of category: String) -> ListModel {
+    func removeItem(from row: IndexSet, of category: CategoryModel) -> ListModel {
         var newItemsList = items
         
         newItemsList[category]?.remove(atOffsets: row)
@@ -75,10 +76,10 @@ struct ListModel: Identifiable, Decodable, Encodable {
         
         var newItemsList = items
         
-        if let rows = items[item.product.category],
+        if let rows = items[item.product.getCategory()],
            let index = rows.firstIndex(where: { $0.id == item.id }) {
             
-            newItemsList[item.product.category]?[index] = item.editComment(newComment: comment)
+            newItemsList[item.product.getCategory()]?[index] = item.editComment(newComment: comment)
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
@@ -88,12 +89,37 @@ struct ListModel: Identifiable, Decodable, Encodable {
         
         var newItemsList = items
         
-        if let rows = items[item.product.category],
+        if let rows = items[item.product.getCategory()],
            let index = rows.firstIndex(where: { $0.id == item.id }) {
             
-            newItemsList[item.product.category]?[index] = item.toggleCompletion()
+            newItemsList[item.product.getCategory()]?[index] = item.toggleCompletion()
         }
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
+    
+    func switchOrder(from cat1: CategoryModel, to cat2: CategoryModel) -> ListModel {
+        var newItemsList = items
+        
+        if let category1 = items.first(where: { $0.key.id == cat1.id }),
+           let category2 = items.first(where: { $0.key.id == cat2.id }){
+            newItemsList.removeValue(forKey: category1.key)
+            newItemsList.removeValue(forKey: category2.key)
+                
+            newItemsList[CategoryModel(id: category1.key.id, title: category1.key.title, order: category2.key.order)] = category1.value
+            newItemsList[CategoryModel(id: category2.key.id, title: category2.key.title, order: category1.key.order)] = category2.value
+        }
+        
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+    }
+    
+//    func switchCategories(from: CategoryModel, to: CategoryModel) -> ListModel {
+//        var newItemsList = items
+//        
+//        let fromList = newItemsList[from]
+//        newItemsList[from] = newItemsList[to]
+//        newItemsList[to] = fromList
+//        
+//        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+//    }
 }

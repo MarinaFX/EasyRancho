@@ -10,7 +10,7 @@ import SwiftUI
 struct ListByCategoryView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
-    var categoryName: String
+    var categoryName: CategoryModel
     
     var list: ListModel // ?
     
@@ -24,9 +24,9 @@ struct ListByCategoryView: View {
                 
                 VStack(alignment: .leading){
                     
-                    Text(categoryName).font(.system(size: 24, weight: .bold))
+                    Text(categoryName.title).font(.system(size: 24, weight: .bold))
                         .lineLimit(2)
-                        .foregroundColor(getColor(category: categoryName))
+                        .foregroundColor(getColor(category: categoryName.title))
                     
                     
 //                    Rectangle()

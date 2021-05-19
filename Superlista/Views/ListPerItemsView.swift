@@ -15,7 +15,7 @@ struct ListPerItemsView: View {
     
     let background = Color("background")
     
-    var categories: [String] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
+    var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
     func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
     
@@ -31,9 +31,9 @@ struct ListPerItemsView: View {
                 ForEach(0..<(list.items.count), id: \.self) { category in
                     
                     Section(header: HStack{
-                        Text(categories[category])
+                        Text(categories[category].title)
                             .font(.headline)
-                            .foregroundColor(getColor(category: categories[category]))
+                            .foregroundColor(getColor(category: categories[category].title))
                             .padding()
                         
                         Spacer()

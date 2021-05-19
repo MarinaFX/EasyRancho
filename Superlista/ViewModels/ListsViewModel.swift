@@ -16,110 +16,45 @@ class ListsViewModel: ObservableObject {
     
     @Published var currentList: ListModel?
     
+    @Published var currentCategory: CategoryModel?
+    
     let products = ProductListViewModel().productsOrdered
     
     let itemsKey: String = "lists"
     
-   @Published var isGrid: Bool = false
+    @Published var isGrid: Bool = false
     
     init() {
         getItems()
     }
     
     func getItems() {
-//        guard
-//            let data = UserDefaults.standard.data(forKey: itemsKey),
-//            let savedItems = try? JSONDecoder().decode([ListModel].self, from: data)
-//        else { return }
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([ListModel].self, from: data)
+        else { return }
         
-        //if savedItems.isEmpty {
-        self.list = [
-            ListModel(title: "Churras", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false),
-            ListModel(title: "Aniver", items: [
-                "Congelados" : [
-                    ItemModel(product: products[61])
-                ],
-                "Bomboniere" : [
-                    ItemModel(product: products[32]),
-                    ItemModel(product: products[33]),
-                    ItemModel(product: products[34]),
-                    ItemModel(product: products[35]),
-                ],
-            ], favorite: true),
-            ListModel(title: "Flemis", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false),
-            ListModel(title: "Testes", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false),
-            ListModel(title: "Testesss", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false),
-            ListModel(title: "Testeees", items: [
-                "Carnes" : [
-                    ItemModel(product: products[43], comment: "Picanha"),
-                    ItemModel(product: products[44])
-                ],
-                "Bebidas" : [
-                    ItemModel(product: products[15], comment: "Coca"),
-                    ItemModel(product: products[10]),
-                    ItemModel(product: products[28]),
-                ],
-                "Temperos" : [
-                    ItemModel(product: products[303], comment: "Sal grosso"),
-                ],
-            ], favorite: false)
-        ]
-        
-        //} else {
-//        self.list = savedItems
-        //}
+        if savedItems.isEmpty {
+            self.list = [
+                ListModel(title: "Churras", items: [
+                    CategoryModel(title: "Carnes") : [
+                        ItemModel(product: products[43], comment: "Picanha"),
+                        ItemModel(product: products[44])
+                    ],
+                    CategoryModel(title: "Bebidas") : [
+                        ItemModel(product: products[15], comment: "Coca"),
+                        ItemModel(product: products[10]),
+                        ItemModel(product: products[28]),
+                    ],
+                    CategoryModel(title: "Temperos") : [
+                        ItemModel(product: products[303], comment: "Sal grosso"),
+                    ],
+                ], favorite: false)
+            ]
+
+        } else {
+            self.list = savedItems
+        }
     }
     
     func saveItems() {
@@ -166,7 +101,7 @@ class ListsViewModel: ObservableObject {
         }
     }
     
-    func removeItem(from row: IndexSet, of category: String, of listModel: ListModel) {
+    func removeItem(from row: IndexSet, of category: CategoryModel, of listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.removeItem(from: row, of: category)
         }
@@ -183,5 +118,17 @@ class ListsViewModel: ObservableObject {
             list[index] = listModel.toggleCompletion(of: item)
         }
     }
+    
+    func switchOrder(of category1: CategoryModel, to category2: CategoryModel, from listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.switchOrder(from: category1, to: category2)
+        }
+    }
+    
+//    func switchCategories(from: CategoryModel, to: CategoryModel, from listModel: ListModel) {
+//        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+//            list[index] = listModel.switchCategories(from: from, to: to)
+//        }
+//    }
     
 }

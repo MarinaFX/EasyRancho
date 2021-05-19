@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct DropViewDelegate: DropDelegate {
+struct ListDropViewDelegate: DropDelegate {
     var listsViewModel: ListsViewModel
     
     var list: ListModel
@@ -31,6 +31,32 @@ struct DropViewDelegate: DropDelegate {
                 let fromList = listsViewModel.list[fromIndex]
                 listsViewModel.list[fromIndex] = listsViewModel.list[toIndex]
                 listsViewModel.list[toIndex] = fromList
+            }
+        }
+    }
+    
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        return DropProposal(operation: .move)
+    }
+}
+
+struct CategoryDropViewDelegate: DropDelegate {
+    var listsViewModel: ListsViewModel
+    
+    var list: ListModel
+    
+    var category: CategoryModel
+    
+    func performDrop(info: DropInfo) -> Bool {
+        return true
+    }
+    
+    func dropEntered(info: DropInfo) {
+        if let fromCat = list.items.first(where: { $0.key == listsViewModel.currentCategory }),
+           let toCat = list.items.first(where: { $0.key == self.category }),
+           fromCat.key != toCat.key {
+            withAnimation {
+                listsViewModel.switchOrder(of: fromCat.key, to: toCat.key, from: list)
             }
         }
     }
