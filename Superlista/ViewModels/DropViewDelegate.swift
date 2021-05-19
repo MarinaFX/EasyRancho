@@ -52,14 +52,9 @@ struct CategoryDropViewDelegate: DropDelegate {
     }
     
     func dropEntered(info: DropInfo) {
-        
         if let fromCat = list.items.first(where: { $0.key == listsViewModel.currentCategory }),
            let toCat = list.items.first(where: { $0.key == self.category }),
            fromCat.key != toCat.key {
-            
-            print("fromCat", fromCat)
-            print("toCat", toCat)
-            
             withAnimation {
                 listsViewModel.switchOrder(of: fromCat.key, to: toCat.key, from: list)
             }
