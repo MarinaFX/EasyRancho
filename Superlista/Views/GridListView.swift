@@ -10,10 +10,10 @@ import UIKit
 
 struct GridListView: View {
     
-//    init() {
-//            //Use this if NavigationBarTitle is with displayMode = .inline
-//        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "San-Francisco", size: 36)!]
-//        }
+    //    init() {
+    //            //Use this if NavigationBarTitle is with displayMode = .inline
+    //        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "San-Francisco", size: 36)!]
+    //        }
     
     @EnvironmentObject var listsViewModel: ListsViewModel
     
@@ -23,8 +23,18 @@ struct GridListView: View {
     
     var body: some View {
         ZStack{
-//            Color("HeaderColor")
-//                .ignoresSafeArea()
+            if listsViewModel.list.isEmpty {
+                VStack(spacing: 40){
+                    Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
+                        .multilineTextAlignment(.center)
+                        .font(.headline)
+                      
+                    
+                    Image("cesta")
+                        .resizable()
+                        .frame(maxWidth: 200, maxHeight: 100)
+                }
+            }
             
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20, content: {
@@ -96,25 +106,25 @@ struct GridListView: View {
                             })
                         }
                     }
-                     
+                    
                 })
                 .padding(.top)
             }
             .padding(.horizontal)
-        
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading){
-                        Button(action: {isEditing.toggle()}, label: {
-                                Text(isEditing ? "Concluir": "Editar")})
-                    }
-                    ToolbarItem(placement: .principal){
-                        Text("Listas").font(.system(size: 36, weight: .bold)).foregroundColor(Color.primary)
-                    }
-                    ToolbarItem(placement: .destructiveAction){
-                        Button(action: {listsViewModel.addList(newItem: ListModel(title: "Nova Lista"))}, label: {Text("Nova lista")})
-                    }
-                } 
-    }
+            
+            .toolbar{
+                ToolbarItem(placement: .navigationBarLeading){
+                    Button(action: {isEditing.toggle()}, label: {
+                            Text(isEditing ? "Concluir": "Editar")})
+                }
+                ToolbarItem(placement: .principal){
+                    Text("Listas").font(.system(size: 36, weight: .bold)).foregroundColor(Color.primary)
+                }
+                ToolbarItem(placement: .destructiveAction){
+                    Button(action: {listsViewModel.addList(newItem: ListModel(title: "Nova Lista"))}, label: {Text("Nova lista")})
+                }
+            }
+        }
     }
 }
 

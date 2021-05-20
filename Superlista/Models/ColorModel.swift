@@ -50,6 +50,8 @@ public func getColor(category: String) -> Color {
         return Color("Sobremesas")
     case "Temperos" :
         return Color("Temperos")
+    case "Outros" :
+        return Color("Outros")
     default:
         return Color.black
     }

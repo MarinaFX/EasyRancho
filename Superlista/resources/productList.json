@@ -1548,5 +1548,10 @@
     "id": 310,
     "name": "Aceto balsâmico",
     "category": "Temperos"
+  },
+  {
+    "id": 311,
+    "name": "Outro",
+    "category": "Outros"
   }
 ]
