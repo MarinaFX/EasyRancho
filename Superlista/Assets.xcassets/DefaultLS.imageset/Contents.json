@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "DefaultLS.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Nova Lista - tela 7.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
