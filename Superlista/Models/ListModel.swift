@@ -48,8 +48,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
             if let category = newItemsList.first(where: { $0.key.title == product.category })?.key {
                 newItemsList[category]?.append(ItemModel(product: product))
             } else {
-                let lastOrder = Array(newItemsList.keys).last?.order
-                newItemsList[CategoryModel(title: product.category, order: (lastOrder ?? 0) + 1)] = [ItemModel(product: product)]
+                newItemsList[CategoryModel(title: product.category, order: newItemsList.count + 1)] = [ItemModel(product: product)]
             }
         }
         
@@ -86,7 +85,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
     
     func toggleCompletion(of item: ItemModel) -> ListModel {
         var newItemsList = items
-
+        
         if let category = items.first(where: { $0.key.title == item.product.category }),
            let itemIndex = category.value.firstIndex(where: { $0.id == item.id }),
            let newItem = newItemsList[category.key]?[itemIndex] {
@@ -96,18 +95,64 @@ struct ListModel: Identifiable, Decodable, Encodable {
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
     
+    //    func switchOrder(from cat1: CategoryModel, to cat2: CategoryModel) -> ListModel {
+    //        let categorias = items.keys.map { $0 }.sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
+    //
+    //        if let fromIndex = categorias.firstIndex(where: { $0.id == cat1.id }),
+    //           let toIndex = categorias.firstIndex(where: { $0.id == cat2.id }){
+    //            print("index de \(cat1.title) = \(fromIndex)")
+    //            print("index de \(cat2.title) = \(toIndex)")
+    //        }
+    //        print(categorias)
+    //
+    //        return ListModel(id: id, title: title, items: items, favorite: favorite)
+    //    }
+    
     func switchOrder(from cat1: CategoryModel, to cat2: CategoryModel) -> ListModel {
-        var newItemsList = items
+        var newListItem: [CategoryModel : [ItemModel]] = [:]
         
         if let category1 = items.first(where: { $0.key.id == cat1.id }),
-           let category2 = items.first(where: { $0.key.id == cat2.id }){
-            newItemsList.removeValue(forKey: category1.key)
-            newItemsList.removeValue(forKey: category2.key)
+           let category2 = items.first(where: { $0.key.id == cat2.id }),
+           let order2 = category2.key.order,
+           let order1 = category1.key.order {
+            
+            let difference = order1 - order2
+            let newOrder = order2
+            
+            var before: Array<(key: CategoryModel, value: Array<ItemModel>)>
+            var after: Array<(key: CategoryModel, value: Array<ItemModel>)>
+            
+            if difference < 0 {
+                before = items
+                    .filter { ($0.key.order ?? 0 <= newOrder) && ($0.key.id != category1.key.id) }
+                    .sorted(by: { $0.key.order ?? 0 < $1.key.order ?? 0 })
                 
-            newItemsList[CategoryModel(id: category1.key.id, title: category1.key.title, order: category2.key.order)] = category1.value
-            newItemsList[CategoryModel(id: category2.key.id, title: category2.key.title, order: category1.key.order)] = category2.value
+                after = items
+                    .filter { $0.key.order ?? 0 > newOrder }
+                    .sorted(by: { $0.key.order ?? 0 < $1.key.order ?? 0 })
+                
+                
+            } else {
+                before = items
+                    .filter { $0.key.order ?? 0 < newOrder }
+                    .sorted(by: { $0.key.order ?? 0 < $1.key.order ?? 0 })
+                
+                after = items
+                    .filter { ($0.key.order ?? 0 >= newOrder) && ($0.key.id != category1.key.id) }
+                    .sorted(by: { $0.key.order ?? 0 < $1.key.order ?? 0 })
+            }
+            
+            before.forEach { item in
+                newListItem[CategoryModel(id: item.key.id, title: item.key.title, order: newListItem.count + 1)] = item.value
+            }
+            
+            newListItem[CategoryModel(id: category1.key.id, title: category1.key.title, order: newOrder)] = category1.value
+            
+            after.forEach { item in
+                newListItem[CategoryModel(id: item.key.id, title: item.key.title, order: newListItem.count + 1)] = item.value
+            }
         }
         
-        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+        return ListModel(id: id, title: title, items: newListItem, favorite: favorite)
     }
 }
