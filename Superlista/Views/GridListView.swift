@@ -23,8 +23,9 @@ struct GridListView: View {
     
     var body: some View {
         ZStack{
-//            Color("HeaderColor")
-//                .ignoresSafeArea()
+            if listsViewModel.list.isEmpty {
+                Text("Você não tem listas no momento. Que tal criar uma nova lista?")
+            }
             
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns, spacing: 20, content: {
