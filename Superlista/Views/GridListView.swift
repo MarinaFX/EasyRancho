@@ -29,7 +29,6 @@ struct GridListView: View {
                         .multilineTextAlignment(.center)
                         .font(.headline)
                       
-                    
                     Image("cesta")
                         .resizable()
                         .frame(maxWidth: 200, maxHeight: 100)
