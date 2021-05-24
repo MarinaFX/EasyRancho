@@ -23,6 +23,7 @@ struct AddNewItemView: View {
         GeometryReader { geometry in
             MainScreen(customView: AnyView(
                 VStack {
+                    
                     ProductListView(selectedItems: $selectedProducts, filter: $searchText)
                     
                     Button(action: prontoButtonPressed, label: {

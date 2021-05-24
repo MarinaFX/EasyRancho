@@ -14,13 +14,14 @@ struct MainScreen: View {
     var bottomPadding: CGFloat = -80
     var topPadding: CGFloat = 0
     
-    let purpleColor = Color("HeaderColor")
+    let headerColor = Color("HeaderColor")
     let background = Color("background")
     
     var body: some View {
         ZStack() {
-            purpleColor
+            headerColor
                 .edgesIgnoringSafeArea(.top)
+                
             
             VStack {
                 customView

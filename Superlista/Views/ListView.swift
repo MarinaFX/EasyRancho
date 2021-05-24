@@ -28,31 +28,37 @@ struct ListView: View {
     @State var listaTitulo: String = ""
     
     var body: some View {
-        MainScreen(customView: AnyView(
-            VStack (spacing: 20) {
-                ListHeader(list: getList(), listId: $listId)
-                
-                if let list = getList() {
-                    NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
-                        FakeSearchBar()
-                            .padding(.horizontal, 20)
-                    }
+            MainScreen(customView: AnyView(
+                VStack (spacing: 20) {
+                    ListHeader(list: getList(), listId: $listId)
                     
-                    if !listsViewModel.isGrid {
-                        ListPerItemsView(list: list)
-                            .padding(.horizontal)
-                            .padding(.bottom, 30)
+                    if let list = getList() {
+                        NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
+                            FakeSearchBar()
+                                .padding(.horizontal, 20)
+                        }
+                        
+                        if !listsViewModel.isGrid {
+                            ListPerItemsView(list: list)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
+                        } else {
+                            ListPerCategoryView(list: list)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
+                        }
+                        
                     } else {
-                        ListPerCategoryView(list: list)
-                            .padding(.horizontal)
-                        .padding(.bottom, 30)
+                        Spacer()
                     }
-                    
-                } else {
-                    Spacer()
+                }
+            ), topPadding: -30)
+            .toolbar {
+                ToolbarItem(placement: .principal){
+                   Text("                                     ")
+                    .frame(width: 300)
                 }
             }
-        ), topPadding: -30)
         
     }
 }
