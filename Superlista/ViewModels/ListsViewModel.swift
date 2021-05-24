@@ -34,27 +34,9 @@ class ListsViewModel: ObservableObject {
             let savedItems = try? JSONDecoder().decode([ListModel].self, from: data)
         else { return }
         
-        if savedItems.isEmpty {
-            self.list = [
-                ListModel(title: "Churras", items: [
-                    CategoryModel(title: "Carnes") : [
-                        ItemModel(product: products[43], comment: "Picanha"),
-                        ItemModel(product: products[44])
-                    ],
-                    CategoryModel(title: "Bebidas") : [
-                        ItemModel(product: products[15], comment: "Coca"),
-                        ItemModel(product: products[10]),
-                        ItemModel(product: products[28]),
-                    ],
-                    CategoryModel(title: "Temperos") : [
-                        ItemModel(product: products[303], comment: "Sal grosso"),
-                    ],
-                ], favorite: false)
-            ]
-
-        } else {
-            self.list = savedItems
-        }
+        
+        self.list = savedItems
+        
     }
     
     func saveItems() {
