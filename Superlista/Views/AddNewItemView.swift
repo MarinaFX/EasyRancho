@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
