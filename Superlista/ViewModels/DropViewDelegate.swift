@@ -48,17 +48,15 @@ struct CategoryDropViewDelegate: DropDelegate {
     var category: CategoryModel
     
     func performDrop(info: DropInfo) -> Bool {
-        return true
-    }
-    
-    func dropEntered(info: DropInfo) {
         if let fromCat = list.items.first(where: { $0.key == listsViewModel.currentCategory }),
            let toCat = list.items.first(where: { $0.key == self.category }),
            fromCat.key != toCat.key {
             withAnimation {
                 listsViewModel.switchOrder(of: fromCat.key, to: toCat.key, from: list)
             }
+            return true
         }
+        return false
     }
     
     func dropUpdated(info: DropInfo) -> DropProposal? {
