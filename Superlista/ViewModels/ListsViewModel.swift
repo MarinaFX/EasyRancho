@@ -89,6 +89,14 @@ class ListsViewModel: ObservableObject {
         }
     }
     
+    func removeItem(_ item: ItemModel, of listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }),
+           let indexItem = list[index].items.firstIndex(where: { $0.key.id == item.id }){
+            
+            list[index] = listModel.removeItem(from: row, of: category)
+        }
+    }
+    
     func addComent(_ comment: String, to item: ItemModel, from listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.addComment(comment, to: item)

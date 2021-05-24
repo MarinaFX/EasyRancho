@@ -23,7 +23,7 @@ struct AddNewItemView: View {
         GeometryReader { geometry in
             MainScreen(customView: AnyView(
                 VStack {
-                    ProductListView(selectedItems: $selectedProducts, filter: $searchText)
+                    ProductListView(list: list, selectedItems: $selectedProducts, filter: $searchText)
                     
                     Button(action: prontoButtonPressed, label: {
                         Text("Pronto")
@@ -50,8 +50,6 @@ struct AddNewItemView: View {
     }
     
     func prontoButtonPressed(){
-        listsViewModel.addItems(selectedProducts, to: list)
-
         presentationMode.wrappedValue.dismiss()
     }
 }

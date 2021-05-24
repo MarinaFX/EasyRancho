@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct ProductListView: View {
+    @EnvironmentObject var listsViewModel: ListsViewModel
+    
+    var list: ListModel
+    
     let products = ProductListViewModel().productsOrdered
     
-    @Binding var selectedItems: Array<ProductModel>
+    var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
+    
+    func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
+    
+    // @Binding var selectedItems: Array<ProductModel>
+    
+    @State var isSelected: Bool = false
     
     @Binding var filter: String
     
@@ -18,17 +28,17 @@ struct ProductListView: View {
         List {
             ForEach(filter.isEmpty ? products : products.filter({$0.name.contains(filter)})) { item in
                 HStack {
-                    Image(systemName: selectedItems.contains(item) ? "checkmark" : "plus")
+                    Image(systemName: isSelected ? "checkmark" : "plus")
                         .foregroundColor(Color.primary)
                     
                     Text(item.name)
                         .foregroundColor(Color.primary)
                 }
                 .onTapGesture {
-                    if selectedItems.contains(item), let index = selectedItems.firstIndex(where: { $0 == item }) {
-                        selectedItems.remove(at: index)
+                    if isSelected {
+                        listsViewModel.addItem(item, to: list)
                     } else {
-                        selectedItems.append(item)
+                        listsViewModel.removeItem(from: rows(from: categories), of: categories, of: list)
                     }
                 }
             }
@@ -36,3 +46,4 @@ struct ProductListView: View {
         .listStyle(PlainListStyle())
     }
 }
+ 
