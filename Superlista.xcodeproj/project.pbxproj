@@ -16,8 +16,8 @@
 		09725B21264C64F90006D410 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B20264C64F90006D410 /* ColorModel.swift */; };
 		09725B232652DCAD0006D410 /* ListByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B222652DCAD0006D410 /* ListByCategoryView.swift */; };
 		09725B29265437E80006D410 /* ListPerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B28265437E80006D410 /* ListPerCategoryView.swift */; };
+		09725B2F2656E0000006D410 /* DefaultLS.png in Resources */ = {isa = PBXBuildFile; fileRef = 09725B2E2656E0000006D410 /* DefaultLS.png */; };
 		1B325E2126545176001A0F28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B325E2026545176001A0F28 /* LaunchScreen.storyboard */; };
-		1B325E29265452C7001A0F28 /* DefaultLS.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B325E28265452C7001A0F28 /* DefaultLS.png */; };
 		1B43E5AE264B0F61002C6D64 /* GridListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5AD264B0F61002C6D64 /* GridListView.swift */; };
 		1B43E5B3264B13BE002C6D64 /* DropViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5B2264B13BE002C6D64 /* DropViewDelegate.swift */; };
 		1B43E5B8264B1595002C6D64 /* TestScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B43E5B7264B1595002C6D64 /* TestScreen.swift */; };
@@ -67,8 +67,8 @@
 		09725B20264C64F90006D410 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		09725B222652DCAD0006D410 /* ListByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListByCategoryView.swift; sourceTree = "<group>"; };
 		09725B28265437E80006D410 /* ListPerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPerCategoryView.swift; sourceTree = "<group>"; };
+		09725B2E2656E0000006D410 /* DefaultLS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultLS.png; sourceTree = "<group>"; };
 		1B325E2026545176001A0F28 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1B325E28265452C7001A0F28 /* DefaultLS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultLS.png; sourceTree = "<group>"; };
 		1B43E5AD264B0F61002C6D64 /* GridListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridListView.swift; sourceTree = "<group>"; };
 		1B43E5B2264B13BE002C6D64 /* DropViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewDelegate.swift; sourceTree = "<group>"; };
 		1B43E5B7264B1595002C6D64 /* TestScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScreen.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 		1BFA605B2641DBB30030AE03 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				1B325E28265452C7001A0F28 /* DefaultLS.png */,
+				09725B2E2656E0000006D410 /* DefaultLS.png */,
 				1BFA60672641DE9B0030AE03 /* productList.json */,
 			);
 			path = resources;
@@ -328,10 +328,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09725B2F2656E0000006D410 /* DefaultLS.png in Resources */,
 				1BFA60682641DE9B0030AE03 /* productList.json in Resources */,
 				1B325E2126545176001A0F28 /* LaunchScreen.storyboard in Resources */,
 				1BFA5FA9263C72940030AE03 /* Preview Assets.xcassets in Resources */,
-				1B325E29265452C7001A0F28 /* DefaultLS.png in Resources */,
 				1BFA5FA6263C72940030AE03 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,7 +547,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thaisrfernandes.superlista;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bglmt.EasyRancho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -569,7 +570,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thaisrfernandes.superlista;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bglmt.EasyRancho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
