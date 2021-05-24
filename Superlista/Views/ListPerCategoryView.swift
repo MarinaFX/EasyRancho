@@ -47,7 +47,6 @@ struct ListPerCategoryView: View {
                         return NSItemProvider(contentsOf: URL(string: "\(category.id)")!)!
                     })
                     .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: category))
-//
                 }
                 
             })
