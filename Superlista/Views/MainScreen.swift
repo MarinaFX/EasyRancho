@@ -11,7 +11,7 @@ struct MainScreen: View {
     var customView: AnyView?
     
     var height: CGFloat = .infinity
-    var bottomPadding: CGFloat = -80
+    var bottomPadding: CGFloat = -35
     var topPadding: CGFloat = 0
     
     let headerColor = Color("HeaderColor")
