@@ -19,6 +19,8 @@ struct GridListView: View {
     
     @State var isEditing : Bool = false
     
+    @State var showAlert = false
+    
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var body: some View {
@@ -58,18 +60,21 @@ struct GridListView: View {
                                     .onTapGesture {
                                         listsViewModel.toggleListFavorite(of: list)
                                     }
-                                
-                            }
-                            .overlay(
                                 Image(systemName: "minus.circle.fill")
                                     .font(.title2)
                                     .foregroundColor(Color(.systemGray))
-                                    .offset(x: -75, y: -35)
+                                    .offset(x: -75, y: -60)
                                     .onTapGesture {
-                                        listsViewModel.removeList(list)
+                                        listsViewModel.currentList = list
+                                        showAlert = true
                                     }
-                            )
-                            
+                            }
+                            .alert(isPresented: $showAlert){
+                                Alert(title: Text("Deseja remover \(listsViewModel.currentList!.title)?"), message: Text("A lista removida não poderá ser recuperada após sua exclusão"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Apagar"), action:{
+                                    listsViewModel.removeList(listsViewModel.currentList!)
+                                    showAlert = false
+                                }))
+                            }
                             
                             .onDrag({
                                 listsViewModel.currentList = list

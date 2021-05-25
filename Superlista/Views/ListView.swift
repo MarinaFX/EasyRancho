@@ -53,12 +53,6 @@ struct ListView: View {
                     }
                 }
             ), topPadding: -30)
-            .toolbar {
-                ToolbarItem(placement: .principal){
-                   Text("                                     ")
-                    .frame(width: 300)
-                }
-            }
         
     }
 }
