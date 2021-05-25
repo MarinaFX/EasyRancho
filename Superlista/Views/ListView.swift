@@ -26,30 +26,34 @@ struct ListView: View {
     
     var body: some View {
         MainScreen(customView: AnyView(
-            VStack (spacing: 20) {
-                ListHeader(list: getList(), listId: $listId)
+            ZStack{
+                Color("background")
+                    .ignoresSafeArea()
                 
-                if let list = getList() {
-                    NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
-                        FakeSearchBar()
-                            .padding(.horizontal, 20)
-                    }
+                VStack (spacing: 20) {
+                    ListHeader(list: getList(), listId: $listId)
                     
-                    if !listsViewModel.isGrid {
-                        ListPerItemsView(list: list)
-                            .padding(.horizontal)
-                            .padding(.bottom, 30)
+                    if let list = getList() {
+                        NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
+                            FakeSearchBar()
+                                .padding(.horizontal, 20)
+                        }
+                        
+                        if !listsViewModel.isGrid {
+                            ListPerItemsView(list: list)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
+                        } else {
+                            ListPerCategoryView(list: list)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
+                        }
+                        
                     } else {
-                        ListPerCategoryView(list: list)
-                            .padding(.horizontal)
-                        .padding(.bottom, 30)
+                        Spacer()
                     }
-                    
-                } else {
-                    Spacer()
                 }
             }
         ), topPadding: -30)
-        
     }
 }

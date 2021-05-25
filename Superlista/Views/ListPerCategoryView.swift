@@ -32,7 +32,7 @@ struct ListPerCategoryView: View {
                                 .fill(getColor(category: category.title))
                                 .frame(width: 160, height: 75)
                                 .cornerRadius(15)
-                                .shadow(color: Color("Shadow"), radius: 5)
+                                .shadow(color: Color("Shadow"), radius: 10)
                         }
                         
                         Text(category.title)
@@ -47,7 +47,6 @@ struct ListPerCategoryView: View {
                         return NSItemProvider(contentsOf: URL(string: "\(category.id)")!)!
                     })
                     .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: category))
-                    
                 }
                 
             })

@@ -15,8 +15,9 @@ struct ProductListView: View {
     @Binding var filter: String
     
     var body: some View {
+        
         List {
-            ForEach(filter.isEmpty ? products : products.filter({$0.name.contains(filter)})) { item in
+            ForEach(filter.isEmpty ? products : products.filter({$0.name.localizedCaseInsensitiveContains(filter)})) { item in
                 HStack {
                     Image(systemName: selectedItems.contains(item) ? "checkmark" : "plus")
                         .foregroundColor(Color.primary)
@@ -32,6 +33,7 @@ struct ProductListView: View {
                     }
                 }
             }
+            .listRowBackground(Color("background"))
         }
         .listStyle(PlainListStyle())
     }

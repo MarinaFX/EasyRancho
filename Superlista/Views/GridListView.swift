@@ -21,6 +21,8 @@ struct GridListView: View {
     @State var listId: String = ""
     @State var isCreatingList: Bool = false
     
+    @State var showAlert = false
+    
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var body: some View {
@@ -31,6 +33,9 @@ struct GridListView: View {
                             EmptyView()
                            }
             ).opacity(0.0)
+            
+            Color("background")
+                .ignoresSafeArea()
             
             if listsViewModel.list.isEmpty {
                 VStack(spacing: 40){
@@ -53,7 +58,7 @@ struct GridListView: View {
                                     .fill(Color("HeaderColor"))
                                     .frame(width: 160, height: 75)
                                     .cornerRadius(15)
-                                    .shadow(color: Color("Shadow"), radius: 5)
+                                    .shadow(color: Color("Shadow"), radius: 10)
                                 
                                 Text(list.title)
                                     .bold()
@@ -67,18 +72,21 @@ struct GridListView: View {
                                     .onTapGesture {
                                         listsViewModel.toggleListFavorite(of: list)
                                     }
-                                
-                            }
-                            .overlay(
                                 Image(systemName: "minus.circle.fill")
                                     .font(.title2)
                                     .foregroundColor(Color(.systemGray))
-                                    .offset(x: -75, y: -35)
+                                    .offset(x: -75, y: -60)
                                     .onTapGesture {
-                                        listsViewModel.removeList(list)
+                                        listsViewModel.currentList = list
+                                        showAlert = true
                                     }
-                            )
-                            
+                            }
+                            .alert(isPresented: $showAlert){
+                                Alert(title: Text("Deseja remover \(listsViewModel.currentList!.title)?"), message: Text("A lista removida não poderá ser recuperada após sua exclusão"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Apagar"), action:{
+                                    listsViewModel.removeList(listsViewModel.currentList!)
+                                    showAlert = false
+                                }))
+                            }
                             
                             .onDrag({
                                 listsViewModel.currentList = list
@@ -95,7 +103,7 @@ struct GridListView: View {
                                         .fill(Color("HeaderColor"))
                                         .frame(width: 160, height: 75)
                                         .cornerRadius(15)
-                                        .shadow(color: Color("Shadow"), radius: 5)
+                                        .shadow(color: Color("Shadow"), radius: 10)
                                     
                                     Text(list.title)
                                         .bold()
@@ -122,8 +130,10 @@ struct GridListView: View {
             
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
+                    if !listsViewModel.list.isEmpty{
                     Button(action: {isEditing.toggle()}, label: {
                             Text(isEditing ? "Concluir": "Editar")})
+                    }
                 }
                 ToolbarItem(placement: .principal){
                     Text("Listas").font(.system(size: 36, weight: .bold)).foregroundColor(Color.primary)

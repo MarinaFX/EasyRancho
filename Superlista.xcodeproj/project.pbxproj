@@ -543,7 +543,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Superlista/Preview Content\"";
-				DEVELOPMENT_TEAM = 4A7DB99C3F;
+				DEVELOPMENT_TEAM = 7UW5874D4F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Superlista/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -552,7 +552,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bglmt.EasyRancho;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thaisrfernandes.EasyRancho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -566,7 +566,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Superlista/Preview Content\"";
-				DEVELOPMENT_TEAM = 4A7DB99C3F;
+				DEVELOPMENT_TEAM = 7UW5874D4F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Superlista/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -575,7 +575,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.bglmt.EasyRancho;
+				PRODUCT_BUNDLE_IDENTIFIER = com.thaisrfernandes.EasyRancho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
