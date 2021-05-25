@@ -11,17 +11,17 @@ struct FakeSearchBar: View {
     var body: some View {
         HStack {
             Text("Adicionar novos itens")
-                .foregroundColor(.gray)
+                .foregroundColor(Color(UIColor.secondaryLabel))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(8)
                 .padding(.leading, 30)
-                .background(Color(.systemGray6))
+                .background(Color("searchColor"))
                 .cornerRadius(50)
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color(UIColor.secondaryLabel))
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                            .foregroundColor(.gray)
                             .padding(.leading, 15)
                     }
                 )

@@ -14,15 +14,16 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             TextField("Procurar Items", text: $text)
+                .foregroundColor(Color(UIColor.secondaryLabel))
                 .padding(10)
                 .padding(.leading, 30)
-                .background(Color(.systemGray6))
+                .background(Color("searchColor"))
                 .cornerRadius(50)
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
+                            .foregroundColor(Color(UIColor.secondaryLabel))
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                            .foregroundColor(.gray)
                             .padding(.leading, 15)
                         
                         if isEditing {
@@ -30,7 +31,6 @@ struct SearchBar: View {
                                 self.text = ""
                             }) {
                                 Image(systemName: "multiply.circle.fill")
-                                    .foregroundColor(.gray)
                                     .padding(.trailing, 8)
                             }
                         }
