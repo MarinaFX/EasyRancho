@@ -11,7 +11,6 @@ struct ListHeader: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
     @State var listaTitulo: String = ""
-    
     @State var canComment: Bool = false
     @State var comentario: String = ""
     @State var canEditTitle: Bool = true
@@ -19,10 +18,9 @@ struct ListHeader: View {
     
     let purpleColor = Color("HeaderColor")
     let secondary = Color("Secondary")
-    
     let list: ListModel?
+    
     @Binding var listId: String?
-
     
     var body: some View {
         HStack (spacing: 5){
@@ -67,14 +65,15 @@ struct ListHeader: View {
                 .frame(width: 22, height: 22)
                 .foregroundColor(canEditTitle ? .gray : secondary)
                 .onTapGesture {
-                    if let list = list {
+                    if let unwrappedList = list {
                         if canEditTitle && !listaTitulo.isEmpty {
-                            listsViewModel.editListTitle(of: list, newTitle: listaTitulo)
+                            listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
                             canEditTitle = false
                         } else {
                             canEditTitle = true
                         }
-                    } else {
+                    }
+                    else {
                         let newList = ListModel(title: listaTitulo)
                         listsViewModel.addList(newItem: newList)
                         self.listId = newList.id
@@ -84,8 +83,6 @@ struct ListHeader: View {
             
             Spacer()
             
-            
-        
             Image(systemName: listsViewModel.isGrid ? "list.bullet" : "square.grid.2x2.fill")
                     .resizable()
                     .frame(width: 22, height: 22)
@@ -114,6 +111,7 @@ struct ListHeader: View {
                 isFavorite = list.favorite
                 canEditTitle = false
             }
+            
         }
     }
     

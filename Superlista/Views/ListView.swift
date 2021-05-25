@@ -11,6 +11,9 @@ struct ListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
     @State var listId: String?
+    @State var canEditTitle: Bool = true
+    @State var isFavorite: Bool = false
+    @State var listaTitulo: String = ""
     
     func getList() -> ListModel? {
         if let listId = listId,
@@ -20,12 +23,6 @@ struct ListView: View {
         
         return nil
     }
-    
-    @State var canEditTitle: Bool = true
-    @State var isFavorite: Bool = false
-    
-    
-    @State var listaTitulo: String = ""
     
     var body: some View {
         MainScreen(customView: AnyView(

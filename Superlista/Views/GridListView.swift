@@ -18,23 +18,31 @@ struct GridListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
     @State var isEditing : Bool = false
+    @State var listId: String = ""
+    @State var isCreatingList: Bool = false
     
     @State var showAlert = false
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var body: some View {
-        ZStack{
+        ZStack {
+            NavigationLink(destination: ListView(listId: listId),
+                           isActive: $isCreatingList,
+                           label: {
+                            EmptyView()
+                           }
+            ).opacity(0.0)
+            
             Color("background")
                 .ignoresSafeArea()
-            
             
             if listsViewModel.list.isEmpty {
                 VStack(spacing: 40){
                     Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
                         .multilineTextAlignment(.center)
                         .font(.headline)
-                      
+                    
                     Image("cesta")
                         .resizable()
                         .frame(maxWidth: 200, maxHeight: 100)
@@ -131,10 +139,18 @@ struct GridListView: View {
                     Text("Listas").font(.system(size: 36, weight: .bold)).foregroundColor(Color.primary)
                 }
                 ToolbarItem(placement: .destructiveAction){
-                    Button(action: {listsViewModel.addList(newItem: ListModel(title: "Nova Lista"))}, label: {Text("Nova lista")})
+                    Button(action: createNewListAction, label: { Text("Nova lista") })
                 }
             }
         }
+    }
+    
+    func createNewListAction() {
+        let newList: ListModel = ListModel(title: "Nova Lista")
+        let newListId: String = newList.id
+        listsViewModel.addList(newItem: newList)
+        self.listId = newListId
+        self.isCreatingList = true
     }
 }
 
