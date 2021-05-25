@@ -32,11 +32,35 @@ struct ListModel: Identifiable, Decodable, Encodable {
     func addItem(_ product: ProductModel) -> ListModel {
         var newItemsList = items
         
+        print("\nAdicionando produto: \(product.name), \(product.id)")
+        
         if let _ = items[product.getCategory()] {
+            print("entrei 1")
             newItemsList[product.getCategory()]?.append(ItemModel(product: product))
         } else {
+            print("entrei 2")
             newItemsList[product.getCategory()] = [ItemModel(product: product)]
         }
+        
+        print(newItemsList.map { $0.value })
+        
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+    }
+    
+    func addItem(_ item: ItemModel) -> ListModel {
+        var newItemsList = items
+        
+        print("\nAdicionando produto: \(item.product.name), \(item.id)")
+        
+        if let category = newItemsList.first(where: { $0.key.title == item.product.category })?.key {
+            print("entrei 1")
+            newItemsList[category]?.append(item)
+        } else {
+            print("entrei 2")
+            newItemsList[CategoryModel(title: item.product.category)] = [item]
+        }
+        
+        print(newItemsList.map { $0.value })
         
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
@@ -68,6 +92,28 @@ struct ListModel: Identifiable, Decodable, Encodable {
             
         }
         
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+    }
+    
+    func removeItem(_ item: ItemModel) -> ListModel {
+        var newItemsList = items
+        
+        print("antes \(newItemsList) \n")
+        
+        if let category = newItemsList.first(where: { $0.key.title == item.product.category })?.key,
+           let index = newItemsList[category]?.firstIndex(where: { $0.id == item.id }) {
+            
+            newItemsList[category]?.remove(at: index)
+            
+            if let categoryItems = newItemsList[category],
+               categoryItems.isEmpty {
+                newItemsList.removeValue(forKey: category)
+            }
+        }
+        
+        print("dps \(newItemsList) \n")
+
+                
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
     
