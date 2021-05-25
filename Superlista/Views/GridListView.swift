@@ -25,6 +25,10 @@ struct GridListView: View {
     
     var body: some View {
         ZStack{
+            Color("background")
+                .ignoresSafeArea()
+            
+            
             if listsViewModel.list.isEmpty {
                 VStack(spacing: 40){
                     Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
@@ -46,7 +50,7 @@ struct GridListView: View {
                                     .fill(Color("HeaderColor"))
                                     .frame(width: 160, height: 75)
                                     .cornerRadius(15)
-                                    .shadow(color: Color("Shadow"), radius: 5)
+                                    .shadow(color: Color("Shadow"), radius: 10)
                                 
                                 Text(list.title)
                                     .bold()
@@ -91,7 +95,7 @@ struct GridListView: View {
                                         .fill(Color("HeaderColor"))
                                         .frame(width: 160, height: 75)
                                         .cornerRadius(15)
-                                        .shadow(color: Color("Shadow"), radius: 5)
+                                        .shadow(color: Color("Shadow"), radius: 10)
                                     
                                     Text(list.title)
                                         .bold()

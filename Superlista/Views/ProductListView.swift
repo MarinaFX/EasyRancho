@@ -33,6 +33,7 @@ struct ProductListView: View {
                     }
                 }
             }
+            .listRowBackground(Color("background"))
         }
         .listStyle(PlainListStyle())
     }

@@ -28,7 +28,11 @@ struct ListView: View {
     @State var listaTitulo: String = ""
     
     var body: some View {
-            MainScreen(customView: AnyView(
+        MainScreen(customView: AnyView(
+            ZStack{
+                Color("background")
+                    .ignoresSafeArea()
+                
                 VStack (spacing: 20) {
                     ListHeader(list: getList(), listId: $listId)
                     
@@ -52,7 +56,7 @@ struct ListView: View {
                         Spacer()
                     }
                 }
-            ), topPadding: -30)
-        
+            }
+        ), topPadding: -30)
     }
 }
