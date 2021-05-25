@@ -32,45 +32,43 @@ struct ListPerItemsView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.white
-            
-            List {
-                ForEach(getCategories(), id: \.self) { category in
+        List {
+            ForEach(getCategories(), id: \.self) { category in
+                
+                Section(header: HStack{
+                    Text(category.title)
+                        .font(.headline)
+                        .foregroundColor(getColor(category: category.title))
+                        .padding()
                     
-                    Section(header: HStack{
-                        Text(category.title)
-                            .font(.headline)
-                            .foregroundColor(getColor(category: category.title))
-                            .padding()
-                        
-                        Spacer()
-                    }
-                    .frame(maxHeight: 30)
-                    .textCase(nil) // TALVEZ TENHA QUE TIRAR
-               
-                    .background(background)
-                    .listRowInsets(EdgeInsets(
-                                    top: -5,
-                                    leading: 0,
-                                    bottom: -5,
-                                    trailing:0))
+                    Spacer()
+                }
+                .frame(maxHeight: 30)
+                .textCase(nil) // TALVEZ TENHA QUE TIRAR
+                
+                .background(Color("background"))
+                .listRowInsets(EdgeInsets(
+                                top: -5,
+                                leading: 0,
+                                bottom: -5,
+                                trailing:0))
+                
+                ) {
                     
-                    ) {
+                    ForEach(getRows(from: category)) { item in
                         
-                        ForEach(getRows(from: category)) { item in
-                            
-                            ItemCommentView(item: item, list: list)
-                                .padding(.bottom, isLast(item, from: category) ? 8 : 0)
-                        }
-                        .onDelete { row in
-                            listsViewModel.removeItem(from: row, of: category, of: list)
-                        }
-                        
+                        ItemCommentView(item: item, list: list)
+                            .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
+                    .onDelete { row in
+                        listsViewModel.removeItem(from: row, of: category, of: list)
+                    }
+                    .listRowBackground(Color("background"))
                     
                 }
+                
             }
+            .listRowBackground(Color("background"))
         }
         .onAppear {
             UITableView.appearance().showsVerticalScrollIndicator = false

@@ -10,38 +10,47 @@ import SwiftUI
 struct ProductListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
-    var list: ListModel
-    
     let products = ProductListViewModel().productsOrdered
     
-    var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
-    
-    func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
-    
-    // @Binding var selectedItems: Array<ProductModel>
-    
-    @State var isSelected: Bool = false
-    
+    var list: ListModel
+
+    @State var selectedItems: [ItemModel] = []
+        
     @Binding var filter: String
     
+    var filteredProducts: [ProductModel] {
+        return products.filter({ $0.name.localizedCaseInsensitiveContains(filter) })
+    }
+    
+    func isSelected(item: ProductModel) -> Bool {
+        return selectedItems.contains(where: { $0.product.name == item.name })
+    }
+    
     var body: some View {
+        
         List {
-            ForEach(filter.isEmpty ? products : products.filter({$0.name.contains(filter)})) { item in
+            ForEach(filter.isEmpty ? products : filteredProducts) { item in
+                
                 HStack {
-                    Image(systemName: isSelected ? "checkmark" : "plus")
+                    Image(systemName: isSelected(item: item) ? "checkmark" : "plus")
                         .foregroundColor(Color.primary)
                     
                     Text(item.name)
                         .foregroundColor(Color.primary)
                 }
                 .onTapGesture {
-                    if isSelected {
-                        listsViewModel.addItem(item, to: list)
+                    if isSelected(item: item),
+                       let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) {
+                        listsViewModel.removeItem(selectedItems[index], from: list)
+                        selectedItems.remove(at: index)
                     } else {
-                        listsViewModel.removeItem(from: rows(from: categories), of: categories, of: list)
+                        let newItem = ItemModel(product: item)
+                        listsViewModel.addItem(newItem, to: list)
+                        selectedItems.append(newItem)
                     }
                 }
             }
+            .listRowBackground(Color("background"))
         }
         .listStyle(PlainListStyle())
     }

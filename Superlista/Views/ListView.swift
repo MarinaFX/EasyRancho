@@ -11,6 +11,9 @@ struct ListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
     @State var listId: String?
+    @State var canEditTitle: Bool = true
+    @State var isFavorite: Bool = false
+    @State var listaTitulo: String = ""
     
     func getList() -> ListModel? {
         if let listId = listId,
@@ -21,44 +24,36 @@ struct ListView: View {
         return nil
     }
     
-    @State var canEditTitle: Bool = true
-    @State var isFavorite: Bool = false
-    
-    
-    @State var listaTitulo: String = ""
-    
     var body: some View {
         MainScreen(customView: AnyView(
-            VStack (spacing: 20) {
-                ListHeader(list: getList(), listId: $listId)
+            ZStack{
+                Color("background")
+                    .ignoresSafeArea()
                 
-                if let list = getList() {
-                    NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
-                        FakeSearchBar()
-                            .padding(.horizontal, 20)
-                    }
+                VStack (spacing: 20) {
+                    ListHeader(list: getList(), listId: $listId)
                     
-                    if !listsViewModel.isGrid {
-                        ListPerItemsView(list: list)
-                            .padding(.horizontal)
-                            .padding(.bottom, 30)
+                    if let list = getList() {
+                        NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
+                            FakeSearchBar()
+                                .padding(.horizontal, 20)
+                        }
+                        
+                        if !listsViewModel.isGrid {
+                            ListPerItemsView(list: list)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
+                        } else {
+                            ListPerCategoryView(list: list)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
+                        }
+                        
                     } else {
-                        ListPerCategoryView(list: list)
-                            .padding(.horizontal)
-                        .padding(.bottom, 30)
+                        Spacer()
                     }
-                    
-                } else {
-                    Spacer()
                 }
             }
         ), topPadding: -30)
-        .toolbar{
-            ToolbarItem(placement: .principal){
-                Text("                      ")
-                    .frame(width: 300)
-            }
-        }
-        
     }
 }

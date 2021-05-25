@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import UIKit
 
 @main
 struct SuperlistaApp: App {
     @StateObject var listsViewModel: ListsViewModel = ListsViewModel()
     
     let purpleColor = Color("HeaderColor")
+    
+    init() {
+        UITableView.appearance().backgroundColor = UIColor(named: "background")
+    } 
 
     var body: some Scene {
         WindowGroup {

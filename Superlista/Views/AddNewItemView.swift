@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -14,7 +15,6 @@ struct AddNewItemView: View {
     
     var list: ListModel
     
-    @State var selectedProducts: Array<ProductModel> = []
     @State var searchText: String
     
     let products = ProductListViewModel().productsOrdered
@@ -23,7 +23,8 @@ struct AddNewItemView: View {
         GeometryReader { geometry in
             MainScreen(customView: AnyView(
                 VStack {
-                    ProductListView(list: list, selectedItems: $selectedProducts, filter: $searchText)
+                    
+                    ProductListView(list: list, filter: $searchText)
                     
                     Button(action: prontoButtonPressed, label: {
                         Text("Pronto")

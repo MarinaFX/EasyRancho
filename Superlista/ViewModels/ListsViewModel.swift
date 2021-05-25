@@ -71,9 +71,14 @@ class ListsViewModel: ObservableObject {
     /* CRUD Itens Lista */
     
     func addItem(_ product: ProductModel, to listModel: ListModel) {
-        print(listModel)
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.addItem(product)
+        }
+    }
+    
+    func addItem(_ item: ItemModel, to listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.addItem(item)
         }
     }
     
@@ -89,11 +94,9 @@ class ListsViewModel: ObservableObject {
         }
     }
     
-    func removeItem(_ item: ItemModel, of listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }),
-           let indexItem = list[index].items.firstIndex(where: { $0.key.id == item.id }){
-            
-            list[index] = listModel.removeItem(from: row, of: category)
+    func removeItem(_ item: ItemModel, from listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.removeItem(item)
         }
     }
     
