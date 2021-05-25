@@ -11,16 +11,17 @@ struct MainScreen: View {
     var customView: AnyView?
     
     var height: CGFloat = .infinity
-    var bottomPadding: CGFloat = -80
+    var bottomPadding: CGFloat = -35
     var topPadding: CGFloat = 0
     
-    let purpleColor = Color("HeaderColor")
+    let headerColor = Color("HeaderColor")
     let background = Color("background")
     
     var body: some View {
         ZStack() {
-            purpleColor
+            headerColor
                 .edgesIgnoringSafeArea(.top)
+                
             
             VStack {
                 customView

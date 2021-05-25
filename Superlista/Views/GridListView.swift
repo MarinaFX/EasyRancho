@@ -30,7 +30,7 @@ struct GridListView: View {
                     Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
                         .multilineTextAlignment(.center)
                         .font(.headline)
-                    
+                      
                     Image("cesta")
                         .resizable()
                         .frame(maxWidth: 200, maxHeight: 100)
@@ -119,8 +119,8 @@ struct GridListView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     if !listsViewModel.list.isEmpty{
-                        Button(action: {isEditing.toggle()}, label: {
-                                Text(isEditing ? "Concluir": "Editar")})
+                    Button(action: {isEditing.toggle()}, label: {
+                            Text(isEditing ? "Concluir": "Editar")})
                     }
                 }
                 ToolbarItem(placement: .principal){
