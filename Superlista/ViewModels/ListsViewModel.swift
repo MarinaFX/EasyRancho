@@ -70,22 +70,33 @@ class ListsViewModel: ObservableObject {
     
     /* CRUD Itens Lista */
     
-    func addItem(_ product: ProductModel, to listModel: ListModel) {
-        print(listModel)
+//    func addItem(_ product: ProductModel, to listModel: ListModel) {
+//        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+//            list[index] = listModel.addItem(product)
+//        }
+//    }
+    
+    func addItem(_ item: ItemModel, to listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-            list[index] = listModel.addItem(product)
+            list[index] = listModel.addItem(item)
         }
     }
     
-    func addItems(_ products: [ProductModel], to listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-            list[index] = listModel.addItems(products)
-        }
-    }
+//    func addItems(_ products: [ProductModel], to listModel: ListModel) {
+//        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+//            list[index] = listModel.addItems(products)
+//        }
+//    }
     
     func removeItem(from row: IndexSet, of category: CategoryModel, of listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.removeItem(from: row, of: category)
+        }
+    }
+    
+    func removeItem(_ item: ItemModel, from listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.removeItem(item)
         }
     }
     
