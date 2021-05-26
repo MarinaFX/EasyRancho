@@ -36,8 +36,9 @@ struct ListHeader: View {
                         }
                         
                         TextField("", text: $listaTitulo)
-                            .foregroundColor(canEditTitle ? .gray : .black)
+                            .foregroundColor(canEditTitle ? Color("background") : .black)
                             .font(.system(size: 24, weight: .bold))
+                            .background(Color("editTitleBackground"))
                         
                     }
                     
@@ -53,9 +54,9 @@ struct ListHeader: View {
                 }
                 .frame(maxWidth: .infinity)
                 
-                Rectangle()
-                    .frame(width: 200, height: 1)
-                    .foregroundColor(secondary)
+//                Rectangle()
+//                    .frame(width: 200, height: 1)
+//                    .foregroundColor(secondary)
             }
             
             Spacer()
