@@ -48,7 +48,6 @@ struct CategoryDropViewDelegate: DropDelegate {
     var category: CategoryModel
     
     func performDrop(info: DropInfo) -> Bool {
-        list.items.forEach { item in print(item.key.title) }
         if let fromCat = list.items.first(where: { $0.key == listsViewModel.currentCategory }),
            let toCat = list.items.first(where: { $0.key == self.category }),
            fromCat.key != toCat.key {
