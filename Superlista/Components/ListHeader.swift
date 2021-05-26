@@ -10,10 +10,10 @@ import SwiftUI
 struct ListHeader: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
-    @State var listaTitulo: String = ""
+    @Binding var listaTitulo: String
     @State var canComment: Bool = false
     @State var comentario: String = ""
-    @State var canEditTitle: Bool = true
+    @Binding var canEditTitle: Bool
     @State var isFavorite: Bool = false
     
     let purpleColor = Color("HeaderColor")
@@ -61,26 +61,26 @@ struct ListHeader: View {
             
             Spacer()
             
-            Image(systemName: "pencil")
-                .resizable()
-                .frame(width: 22, height: 22)
-                .foregroundColor(canEditTitle ? .gray : secondary)
-                .onTapGesture {
-                    if let unwrappedList = list {
-                        if canEditTitle && !listaTitulo.isEmpty {
-                            listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
-                            canEditTitle = false
-                        } else {
-                            canEditTitle = true
-                        }
-                    }
-                    else {
-                        let newList = ListModel(title: listaTitulo)
-                        listsViewModel.addList(newItem: newList)
-                        self.listId = newList.id
-                        canEditTitle = false
-                    }
-                }
+//            Image(systemName: "pencil")
+//                .resizable()
+//                .frame(width: 22, height: 22)
+//                .foregroundColor(canEditTitle ? .gray : secondary)
+//                .onTapGesture {
+//                    if let unwrappedList = list {
+//                        if canEditTitle && !listaTitulo.isEmpty {
+//                            listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
+//                            canEditTitle = false
+//                        } else {
+//                            canEditTitle = true
+//                        }
+//                    }
+//                    else {
+//                        let newList = ListModel(title: listaTitulo)
+//                        listsViewModel.addList(newItem: newList)
+//                        self.listId = newList.id
+//                        canEditTitle = false
+//                    }
+//                }
             
             Spacer()
             
