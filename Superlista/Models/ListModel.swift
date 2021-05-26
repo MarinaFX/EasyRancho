@@ -47,7 +47,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
         if let category = newItemsList.first(where: { $0.key.title == item.product.category })?.key {
             newItemsList[category]?.append(item)
         } else {
-            newItemsList[CategoryModel(title: item.product.category)] = [item]
+            newItemsList[CategoryModel(title: item.product.category, order: newItemsList.count + 1)] = [item]
         }
                 
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
