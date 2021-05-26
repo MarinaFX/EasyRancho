@@ -8,28 +8,45 @@
 import SwiftUI
 
 struct ProductListView: View {
+    @EnvironmentObject var listsViewModel: ListsViewModel
+    
     let products = ProductListViewModel().productsOrdered
     
-    @Binding var selectedItems: Array<ProductModel>
-    
+    var list: ListModel
+
+    @State var selectedItems: [ItemModel] = []
+        
     @Binding var filter: String
+    
+    var filteredProducts: [ProductModel] {
+        return products.filter({ $0.name.localizedCaseInsensitiveContains(filter) })
+    }
+    
+    func isSelected(item: ProductModel) -> Bool {
+        return selectedItems.contains(where: { $0.product.name == item.name })
+    }
     
     var body: some View {
         
         List {
-            ForEach(filter.isEmpty ? products : products.filter({$0.name.localizedCaseInsensitiveContains(filter)})) { item in
+            ForEach(filter.isEmpty ? products : filteredProducts) { item in
+                
                 HStack {
-                    Image(systemName: selectedItems.contains(item) ? "checkmark" : "plus")
+                    Image(systemName: isSelected(item: item) ? "checkmark" : "plus")
                         .foregroundColor(Color.primary)
                     
                     Text(item.name)
                         .foregroundColor(Color.primary)
                 }
                 .onTapGesture {
-                    if selectedItems.contains(item), let index = selectedItems.firstIndex(where: { $0 == item }) {
+                    if isSelected(item: item),
+                       let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) {
+                        listsViewModel.removeItem(selectedItems[index], from: list)
                         selectedItems.remove(at: index)
                     } else {
-                        selectedItems.append(item)
+                        let newItem = ItemModel(product: item)
+                        listsViewModel.addItem(newItem, to: list)
+                        selectedItems.append(newItem)
                     }
                 }
             }
@@ -38,3 +55,4 @@ struct ProductListView: View {
         .listStyle(PlainListStyle())
     }
 }
+ 

@@ -15,7 +15,6 @@ struct AddNewItemView: View {
     
     var list: ListModel
     
-    @State var selectedProducts: Array<ProductModel> = []
     @State var searchText: String
     
     let products = ProductListViewModel().productsOrdered
@@ -25,7 +24,7 @@ struct AddNewItemView: View {
             MainScreen(customView: AnyView(
                 VStack {
                     
-                    ProductListView(selectedItems: $selectedProducts, filter: $searchText)
+                    ProductListView(list: list, filter: $searchText)
                     
                     Button(action: prontoButtonPressed, label: {
                         Text("Pronto")
@@ -52,8 +51,6 @@ struct AddNewItemView: View {
     }
     
     func prontoButtonPressed(){
-        listsViewModel.addItems(selectedProducts, to: list)
-
         presentationMode.wrappedValue.dismiss()
     }
 }
