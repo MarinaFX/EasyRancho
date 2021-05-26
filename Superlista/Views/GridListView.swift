@@ -47,6 +47,11 @@ struct GridListView: View {
                         .resizable()
                         .frame(maxWidth: 200, maxHeight: 100)
                 }
+                .onAppear {
+                    if listsViewModel.list.isEmpty {
+                        self.isEditing = false
+                    }
+                }
             }
             
             ScrollView(showsIndicators: false) {
@@ -152,6 +157,7 @@ struct GridListView: View {
         self.listId = newListId
         self.isCreatingList = true
     }
+    
 }
 
 struct GridListView_Previews: PreviewProvider {
