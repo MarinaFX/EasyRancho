@@ -27,14 +27,15 @@ struct ItemCommentView: View {
                 HStack(alignment: .center) {
                     
                     Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
-                        .foregroundColor(Color.primary)
+                        .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
                         .font(.system(size: 18, weight: .light))
                         .onTapGesture {
                             listsViewModel.toggleCompletion(of: item, from: list)
                         }
                     
                     Text(item.product.name)
-                        .foregroundColor(Color.primary)
+                        .strikethrough(item.isCompleted)
+                        .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
                         .font(.subheadline)
                         .fontWeight(.semibold)
                     
