@@ -33,10 +33,11 @@ struct ProductListView: View {
                 
                 HStack {
                     Image(systemName: isSelected(item: item) ? "checkmark" : "plus")
-                        .foregroundColor(Color.primary)
-                    
+                        .foregroundColor(isSelected(item: item) ? Color("Selected") : Color.primary)
+                        
                     Text(item.name)
-                        .foregroundColor(Color.primary)
+                        .foregroundColor(isSelected(item: item) ? Color("Selected") : Color.primary)
+                        .font(.system(size: 14, weight: isSelected(item: item) ? .bold : .regular))
                 }
                 .onTapGesture {
                     if isSelected(item: item),
