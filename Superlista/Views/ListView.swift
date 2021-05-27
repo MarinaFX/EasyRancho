@@ -11,18 +11,18 @@ struct ListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
     @State var listId: String?
-    @State var canEditTitle: Bool = true
+    @State var canEditTitle: Bool = false
     @State var isFavorite: Bool = false
-    @State var listaTitulo: String = ""
     
     func getList() -> ListModel? {
         if let listId = listId,
            let list = listsViewModel.list.first(where: { $0.id == listId }) {
             return list
         }
-        
         return nil
     }
+    
+    @State var listaTitulo: String = ""
     
     var body: some View {
         MainScreen(customView: AnyView(
@@ -31,7 +31,7 @@ struct ListView: View {
                     .ignoresSafeArea()
                 
                 VStack (spacing: 20) {
-                    ListHeader(list: getList(), listId: $listId)
+                    ListHeader(listaTitulo: $listaTitulo, canEditTitle: $canEditTitle, list: getList(), listId: $listId)
                     
                     if let list = getList() {
                         NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
@@ -55,5 +55,28 @@ struct ListView: View {
                 }
             }
         ), topPadding: -30)
+        .toolbar{
+            ToolbarItem{
+                Button {
+                    if let unwrappedList = getList() {
+                        if canEditTitle && !listaTitulo.isEmpty {
+                            listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
+                            canEditTitle = false
+                        } else {
+                            canEditTitle = true
+                        }
+                    }
+                    else {
+                        let newList = ListModel(title: listaTitulo)
+                        listsViewModel.addList(newItem: newList)
+                        self.listId = newList.id
+                        canEditTitle = false
+                    }
+                    
+                } label: {
+                    Text(canEditTitle ? "Salvar" : "Editar")
+                }
+            }
+        }
     }
 }
