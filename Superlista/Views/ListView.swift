@@ -25,58 +25,61 @@ struct ListView: View {
     @State var listaTitulo: String = ""
     
     var body: some View {
-        MainScreen(customView: AnyView(
-            ZStack{
-                Color("background")
-                    .ignoresSafeArea()
-                
-                VStack (spacing: 20) {
-                    ListHeader(listaTitulo: $listaTitulo, canEditTitle: $canEditTitle, list: getList(), listId: $listId)
+        GeometryReader { geometry in
+            MainScreen(customView: AnyView(
+                ZStack{
+                    Color("background")
+                        .ignoresSafeArea()
                     
-                    if let list = getList() {
-                        NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
-                            FakeSearchBar()
-                                .padding(.horizontal, 20)
-                        }
+                    VStack (spacing: 20) {
+                        ListHeader(listaTitulo: $listaTitulo, canEditTitle: $canEditTitle, list: getList(), listId: $listId)
                         
-                        if !listsViewModel.isGrid {
-                            ListPerItemsView(list: list)
-                                .padding(.horizontal)
-                                .padding(.bottom, 30)
+                        if let list = getList() {
+                            NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
+                                FakeSearchBar()
+                                    .padding(.horizontal, 20)
+                            }
+                            
+                            if !listsViewModel.isGrid {
+                                ListPerItemsView(list: list)
+                                    .padding(.horizontal)
+                                    .padding(.bottom, 30)
+                            } else {
+                                ListPerCategoryView(list: list)
+                                    .padding(.horizontal)
+                                    .padding(.bottom, 30)
+                            }
+                            
                         } else {
-                            ListPerCategoryView(list: list)
-                                .padding(.horizontal)
-                                .padding(.bottom, 30)
+                            Spacer()
                         }
-                        
-                    } else {
-                        Spacer()
                     }
                 }
-            }
-        ), topPadding: -30)
-        .toolbar{
-            ToolbarItem{
-                Button {
-                    if let unwrappedList = getList() {
-                        if canEditTitle && !listaTitulo.isEmpty {
-                            listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
-                            canEditTitle = false
-                        } else {
-                            canEditTitle = true
+            ), topPadding: -30)
+            .toolbar{
+                ToolbarItem{
+                    Button {
+                        if let unwrappedList = getList() {
+                            if canEditTitle && !listaTitulo.isEmpty {
+                                listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
+                                canEditTitle = false
+                            } else {
+                                canEditTitle = true
+                            }
                         }
+                        else {
+                            let newList = ListModel(title: listaTitulo)
+                            listsViewModel.addList(newItem: newList)
+                            self.listId = newList.id
+                            canEditTitle = false
+                        }
+                        
+                    } label: {
+                        Text(canEditTitle ? "Salvar" : "Editar")
                     }
-                    else {
-                        let newList = ListModel(title: listaTitulo)
-                        listsViewModel.addList(newItem: newList)
-                        self.listId = newList.id
-                        canEditTitle = false
-                    }
-                    
-                } label: {
-                    Text(canEditTitle ? "Salvar" : "Editar")
                 }
             }
         }
     }
 }
+ 

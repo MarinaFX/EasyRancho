@@ -29,17 +29,30 @@ struct ListPerCategoryView: View {
                     ZStack(alignment: .center) {
                         NavigationLink(destination: ListByCategoryView(categoryName: category, list: list)) {
                             Rectangle()
-                                .fill(getColor(category: category.title))
-                                .frame(width: 160, height: 75)
+                                .fill(Color("searchColor"))
+                                .frame(width: 164, height: 164)
                                 .cornerRadius(15)
-                                .shadow(color: Color("Shadow"), radius: 10)
+                                //.shadow(color: Color("Shadow"), radius: 10)
+                                .shadow(color: Color("Shadow"), radius: 10, x: 0, y: 4)
                         }
                         
-                        Text(category.title)
-                            .bold()
-                            .frame(alignment: .center)
-                            .frame(maxWidth: 150)
-                            .foregroundColor(.white)
+                        VStack{
+                            
+                            getImage(category: category.title)
+                                .resizable()
+                                .frame(width: 120, height: 100)
+                            
+                            
+                            Text(category.title)
+                                .foregroundColor(Color.primary)
+                                .bold()
+                                .font(.system(size: 16))
+                                .frame(alignment: .bottom)
+                                .frame(maxWidth: 150)
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                        }
+                        
                         
                     }
                     .onDrag({
