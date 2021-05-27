@@ -146,6 +146,9 @@ struct GridListView: View {
                     Button(action: createNewListAction, label: { Text("Nova lista") })
                 }
             }
+            Button(action: createNewListAction, label : {
+                VStack{}.background(Color.clear).frame(width: 200, height: 200)
+            })
         }
     }
     
