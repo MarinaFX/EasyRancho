@@ -38,14 +38,13 @@ struct GridListView: View {
                 .ignoresSafeArea()
             
             if listsViewModel.list.isEmpty {
-                VStack(spacing: 40){
+                VStack {
                     Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
                         .multilineTextAlignment(.center)
                         .font(.headline)
                     
-                    Image("cesta")
-                        .resizable()
-                        .frame(maxWidth: 200, maxHeight: 100)
+                    NoItemsView()
+                        .frame(width: 400, height: 400)
                 }
                 .onAppear {
                     if listsViewModel.list.isEmpty {
