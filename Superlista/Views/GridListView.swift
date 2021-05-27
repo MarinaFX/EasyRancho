@@ -27,7 +27,7 @@ struct GridListView: View {
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: ListView(listId: listId), 
+            NavigationLink(destination: ListView(listId: listId),
                            isActive: $isCreatingList,
                            label: {
                             EmptyView()
@@ -135,8 +135,8 @@ struct GridListView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     if !listsViewModel.list.isEmpty{
-                    Button(action: {isEditing.toggle()}, label: {
-                            Text(isEditing ? "Concluir": "Editar")})
+                        Button(action: {isEditing.toggle()}, label: {
+                                Text(isEditing ? "Concluir": "Editar")})
                     }
                 }
                 ToolbarItem(placement: .principal){
@@ -150,6 +150,7 @@ struct GridListView: View {
                 VStack{}.background(Color.clear).frame(width: 200, height: 200)
             })
         }
+        
     }
     
     func createNewListAction() {

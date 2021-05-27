@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0923F6812660105800553ED2 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0923F6802660105800553ED2 /* ImageModel.swift */; };
 		09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725AFE264460AF0006D410 /* CustomHeader.swift */; };
 		09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B0426446C710006D410 /* CustomNavigationBar.swift */; };
 		09725B09264470EE0006D410 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B08264470EE0006D410 /* MainScreen.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0923F6802660105800553ED2 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		09725AFE264460AF0006D410 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		09725B0426446C710006D410 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		09725B08264470EE0006D410 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				890913832649BCCA00C619A3 /* ListModel.swift */,
 				09725B20264C64F90006D410 /* ColorModel.swift */,
 				893BA2892654A84600A300DA /* CategoryModel.swift */,
+				0923F6802660105800553ED2 /* ImageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				890913842649BCCA00C619A3 /* ListModel.swift in Sources */,
 				1B32EF0F26600AA1006AE70B /* NoItemsView.swift in Sources */,
 				09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */,
+				0923F6812660105800553ED2 /* ImageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,7 +575,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bglmt.EasyRancho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -594,7 +598,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bglmt.EasyRancho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
