@@ -27,7 +27,7 @@ struct GridListView: View {
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: ListView(listId: listId),
+            NavigationLink(destination: ListView(listId: listId), 
                            isActive: $isCreatingList,
                            label: {
                             EmptyView()
