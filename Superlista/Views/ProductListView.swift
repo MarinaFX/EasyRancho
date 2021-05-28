@@ -38,7 +38,10 @@ struct ProductListView: View {
                     Text(item.name)
                         .foregroundColor(isSelected(item: item) ? Color("Selected") : Color.primary)
                         .font(.system(size: 14, weight: isSelected(item: item) ? .bold : .regular))
+                    Spacer()
+                    Text("                                           ") // gambiarra emergencial
                 }
+                .frame(maxWidth: .infinity)
                 .onTapGesture {
                     if isSelected(item: item),
                        let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) {
