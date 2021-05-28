@@ -22,6 +22,7 @@ struct ListHeader: View {
     
     @Binding var listId: String?
     
+    
     var body: some View {
         HStack (spacing: 5){
             VStack(alignment: .leading){
@@ -39,6 +40,12 @@ struct ListHeader: View {
                             .foregroundColor(canEditTitle ? Color("background") : .black)
                             .font(.system(size: 24, weight: .bold))
                             .background(Color("editTitleBackground"))
+                            .onTapGesture {
+                                if listaTitulo == "Nova Lista"{
+                                    listaTitulo = ""
+                                }
+                            }
+                        
                         
                     }
                     
@@ -54,40 +61,17 @@ struct ListHeader: View {
                 }
                 .frame(maxWidth: .infinity)
                 
-//                Rectangle()
-//                    .frame(width: 200, height: 1)
-//                    .foregroundColor(secondary)
             }
             
             Spacer()
             
-//            Image(systemName: "pencil")
-//                .resizable()
-//                .frame(width: 22, height: 22)
-//                .foregroundColor(canEditTitle ? .gray : secondary)
-//                .onTapGesture {
-//                    if let unwrappedList = list {
-//                        if canEditTitle && !listaTitulo.isEmpty {
-//                            listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
-//                            canEditTitle = false
-//                        } else {
-//                            canEditTitle = true
-//                        }
-//                    }
-//                    else {
-//                        let newList = ListModel(title: listaTitulo)
-//                        listsViewModel.addList(newItem: newList)
-//                        self.listId = newList.id
-//                        canEditTitle = false
-//                    }
-//                }
             
             Spacer()
             
             Image(systemName: listsViewModel.isGrid ? "list.bullet" : "square.grid.2x2.fill")
-                    .resizable()
-                    .frame(width: 22, height: 22)
-                    .foregroundColor(secondary)
+                .resizable()
+                .frame(width: 22, height: 22)
+                .foregroundColor(secondary)
                 .onTapGesture {
                     listsViewModel.isGrid.toggle()
                 }
@@ -96,7 +80,7 @@ struct ListHeader: View {
             
             Image(systemName: (list?.favorite ?? false) ? "heart.fill" : "heart")
                 .resizable()
-                .frame(width: 22, height: 22)
+                .frame(width: 25, height: 22)
                 .foregroundColor((list?.favorite ?? false) ? Color("Favorite") : Color("Secondary"))
                 .onTapGesture {
                     if let list = list {
@@ -114,6 +98,12 @@ struct ListHeader: View {
             }
             
         }
+        
+        
     }
     
+    
+    
 }
+
+

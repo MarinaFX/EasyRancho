@@ -1558,6 +1558,41 @@
     "id": 312,
     "name": "Coentro",
     "category": "Hortifruti"
+  },
+  {
+    "id": 313,
+    "name": "Chia",
+    "category": "Grãos e farinhas"
+  },
+  {
+    "id": 314,
+    "name": "Gergelim",
+    "category": "Grãos e farinhas"
+  },
+  {
+    "id": 315,
+    "name": "Mel",
+    "category": "Compotas e doces"
+  },
+  {
+    "id": 316,
+    "name": "Azeite de dendê",
+    "category": "Enlatados, conservas e óleos"
+  },
+  {
+    "id": 317,
+    "name": "Nuggets",
+    "category": "Congelados"
+  },
+  {
+    "id": 318,
+    "name": "Molho de queijo",
+    "category": "Molhos"
+  },
+  {
+    "id": 319,
+    "name": "Massa para lasanha",
+    "category": "Fiambreria e laticínios"
   }
 ]
 
