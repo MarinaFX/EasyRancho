@@ -11,47 +11,47 @@ import SwiftUI
 public func getImage(category: String) -> Image {
     switch category{
     case "Bazar" :
-        return Image("Ilustra")
+        return Image("Bazar")
     case "Bebidas" :
-        return Image("Ilustra")
+        return Image("Bebidas")
     case "Bomboniere" :
-        return Image("Ilustra")
+        return Image("Bomboniere")
     case "Carnes" :
-        return Image("Ilustra")
+        return Image("Carnes")
     case "Compotas e doces" :
-        return Image("Ilustra")
+        return Image("Compotasedoces")
     case "Congelados" :
-        return Image("Ilustra")
+        return Image("Congelados")
     case "Enlatados, conservas e óleos" :
-        return Image("Ilustra")
+        return Image("Enlatadosconservaseoleos")
     case "Especiais" :
-        return Image("Ilustra")
+        return Image("Especiais")
     case "Fiambreria e laticínios" :
-        return Image("Ilustra")
+        return Image("Fiambreriaelaticinios")
     case "Grãos e farinhas" :
-        return Image("Ilustra")
+        return Image("Graosefarinhas")
     case "Higiene e beleza" :
-        return Image("Ilustra")
+        return Image("Higieneebeleza")
     case "Hortifruti" :
-        return Image("Ilustra")
+        return Image("Hortifruti")
     case "Limpeza" :
-        return Image("Ilustra")
+        return Image("Limpeza")
     case "Massas e biscoitos" :
-        return Image("Ilustra")
+        return Image("Massasebiscoitos")
     case "Matinais" :
-        return Image("Ilustra")
+        return Image("Matinais")
     case "Molhos" :
-        return Image("Ilustra")
+        return Image("Molhos")
     case "Padaria" :
-        return Image("Ilustra")
+        return Image("Padaria")
     case "PetShop" :
-        return Image("Ilustra")
+        return Image("PetShop")
     case "Sobremesas" :
-        return Image("Ilustra")
+        return Image("Sobremesas")
     case "Temperos" :
-        return Image("Ilustra")
+        return Image("Temperos")
     case "Outros" :
-        return Image("Ilustra")
+        return Image("Outros")
     default:
         return Image("Ilustra") 
     }
