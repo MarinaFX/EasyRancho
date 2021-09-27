@@ -1,4 +1,4 @@
-# Super Lista
+# easyRancho
 
 Projeto em iOS para criação de lista de compras com itens organizados por categorias.
 
