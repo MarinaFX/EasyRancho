@@ -40,7 +40,7 @@ struct ListPerCategoryView: View {
                             
                             getImage(category: category.title)
                                 .resizable()
-                                .frame(width: 120, height: 100)
+                                .frame(width: 100, height: 100)
                             
                             
                             Text(category.title)

@@ -19,25 +19,25 @@ public func getColor(category: String) -> Color {
     case "Carnes" :
         return Color("Carnes")
     case "Compotas e doces" :
-        return Color("Compotas e doces")
+        return Color("Compotasedoces")
     case "Congelados" :
         return Color("Congelados")
     case "Enlatados, conservas e óleos" :
-        return Color("Enlatados, conservas e óleos")
+        return Color("Enlatadosconservaseoleos")
     case "Especiais" :
         return Color("Especiais")
     case "Fiambreria e laticínios" :
-        return Color("Fiambreria e laticínios")
+        return Color("Fiambreriaelaticinios")
     case "Grãos e farinhas" :
         return Color("Grãos e farinhas")
     case "Higiene e beleza" :
-        return Color("Higiene e beleza")
+        return Color("Higieneebeleza")
     case "Hortifruti" :
         return Color("Hortifruti")
     case "Limpeza" :
         return Color("Limpeza")
     case "Massas e biscoitos" :
-        return Color("Massas e biscoitos")
+        return Color("Massasebiscoitos")
     case "Matinais" :
         return Color("Matinais")
     case "Molhos" :
