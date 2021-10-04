@@ -21,6 +21,7 @@ struct NoItemsView: UIViewRepresentable {
         animationView.contentMode = .scaleAspectFit
         animationView.play()
         animationView.loopMode = LottieLoopMode.loop
+        animationView.backgroundBehavior = .pauseAndRestore
         
         animationView.translatesAutoresizingMaskIntoConstraints = false
         
