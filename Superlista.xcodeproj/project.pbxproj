@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0914B97C270B6B90008E297F /* CKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B97B270B6B90008E297F /* CKService.swift */; };
+		0914B97E270B6CF8008E297F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B97D270B6CF8008E297F /* UserModel.swift */; };
 		0923F6812660105800553ED2 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0923F6802660105800553ED2 /* ImageModel.swift */; };
+		0944BDED27079529006634B9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0944BDEC27079529006634B9 /* CloudKit.framework */; };
 		09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725AFE264460AF0006D410 /* CustomHeader.swift */; };
 		09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B0426446C710006D410 /* CustomNavigationBar.swift */; };
 		09725B09264470EE0006D410 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B08264470EE0006D410 /* MainScreen.swift */; };
@@ -64,7 +67,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0914B97B270B6B90008E297F /* CKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKService.swift; sourceTree = "<group>"; };
+		0914B97D270B6CF8008E297F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0923F6802660105800553ED2 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		0944BDEA270794F5006634B9 /* Superlista.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Superlista.entitlements; sourceTree = "<group>"; };
+		0944BDEC27079529006634B9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		09725AFE264460AF0006D410 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		09725B0426446C710006D410 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		09725B08264470EE0006D410 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
@@ -112,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B32EF0A26600A41006AE70B /* Lottie in Frameworks */,
+				0944BDED27079529006634B9 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +140,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0914B97A270B6B6F008E297F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0914B97B270B6B90008E297F /* CKService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0914B97F270B7E55008E297F /* CKModels */ = {
+			isa = PBXGroup;
+			children = (
+				0914B97D270B6CF8008E297F /* UserModel.swift */,
+			);
+			path = CKModels;
+			sourceTree = "<group>";
+		};
+		0914B980270B7E7A008E297F /* LocalModels */ = {
+			isa = PBXGroup;
+			children = (
+				1BFA604E2641DAFB0030AE03 /* DataModel.swift */,
+				1BFA60562641DB770030AE03 /* ProductModel.swift */,
+				898D6460264321CB0019ABCE /* ItemModel.swift */,
+				890913832649BCCA00C619A3 /* ListModel.swift */,
+				09725B20264C64F90006D410 /* ColorModel.swift */,
+				893BA2892654A84600A300DA /* CategoryModel.swift */,
+				0923F6802660105800553ED2 /* ImageModel.swift */,
+			);
+			path = LocalModels;
+			sourceTree = "<group>";
+		};
+		0944BDEB27079529006634B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0944BDEC27079529006634B9 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1B4678B826447F8B0014B288 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +193,7 @@
 			children = (
 				1BFA5FA0263C72900030AE03 /* Superlista */,
 				1BFA5F9F263C72900030AE03 /* Products */,
+				0944BDEB27079529006634B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +210,8 @@
 		1BFA5FA0263C72900030AE03 /* Superlista */ = {
 			isa = PBXGroup;
 			children = (
+				0914B97A270B6B6F008E297F /* Service */,
+				0944BDEA270794F5006634B9 /* Superlista.entitlements */,
 				1B4678B826447F8B0014B288 /* Components */,
 				898D64572643155C0019ABCE /* ViewModels */,
 				898D64282641E99B0019ABCE /* Views */,
@@ -187,13 +236,8 @@
 		1BFA604D2641DAEF0030AE03 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1BFA604E2641DAFB0030AE03 /* DataModel.swift */,
-				1BFA60562641DB770030AE03 /* ProductModel.swift */,
-				898D6460264321CB0019ABCE /* ItemModel.swift */,
-				890913832649BCCA00C619A3 /* ListModel.swift */,
-				09725B20264C64F90006D410 /* ColorModel.swift */,
-				893BA2892654A84600A300DA /* CategoryModel.swift */,
-				0923F6802660105800553ED2 /* ImageModel.swift */,
+				0914B97F270B7E55008E297F /* CKModels */,
+				0914B980270B7E7A008E297F /* LocalModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -402,10 +446,12 @@
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
 				8948F8D4265325E000394EB6 /* ListHeader.swift in Sources */,
 				1BFA604F2641DAFB0030AE03 /* DataModel.swift in Sources */,
+				0914B97C270B6B90008E297F /* CKService.swift in Sources */,
 				1B32EF1926600B78006AE70B /* CestinhaView.swift in Sources */,
 				1B43E5B3264B13BE002C6D64 /* DropViewDelegate.swift in Sources */,
 				898D645B264316300019ABCE /* ProductListViewModel.swift in Sources */,
 				09725B1D264C60BC0006D410 /* ItemCommentView.swift in Sources */,
+				0914B97E270B6CF8008E297F /* UserModel.swift in Sources */,
 				890913822649BC8100C619A3 /* ListsViewModel.swift in Sources */,
 				890913842649BCCA00C619A3 /* ListModel.swift in Sources */,
 				1B32EF0F26600AA1006AE70B /* NoItemsView.swift in Sources */,
@@ -565,6 +611,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Superlista/Superlista.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
@@ -591,6 +638,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Superlista/Superlista.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
