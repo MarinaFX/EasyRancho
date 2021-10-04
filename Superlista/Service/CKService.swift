@@ -125,5 +125,23 @@ class CKServices: ObservableObject {
         }
     }
     
-    
+    // MARK: - Get List
+    func getList(listID: CKRecord.ID, completion: @escaping (Result<CKListModel,CKError>) -> Void) {
+        let dispatchSemaphore = DispatchSemaphore(value: 1)
+        dispatchSemaphore.wait()
+
+        let listIDRecord = listID
+        
+        publicDB.fetch(withRecordID: listIDRecord) { record, error in
+            if error == nil {
+                completion(.success(CKListModel(record: record!)))
+                dispatchSemaphore.signal()
+                return
+            } else {
+                completion(.failure(error as! CKError))
+                dispatchSemaphore.signal()
+                return
+            }
+        }
+    }
 }
