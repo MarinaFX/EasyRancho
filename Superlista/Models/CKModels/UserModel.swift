@@ -21,7 +21,7 @@ class UserModel {
     init(record: CKRecord) {
         id = record.recordID
         
-        name = record["Name"] as? String
+        name = record["UserName"] as? String
         image = record["Image"] as? CKAsset
         customItems = record["CustomItems"] as? [String] ?? []
         favoriteLists = record["FavoriteLists"] as? [CKRecord.Reference] ?? []

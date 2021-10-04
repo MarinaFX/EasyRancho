@@ -35,4 +35,5 @@ struct SuperlistaApp: App {
             CKServices.currentModel.refresh { error in }
         }
     }
+
 }

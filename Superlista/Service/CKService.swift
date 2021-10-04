@@ -125,5 +125,85 @@ class CKServices: ObservableObject {
         }
     }
     
+    // MARK: - Get List
+    func getList(listID: CKRecord.ID, completion: @escaping (Result<CKListModel,CKError>) -> Void) {
+        let dispatchSemaphore = DispatchSemaphore(value: 1)
+        dispatchSemaphore.wait()
+
+        let listIDRecord = listID
+        
+        publicDB.fetch(withRecordID: listIDRecord) { record, error in
+            if error == nil {
+                completion(.success(CKListModel(record: record!)))
+                dispatchSemaphore.signal()
+                return
+            } else {
+                completion(.failure(error as! CKError))
+                dispatchSemaphore.signal()
+                return
+            }
+        }
+    }
+    
+    // MARK: - Create List
+    func createList(listModel: CKListModel, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        let record = CKRecord(recordType: "Lists")
+        record.setValue(listModel.name, forKey: "ListName")
+        record.setValue(listModel.itemsString, forKey: "Items")
+        
+        publicDB.save(record) { savedRecord, error in
+            if error == nil {
+                completion(.success(savedRecord!.recordID))
+    
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
+    // MARK: - Save List in Users Lists
+    func saveListUsersList(listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        var usersLists = user!.myLists
+        
+        usersLists?.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
+        
+        guard let userID = user?.id else {
+            completion(.failure(CKError.init(CKError.operationCancelled)))
+            return
+        }
+        
+        publicDB.fetch(withRecordID: userID) { record, error in
+            if error == nil {
+                record!.setValue(usersLists, forKey: "MyLists")
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
+    // MARK: - Delete List
+    func deleteList(listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        publicDB.delete(withRecordID: listID) { deleteRecordID, error in
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.refresh { error in
+                        completion(.success(deleteRecordID!))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
     
 }
