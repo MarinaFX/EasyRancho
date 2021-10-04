@@ -26,6 +26,13 @@ struct SuperlistaApp: App {
             .accentColor(Color("Link"))
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
+            .onAppear(perform: loadData)
+        }
+    }
+    
+    func loadData() {
+        DispatchQueue.main.async {
+            CKServices.currentModel.refresh { error in }
         }
     }
 }
