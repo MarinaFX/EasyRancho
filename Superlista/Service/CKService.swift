@@ -7,6 +7,7 @@
 
 import Foundation
 import CloudKit
+import SwiftUI
 
 class CKServices: ObservableObject {
     
@@ -62,7 +63,8 @@ class CKServices: ObservableObject {
     private func verifyAccount(completion: @escaping (UserStatus) -> Void) {
         container.accountStatus { status, error in
             if let _ = error {
-                completion(.none)
+                let userStatus = UserStatus.none
+                completion(userStatus)
             } else {
                 let userStatus = self.parseCKAccountStatus(status: status)
                 completion(userStatus)
@@ -125,6 +127,90 @@ class CKServices: ObservableObject {
         }
     }
     
+    // MARK: - Update User Name
+    func updateUserName(name: String, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        getUser { result in
+            switch result {
+            case .success(let user):
+                self.publicDB.fetch(withRecordID: user.id) { record, error in
+                    if error == nil {
+                        record!.setValue(name, forKey: "UserName")
+                        
+                        self.publicDB.save(record!) { user, error in
+                            if error == nil {
+                                self.refresh { error in
+                                    completion(.success(record!.recordID))
+                                }
+                            } else {
+                                completion(.failure(error as! CKError))
+                            }
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Update User Image
+    func updateUserImage(image: UIImage, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        getUser { result in
+            switch result {
+            case .success(let user):
+                self.publicDB.fetch(withRecordID: user.id) { record, error in
+                    if error == nil {
+                        record!.setValue(ImageToCKAsset(uiImage: image), forKey: "Image")
+                        
+                        self.publicDB.save(record!) { user, error in
+                            if error == nil {
+                                self.refresh { error in
+                                    completion(.success(record!.recordID))
+                                }
+                            } else {
+                                completion(.failure(error as! CKError))
+                            }
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Update Custom Items
+    func updateCustomItems(customItems: [String], completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        getUser { result in
+            switch result {
+            case .success(let user):
+                self.publicDB.fetch(withRecordID: user.id) { record, error in
+                    if error == nil {
+                        record!.setValue(customItems, forKey: "CustomItems")
+                        
+                        self.publicDB.save(record!) { user, error in
+                            if error == nil {
+                                self.refresh { error in
+                                    completion(.success(record!.recordID))
+                                }
+                            } else {
+                                completion(.failure(error as! CKError))
+                            }
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     // MARK: - Get List
     func getList(listID: CKRecord.ID, completion: @escaping (Result<CKListModel,CKError>) -> Void) {
         let dispatchSemaphore = DispatchSemaphore(value: 1)
@@ -162,7 +248,8 @@ class CKServices: ObservableObject {
     }
     
     // MARK: - Save List in Users Lists
-    func saveListUsersList(listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    #warning("Atualizar key para um enum com MyLists, FavoriteLists e SharedWithMe")
+    func saveListUsersList(listID: CKRecord.ID, key: String, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         var usersLists = user!.myLists
         
         usersLists?.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
@@ -174,7 +261,50 @@ class CKServices: ObservableObject {
         
         publicDB.fetch(withRecordID: userID) { record, error in
             if error == nil {
-                record!.setValue(usersLists, forKey: "MyLists")
+                record!.setValue(usersLists, forKey: key)
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
+    
+    // MARK: - Update List
+    
+    func updateListItems(listItems: [String], listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        publicDB.fetch(withRecordID: listID) { record, error in
+            if error == nil {
+                record!.setValue(listItems, forKey: "Items")
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
+    func updateListName(listName: String, listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        publicDB.fetch(withRecordID: listID) { record, error in
+            if error == nil {
+                record!.setValue(listName, forKey: "ListName")
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
