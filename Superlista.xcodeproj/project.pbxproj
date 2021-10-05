@@ -11,6 +11,7 @@
 		0914B97E270B6CF8008E297F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B97D270B6CF8008E297F /* UserModel.swift */; };
 		0914B982270B8016008E297F /* CKListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B981270B8016008E297F /* CKListModel.swift */; };
 		0914B984270B84E8008E297F /* CKItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B983270B84E8008E297F /* CKItemModel.swift */; };
+		0914B986270CC7D2008E297F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B985270CC7D2008E297F /* Helper.swift */; };
 		0923F6812660105800553ED2 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0923F6802660105800553ED2 /* ImageModel.swift */; };
 		0944BDED27079529006634B9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0944BDEC27079529006634B9 /* CloudKit.framework */; };
 		09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725AFE264460AF0006D410 /* CustomHeader.swift */; };
@@ -73,6 +74,7 @@
 		0914B97D270B6CF8008E297F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0914B981270B8016008E297F /* CKListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKListModel.swift; sourceTree = "<group>"; };
 		0914B983270B84E8008E297F /* CKItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKItemModel.swift; sourceTree = "<group>"; };
+		0914B985270CC7D2008E297F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0923F6802660105800553ED2 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		0944BDEA270794F5006634B9 /* Superlista.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Superlista.entitlements; sourceTree = "<group>"; };
 		0944BDEC27079529006634B9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -147,6 +149,7 @@
 		0914B97A270B6B6F008E297F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				0914B985270CC7D2008E297F /* Helper.swift */,
 				0914B97B270B6B90008E297F /* CKService.swift */,
 			);
 			path = Service;
@@ -453,6 +456,7 @@
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
 				8948F8D4265325E000394EB6 /* ListHeader.swift in Sources */,
 				1BFA604F2641DAFB0030AE03 /* DataModel.swift in Sources */,
+				0914B986270CC7D2008E297F /* Helper.swift in Sources */,
 				0914B97C270B6B90008E297F /* CKService.swift in Sources */,
 				1B32EF1926600B78006AE70B /* CestinhaView.swift in Sources */,
 				1B43E5B3264B13BE002C6D64 /* DropViewDelegate.swift in Sources */,

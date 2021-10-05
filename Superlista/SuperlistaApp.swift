@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import CloudKit
 
 @main
 struct SuperlistaApp: App {
@@ -26,7 +27,15 @@ struct SuperlistaApp: App {
             .accentColor(Color("Link"))
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
-            .onAppear(perform: loadData)
+            .onAppear {
+                let d = DispatchSemaphore(value: 1)
+                d.wait()
+                loadData()
+                d.signal()
+                d.wait()
+                CKServices.currentModel.updateUserName(name: "Gabriela") { result in }
+                d.signal()
+            }
         }
     }
     
@@ -34,6 +43,8 @@ struct SuperlistaApp: App {
         DispatchQueue.main.async {
             CKServices.currentModel.refresh { error in }
         }
+        
     }
+    
 
 }
