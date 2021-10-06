@@ -12,6 +12,7 @@
 		0914B982270B8016008E297F /* CKListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B981270B8016008E297F /* CKListModel.swift */; };
 		0914B984270B84E8008E297F /* CKItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B983270B84E8008E297F /* CKItemModel.swift */; };
 		0914B986270CC7D2008E297F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B985270CC7D2008E297F /* Helper.swift */; };
+		0914B988270E0C7B008E297F /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B987270E0C7B008E297F /* DeepLink.swift */; };
 		0923F6812660105800553ED2 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0923F6802660105800553ED2 /* ImageModel.swift */; };
 		0944BDED27079529006634B9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0944BDEC27079529006634B9 /* CloudKit.framework */; };
 		09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725AFE264460AF0006D410 /* CustomHeader.swift */; };
@@ -75,6 +76,7 @@
 		0914B981270B8016008E297F /* CKListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKListModel.swift; sourceTree = "<group>"; };
 		0914B983270B84E8008E297F /* CKItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKItemModel.swift; sourceTree = "<group>"; };
 		0914B985270CC7D2008E297F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		0914B987270E0C7B008E297F /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		0923F6802660105800553ED2 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		0944BDEA270794F5006634B9 /* Superlista.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Superlista.entitlements; sourceTree = "<group>"; };
 		0944BDEC27079529006634B9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -151,6 +153,7 @@
 			children = (
 				0914B985270CC7D2008E297F /* Helper.swift */,
 				0914B97B270B6B90008E297F /* CKService.swift */,
+				0914B987270E0C7B008E297F /* DeepLink.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				890913822649BC8100C619A3 /* ListsViewModel.swift in Sources */,
 				890913842649BCCA00C619A3 /* ListModel.swift in Sources */,
 				1B32EF0F26600AA1006AE70B /* NoItemsView.swift in Sources */,
+				0914B988270E0C7B008E297F /* DeepLink.swift in Sources */,
 				09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */,
 				0923F6812660105800553ED2 /* ImageModel.swift in Sources */,
 			);

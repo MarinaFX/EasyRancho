@@ -127,6 +127,21 @@ class CKServices: ObservableObject {
         }
     }
     
+    // MARK: - Get another user name
+    
+    func getAnotherUserName(userID: CKRecord.ID, completion: @escaping (Result<String,CKError>) -> Void) {
+        publicDB.fetch(withRecordID: userID) { record, error in
+            if error == nil {
+                let user = UserModel(record: record!)
+                completion(.success(user.name!))
+                return
+            } else {
+                completion(.failure(error as! CKError))
+                return
+            }
+        }
+    }
+    
     // MARK: - Update User Name
     func updateUserName(name: String, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         getUser { result in
