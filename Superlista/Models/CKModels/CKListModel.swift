@@ -43,7 +43,7 @@ class CKListModel {
     
     func parseToCSV() {
         itemsModel.forEach { item in
-            itemsString = item.name + String(item.quantity) + item.comment ?? "" + String(item.isCompleted)
+            itemsString.append(item.name + String(item.quantity) + (item.comment ?? "") + String(item.isCompleted))
         }
     }
 }

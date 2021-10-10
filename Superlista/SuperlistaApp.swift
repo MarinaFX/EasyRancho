@@ -36,8 +36,8 @@ struct SuperlistaApp: App {
 //                CKServices.currentModel.updateUserName(name: "Marina") { result in }
 //                d.signal()
                 
-                let converter = ModelConverter()
-                converter.testConversion()
+                let listConverter: ListModelConverter = ListModelConverter()
+                listConverter.testCloudToLocal()
             }
         }
     }
