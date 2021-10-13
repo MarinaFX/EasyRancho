@@ -28,16 +28,13 @@ struct SuperlistaApp: App {
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
             .onAppear {
-//                let d = DispatchSemaphore(value: 1)
-//                d.wait()
-//                loadData()
-//                d.signal()
-//                d.wait()
-//                CKServices.currentModel.updateUserName(name: "Marina") { result in }
-//                d.signal()
-                
-                let listConverter: ListModelConverter = ListModelConverter()
-                listConverter.testCloudToLocal()
+                let d = DispatchSemaphore(value: 1)
+                d.wait()
+                loadData()
+                d.signal()
+                d.wait()
+                CKServices.currentModel.updateUserName(name: "Marina") { result in }
+                d.signal()
             }
         }
     }
