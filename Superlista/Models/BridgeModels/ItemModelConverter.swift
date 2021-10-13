@@ -7,7 +7,7 @@
 
 import Foundation
 
-//MARK: ItemModelConverter Class
+//MARK: - ItemModelConverter Class
 
 /**
  ItemModelConverter is a Bridge class converting our Cloud record/class of Item arquitecture to our local/UserDefaults class arquitecture.
