@@ -9,7 +9,14 @@ import Foundation
 import CloudKit
 import SwiftUI
 
+//MARK: - UserModel Class
+
+/**
+ 
+ */
 class UserModel {
+    
+    //MARK: UserModel Variables
     private(set) var id: CKRecord.ID
     var name: String?
     var ckImage: CKAsset?

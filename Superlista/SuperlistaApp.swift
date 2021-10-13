@@ -33,7 +33,7 @@ struct SuperlistaApp: App {
                 loadData()
                 d.signal()
                 d.wait()
-                CKServices.currentModel.updateUserName(name: "Gabriela") { result in }
+                CKServices.currentModel.updateUserName(name: "Marina") { result in }
                 d.signal()
             }
         }

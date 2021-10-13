@@ -25,10 +25,10 @@ class CKListModel {
         id = record.recordID
         itemsString = record["Items"] as? [String] ?? []
         name = record["ListName"] as? String 
-        setItemsModel()
+        parseToItemsModel()
     }
     
-    func setItemsModel() {
+    func parseToItemsModel() {
         for item in itemsString {
             let contents = item.components(separatedBy: ";")
             let name = contents[0] as String
@@ -38,6 +38,12 @@ class CKListModel {
             let isCompleted = contents[4] == "true" ? true : false
             let item = CKItemModel(name: name, category: category, quantity: quantity, comment: comment, isCompleted: isCompleted)
             itemsModel.append(item)
+        }
+    }
+    
+    func parseToCSV() {
+        itemsModel.forEach { item in
+            itemsString.append(item.name + String(item.quantity) + (item.comment ?? "") + String(item.isCompleted))
         }
     }
 }
