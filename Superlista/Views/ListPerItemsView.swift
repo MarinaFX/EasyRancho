@@ -35,7 +35,7 @@ struct ListPerItemsView: View {
         List {
             ForEach(getCategories(), id: \.self) { category in
                 
-                Section(header: HStack{
+                Section(header: HStack {
                     Text(category.title)
                         .font(.headline)
                         .foregroundColor(getColor(category: category.title))
@@ -45,14 +45,13 @@ struct ListPerItemsView: View {
                 }
                 .frame(maxHeight: 30)
                 .textCase(nil) // TALVEZ TENHA QUE TIRAR
-                
                 .background(Color("background"))
                 .listRowInsets(EdgeInsets(
-                                top: -5,
-                                leading: 0,
-                                bottom: -5,
-                                trailing:0))
-                
+                    top: 0,
+                    leading: 0,
+                    bottom: -10,
+                    trailing: 0))
+                        
                 ) {
                     
                     ForEach(getRows(from: category)) { item in
@@ -64,20 +63,16 @@ struct ListPerItemsView: View {
                         listsViewModel.removeItem(from: row, of: category, of: list)
                     }
                     .listRowBackground(Color("background"))
-                    
                 }
                 
             }
             .listRowBackground(Color("background"))
+            
         }
+        .listStyle(PlainListStyle())
         .onAppear {
             UITableView.appearance().showsVerticalScrollIndicator = false
+
         }
     }
 }
-
-//struct ListPerItemsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListPerItemsView()
-//    }
-//}

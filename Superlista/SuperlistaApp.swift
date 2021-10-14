@@ -40,13 +40,9 @@ struct SuperlistaApp: App {
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
             .onAppear {
-                let d = DispatchSemaphore(value: 1)
-                d.wait()
+
                 loadData()
-                d.signal()
-                d.wait()
-                CKServices.currentModel.updateUserName(name: "Gabriela") { result in }
-                d.signal()
+
             }
         }
     }

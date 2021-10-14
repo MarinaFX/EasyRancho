@@ -31,8 +31,8 @@ struct GridListView: View {
                 NavigationLink(destination: ListView(listId: listId),
                                isActive: $isCreatingList,
                                label: {
-                                EmptyView()
-                               }
+                    EmptyView()
+                }
                 ).opacity(0.0)
                 
                 Color("background")
@@ -53,7 +53,6 @@ struct GridListView: View {
                         }
                     }
                 }
-                
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 20, content: {
                         ForEach(listsViewModel.list) { list in
@@ -132,7 +131,7 @@ struct GridListView: View {
                         }
                         
                     })
-                    .padding(.top)
+                        .padding(.top)
                 }
                 .padding(.horizontal)
                 
@@ -140,7 +139,7 @@ struct GridListView: View {
                     ToolbarItem(placement: .navigationBarLeading){
                         if !listsViewModel.list.isEmpty{
                             Button(action: {isEditing.toggle()}, label: {
-                                    Text(isEditing ? "Concluir": "Editar")})
+                                Text(isEditing ? "Concluir": "Editar")})
                         }
                     }
                     ToolbarItem(placement: .principal){
@@ -150,9 +149,11 @@ struct GridListView: View {
                         Button(action: createNewListAction, label: { Text("Nova lista") })
                     }
                 }
-                Button(action: createNewListAction, label : {
-                    VStack{}.background(Color.clear).frame(width: 200, height: 200)
-                })
+                if listsViewModel.list.isEmpty {
+                    Button(action: createNewListAction, label : {
+                        Rectangle().fill(Color.clear).frame(width: 200, height: 200)
+                    })
+                }
             }
             
         }
@@ -173,7 +174,7 @@ struct GridListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             GridListView()
-                
+            
                 .navigationTitle("Listas")
         }
         .environmentObject(listsViewModel)

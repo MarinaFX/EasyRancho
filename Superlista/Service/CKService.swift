@@ -56,6 +56,9 @@ class CKServices: ObservableObject {
                 dispatchSemaphore.signal()
             }
         }
+        else {
+            dispatchSemaphore.signal()
+        }
     
     }
     
