@@ -112,11 +112,5 @@ class ListsViewModel: ObservableObject {
         }
     }
     
-    func switchOrder(of category1: CategoryModel, to category2: CategoryModel, from listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-            list[index] = listModel.switchOrder(from: category1, to: category2)
-        }
-    }
-    
     
 }
