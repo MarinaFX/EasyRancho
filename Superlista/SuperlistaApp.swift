@@ -42,6 +42,7 @@ struct SuperlistaApp: App {
             .onAppear {
 
                 loadData()
+                shareSheet(listID: "F77D5AC4-0826-FDED-6A4B-9149525797BB", ownerID: "_1143797df206f7c3a1c63e674e238bf7", option: "1", listName: "Lista teste", ownerName: "Gabi Zorzo")
 
             }
         }
