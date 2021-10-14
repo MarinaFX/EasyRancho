@@ -54,3 +54,18 @@ func CKAssetToUIImage(ckImage: CKAsset?) -> UIImage? {
     }
     return image //UIImage
 }
+
+// MARK: - ShareSheet
+
+func shareSheet(listID: String, ownerID: String, option: String, listName: String, ownerName: String) {
+    let activityVC = UIActivityViewController(activityItems: [CustomSource(listID: listID, ownerID: ownerID, option: option, listName: listName, ownerName: ownerName)], applicationActivities: nil)
+    let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
+    var topController = keyWindow?.rootViewController
+    
+    // get topmost view controller to present alert
+    while let presentedViewController = topController?.presentedViewController {
+        topController = presentedViewController
+    }
+    
+    topController?.present(activityVC, animated: true, completion: nil)
+}
