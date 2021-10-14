@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#warning("Verificar se essa view esta sendo usada. Caso nao, deletar")
 struct ListsView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
     
