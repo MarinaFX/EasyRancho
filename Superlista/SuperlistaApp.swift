@@ -17,7 +17,7 @@ struct SuperlistaApp: App {
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(named: "background")
-    } 
+    }
 
     var body: some Scene {
         WindowGroup {
