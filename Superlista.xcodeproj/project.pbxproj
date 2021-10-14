@@ -24,7 +24,6 @@
 		09725B1F264C63510006D410 /* ListPerItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B1E264C63510006D410 /* ListPerItemsView.swift */; };
 		09725B21264C64F90006D410 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B20264C64F90006D410 /* ColorModel.swift */; };
 		09725B232652DCAD0006D410 /* ListByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B222652DCAD0006D410 /* ListByCategoryView.swift */; };
-		09725B29265437E80006D410 /* ListPerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B28265437E80006D410 /* ListPerCategoryView.swift */; };
 		09725B2F2656E0000006D410 /* DefaultLS.png in Resources */ = {isa = PBXBuildFile; fileRef = 09725B2E2656E0000006D410 /* DefaultLS.png */; };
 		09BE3B9E265C228900F5E7C5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE3B9D265C228900F5E7C5 /* SplashView.swift */; };
 		1B325E2126545176001A0F28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B325E2026545176001A0F28 /* LaunchScreen.storyboard */; };
@@ -93,7 +92,6 @@
 		09725B1E264C63510006D410 /* ListPerItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPerItemsView.swift; sourceTree = "<group>"; };
 		09725B20264C64F90006D410 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		09725B222652DCAD0006D410 /* ListByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListByCategoryView.swift; sourceTree = "<group>"; };
-		09725B28265437E80006D410 /* ListPerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPerCategoryView.swift; sourceTree = "<group>"; };
 		09725B2E2656E0000006D410 /* DefaultLS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DefaultLS.png; sourceTree = "<group>"; };
 		09BE3B9D265C228900F5E7C5 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		1B325E2026545176001A0F28 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -299,7 +297,6 @@
 				09725B1E264C63510006D410 /* ListPerItemsView.swift */,
 				09725B222652DCAD0006D410 /* ListByCategoryView.swift */,
 				1B325E2026545176001A0F28 /* LaunchScreen.storyboard */,
-				09725B28265437E80006D410 /* ListPerCategoryView.swift */,
 				09BE3B9D265C228900F5E7C5 /* SplashView.swift */,
 				1B32EF0E26600AA1006AE70B /* NoItemsView.swift */,
 				1B32EF1826600B78006AE70B /* CestinhaView.swift */,
@@ -475,7 +472,6 @@
 				893BA28A2654A84600A300DA /* CategoryModel.swift in Sources */,
 				09725B232652DCAD0006D410 /* ListByCategoryView.swift in Sources */,
 				0914B984270B84E8008E297F /* CKItemModel.swift in Sources */,
-				09725B29265437E80006D410 /* ListPerCategoryView.swift in Sources */,
 				1B4678B426447F850014B288 /* AddNewItemView.swift in Sources */,
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
 				8948F8D4265325E000394EB6 /* ListHeader.swift in Sources */,

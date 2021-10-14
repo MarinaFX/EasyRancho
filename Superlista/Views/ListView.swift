@@ -40,15 +40,9 @@ struct ListView: View {
                                     .padding(.horizontal, 20)
                             }
                             
-                            if !listsViewModel.isGrid {
-                                ListPerItemsView(list: list)
-                                    .padding(.horizontal)
-                                    .padding(.bottom, 30)
-                            } else {
-                                ListPerCategoryView(list: list)
-                                    .padding(.horizontal)
-                                    .padding(.bottom, 30)
-                            }
+                            ListPerItemsView(list: list)
+                                .padding(.horizontal)
+                                .padding(.bottom, 30)
                             
                         } else {
                             Spacer()
