@@ -28,6 +28,13 @@ class CKListModel {
         parseToItemsModel()
     }
     
+    init(name: String, itemsString: [String]) {
+        id = CKRecord.ID()
+        self.itemsString = itemsString
+        self.name = name
+        parseToItemsModel()
+    }
+    
     func parseToItemsModel() {
         for item in itemsString {
             let contents = item.components(separatedBy: ";")

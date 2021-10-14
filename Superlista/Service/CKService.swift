@@ -268,10 +268,19 @@ class CKServices: ObservableObject {
     // MARK: - Save List in Users Lists
     #warning("Atualizar key para um enum com MyLists, FavoriteLists e SharedWithMe")
     func saveListUsersList(listID: CKRecord.ID, key: String, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
-        var usersLists = user!.myLists
         
-        usersLists?.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
+        var usersLists: [CKRecord.Reference] = []
         
+        if key == "MyLists" {
+            usersLists = user!.myLists!
+        } else if key == "SharedWithMe" {
+            usersLists = user!.sharedWithMe!
+        } else if key == "FavoriteLists" {
+            usersLists = user!.favoriteLists!
+        }
+        
+        usersLists.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
+
         guard let userID = user?.id else {
             completion(.failure(CKError.init(CKError.operationCancelled)))
             return

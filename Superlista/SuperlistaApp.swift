@@ -57,6 +57,7 @@ struct SuperlistaApp: App {
     func handleDeepLink(_ deeplink: DeepLink) {
         guard let ownerID = deeplink.ownerID else { return }
         guard let listID = deeplink.listID else { return }
+        guard let option = deeplink.option else { return }
         
         var ownerName: String?
         var listName: String?
@@ -65,7 +66,6 @@ struct SuperlistaApp: App {
             switch result {
                 case .success(let name):
                 ownerName = name
-                print(ownerName)
                 case .failure:
                     // mensagem de erro não rolou
                 return
@@ -76,11 +76,26 @@ struct SuperlistaApp: App {
             switch result {
                 case .success(let list):
                 listName = list.name
-                print(listName)
                 // alerta para confirmar se quer adicionar nas listas do usuário passando como parâmetro o nome do usuário e da lista
-                CKServices.currentModel.saveListUsersList(listID: list.id, key: "SharedWithMe") { result in
+                if option == "1" {
+                    CKServices.currentModel.saveListUsersList(listID: list.id, key: "SharedWithMe") { result in
                         // mensagem de uhuu lista adicionada
+                        print(result)
                     }
+                } else if option == "2" {
+                    let newListLocal = CKListModel(name: listName!, itemsString: list.itemsString)
+                    CKServices.currentModel.createList(listModel: newListLocal) { result in
+                        switch result {
+                        case .success (let newListID):
+                            CKServices.currentModel.saveListUsersList(listID: newListID, key: "MyLists") { result in
+                                // mensagem de uhuu lista adicionada
+                            }
+                        case .failure:
+                            // mensagem de erro não rolou
+                            return
+                        }
+                    }
+                }
             case .failure:
                 // mensagem de erro não rolou
                 return
