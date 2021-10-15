@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListPerCategoryView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    let integration = DataModelIntegration.integration
     
     @State var isEditing : Bool = false
     
@@ -56,10 +56,10 @@ struct ListPerCategoryView: View {
                         
                     }
                     .onDrag({
-                        listsViewModel.currentCategory = category
+                        integration.listsViewModel.currentCategory = category
                         return NSItemProvider(contentsOf: URL(string: "\(category.id)")!)!
                     })
-                    .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: listsViewModel, list: list, category: category))
+                    .onDrop(of: [.url], delegate: CategoryDropViewDelegate(listsViewModel: integration.listsViewModel, list: list, category: category))
                 }
                 
             })

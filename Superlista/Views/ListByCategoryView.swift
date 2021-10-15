@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ListByCategoryView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    let integration = DataModelIntegration.integration
     
     var categoryName: CategoryModel
     
     var list: ListModel // ?
     
-    func rows() -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categoryName]! }
+    func rows() -> [ItemModel] { integration.listsViewModel.list.first(where: { $0.id == list.id })!.items[categoryName]! }
     
     var body: some View {
         MainScreen(customView: AnyView(
@@ -38,7 +38,7 @@ struct ListByCategoryView: View {
                         ItemCommentView(item: item, list: list)
                     }
                     .onDelete { row in
-                        listsViewModel.removeItem(from: row, of: categoryName, of: list)
+                        integration.removeItemFromList(from: row, of: categoryName, of: list)
                     }
                     .listRowBackground(Color("background"))
                     

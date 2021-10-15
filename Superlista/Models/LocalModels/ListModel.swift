@@ -21,6 +21,10 @@ struct ListModel: Identifiable, Decodable, Encodable {
         self.favorite = favorite
     }
     
+    func setId(_ newId: String) -> ListModel {
+        return ListModel(id: newId, title: title, items: items, favorite: favorite)
+    }
+    
     func toggleFavorite() -> ListModel {
         return ListModel(id: id, title: title, items: items, favorite: !favorite)
     }

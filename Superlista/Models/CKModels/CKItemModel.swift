@@ -20,6 +20,9 @@ struct CKItemModel {
         self.quantity = quantity
         self.comment = comment
         self.isCompleted = isCompleted
-    }  
+    }
     
+    func parseToCSV() -> String {
+        return "\(name);\(String(quantity));\(comment ?? "nil");\(String(isCompleted))"
+    }
 }

@@ -8,20 +8,18 @@
 import SwiftUI
 import UIKit
 
-struct GridListView: View {
-    
-    //    init() {
-    //            //Use this if NavigationBarTitle is with displayMode = .inline
-    //        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "San-Francisco", size: 36)!]
-    //        }
-    
-    @EnvironmentObject var listsViewModel: ListsViewModel
+struct MainView: View {
+    let integration = DataModelIntegration.integration
     
     @State var isEditing : Bool = false
     @State var listId: String = ""
     @State var isCreatingList: Bool = false
     
     @State var showAlert = false
+    
+    var lists: [ListModel] {
+        return integration.listsViewModel.list
+    }
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
@@ -32,13 +30,13 @@ struct GridListView: View {
                                isActive: $isCreatingList,
                                label: {
                     EmptyView()
-                }
-                ).opacity(0.0)
+                })
+                .opacity(0.0)
                 
                 Color("background")
                     .ignoresSafeArea()
                 
-                if listsViewModel.list.isEmpty {
+                if lists.isEmpty {
                     VStack {
                         Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
                             .multilineTextAlignment(.center)
@@ -48,15 +46,17 @@ struct GridListView: View {
                             .frame(width: 400, height: 400)
                     }
                     .onAppear {
-                        if listsViewModel.list.isEmpty {
+                        if lists.isEmpty {
                             self.isEditing = false
                         }
                     }
                 }
+                
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 20, content: {
-                        ForEach(listsViewModel.list) { list in
-                            if isEditing{
+                        ForEach(lists) { list in
+                            
+                            if isEditing {
                                 ZStack(alignment: .bottom) {
                                     Rectangle()
                                         .fill(Color("HeaderColor"))
@@ -76,30 +76,36 @@ struct GridListView: View {
                                         .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
                                         .position(x: 150, y: 22)
                                         .onTapGesture {
-                                            listsViewModel.toggleListFavorite(of: list)
+                                            #warning("Revisar toggleListFavorite")
+                                            integration.listsViewModel.toggleListFavorite(of: list)
                                         }
+                                    
                                     Image(systemName: "minus.circle.fill")
                                         .font(.title2)
                                         .foregroundColor(Color(.systemGray))
                                         .offset(x: -75, y: -60)
                                         .onTapGesture {
-                                            listsViewModel.currentList = list
+                                            integration.listsViewModel.currentList = list
                                             showAlert = true
                                         }
                                 }
                                 .alert(isPresented: $showAlert){
-                                    Alert(title: Text("Deseja remover \(listsViewModel.currentList!.title)?"), message: Text("A lista removida não poderá ser recuperada após sua exclusão"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Apagar"), action:{
-                                        listsViewModel.removeList(listsViewModel.currentList!)
+                                    let listName = String(describing: integration.listsViewModel.currentList?.title)
+                                    
+                                    return Alert(title: Text("Deseja remover a lista \(listName)?"), message: Text("A lista removida não poderá ser recuperada após sua exclusão"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Apagar"), action: {
+                                        
+                                        if let currentList = integration.listsViewModel.currentList {
+                                            integration.deleteList(currentList)
+                                        }
+                                        
                                         showAlert = false
                                     }))
                                 }
-                                
                                 .onDrag({
-                                    listsViewModel.currentList = list
+                                    integration.listsViewModel.currentList = list
                                     return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
                                 })
-                                .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: listsViewModel, list: list))
-                                
+                                .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: integration.listsViewModel, list: list))
                             }
                             
                             else {
@@ -123,22 +129,21 @@ struct GridListView: View {
                                             .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
                                             .position(x: 145, y: 22)
                                             .onTapGesture {
-                                                listsViewModel.toggleListFavorite(of: list)
+                                                #warning("revisar toggleListFavorite")
+                                                integration.listsViewModel.toggleListFavorite(of: list)
                                             }
                                     }
                                 })
                             }
                         }
-                        
                     })
-                        .padding(.top)
+                    .padding(.top)
                 }
                 .padding(.horizontal)
-                
-                .toolbar{
+                .toolbar {
                     ToolbarItem(placement: .navigationBarLeading){
-                        if !listsViewModel.list.isEmpty{
-                            Button(action: {isEditing.toggle()}, label: {
+                        if !lists.isEmpty{
+                            Button(action: { isEditing.toggle() }, label: {
                                 Text(isEditing ? "Concluir": "Editar")})
                         }
                     }
@@ -149,7 +154,8 @@ struct GridListView: View {
                         Button(action: createNewListAction, label: { Text("Nova lista") })
                     }
                 }
-                if listsViewModel.list.isEmpty {
+                
+                if lists.isEmpty {
                     Button(action: createNewListAction, label : {
                         Rectangle().fill(Color.clear).frame(width: 200, height: 200)
                     })
@@ -160,23 +166,14 @@ struct GridListView: View {
     }
     
     func createNewListAction() {
-        let newList: ListModel = ListModel(title: "Nova Lista")
-        let newListId: String = newList.id
-        listsViewModel.addList(newItem: newList)
+
+        let newList = ListModel(title: "Nova Lista")
+        let newListId = newList.id
+
+        integration.createList(newList)
+        
         self.listId = newListId
         self.isCreatingList = true
     }
     
-}
-
-struct GridListView_Previews: PreviewProvider {
-    static var listsViewModel: ListsViewModel = ListsViewModel()
-    static var previews: some View {
-        NavigationView {
-            GridListView()
-            
-                .navigationTitle("Listas")
-        }
-        .environmentObject(listsViewModel)
-    }
 }

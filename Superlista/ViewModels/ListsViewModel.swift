@@ -8,21 +8,24 @@
 import Foundation
 
 class ListsViewModel: ObservableObject {
-    @Published var list: [ListModel] = [] {
+    var list: [ListModel] = [] {
         didSet {
             saveItems()
+            print(list, "localList")
         }
     }
     
-    @Published var currentList: ListModel?
+    var currentList: ListModel?
     
-    @Published var currentCategory: CategoryModel?
+    var currentCategory: CategoryModel?
     
     let products = ProductListViewModel().productsOrdered
     
     let itemsKey: String = "lists"
     
-    @Published var isGrid: Bool = false
+    static var listsViewModel = ListsViewModel()
+    
+    var isGrid: Bool = false
     
     init() {
         getItems()
@@ -34,9 +37,7 @@ class ListsViewModel: ObservableObject {
             let savedItems = try? JSONDecoder().decode([ListModel].self, from: data)
         else { return }
         
-        
         self.list = savedItems
-        
     }
     
     func saveItems() {
@@ -45,10 +46,13 @@ class ListsViewModel: ObservableObject {
         }
     }
     
+
+    
     /* CRUD listas */
     func toggleListFavorite(of listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.toggleFavorite()
+            currentList = list[index]
         }
     }
     
@@ -64,52 +68,56 @@ class ListsViewModel: ObservableObject {
         }
     }
     
-    func addList(newItem: ListModel) {
-        list.append(newItem)
+    func addList(_ newList: ListModel) {
+        list.append(newList)
+    }
+    
+    func updateListId(_ newId: String, of listModel: ListModel) {
+        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+            list[index] = listModel.setId(newId)
+        }
     }
     
     /* CRUD Itens Lista */
     
-//    func addItem(_ product: ProductModel, to listModel: ListModel) {
-//        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-//            list[index] = listModel.addItem(product)
-//        }
-//    }
-    
-    func addItem(_ item: ItemModel, to listModel: ListModel) {
+    func addItem(_ item: ItemModel, to listModel: ListModel) -> ListModel? {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.addItem(item)
+            return list[index]
         }
+        return nil
     }
     
-//    func addItems(_ products: [ProductModel], to listModel: ListModel) {
-//        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-//            list[index] = listModel.addItems(products)
-//        }
-//    }
-    
-    func removeItem(from row: IndexSet, of category: CategoryModel, of listModel: ListModel) {
+    func removeItem(from row: IndexSet, of category: CategoryModel, of listModel: ListModel) -> ListModel? {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.removeItem(from: row, of: category)
+            return list[index]
         }
+        return nil
     }
     
-    func removeItem(_ item: ItemModel, from listModel: ListModel) {
+    func removeItem(_ item: ItemModel, from listModel: ListModel) -> ListModel? {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.removeItem(item)
+            return list[index]
         }
+        return nil
     }
     
-    func addComent(_ comment: String, to item: ItemModel, from listModel: ListModel) {
+    func addComent(_ comment: String, to item: ItemModel, from listModel: ListModel) -> ListModel? {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.addComment(comment, to: item)
+            return list[index]
         }
+        return nil
     }
     
-    func toggleCompletion(of item: ItemModel, from listModel: ListModel) {
+    func toggleCompletion(of item: ItemModel, from listModel: ListModel) -> ListModel? {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.toggleCompletion(of: item)
+            return list[index]
         }
+        return nil
     }
     
     func switchOrder(of category1: CategoryModel, to category2: CategoryModel, from listModel: ListModel) {
@@ -117,6 +125,4 @@ class ListsViewModel: ObservableObject {
             list[index] = listModel.switchOrder(from: category1, to: category2)
         }
     }
-    
-    
 }

@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct ListPerItemsView: View {
-    
-    @EnvironmentObject var listsViewModel: ListsViewModel
-    
+    let integration = DataModelIntegration.integration
+
     var list: ListModel
     
     let background = Color("background")
     
-    var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
+    var lists: [ListModel] {
+        return integration.listsViewModel.list
+    }
     
-    func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
+    var categories: [CategoryModel] { lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
+    
+    func rows(from category: Int) -> [ItemModel] { lists.first(where: { $0.id == list.id })!.items[categories[category]]! }
     
     func isLast(_ item: ItemModel, from category: CategoryModel) -> Bool {
         return getRows(from: category).last?.id == item.id
@@ -55,12 +58,11 @@ struct ListPerItemsView: View {
                 ) {
                     
                     ForEach(getRows(from: category)) { item in
-                        
                         ItemCommentView(item: item, list: list)
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
                     .onDelete { row in
-                        listsViewModel.removeItem(from: row, of: category, of: list)
+                        integration.removeItemFromList(from: row, of: category, of: list)
                     }
                     .listRowBackground(Color("background"))
                 }
@@ -72,7 +74,6 @@ struct ListPerItemsView: View {
         .listStyle(PlainListStyle())
         .onAppear {
             UITableView.appearance().showsVerticalScrollIndicator = false
-
         }
     }
 }

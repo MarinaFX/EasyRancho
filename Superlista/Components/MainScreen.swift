@@ -35,14 +35,3 @@ struct MainScreen: View {
         }
     }
 }
-
-//struct MainScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView{
-//            AddNewItemView(searchText: "")
-//                //.navigationTitle("Adicionar Capa")
-//        }
-//        .accentColor(.white)
-//      
-//    }
-//}

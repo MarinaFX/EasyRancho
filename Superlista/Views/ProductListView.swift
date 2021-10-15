@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProductListView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
-    
+    let integration = DataModelIntegration.integration
+
     let products = ProductListViewModel().productsOrdered
     
     var list: ListModel
@@ -45,11 +45,15 @@ struct ProductListView: View {
                 .onTapGesture {
                     if isSelected(item: item),
                        let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) {
-                        listsViewModel.removeItem(selectedItems[index], from: list)
+
+                        integration.removeItem(selectedItems[index], from: list)
+                        
                         selectedItems.remove(at: index)
                     } else {
                         let newItem = ItemModel(product: item)
-                        listsViewModel.addItem(newItem, to: list)
+
+                        integration.addItem(newItem, to: list)
+                        
                         selectedItems.append(newItem)
                     }
                 }

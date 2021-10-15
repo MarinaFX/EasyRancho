@@ -17,7 +17,7 @@ class CKServices: ObservableObject {
     
     // MARK: - iCloud Info
     let container: CKContainer
-    let publicDB: CKDatabase // Lists
+    let publicDB: CKDatabase
     let privateDB: CKDatabase // Users
     
     // MARK: - Properties

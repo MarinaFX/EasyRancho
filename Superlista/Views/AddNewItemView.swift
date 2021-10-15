@@ -11,8 +11,6 @@ import Foundation
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @EnvironmentObject var listsViewModel: ListsViewModel
-    
     var list: ListModel
     
     @State var searchText: String
@@ -21,9 +19,10 @@ struct AddNewItemView: View {
     
     var body: some View {
         GeometryReader { geometry in
+            
             MainScreen(customView: AnyView(
+                
                 VStack {
-                    
                     ProductListView(list: list, filter: $searchText)
                     
                     Button(action: prontoButtonPressed, label: {
@@ -37,10 +36,9 @@ struct AddNewItemView: View {
                     })
                     .padding(.bottom, geometry.size.height * 0.12)
                     .padding(.top, geometry.size.height * (0.01))
-                    
                 }
-                
             ))
+            
             .toolbar {
                 ToolbarItem(placement: .principal){
                     SearchBar(text: $searchText)
@@ -54,16 +52,3 @@ struct AddNewItemView: View {
         presentationMode.wrappedValue.dismiss()
     }
 }
-
-//struct AddNewItemView_Previews: PreviewProvider {
-//    @State static var testing: String = ""
-//
-//    static var previews: some View {
-//        NavigationView {
-//            AddNewItemView(searchText: "")
-//                .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-//                .previewDisplayName("iPhone 12")
-//        }
-//
-//    }
-//}

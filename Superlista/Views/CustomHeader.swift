@@ -9,32 +9,21 @@ import SwiftUI
 import UIKit
 
 struct CustomHeader: View {
-    
-//    init(){
-//            UIView.setAnimationsEnabled(false)
-//        }
-    
     @State private var goBack = false
+    
     let headerColor = Color("HeaderColor")
     
     var body: some View {
-        ZStack{
+        ZStack {
             headerColor
                 .ignoresSafeArea()
             
-            ScrollView{
+            ScrollView {
                 
-                HStack{
+                HStack {
                     
-//                    Button(action: {
-//                        goBack.toggle()
-//                    }, label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-//                    })
-//                    .fullScreenCover(isPresented: $goBack) {
-//                        ProductListView()
-//                    }
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
@@ -50,7 +39,6 @@ struct CustomHeader: View {
                 }
                 .padding(.leading, 40)
                 .padding(.trailing, 30)
-                
             }
         }
     }

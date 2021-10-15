@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ItemCommentView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
-    
+    let integration = DataModelIntegration.integration
+
     let purpleColor = Color("HeaderColor")
     @State var isCommenting: Bool = false
     @State var comment: String = ""
@@ -30,7 +30,7 @@ struct ItemCommentView: View {
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
                         .font(.system(size: 18, weight: .light))
                         .onTapGesture {
-                            listsViewModel.toggleCompletion(of: item, from: list)
+                            integration.toggleCompletion(of: item, from: list)
                         }
                     
                     Text(item.product.name)
@@ -76,7 +76,7 @@ struct ItemCommentView: View {
                             .foregroundColor(Color.primary)
                             .font(.subheadline)
                             .onTapGesture {
-                                listsViewModel.addComent(comment, to: item, from: list)
+                                integration.addComent(comment, to: item, from: list)
                                 isCommenting = false
                             }
                     }

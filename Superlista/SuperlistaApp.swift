@@ -28,9 +28,7 @@ struct SuperlistaApp: App {
             .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(listsViewModel)
             .onAppear {
-
                 loadData()
-
             }
         }
     }

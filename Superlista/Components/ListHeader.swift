@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListHeader: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    let integration = DataModelIntegration.integration
     
     @Binding var listaTitulo: String
     @State var canComment: Bool = false
@@ -68,12 +68,12 @@ struct ListHeader: View {
             
             Spacer()
             
-            Image(systemName: listsViewModel.isGrid ? "list.bullet" : "square.grid.2x2.fill")
+            Image(systemName: integration.listsViewModel.isGrid ? "list.bullet" : "square.grid.2x2.fill")
                 .resizable()
                 .frame(width: 22, height: 22)
                 .foregroundColor(secondary)
                 .onTapGesture {
-                    listsViewModel.isGrid.toggle()
+                    integration.listsViewModel.isGrid.toggle()
                 }
             
             Spacer()
@@ -85,7 +85,8 @@ struct ListHeader: View {
                 .onTapGesture {
                     if let list = list {
                         isFavorite.toggle()
-                        listsViewModel.toggleListFavorite(of: list)
+                        #warning("toggleListFav")
+                        integration.listsViewModel.toggleListFavorite(of: list)
                     }
                 }
         }

@@ -37,4 +37,5 @@ class UserModel {
         myLists = record["MyLists"] as? [CKRecord.Reference] ?? []
         sharedWithMe = record["SharedWithMe"] as? [CKRecord.Reference] ?? []
     }
+    
 }

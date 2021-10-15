@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct ListView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
-    
+    let integration = DataModelIntegration.integration
+
     @State var listId: String?
     @State var canEditTitle: Bool = false
     @State var isFavorite: Bool = false
-    
+    @State var listTitle: String = ""
+
     func getList() -> ListModel? {
         if let listId = listId,
-           let list = listsViewModel.list.first(where: { $0.id == listId }) {
+           let list = integration.listsViewModel.list.first(where: { $0.id == listId }) {
             return list
         }
         return nil
     }
     
-    @State var listaTitulo: String = ""
     
     var body: some View {
         GeometryReader { geometry in
@@ -32,7 +32,7 @@ struct ListView: View {
                         .ignoresSafeArea()
                     
                     VStack (spacing: 20) {
-                        ListHeader(listaTitulo: $listaTitulo, canEditTitle: $canEditTitle, list: getList(), listId: $listId)
+                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, list: getList(), listId: $listId)
                         
                         if let list = getList() {
                             NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
@@ -40,7 +40,7 @@ struct ListView: View {
                                     .padding(.horizontal, 20)
                             }
                             
-                            if !listsViewModel.isGrid {
+                            if !integration.listsViewModel.isGrid {
                                 ListPerItemsView(list: list)
                                     .padding(.horizontal)
                                     .padding(.bottom, 30)
@@ -60,17 +60,23 @@ struct ListView: View {
                 ToolbarItem{
                     Button {
                         if let unwrappedList = getList() {
-                            if canEditTitle && !listaTitulo.isEmpty {
-                                listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
+                            if canEditTitle && !listTitle.isEmpty {
+                                
+                                integration.updateListTitle(unwrappedList, listTitle)
+                                
                                 canEditTitle = false
+                                
                             } else {
                                 canEditTitle = true
                             }
                         }
                         else {
-                            let newList = ListModel(title: listaTitulo)
-                            listsViewModel.addList(newItem: newList)
+                            let newList = ListModel(title: listTitle)
+                            
+                            integration.createList(newList)
+                            
                             self.listId = newList.id
+                            
                             canEditTitle = false
                         }
                         
