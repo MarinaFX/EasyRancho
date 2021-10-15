@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UIKit
+import CloudKit
 
 struct GridListView: View {
     
@@ -16,6 +17,8 @@ struct GridListView: View {
     //        }
     
     @EnvironmentObject var listsViewModel: ListsViewModel
+    
+    var integration = DataIntegration.integration
     
     @State var isEditing : Bool = false
     @State var listId: String = ""
@@ -161,9 +164,11 @@ struct GridListView: View {
     
     func createNewListAction() {
         let newList: ListModel = ListModel(title: "Nova Lista")
-        let newListId: String = newList.id
-        listsViewModel.addList(newItem: newList)
-        self.listId = newListId
+        //listsViewModel.addList(newList)
+        
+        DataIntegration.integration.createList(newList)
+        
+        self.listId = newList.id
         self.isCreatingList = true
     }
     

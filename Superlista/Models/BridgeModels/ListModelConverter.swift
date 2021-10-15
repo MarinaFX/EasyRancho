@@ -34,7 +34,7 @@ class ListModelConverter {
         var cloudList: [CKListModel] = []
         
         for list in list {
-            CKService.currentModel.getList(listID: list.recordID) { result in
+            CKService.currentModel.getList(listID: CKRecord.ID(recordName: list.recordID.recordName)) { result in
                 switch result {
                 case .success(let resultList):
                     cloudList.append(resultList)
@@ -83,6 +83,6 @@ class ListModelConverter {
         cloudList.name = list.title
         cloudList.itemsModel = itemModelConverter.convertLocalItemsToCloudItems(withItemsList: list.items)
         
-        return CKListModel()
+        return cloudList
     }
 }

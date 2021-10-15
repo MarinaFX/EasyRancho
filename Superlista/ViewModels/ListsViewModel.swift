@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import CloudKit
 
 class ListsViewModel: ObservableObject {
     @Published var list: [ListModel] = [] {
         didSet {
             saveItems()
+            //print(list, "listsViewModel list")
         }
     }
     
@@ -48,6 +50,8 @@ class ListsViewModel: ObservableObject {
     }
     
     /* CRUD listas */
+
+    
     func toggleListFavorite(of listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list[index] = listModel.toggleFavorite()
@@ -66,8 +70,8 @@ class ListsViewModel: ObservableObject {
         }
     }
     
-    func addList(newItem: ListModel) {
-        list.append(newItem)
+    func addList(_ newList: ListModel) {
+        list.append(newList)
     }
     
     /* CRUD Itens Lista */

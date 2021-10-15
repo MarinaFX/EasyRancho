@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CloudKit
 
 struct ListModel: Identifiable, Decodable, Encodable {
     let id: String
@@ -13,8 +14,16 @@ struct ListModel: Identifiable, Decodable, Encodable {
     let items: [CategoryModel: [ItemModel]]
     let favorite: Bool
     
-    init(id: String = UUID().uuidString, title: String, items: [CategoryModel: [ItemModel]] = [:], favorite: Bool = false) {
+    init(title: String, items: [CategoryModel: [ItemModel]] = [:], favorite: Bool = false) {
+        let recordID = CKRecord.ID()
         
+        self.id = recordID.recordName
+        self.title = title
+        self.items = items
+        self.favorite = favorite
+    }
+    
+    init(id: String, title: String, items: [CategoryModel: [ItemModel]] = [:], favorite: Bool = false) {
         self.id = id
         self.title = title
         self.items = items
@@ -29,18 +38,6 @@ struct ListModel: Identifiable, Decodable, Encodable {
         return ListModel(id: id, title: newTitle, items: items, favorite: favorite)
     }
     
-//    func addItem(_ product: ProductModel) -> ListModel {
-//        var newItemsList = items
-//                
-//        if let _ = items[product.getCategory()] {
-//            newItemsList[product.getCategory()]?.append(ItemModel(product: product))
-//        } else {
-//            newItemsList[product.getCategory()] = [ItemModel(product: product)]
-//        }
-//                
-//        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
-//    }
-    
     func addItem(_ item: ItemModel) -> ListModel {
         var newItemsList = items
                 
@@ -52,20 +49,6 @@ struct ListModel: Identifiable, Decodable, Encodable {
                 
         return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
     }
-    
-//    func addItems(_ products: [ProductModel]) -> ListModel {
-//        var newItemsList = items
-//        
-//        products.forEach { product in
-//            if let category = newItemsList.first(where: { $0.key.title == product.category })?.key {
-//                newItemsList[category]?.append(ItemModel(product: product))
-//            } else {
-//                newItemsList[CategoryModel(title: product.category, order: newItemsList.count + 1)] = [ItemModel(product: product)]
-//            }
-//        }
-//        
-//        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
-//    }
     
     func removeItem(from row: IndexSet, of category: CategoryModel) -> ListModel {
         var newItemsList = items

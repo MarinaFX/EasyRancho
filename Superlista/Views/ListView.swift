@@ -63,7 +63,7 @@ struct ListView: View {
                         }
                         else {
                             let newList = ListModel(title: listaTitulo)
-                            listsViewModel.addList(newItem: newList)
+                            listsViewModel.addList(newList)
                             self.listId = newList.id
                             canEditTitle = false
                         }
