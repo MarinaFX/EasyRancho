@@ -24,7 +24,7 @@ struct ListPerItemsView: View {
     }
     
     func getCategories() -> [CategoryModel] {
-        return Array(list.items.keys.map { $0 }).sorted(by: { $0.order ?? 0 < $1.order ?? 0 })
+        return Array(list.items.keys.map { $0 }).sorted(by: { $0.title < $1.title })
     }
     
     func getRows(from category: CategoryModel) -> [ItemModel] {

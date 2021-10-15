@@ -50,7 +50,7 @@ struct SuperlistaApp: App {
     
     func loadData() {
         DispatchQueue.main.async {
-            CKServices.currentModel.refresh { error in }
+            CKService.currentModel.refresh { error in }
         }
         
     }
@@ -63,7 +63,7 @@ struct SuperlistaApp: App {
         var ownerName: String?
         var listName: String?
         
-        CKServices.currentModel.getAnotherUserName(userID: CKRecord.ID(recordName: ownerID)) { result in
+        CKService.currentModel.getAnotherUserName(userID: CKRecord.ID(recordName: ownerID)) { result in
             switch result {
                 case .success(let name):
                 ownerName = name
@@ -73,22 +73,22 @@ struct SuperlistaApp: App {
             }
         }
         
-        CKServices.currentModel.getList(listID: CKRecord.ID(recordName: listID)) { result in
+        CKService.currentModel.getList(listID: CKRecord.ID(recordName: listID)) { result in
             switch result {
                 case .success(let list):
                 listName = list.name
                 // alerta para confirmar se quer adicionar nas listas do usuário passando como parâmetro o nome do usuário e da lista
                 if option == "1" {
-                    CKServices.currentModel.saveListUsersList(listID: list.id, key: "SharedWithMe") { result in
+                    CKService.currentModel.saveListUsersList(listID: list.id, key: "SharedWithMe") { result in
                         // mensagem de uhuu lista adicionada
                         print(result)
                     }
                 } else if option == "2" {
                     let newListLocal = CKListModel(name: listName!, itemsString: list.itemsString)
-                    CKServices.currentModel.createList(listModel: newListLocal) { result in
+                    CKService.currentModel.createList(listModel: newListLocal) { result in
                         switch result {
                         case .success (let newListID):
-                            CKServices.currentModel.saveListUsersList(listID: newListID, key: "MyLists") { result in
+                            CKService.currentModel.saveListUsersList(listID: newListID, key: "MyLists") { result in
                                 // mensagem de uhuu lista adicionada
                             }
                         case .failure:
