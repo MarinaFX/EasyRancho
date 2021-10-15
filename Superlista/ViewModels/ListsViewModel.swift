@@ -22,6 +22,8 @@ class ListsViewModel: ObservableObject {
     
     let itemsKey: String = "lists"
     
+    static var listsViewModel = ListsViewModel()
+    
     @Published var isGrid: Bool = false
     
     init() {
