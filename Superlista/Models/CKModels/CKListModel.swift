@@ -14,6 +14,8 @@ class CKListModel {
     var itemsString: [String] = []
     var itemsModel: [CKItemModel] = []
     
+    let itemConverter: ItemModelConverter = ItemModelConverter()
+    
     #warning("Localizar o nome da lista")
     
     init() {
@@ -25,25 +27,19 @@ class CKListModel {
         id = record.recordID
         itemsString = record["Items"] as? [String] ?? []
         name = record["ListName"] as? String 
-        parseToItemsModel()
-    }
-    
-    func parseToItemsModel() {
-        for item in itemsString {
-            let contents = item.components(separatedBy: ";")
-            let name = contents[0] as String
-            let category = contents[1] as String
-            let quantity = (Int(contents[2]) ?? 1) as Int
-            let comment = contents[3] == "nil" ? nil : contents[3]
-            let isCompleted = contents[4] == "true" ? true : false
-            let item = CKItemModel(name: name, category: category, quantity: quantity, comment: comment, isCompleted: isCompleted)
-            itemsModel.append(item)
-        }
+        itemsModel = itemConverter.parseStringToCKItemObject(withString: itemsString)
     }
     
     func parseToCSV() {
         itemsModel.forEach { item in
             itemsString.append(item.parseToCSV())
         }
+    }
+    
+    init(name: String, itemsString: [String]) {
+        id = CKRecord.ID()
+        self.itemsString = itemsString
+        self.name = name
+        itemsModel = itemConverter.parseStringToCKItemObject(withString: itemsString)
     }
 }

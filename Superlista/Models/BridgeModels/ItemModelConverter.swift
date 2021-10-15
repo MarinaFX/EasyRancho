@@ -75,4 +75,35 @@ class ItemModelConverter {
         
         return cloudItems
     }
+    
+    //MARK: ItemModelConverter String to CKItemObject
+    
+    func parseStringToCKItemObject(withString items: [String]) -> [CKItemModel] {
+        var cloudItems: [CKItemModel] = []
+        
+        for item in items {
+            let contents = item.components(separatedBy: ";")
+            let name = contents[0] as String
+            let category = contents[1] as String
+            let quantity = (Int(contents[2]) ?? 1) as Int
+            let comment = contents[3] == "nil" ? nil : contents[3]
+            let isCompleted = contents[4] == "true" ? true : false
+            let item = CKItemModel(name: name, category: category, quantity: quantity, comment: comment, isCompleted: isCompleted)
+            
+            cloudItems.append(item)
+        }
+        
+        return cloudItems
+    }
+    
+    
+    func parseCKItemObjectToString(withItems items: [CKItemModel]) -> [String] {
+        var itemsString: [String] = []
+        
+        items.forEach { item in
+            itemsString.append(item.name + String(item.quantity) + (item.comment ?? "") + String(item.isCompleted))
+        }
+        
+        return itemsString
+    }
 }

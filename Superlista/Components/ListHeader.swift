@@ -22,7 +22,6 @@ struct ListHeader: View {
     
     @Binding var listId: String?
     
-    
     var body: some View {
         HStack (spacing: 5){
             VStack(alignment: .leading){
@@ -45,8 +44,6 @@ struct ListHeader: View {
                                     listaTitulo = ""
                                 }
                             }
-                        
-                        
                     }
                     
                     if !canEditTitle, let list = list {
@@ -62,33 +59,6 @@ struct ListHeader: View {
                 .frame(maxWidth: .infinity)
                 
             }
-            
-            Spacer()
-            
-            
-            Spacer()
-            
-            Image(systemName: integration.listsViewModel.isGrid ? "list.bullet" : "square.grid.2x2.fill")
-                .resizable()
-                .frame(width: 22, height: 22)
-                .foregroundColor(secondary)
-                .onTapGesture {
-                    integration.listsViewModel.isGrid.toggle()
-                }
-            
-            Spacer()
-            
-            Image(systemName: (list?.favorite ?? false) ? "heart.fill" : "heart")
-                .resizable()
-                .frame(width: 25, height: 22)
-                .foregroundColor((list?.favorite ?? false) ? Color("Favorite") : Color("Secondary"))
-                .onTapGesture {
-                    if let list = list {
-                        isFavorite.toggle()
-                        #warning("toggleListFav")
-                        integration.listsViewModel.toggleListFavorite(of: list)
-                    }
-                }
         }
         .padding(.horizontal, 30)
         .onAppear {
@@ -97,14 +67,6 @@ struct ListHeader: View {
                 isFavorite = list.favorite
                 canEditTitle = false
             }
-            
         }
-        
-        
     }
-    
-    
-    
 }
-
-

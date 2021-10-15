@@ -15,7 +15,7 @@ class DataModelIntegration: ObservableObject {
     
     private let itemModelConverter = ItemModelConverter()
         
-    private let ckService = CKServices.currentModel
+    private let ckService = CKService.currentModel
     
     static var integration = DataModelIntegration()
 

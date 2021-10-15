@@ -16,6 +16,7 @@
  */
 
 import Foundation
+import CloudKit
 
 //MARK: - ListModelConverter Class
 
@@ -27,7 +28,24 @@ import Foundation
 class ListModelConverter {
     private let itemModelConverter = ItemModelConverter()
 
-    //MARK: ListModelConverter Functions: ☁️ to Local
+    //MARK: ListModelConverter Functions: Reference to ☁️
+    
+    func convertListReferenceToCloudList(withList list: [CKRecord.Reference]) -> [CKListModel] {
+        var cloudList: [CKListModel] = []
+        
+        for list in list {
+            CKService.currentModel.getList(listID: list.recordID) { result in
+                switch result {
+                case .success(let resultList):
+                    cloudList.append(resultList)
+                case .failure:
+                    return
+                }
+            }
+        }
+        
+        return cloudList
+    }
     
     /**
      /**
@@ -43,7 +61,7 @@ class ListModelConverter {
         
         let localItems = itemModelConverter.convertCloudItemsToLocal(withItems: list.itemsModel)
         
-        localList = ListModel(id: UUID().uuidString, title: list.name ?? "", items: localItems, favorite: false)
+        localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, favorite: false)
         
         
         return localList
@@ -61,6 +79,7 @@ class ListModelConverter {
     func convertLocalListToCloud(withList list: ListModel) -> CKListModel {
         let cloudList: CKListModel = CKListModel()
         
+        cloudList.id = CKRecord.ID(recordName: list.id)
         cloudList.name = list.title
         cloudList.itemsModel = itemModelConverter.convertLocalItemsToCloudItems(withItemsList: list.items)
         

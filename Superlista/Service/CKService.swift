@@ -9,7 +9,7 @@ import Foundation
 import CloudKit
 import SwiftUI
 
-class CKServices: ObservableObject {
+class CKService: ObservableObject {
     
     enum UserStatus {
         case available, noAccount, couldNotDetermine, restricted, none
@@ -21,9 +21,9 @@ class CKServices: ObservableObject {
     let privateDB: CKDatabase // Users
     
     // MARK: - Properties
-    private(set) var user: UserModel?
+    private(set) var user: CKUserModel?
     
-    static var currentModel = CKServices()
+    static var currentModel = CKService()
     
     private init() {
         container = CKContainer.default()
@@ -92,7 +92,7 @@ class CKServices: ObservableObject {
     }
     
     // MARK: - Get User
-    private func getUser(completion: @escaping (Result<UserModel,CKError>) -> Void ) {
+    private func getUser(completion: @escaping (Result<CKUserModel,CKError>) -> Void ) {
         let dispatchSemaphore = DispatchSemaphore(value: 1)
         dispatchSemaphore.wait()
         
@@ -124,9 +124,24 @@ class CKServices: ObservableObject {
                 dispatchSemaphore.signal()
                 return
             }
-            let user = UserModel(record: record)
+            let user = CKUserModel(record: record)
             completion(.success(user))
             dispatchSemaphore.signal()
+        }
+    }
+    
+    // MARK: - Get another user name
+    
+    func getAnotherUserName(userID: CKRecord.ID, completion: @escaping (Result<String,CKError>) -> Void) {
+        publicDB.fetch(withRecordID: userID) { record, error in
+            if error == nil {
+                let user = CKUserModel(record: record!)
+                completion(.success(user.name!))
+                return
+            } else {
+                completion(.failure(error as! CKError))
+                return
+            }
         }
     }
     
@@ -253,10 +268,19 @@ class CKServices: ObservableObject {
     // MARK: - Save List in Users Lists
     #warning("Atualizar key para um enum com MyLists, FavoriteLists e SharedWithMe")
     func saveListUsersList(listID: CKRecord.ID, key: String, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
-        var usersLists = user!.myLists
         
-        usersLists?.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
+        var usersLists: [CKRecord.Reference] = []
         
+        if key == "MyLists" {
+            usersLists = user!.myListsRef!
+        } else if key == "SharedWithMe" {
+            usersLists = user!.sharedWithMeRef!
+        } else if key == "FavoriteLists" {
+            usersLists = user!.favoriteListsRef!
+        }
+        
+        usersLists.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
+
         guard let userID = user?.id else {
             completion(.failure(CKError.init(CKError.operationCancelled)))
             return

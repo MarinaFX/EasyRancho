@@ -12,12 +12,14 @@ struct ItemModel: Identifiable, Codable {
     let product: ProductModel
     let comment: String?
     let isCompleted: Bool
+    var quantity: Int?
     
-    init(id: String = UUID().uuidString, product: ProductModel, comment: String? = nil, isCompleted: Bool = false) {
+    init(id: String = UUID().uuidString, product: ProductModel, comment: String? = nil, isCompleted: Bool = false, quantity: Int? = 1) {
         self.id = id
         self.product = product
         self.comment = comment
         self.isCompleted = isCompleted
+        self.quantity = quantity
     }
     
     func toggleCompletion() -> ItemModel {
