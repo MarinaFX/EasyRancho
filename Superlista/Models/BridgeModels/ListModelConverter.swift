@@ -61,7 +61,7 @@ class ListModelConverter {
         
         let localItems = itemModelConverter.convertCloudItemsToLocal(withItems: list.itemsModel)
         
-        localList = ListModel(id: UUID().uuidString, title: list.name ?? "", items: localItems, favorite: false)
+        localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, favorite: false)
         
         
         return localList
@@ -79,6 +79,7 @@ class ListModelConverter {
     func convertLocalListToCloud(withList list: ListModel) -> CKListModel {
         let cloudList: CKListModel = CKListModel()
         
+        cloudList.id = CKRecord.ID(recordName: list.id)
         cloudList.name = list.title
         cloudList.itemsModel = itemModelConverter.convertLocalItemsToCloudItems(withItemsList: list.items)
         
