@@ -40,7 +40,7 @@ struct GridListView: View {
                 
                 if listsViewModel.list.isEmpty {
                     VStack {
-                        Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
+                        Text("listaVazia")
                             .multilineTextAlignment(.center)
                             .font(.headline)
                         

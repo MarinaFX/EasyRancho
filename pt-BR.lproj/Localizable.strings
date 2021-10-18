@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Superlista
+
+  Created by Luiz Eduardo Mello dos Reis on 18/10/21.
+  
+*/
+
+
+"listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
