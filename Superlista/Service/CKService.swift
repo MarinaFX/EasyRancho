@@ -254,6 +254,7 @@ class CKService: ObservableObject {
         let record = CKRecord(recordType: "Lists")
         record.setValue(listModel.name, forKey: "ListName")
         record.setValue(listModel.itemsString, forKey: "Items")
+        record.setValue(user!.id, forKey: "Owner")
         
         publicDB.save(record) { savedRecord, error in
             if error == nil {
@@ -332,6 +333,31 @@ class CKService: ObservableObject {
         publicDB.fetch(withRecordID: listID) { record, error in
             if error == nil {
                 record!.setValue(listName, forKey: "ListName")
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
+    func updateListCollab(listID: CKRecord.ID, sharedWith: [CKUserModel], completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        var sharedWithRef: [CKRecord.Reference] = []
+        for shared in sharedWith {
+            sharedWithRef.append(CKRecord.Reference(recordID: shared.id, action: .none))
+        }
+        
+        publicDB.fetch(withRecordID: listID) { record, error in
+            if error == nil {
+                record!.setValue(sharedWithRef, forKey: "SharedWith")
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
