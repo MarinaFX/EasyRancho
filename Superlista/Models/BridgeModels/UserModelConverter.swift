@@ -19,6 +19,7 @@ import CloudKit
 class UserModelConverter {
     let itemConverter: ItemModelConverter = ItemModelConverter()
     let listConverter: ListModelConverter = ListModelConverter()
+    let productConverter: ProductModelConverter = ProductModelConverter()
     
     //MARK: UserModelConverter Functions: ☁️ to Local
     
@@ -33,7 +34,7 @@ class UserModelConverter {
         let id: String
         let name: String
         let image: UIImage
-        let customItems: [CategoryModel : [ItemModel]]
+        let customProducts: [ProductModel]
         var favoriteLists: [ListModel] = []
         var myLists: [ListModel] = []
         var sharedWithMe: [ListModel] = []
@@ -41,7 +42,7 @@ class UserModelConverter {
         id = user.id.recordName
         name = user.name ?? "nome aleatorio"
         image = user.image ?? UIImage(named: "adsada")!
-        customItems = itemConverter.convertCloudItemsToLocal(withItems: user.customItems ?? [])
+        customProducts = productConverter.convertStringToProducts(withString: user.customProductsString ?? [])
         
         for list in user.favoriteLists! {
             favoriteLists.append(listConverter.convertCloudListToLocal(withList: list))
@@ -55,7 +56,7 @@ class UserModelConverter {
             sharedWithMe.append(listConverter.convertCloudListToLocal(withList: list))
         }
         
-        let localUser: UserModel = UserModel(id: id, name: name, image: image, customItems: customItems, favoriteLists: favoriteLists, myLists: myLists, sharedWithMe: sharedWithMe)
+        let localUser: UserModel = UserModel(id: id, name: name, image: image, customProducts: customProducts, favoriteLists: favoriteLists, myLists: myLists, sharedWithMe: sharedWithMe)
 
         
         return localUser
@@ -74,8 +75,7 @@ class UserModelConverter {
         let id: CKRecord.ID
         let name: String
         let image: CKAsset
-        let customItems: [CKItemModel]
-        let customItemsString: [String]
+        let customProductsString: [String]
         
         var favoriteLists: [CKListModel] = []
         var myLists: [CKListModel] = []
@@ -84,9 +84,7 @@ class UserModelConverter {
         id = CKRecord.ID(recordName: user.id)
         name = user.name ?? "nome aleatorio"
         image = ImageToCKAsset(uiImage: user.image)!
-        customItems = itemConverter.convertLocalItemsToCloudItems(withItemsList: user.customItems ?? [:])
-        customItemsString = itemConverter.parseCKItemObjectToString(withItems: customItems)
-        
+        customProductsString = productConverter.convertLocalProductsToString(withProducts: user.customProducts ?? [])
         
         for list in user.favoriteLists! {
             favoriteLists.append(listConverter.convertLocalListToCloud(withList: list))
@@ -100,7 +98,7 @@ class UserModelConverter {
             sharedWithMe.append(listConverter.convertLocalListToCloud(withList: list))
         }
         
-        let cloudUser: CKUserModel = CKUserModel(id: id, name: name, ckImage: image, customItemsString: customItemsString, favoriteLists: favoriteLists, myLists: myLists, sharedWithMe: sharedWithMe)
+        let cloudUser: CKUserModel = CKUserModel(id: id, name: name, ckImage: image, customProductsString: customProductsString, favoriteLists: favoriteLists, myLists: myLists, sharedWithMe: sharedWithMe)
         
         return cloudUser
     }
