@@ -18,7 +18,7 @@ struct TestScreen: View {
     
     var body: some View {
         NavigationLink(
-            destination: GridListView(),
+            destination: MainView(),
             label: {
                 Text("Navigate")
                     .fontWeight(.bold)

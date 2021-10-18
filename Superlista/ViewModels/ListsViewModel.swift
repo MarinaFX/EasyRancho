@@ -12,7 +12,7 @@ class ListsViewModel: ObservableObject {
     @Published var list: [ListModel] = [] {
         didSet {
             saveItems()
-            //print(list, "listsViewModel list")
+            print(list, "listsViewModel list")
         }
     }
     
