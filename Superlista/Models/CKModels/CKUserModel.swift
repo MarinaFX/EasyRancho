@@ -23,8 +23,8 @@ class CKUserModel {
     var ckImage: CKAsset?
     var image: UIImage?
     
-    var customItemsString: [String]?
-    var customItems: [CKItemModel]?
+    var customProductsString: [String]?
+    var customProducts: [ProductModel]?
     
     var favoriteListsRef: [CKRecord.Reference]?
     var favoriteLists: [CKListModel]?
@@ -37,6 +37,7 @@ class CKUserModel {
     
     let itemConverter: ItemModelConverter = ItemModelConverter()
     let ListConverter: ListModelConverter = ListModelConverter()
+    let productConverter: ProductModelConverter = ProductModelConverter()
 
     
     init(record: CKRecord) {
@@ -46,8 +47,8 @@ class CKUserModel {
         ckImage = record["Image"] as? CKAsset
         image = CKAssetToUIImage(ckImage: ckImage)
         
-        customItemsString = record["CustomItems"] as? [String] ?? []
-        customItems = itemConverter.parseStringToCKItemObject(withString: customItemsString ?? [])
+        customProductsString = record["CustomItems"] as? [String] ?? []
+        customProducts = productConverter.convertStringToProducts(withString: customProductsString ?? [])
         
         favoriteListsRef = record["FavoriteLists"] as? [CKRecord.Reference] ?? []
         favoriteLists = ListConverter.convertListReferenceToCloudList(withList: favoriteListsRef ?? [])
@@ -59,15 +60,15 @@ class CKUserModel {
         sharedWithMe = ListConverter.convertListReferenceToCloudList(withList: sharedWithMeRef ?? [])
     }
     
-    init(id: CKRecord.ID, name: String? = "", ckImage: CKAsset? = nil, customItemsString: [String], favoriteLists: [CKListModel]? = [], myLists: [CKListModel]? = [], sharedWithMe: [CKListModel]? = []) {
+    init(id: CKRecord.ID, name: String? = "", ckImage: CKAsset? = nil, customProductsString: [String], favoriteLists: [CKListModel]? = [], myLists: [CKListModel]? = [], sharedWithMe: [CKListModel]? = []) {
         
         self.id = id
         self.name = name
         self.ckImage = ckImage
         self.image = CKAssetToUIImage(ckImage: ckImage)
         
-        self.customItemsString = customItemsString
-        self.customItems = itemConverter.parseStringToCKItemObject(withString: customItemsString)
+        self.customProductsString = customProductsString
+        self.customProducts = productConverter.convertStringToProducts(withString: customProductsString)
         
         self.favoriteLists = favoriteLists
         self.favoriteListsRef = []
