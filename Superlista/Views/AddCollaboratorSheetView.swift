@@ -9,6 +9,9 @@ import SwiftUI
 
 //MARK: - AddCollaboratorSheetView Struct
 
+//TODO: Review and refine adjusments with ux
+//TODO: Implement share sheet actions
+
 struct AddCollaboratorSheetView: View {
     @Binding var showCollabSheetView: Bool
     @State var showShareActionSheet: Bool = false
@@ -20,9 +23,8 @@ struct AddCollaboratorSheetView: View {
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
-                VStack{
+                VStack {
                     Text("Add collaborators to your list so they can make changes in real time")
-                        .padding(16)
                     
                     Button(action: {
                         self.showShareActionSheet.toggle()
@@ -40,8 +42,8 @@ struct AddCollaboratorSheetView: View {
                         .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
                         
                     })
-                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.05)
-                    .background(Color("Secondary"))
+                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
+                    .background(Color("InsetGroupedBackground"))
                     .cornerRadius(12)
                     .padding(16)
                     
@@ -71,11 +73,47 @@ struct AddCollaboratorSheetView: View {
 
                             }
                         }
-                        .listRowBackground(Color("Secondary"))
+                        .listRowBackground(Color("InsetGroupedBackground"))
                     }
                     .foregroundColor(.black)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0))
+                    .frame(width: geometry.size.width, height: geometry.size.height * 0.42)
                     .listStyle(.insetGrouped)
+                    
+                    Text("Or just share your list with your contacts")
+                        .font(.system(size: 13))
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
+                    
+                    Button(action: {
+                        self.showShareActionSheet.toggle()
+                    }, label: {
+                        HStack(alignment: .center) {
+                            
+                            Text("Share list")
+                                .foregroundColor(.black)
+                                
+                            Spacer()
+
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.black)
+                                .padding(8)
+                            
+                        }
+                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                        
+                    })
+                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
+                    .background(Color("InsetGroupedBackground"))
+                    .cornerRadius(12)
+                    .padding(16)
+                    
+                    Text("Sharing your list with another person will only send a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator")
+                        .font(.system(size: 13))
+                        .foregroundColor(Color("Footnote"))
+                        .padding(16)
+                    
                 }
 
                     .toolbar {
@@ -101,11 +139,10 @@ struct AddCollaboratorSheetView: View {
                             }
                         }
                     }
+                    .navigationTitle("Add Collaborator")
+                    .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("Add Collaborator")
-        .navigationBarTitleDisplayMode(.inline)
         }
-        
     }
 }
 
