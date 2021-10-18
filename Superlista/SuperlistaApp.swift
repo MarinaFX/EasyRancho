@@ -84,7 +84,7 @@ struct SuperlistaApp: App {
                         print(result)
                     }
                 } else if option == "2" {
-                    let newListLocal = CKListModel(name: listName!, owner: list.owner, itemsString: list.itemsString, sharedWith: list.sharedWith)
+                    let newListLocal = CKListModel(name: listName!, ownerRef: list.ownerRef, itemsString: list.itemsString, sharedWithRef: list.sharedWithRef)
                     CKService.currentModel.createList(listModel: newListLocal) { result in
                         switch result {
                         case .success (let newListID):

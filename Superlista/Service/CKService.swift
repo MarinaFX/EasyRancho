@@ -92,7 +92,7 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Get User
-    private func getUser(completion: @escaping (Result<CKUserModel,CKError>) -> Void ) {
+     func getUser(completion: @escaping (Result<CKUserModel,CKError>) -> Void ) {
         let dispatchSemaphore = DispatchSemaphore(value: 1)
         dispatchSemaphore.wait()
         
