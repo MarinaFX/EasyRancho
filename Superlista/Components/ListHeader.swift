@@ -15,6 +15,7 @@ struct ListHeader: View {
     @State var comentario: String = ""
     @Binding var canEditTitle: Bool
     @State var isFavorite: Bool = false
+    @State var showCollabSheetView: Bool = false
     
     let purpleColor = Color("HeaderColor")
     let secondary = Color("Secondary")
@@ -58,6 +59,21 @@ struct ListHeader: View {
                 }
                 .frame(maxWidth: .infinity)
                 
+                
+            }
+            
+            Button {
+                self.showCollabSheetView.toggle()
+            } label: {
+                Image(systemName: "person.crop.circle.badge.plus")
+                    .resizable()
+                    .frame(width: 28, height: 24)
+                    .foregroundColor(.black)
+            }
+            .sheet(isPresented: $showCollabSheetView)
+            { }
+            content: {
+                AddCollaboratorSheetView(showCollabSheetView: self.$showCollabSheetView)
             }
         }
         .padding(.horizontal, 30)
