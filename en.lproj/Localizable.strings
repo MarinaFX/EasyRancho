@@ -7,4 +7,19 @@
 */
 
 
-"listaVazia" = "YES BECAUSE";
+"listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
+"SalvarNovaLista" = "Salvar";
+"EditarNovaLista" = "Editar";
+"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
+"remover %@" = "Deseja remover %@?";
+"subtituloRemoverLista"= "A lista removida não poderá ser recuperada após sua exclusão";
+"ApagarLista"= "Apagar";
+"ConcluirListas" = "Concluir";
+"EditarListas" = "Editar";
+"NovaLista" = "Nova Lista";
+
+//Not working 4now
+"ProcurarItens" = "Procurar Itens";
+"AdicionarItensFake" = "Adicionar novos itens";
+"TituloPaginaDeLista" = "Listasddddd";
+"TituloDaNovaLista" = "Nova Lista";
