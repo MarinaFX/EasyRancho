@@ -60,6 +60,19 @@ class UserModelConverter {
         return localUser
     }
     
+    
+    /**
+    This method converts our cloud CKUserModel structure to a CKRecord.reference
+     
+     - Parameters:
+        - user: the user to be converted - CKUserModel
+     - Returns: the CKRecord.Reference version of the given CKUserModel
+     */
+    
+    func convertCloudUserToReference(withUser user: CKUserModel) -> CKRecord.Reference {
+            return CKRecord.Reference(recordID: user.id, action: .none)
+    }
+    
     //MARK: UserModelConverter Functions: Local to ☁️
     
     /**

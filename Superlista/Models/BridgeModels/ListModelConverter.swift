@@ -97,9 +97,15 @@ class ListModelConverter {
         for shared in list.sharedWith ?? []  {
             cloudSharedWith.append(UserModelConverter().convertLocalUserToCloud(withUser: shared))
         }
-
         cloudList.sharedWith = cloudSharedWith
+        
+        var cloudSharedWithRef: [CKRecord.Reference] = []
+        for shared in cloudSharedWith {
+            cloudSharedWithRef.append(UserModelConverter().convertCloudUserToReference(withUser: shared))
+        }
+        cloudList.sharedWithRef = cloudSharedWithRef
         
         return cloudList
     }
+
 }
