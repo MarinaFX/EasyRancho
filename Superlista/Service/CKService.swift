@@ -251,7 +251,7 @@ class CKService: ObservableObject {
     
     // MARK: - Create List
     func createList(listModel: CKListModel, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
-        let record = CKRecord(recordType: "Lists")
+        let record = CKRecord(recordType: "Lists", recordID: listModel.id)
         record.setValue(listModel.name, forKey: "ListName")
         record.setValue(listModel.itemsString, forKey: "Items")
         record.setValue(user!.id, forKey: "Owner")

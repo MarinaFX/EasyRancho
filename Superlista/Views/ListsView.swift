@@ -55,7 +55,7 @@ struct ListsView: View {
         }
         .navigationBarTitle("Your Lists 📝")
         .navigationBarItems(trailing: Button("Add") {
-            listsViewModel.addList(newItem: ListModel(title: "Nova Lista!!!"))
+            listsViewModel.addList(ListModel(title: "Nova Lista!!!"))
         })
     }
 }

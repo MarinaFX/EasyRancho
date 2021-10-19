@@ -72,7 +72,6 @@ struct ListPerItemsView: View {
         .listStyle(PlainListStyle())
         .onAppear {
             UITableView.appearance().showsVerticalScrollIndicator = false
-
         }
     }
 }
