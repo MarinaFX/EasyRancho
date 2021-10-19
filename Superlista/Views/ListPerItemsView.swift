@@ -9,15 +9,15 @@ import SwiftUI
 
 struct ListPerItemsView: View {
     
-    //@EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: ListsViewModel
     
     var list: ListModel
     
     let background = Color("background")
     
-    var categories: [CategoryModel] { DataIntegration.integration.lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
+    var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
-    func rows(from category: Int) -> [ItemModel] { DataIntegration.integration.lists.first(where: { $0.id == list.id })!.items[categories[category]]! }
+    func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
     
     func isLast(_ item: ItemModel, from category: CategoryModel) -> Bool {
         return getRows(from: category).last?.id == item.id
@@ -60,7 +60,7 @@ struct ListPerItemsView: View {
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
                     .onDelete { row in
-                        DataIntegration.integration.deleteItem(from: row, of: category, from: list)
+                        listsViewModel.removeItem(from: row, of: category, of: list)
                     }
                     .listRowBackground(Color("background"))
                 }

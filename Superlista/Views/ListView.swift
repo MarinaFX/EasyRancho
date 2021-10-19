@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ListView: View {
+    @EnvironmentObject var listsViewModel: ListsViewModel
+
     @State var listId: String?
     @State var canEditTitle: Bool = false
     @State var list: ListModel?
@@ -67,7 +69,7 @@ struct ListView: View {
     // MARK: - getList()
     func getList() -> ListModel? {
         if let listId = listId,
-           let list = DataIntegration.integration.lists.first(where: { $0.id == listId }) {
+           let list = listsViewModel.list.first(where: { $0.id == listId }) {
             return list
         }
         return nil
@@ -77,7 +79,7 @@ struct ListView: View {
     func editTitle() {
         if let unwrappedList = self.list {
             if canEditTitle && !listTitle.isEmpty {
-                DataIntegration.integration.updateTitle(unwrappedList, listTitle)
+                listsViewModel.editListTitle(of: unwrappedList, newTitle: listTitle)
                 canEditTitle = false
             } else {
                 canEditTitle = true

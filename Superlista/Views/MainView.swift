@@ -3,7 +3,7 @@ import UIKit
 import CloudKit
 
 struct MainView: View {
-    var integration = DataIntegration.integration
+    @EnvironmentObject var listsViewModel: ListsViewModel
     
     @State var isEditing : Bool = false
     @State var listId: String = ""
@@ -25,14 +25,15 @@ struct MainView: View {
                 NavigationLink(destination: ListView(listId: listId),
                                isActive: $isCreatingList,
                                label: { EmptyView() }
-                ).opacity(0.0)
+                )
+                .opacity(0.0)
                 
                 // MARK: - background color
                 Color("background")
                     .ignoresSafeArea()
                 
                 // MARK: - empty state
-                if DataIntegration.integration.lists.isEmpty {
+                if listsViewModel.list.isEmpty {
                     VStack {
                         
                         Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
@@ -43,17 +44,16 @@ struct MainView: View {
                             .frame(width: 400, height: 400)
                     }
                     .onAppear {
-                        if DataIntegration.integration.lists.isEmpty {
+                        if listsViewModel.list.isEmpty {
                             self.isEditing = false
                         }
                     }
                 }
                 
                 // MARK: - Lists
-                #warning("* componentizar card list * componentizar alert * manter drag and drop?")
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 20, content: {
-                        ForEach(DataIntegration.integration.lists) { list in
+                        ForEach(listsViewModel.list) { list in
                             
                             // MARK: - editing state
                             if isEditing {
@@ -80,7 +80,7 @@ struct MainView: View {
                                         .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
                                         .position(x: 150, y: 22)
                                         .onTapGesture {
-                                            DataIntegration.integration.toggleFavorite(of: list)
+                                            listsViewModel.toggleListFavorite(of: list)
                                         }
                                     
                                     // MARK: - delete button
@@ -89,7 +89,7 @@ struct MainView: View {
                                         .foregroundColor(Color(.systemGray))
                                         .offset(x: -75, y: -60)
                                         .onTapGesture {
-                                            DataIntegration.integration.setCurrentList(list: list)
+                                            listsViewModel.currentList = list
                                             showAlert = true
                                         }
                                 }
@@ -97,7 +97,7 @@ struct MainView: View {
                                 .alert(isPresented: $showAlert) {
                                     var listName = "uma lista"
                                     
-                                    if let currentList = DataIntegration.integration.currentList {
+                                    if let currentList = listsViewModel.currentList {
                                         listName = currentList.title
                                     }
                                     
@@ -108,17 +108,17 @@ struct MainView: View {
                                         secondaryButton: .destructive(
                                             Text("Apagar"),
                                             action: {
-                                                DataIntegration.integration.deleteList(DataIntegration.integration.currentList!)
+                                                listsViewModel.removeList(listsViewModel.currentList!)
                                                 showAlert = false
                                             })
                                     )
                                 }
                                 // MARK: - list cards drag and drop
                                 .onDrag({
-                                    DataIntegration.integration.setCurrentList(list: list)
+                                    listsViewModel.currentList = list
                                     return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
                                 })
-                                .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: DataIntegration.integration.listsViewModel, list: list))
+                                .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: listsViewModel, list: list))
                                 
                             }
                             // MARK: - normal state
@@ -148,7 +148,7 @@ struct MainView: View {
                                             .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
                                             .position(x: 145, y: 22)
                                             .onTapGesture {
-                                                DataIntegration.integration.toggleFavorite(of: list)
+                                                listsViewModel.toggleListFavorite(of: list)
                                             }
                                     }
                                 })
@@ -162,7 +162,7 @@ struct MainView: View {
                     
                     // MARK: - edit button
                     ToolbarItem(placement: .navigationBarLeading){
-                        if !DataIntegration.integration.lists.isEmpty {
+                        if !listsViewModel.list.isEmpty {
                             Button(action: { isEditing.toggle() }, label: {
                                 Text(isEditing ? "Concluir": "Editar")
                             })
@@ -183,7 +183,7 @@ struct MainView: View {
                 }
                 
                 // MARK: - transparent new list button
-                if DataIntegration.integration.lists.isEmpty {
+                if listsViewModel.list.isEmpty {
                     Button(action: createNewListAction, label : {
                         Rectangle()
                             .fill(Color.clear)
@@ -197,7 +197,8 @@ struct MainView: View {
     func createNewListAction() {
         
         let newList: ListModel = ListModel(title: "Nova Lista")
-        DataIntegration.integration.createList(newList)
+
+        listsViewModel.addList(newList)
                 
         self.listId = newList.id
         self.isCreatingList = true
