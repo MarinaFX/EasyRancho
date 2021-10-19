@@ -82,7 +82,8 @@ class ListModelConverter {
         cloudList.id = CKRecord.ID(recordName: list.id)
         cloudList.name = list.title
         cloudList.itemsModel = itemModelConverter.convertLocalItemsToCloudItems(withItemsList: list.items)
-        
+        cloudList.itemsString = itemModelConverter.parseCKItemObjectToString(withItems: cloudList.itemsModel)
+         
         return cloudList
     }
 }

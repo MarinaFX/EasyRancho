@@ -72,6 +72,8 @@ class CloudIntegration: ObservableObject {
         
         let ckItemsStrings = ckList.itemsString
         
+        print(ckList.id)
+        
         ckService.updateListItems(listItems: ckItemsStrings, listID: ckList.id) { result in
             switch result {
                 case .success(let result): print("updateListItems() success \(result)")

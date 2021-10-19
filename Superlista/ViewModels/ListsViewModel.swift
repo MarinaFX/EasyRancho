@@ -12,7 +12,6 @@ class ListsViewModel: ObservableObject {
     @Published var list: [ListModel] = [] {
         didSet {
             saveItems()
-            print(list, "listsViewModel list")
         }
     }
     
@@ -33,14 +32,29 @@ class ListsViewModel: ObservableObject {
     }
     
     func getItems() {
-        guard
+        var userDefaults = getUserDefaults()
+        
+        // if online {
+            let ckUserLists = CKService.currentModel.user?.myLists ?? []
+            
+            ckUserLists.forEach { list in
+                if !userDefaults.contains(where: { $0.id == list.id.recordName }) {
+                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                    userDefaults.append(localList)
+                }
+            }
+        // }
+
+        self.list = userDefaults
+    }
+    
+    func getUserDefaults() -> [ListModel] {
+        if
             let data = UserDefaults.standard.data(forKey: itemsKey),
-            let savedItems = try? JSONDecoder().decode([ListModel].self, from: data)
-        else { return }
-        
-        
-        self.list = savedItems
-        
+            let savedItems = try? JSONDecoder().decode([ListModel].self, from: data) {
+            return savedItems
+        }
+        return []
     }
     
     func saveItems() {
@@ -56,7 +70,7 @@ class ListsViewModel: ObservableObject {
             
             list[index] = newListState
             
-            CloudIntegration.actions.updateCkListItems(updatedList: newListState)
+            //CloudIntegration.actions.updateCkListItems(updatedList: newListState)
         }
     }
     
@@ -64,7 +78,9 @@ class ListsViewModel: ObservableObject {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list.remove(at: index)
             
-            CloudIntegration.actions.deleteList(listModel)
+            //CloudIntegration.actions.deleteList(listModel)
+            
+            //update user lists too
         }
     }
     
@@ -106,7 +122,7 @@ class ListsViewModel: ObservableObject {
     func removeItem(_ item: ItemModel, from listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             let listWithoutItem = listModel.removeItem(item)
-
+            
             list[index] = listWithoutItem
             
             CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)

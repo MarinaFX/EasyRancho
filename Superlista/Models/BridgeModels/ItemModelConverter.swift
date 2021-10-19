@@ -101,7 +101,7 @@ class ItemModelConverter {
         var itemsString: [String] = []
         
         items.forEach { item in
-            itemsString.append(item.name + String(item.quantity) + (item.comment ?? "") + String(item.isCompleted))
+            itemsString.append("\(item.name);\(item.category);\(item.quantity);\(String(describing: item.comment));\(item.isCompleted)")
         }
         
         return itemsString
