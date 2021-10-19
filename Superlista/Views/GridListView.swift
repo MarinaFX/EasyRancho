@@ -22,6 +22,7 @@ struct GridListView: View {
     @State var isCreatingList: Bool = false
     
     @State var showAlert = false
+    var TituloDaNovaLista = "TituloDaNovaLista"
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
@@ -40,7 +41,7 @@ struct GridListView: View {
                 
                 if listsViewModel.list.isEmpty {
                     VStack {
-                        Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
+                        Text("listaVazia")
                             .multilineTextAlignment(.center)
                             .font(.headline)
                         
@@ -88,7 +89,7 @@ struct GridListView: View {
                                         }
                                 }
                                 .alert(isPresented: $showAlert){
-                                    Alert(title: Text("Deseja remover \(listsViewModel.currentList!.title)?"), message: Text("A lista removida não poderá ser recuperada após sua exclusão"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Apagar"), action:{
+                                    Alert(title: Text("remover \(listsViewModel.currentList!.title)"), message: Text("subtituloRemoverLista"), primaryButton: .cancel(), secondaryButton: .destructive(Text("ApagarLista"), action:{
                                         listsViewModel.removeList(listsViewModel.currentList!)
                                         showAlert = false
                                     }))
@@ -139,14 +140,14 @@ struct GridListView: View {
                     ToolbarItem(placement: .navigationBarLeading){
                         if !listsViewModel.list.isEmpty{
                             Button(action: {isEditing.toggle()}, label: {
-                                Text(isEditing ? "Concluir": "Editar")})
+                                Text(isEditing ? "ConcluirListas": "EditarListas")})
                         }
                     }
                     ToolbarItem(placement: .principal){
                         Text("Listas").font(.system(size: 36, weight: .bold)).foregroundColor(Color.primary)
                     }
                     ToolbarItem(placement: .destructiveAction){
-                        Button(action: createNewListAction, label: { Text("Nova lista") })
+                        Button(action: createNewListAction, label: { Text("NovaLista") })
                     }
                 }
                 if listsViewModel.list.isEmpty {
@@ -160,6 +161,7 @@ struct GridListView: View {
     }
     
     func createNewListAction() {
+#warning("Not working to translate this list name")
         let newList: ListModel = ListModel(title: "Nova Lista")
         let newListId: String = newList.id
         listsViewModel.addList(newItem: newList)
@@ -173,9 +175,9 @@ struct GridListView_Previews: PreviewProvider {
     static var listsViewModel: ListsViewModel = ListsViewModel()
     static var previews: some View {
         NavigationView {
+#warning("Not working to translate this page list name")
             GridListView()
-            
-                .navigationTitle("Listas")
+                .navigationTitle("TituloPaginaDeLista")
         }
         .environmentObject(listsViewModel)
     }

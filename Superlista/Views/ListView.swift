@@ -69,7 +69,7 @@ struct ListView: View {
                         }
                         
                     } label: {
-                        Text(canEditTitle ? "Salvar" : "Editar")
+                        Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
                     }
                 }
             }

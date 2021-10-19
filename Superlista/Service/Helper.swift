@@ -118,3 +118,11 @@ func getColor(category: String) -> Color {
         return Color.black
     }
 }
+
+// MARK: - Curtom usernames
+func getNickname() -> String{
+    if let colors = UserArrays().colorsArray.randomElement(), let animals = UserArrays().animalsArray.randomElement(){
+        return "\(colors)\(animals)"
+    }
+    return "User"
+}
