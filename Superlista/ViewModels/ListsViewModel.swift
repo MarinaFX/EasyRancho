@@ -9,6 +9,9 @@ import Foundation
 import CloudKit
 
 class ListsViewModel: ObservableObject {
+    
+    static var user: UserModel = UserModelConverter().convertCloudUserToLocal(withUser: CKService.currentModel.user!)
+    
     @Published var list: [ListModel] = [] {
         didSet {
             saveItems()

@@ -48,7 +48,7 @@ class CKListModel {
             }
         }
         
-        sharedWithRef = record["SharedWith"] as! [CKRecord.Reference]
+        sharedWithRef = record["SharedWith"] as? [CKRecord.Reference] ?? []
         for shared in sharedWithRef {
             let sharedWithUser = CKUserModel(record: CKRecord(recordType: "User", recordID: shared.recordID))
             CKService.currentModel.getAnotherUserName(userID: shared.recordID) { result in

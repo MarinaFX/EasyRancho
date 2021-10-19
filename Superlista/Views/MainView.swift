@@ -196,7 +196,7 @@ struct MainView: View {
     
     func createNewListAction() {
         
-        let newList: ListModel = ListModel(title: "Nova Lista")
+        let newList: ListModel = ListModel(title: "Nova Lista", owner: ListsViewModel.user)
 
         listsViewModel.addList(newList)
                 

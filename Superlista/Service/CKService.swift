@@ -254,7 +254,7 @@ class CKService: ObservableObject {
         let record = CKRecord(recordType: "Lists", recordID: listModel.id)
         record.setValue(listModel.name, forKey: "ListName")
         record.setValue(listModel.itemsString, forKey: "Items")
-        record.setValue(user!.id, forKey: "Owner")
+        record.setValue(CKRecord.Reference(recordID: user!.id, action: .none), forKey: "Owner")
         
         publicDB.save(record) { savedRecord, error in
             if error == nil {

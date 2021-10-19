@@ -70,6 +70,8 @@ func shareSheet(listID: String, ownerID: String, option: String, listName: Strin
     topController?.present(activityVC, animated: true, completion: nil)
 }
 
+// MARK: - Get Color Categories
+
 func getColor(category: String) -> Color {
     switch category{
     case "Bazar" :
