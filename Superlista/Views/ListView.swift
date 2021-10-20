@@ -12,34 +12,30 @@ struct ListView: View {
     
     @State var listId: String?
     @State var canEditTitle: Bool = false
-    @State var isFavorite: Bool = false
-    
-    func getList() -> ListModel? {
-        if let listId = listId,
-           let list = listsViewModel.list.first(where: { $0.id == listId }) {
-            return list
-        }
-        return nil
-    }
-    
-    @State var listaTitulo: String = ""
+    @State var list: ListModel?
+    @State var listTitle: String = ""
     
     var body: some View {
         GeometryReader { geometry in
             MainScreen(customView: AnyView(
-                ZStack{
+                ZStack {
+                    // MARK: - background color
                     Color("background")
                         .ignoresSafeArea()
                     
                     VStack (spacing: 20) {
-                        ListHeader(listaTitulo: $listaTitulo, canEditTitle: $canEditTitle, list: getList(), listId: $listId)
+                        // MARK: - header
+                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, list: self.list, listId: $listId)
                         
-                        if let list = getList() {
+                        if let list = self.list {
+                            
+                            // MARK: - search bar
                             NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
                                 FakeSearchBar()
                                     .padding(.horizontal, 20)
                             }
                             
+                            // MARK: - list component
                             ListPerItemsView(list: list)
                                 .padding(.horizontal)
                                 .padding(.bottom, 30)
@@ -50,30 +46,46 @@ struct ListView: View {
                     }
                 }
             ), topPadding: -30)
-            .toolbar{
-                ToolbarItem{
-                    Button {
-                        if let unwrappedList = getList() {
-                            if canEditTitle && !listaTitulo.isEmpty {
-                                listsViewModel.editListTitle(of: unwrappedList, newTitle: listaTitulo)
-                                canEditTitle = false
-                            } else {
-                                canEditTitle = true
-                            }
+            
+            // MARK: - toolbar
+                .toolbar{
+                    
+                    // MARK: - edit button
+                    ToolbarItem {
+                        Button {
+                            editTitle()
+                        } label: {
+                            Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
                         }
-                        else {
-                            let newList = ListModel(title: listaTitulo)
-                            listsViewModel.addList(newItem: newList)
-                            self.listId = newList.id
-                            canEditTitle = false
-                        }
-                        
-                    } label: {
-                        Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
                     }
+                }
+            // MARK: - onAppear
+                .onAppear {
+                    self.list = getList()
+                }
+        }
+    }
+        
+        // MARK: - getList()
+        func getList() -> ListModel? {
+            if let listId = listId,
+               let list = listsViewModel.list.first(where: { $0.id == listId }) {
+                return list
+            }
+            return nil
+        }
+        
+        // MARK: - editList()
+        func editTitle() {
+            if let unwrappedList = self.list {
+                if canEditTitle && !listTitle.isEmpty {
+                    listsViewModel.editListTitle(of: unwrappedList, newTitle: listTitle)
+                    canEditTitle = false
+                } else {
+                    canEditTitle = true
                 }
             }
         }
     }
-}
- 
+    
+

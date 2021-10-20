@@ -9,22 +9,20 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class UserModel {
+class UserModel: Identifiable, Decodable, Encodable {
     
     var id: String
     var name: String?
-    var image: UIImage?
     var customProducts: [ProductModel]?
     var favoriteLists: [ListModel]?
     var myLists: [ListModel]?
     var sharedWithMe: [ListModel]?
     
     #warning("Substituir a string fazia pelo nome aleatorio")
-    init(id: String, name: String? = "", image: UIImage? = nil, customProducts: [ProductModel]? = [], favoriteLists: [ListModel]? = [], myLists: [ListModel]? = [], sharedWithMe: [ListModel]? = []) {
+    init(id: String, name: String? = "", customProducts: [ProductModel]? = [], favoriteLists: [ListModel]? = [], myLists: [ListModel]? = [], sharedWithMe: [ListModel]? = []) {
         
         self.id = id
         self.name = name
-        self.image = image
         self.customProducts = customProducts
         self.favoriteLists = favoriteLists
         self.myLists = myLists
