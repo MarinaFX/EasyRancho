@@ -79,7 +79,7 @@ struct SuperlistaApp: App {
                 listName = list.name
                 // alerta para confirmar se quer adicionar nas listas do usuário passando como parâmetro o nome do usuário e da lista
                 if option == "1" {
-                    CKService.currentModel.saveListUsersList(listID: list.id, key: "SharedWithMe") { result in
+                    CKService.currentModel.saveListUsersList(listID: list.id, key: .SharedWithMe) { result in
                         // mensagem de uhuu lista adicionada
                         print(result)
                     }
@@ -88,7 +88,7 @@ struct SuperlistaApp: App {
                     CKService.currentModel.createList(listModel: newListLocal) { result in
                         switch result {
                         case .success (let newListID):
-                            CKService.currentModel.saveListUsersList(listID: newListID, key: "MyLists") { result in
+                                CKService.currentModel.saveListUsersList(listID: newListID, key: .MyLists) { result in
                                 // mensagem de uhuu lista adicionada
                             }
                         case .failure:

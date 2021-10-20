@@ -7,11 +7,14 @@
 
 import Foundation
 import CloudKit
+import SwiftUI
+import Combine
 
 class ListsViewModel: ObservableObject {
     @Published var list: [ListModel] = [] {
         didSet {
             saveItems()
+            print(list)
         }
     }
     
@@ -19,39 +22,50 @@ class ListsViewModel: ObservableObject {
     
     @Published var currentCategory: CategoryModel?
     
+    @Published var isGrid: Bool = false
+    
     let products = ProductListViewModel().productsOrdered
     
     let itemsKey: String = "lists"
     
     static var listsViewModel = ListsViewModel()
     
-    @Published var isGrid: Bool = false
+    let networkMonitor = NetworkMonitor.shared
     
     init() {
-        getItems()
+        getListsIntegration()
     }
     
-    func getItems() {
-        var userDefaults = getUserDefaults()
-        
-        // if online {
-            let ckUserLists = CKService.currentModel.user?.myLists ?? []
-            
-            ckUserLists.forEach { list in
-                if !userDefaults.contains(where: { $0.id == list.id.recordName }) {
-                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                    userDefaults.append(localList)
+    var userSubscription: AnyCancellable?
+    
+    func getListsIntegration() {
+        self.list = getUserDefaults()
+
+        networkMonitor.startMonitoring { path in
+            if path.status == .satisfied {
+
+                self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
+                    
+                    var userDefaults = self.getUserDefaults()
+                    
+                    ckUserModel.myLists?.forEach { list in
+                        if !userDefaults.contains(where: { $0.id == list.id.recordName }) {
+                            
+                            let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                            userDefaults.append(localList)
+                        }
+                    }
+
+                    self.list = userDefaults
                 }
             }
-        // }
-
-        self.list = userDefaults
+        }
     }
     
     func getUserDefaults() -> [ListModel] {
-        if
-            let data = UserDefaults.standard.data(forKey: itemsKey),
-            let savedItems = try? JSONDecoder().decode([ListModel].self, from: data) {
+        if let data = UserDefaults.standard.data(forKey: itemsKey),
+           let savedItems = try? JSONDecoder().decode([ListModel].self, from: data) {
+            
             return savedItems
         }
         return []
@@ -70,7 +84,7 @@ class ListsViewModel: ObservableObject {
             
             list[index] = newListState
             
-            //CloudIntegration.actions.updateCkListItems(updatedList: newListState)
+            CloudIntegration.actions.toggleFavorite(of: newListState)
         }
     }
     
@@ -78,9 +92,7 @@ class ListsViewModel: ObservableObject {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
             list.remove(at: index)
             
-            //CloudIntegration.actions.deleteList(listModel)
-            
-            //update user lists too
+            CloudIntegration.actions.deleteList(listModel)
         }
     }
     

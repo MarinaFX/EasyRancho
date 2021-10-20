@@ -118,3 +118,8 @@ func getColor(category: String) -> Color {
         return Color.black
     }
 }
+
+// MARK: - UsersList Enum
+enum UsersList: String {
+    case FavoriteLists, MyLists, SharedWithMe
+}

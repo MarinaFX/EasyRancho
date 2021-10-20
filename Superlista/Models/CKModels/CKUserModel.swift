@@ -40,7 +40,10 @@ class CKUserModel {
     let productConverter: ProductModelConverter = ProductModelConverter()
 
     
-    init(record: CKRecord) {
+    init(record: CKRecord, completion: ((CKUserModel) -> Void)? = nil) {
+        
+        let group = DispatchGroup()
+        
         id = record.recordID
         
         name = record["UserName"] as? String
@@ -51,13 +54,51 @@ class CKUserModel {
         customProducts = productConverter.convertStringToProducts(withString: customProductsString ?? [])
         
         favoriteListsRef = record["FavoriteLists"] as? [CKRecord.Reference] ?? []
-        favoriteLists = ListConverter.convertListReferenceToCloudList(withList: favoriteListsRef ?? [])
+        
+        group.enter()
+        
+        ListConverter.convertListReferenceToCloudList(withList: favoriteListsRef ?? []) { result in
+            switch result {
+                case .success(let lists):
+                    self.favoriteLists = lists
+                case .failure:
+                    self.favoriteLists = []
+                    
+            }
+            group.leave()
+        }
         
         myListsRef = record["MyLists"] as? [CKRecord.Reference] ?? []
-        myLists = ListConverter.convertListReferenceToCloudList(withList: myListsRef ?? [])
+        
+        group.enter()
+        
+        ListConverter.convertListReferenceToCloudList(withList: myListsRef ?? []) { result in
+            switch result {
+                case .success(let lists):
+                    self.myLists = lists
+                case .failure:
+                    self.myLists = []
+                    
+            }
+            group.leave()
+        }
         
         sharedWithMeRef = record["SharedWithMe"] as? [CKRecord.Reference] ?? []
-        sharedWithMe = ListConverter.convertListReferenceToCloudList(withList: sharedWithMeRef ?? [])
+        
+        group.enter()
+        ListConverter.convertListReferenceToCloudList(withList: sharedWithMeRef ?? []) { result in
+            switch result {
+                case .success(let lists):
+                    self.sharedWithMe = lists
+                case .failure:
+                    self.sharedWithMe = []
+            }
+            group.leave()
+        }
+        
+        group.wait()
+        
+        completion?(self)
     }
     
     init(id: CKRecord.ID, name: String? = "", ckImage: CKAsset? = nil, customProductsString: [String], favoriteLists: [CKListModel]? = [], myLists: [CKListModel]? = [], sharedWithMe: [CKListModel]? = []) {

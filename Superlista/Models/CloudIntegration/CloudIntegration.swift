@@ -26,7 +26,7 @@ class CloudIntegration: ObservableObject {
             switch result {
                 case .success:
                     
-                    CKService.currentModel.saveListUsersList(listID: ckList.id, key: "MyLists") { result in
+                    CKService.currentModel.saveListUsersList(listID: ckList.id, key: .MyLists) { result in
                         switch result {
                             case .success(let result):
                                 
@@ -45,13 +45,19 @@ class CloudIntegration: ObservableObject {
     }
     
     func deleteList(_ list: ListModel) {
-        let ckList = listModelConverter.convertLocalListToCloud(withList: list)
-        //passar só o id ao inves da list toda?
-        
-        ckService.deleteList(listID: ckList.id) { result in
+        CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .MyLists) { result in
             switch result {
-                case .success(let result): print("deleteList() success \(result)")
+                case .success: print("deleteList() foi")
+ 
                 case .failure(let error): print("deleteList() error \(error)")
+            }
+        }
+        
+        CKService.currentModel.deleteList(listID: CKRecord.ID(recordName: list.id)) { result in
+            switch result {
+                case .success(let result): print("foi", result)
+            
+                case .failure(let error): print("nao foi", error)
             }
         }
     }
@@ -59,7 +65,7 @@ class CloudIntegration: ObservableObject {
     func updateListTitle(_ list: ListModel, _ newTitle: String) {
         let ckList = listModelConverter.convertLocalListToCloud(withList: list)
                 
-        ckService.updateListName(listName: newTitle, listID: ckList.id) { result in
+        CKService.currentModel.updateListName(listName: newTitle, listID: ckList.id) { result in
             switch result {
                 case .success(let result): print("updateListTitle() success \(result)")
                 case .failure(let error): print("updateListTitle() error \(error)")
@@ -67,14 +73,34 @@ class CloudIntegration: ObservableObject {
         }
     }
     
+    func toggleFavorite(of list: ListModel) {
+        let ckList = listModelConverter.convertLocalListToCloud(withList: list)
+    
+        if list.favorite {
+            CKService.currentModel.addUsersList(list: ckList, key: .FavoriteLists) { result in
+                switch result {
+                    case .success(let result): print("toggleFavorite() success \(result)")
+                    case .failure(let error): print("toggleFavorite() error \(error)")
+                }
+            }
+            
+        } else {
+            CKService.currentModel.deleteUsersList(listId: ckList.id, key: .FavoriteLists) { result in
+                switch result {
+                    case .success(let result): print("toggleFavorite() success \(result)")
+                    case .failure(let error): print("toggleFavorite() error \(error)")
+                }
+            }
+        }
+    }
+    
+    
     func updateCkListItems(updatedList: ListModel) {
         let ckList = listModelConverter.convertLocalListToCloud(withList: updatedList)
         
         let ckItemsStrings = ckList.itemsString
-        
-        print(ckList.id)
-        
-        ckService.updateListItems(listItems: ckItemsStrings, listID: ckList.id) { result in
+                
+        CKService.currentModel.updateListItems(listItems: ckItemsStrings, listID: ckList.id) { result in
             switch result {
                 case .success(let result): print("updateListItems() success \(result)")
                 case .failure(let error): print("updateListItems() error \(error.localizedDescription)")
