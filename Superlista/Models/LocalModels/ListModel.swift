@@ -6,40 +6,42 @@
 //
 
 import Foundation
+import CloudKit
 
 struct ListModel: Identifiable, Decodable, Encodable {
-    let id: String
-    let title: String
-    let items: [CategoryModel: [ItemModel]]
-    let favorite: Bool
+    var id: String
+    var title: String
+    var items: [CategoryModel: [ItemModel]]
+    var favorite: Bool
     
-    init(id: String = UUID().uuidString, title: String, items: [CategoryModel: [ItemModel]] = [:], favorite: Bool = false) {
+    var owner: UserModel
+    var sharedWith: [UserModel]?
+    
+    init(title: String, items: [CategoryModel: [ItemModel]] = [:], favorite: Bool = false, owner: UserModel, sharedWith: [UserModel] = []) {
+        let recordID = CKRecord.ID()
         
+        self.id = recordID.recordName
+        self.title = title
+        self.items = items
+        self.favorite = favorite
+        self.owner = owner
+    }
+    
+    init(id: String, title: String, items: [CategoryModel: [ItemModel]] = [:], favorite: Bool = false, owner: UserModel, sharedWith: [UserModel] = []) {
         self.id = id
         self.title = title
         self.items = items
         self.favorite = favorite
+        self.owner = owner
     }
     
     func toggleFavorite() -> ListModel {
-        return ListModel(id: id, title: title, items: items, favorite: !favorite)
+        return ListModel(id: id, title: title, items: items, favorite: !favorite, owner: owner)
     }
     
     func editTitle(newTitle: String) -> ListModel {
-        return ListModel(id: id, title: newTitle, items: items, favorite: favorite)
+        return ListModel(id: id, title: newTitle, items: items, favorite: favorite, owner: owner)
     }
-    
-//    func addItem(_ product: ProductModel) -> ListModel {
-//        var newItemsList = items
-//                
-//        if let _ = items[product.getCategory()] {
-//            newItemsList[product.getCategory()]?.append(ItemModel(product: product))
-//        } else {
-//            newItemsList[product.getCategory()] = [ItemModel(product: product)]
-//        }
-//                
-//        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
-//    }
     
     func addItem(_ item: ItemModel) -> ListModel {
         var newItemsList = items
@@ -50,22 +52,8 @@ struct ListModel: Identifiable, Decodable, Encodable {
             newItemsList[CategoryModel(title: item.product.category)] = [item]
         }
                 
-        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite, owner: owner)
     }
-    
-//    func addItems(_ products: [ProductModel]) -> ListModel {
-//        var newItemsList = items
-//        
-//        products.forEach { product in
-//            if let category = newItemsList.first(where: { $0.key.title == product.category })?.key {
-//                newItemsList[category]?.append(ItemModel(product: product))
-//            } else {
-//                newItemsList[CategoryModel(title: product.category, order: newItemsList.count + 1)] = [ItemModel(product: product)]
-//            }
-//        }
-//        
-//        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
-//    }
     
     func removeItem(from row: IndexSet, of category: CategoryModel) -> ListModel {
         var newItemsList = items
@@ -80,7 +68,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
             
         }
         
-        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite, owner: owner)
     }
     
     func removeItem(_ item: ItemModel) -> ListModel {
@@ -97,7 +85,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
             }
         }
                 
-        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite, owner: owner)
     }
     
     func addComment(_ comment: String, to item: ItemModel) -> ListModel {
@@ -109,7 +97,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
             newItemsList[category.key]?[itemIndex] = newItem.editComment(newComment: comment)
         }
         
-        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite, owner: owner)
     }
     
     func toggleCompletion(of item: ItemModel) -> ListModel {
@@ -121,6 +109,6 @@ struct ListModel: Identifiable, Decodable, Encodable {
             newItemsList[category.key]?[itemIndex] = newItem.toggleCompletion()
         }
         
-        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite)
+        return ListModel(id: id, title: title, items: newItemsList, favorite: favorite, owner: owner)
     }
 }

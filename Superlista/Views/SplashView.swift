@@ -13,7 +13,7 @@ struct SplashView: View {
     var body: some View {
             VStack {
                 if self.isActive {
-                    GridListView()
+                    MainView()
                 } else {
                     VStack{
                         Spacer()
