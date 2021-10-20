@@ -93,7 +93,7 @@ func getColor(category: String) -> Color {
     case "Fiambreria e laticínios" :
         return Color("Fiambreriaelaticinios")
     case "Grãos e farinhas" :
-        return Color("Grãos e farinhas")
+        return Color("Graosefarinhas")
     case "Higiene e beleza" :
         return Color("Higieneebeleza")
     case "Hortifruti" :
