@@ -183,7 +183,7 @@ struct MainView: View {
 #warning("Not working to translate this list name")
         let newList: ListModel = ListModel(title: "Nova Lista", owner: ListsViewModel.user)
         let newListId: String = newList.id
-        listsViewModel.addList(newItem: newList)
+        listsViewModel.addList(newList)
         self.listId = newListId
         self.isCreatingList = true
 
@@ -191,14 +191,14 @@ struct MainView: View {
     
 }
 
-struct GridListView_Previews: PreviewProvider {
-    static var listsViewModel: ListsViewModel = ListsViewModel()
-    static var previews: some View {
-        NavigationView {
-#warning("Not working to translate this page list name")
-            GridListView()
-                .navigationTitle("TituloPaginaDeLista")
-        }
-        .environmentObject(listsViewModel)
-    }
-}
+//struct GridListView_Previews: PreviewProvider {
+//    static var listsViewModel: ListsViewModel = ListsViewModel()
+//    static var previews: some View {
+//        NavigationView {
+//#warning("Not working to translate this page list name")
+//            GridListView()
+//                .navigationTitle("TituloPaginaDeLista")
+//        }
+//        .environmentObject(listsViewModel)
+//    }
+//}

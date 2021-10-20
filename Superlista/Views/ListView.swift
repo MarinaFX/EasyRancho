@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
-
+    
     @State var listId: String?
     @State var canEditTitle: Bool = false
     @State var list: ListModel?
@@ -55,11 +55,8 @@ struct ListView: View {
                         Button {
                             editTitle()
                         } label: {
-                            Text(canEditTitle ? "Salvar" : "Editar")
+                            Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
                         }
-                        
-                    } label: {
-                        Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
                     }
                 }
             // MARK: - onAppear
@@ -68,26 +65,27 @@ struct ListView: View {
                 }
         }
     }
-    
-    // MARK: - getList()
-    func getList() -> ListModel? {
-        if let listId = listId,
-           let list = listsViewModel.list.first(where: { $0.id == listId }) {
-            return list
+        
+        // MARK: - getList()
+        func getList() -> ListModel? {
+            if let listId = listId,
+               let list = listsViewModel.list.first(where: { $0.id == listId }) {
+                return list
+            }
+            return nil
         }
-        return nil
-    }
-    
-    // MARK: - editList()
-    func editTitle() {
-        if let unwrappedList = self.list {
-            if canEditTitle && !listTitle.isEmpty {
-                listsViewModel.editListTitle(of: unwrappedList, newTitle: listTitle)
-                canEditTitle = false
-            } else {
-                canEditTitle = true
+        
+        // MARK: - editList()
+        func editTitle() {
+            if let unwrappedList = self.list {
+                if canEditTitle && !listTitle.isEmpty {
+                    listsViewModel.editListTitle(of: unwrappedList, newTitle: listTitle)
+                    canEditTitle = false
+                } else {
+                    canEditTitle = true
+                }
             }
         }
     }
-}
+    
 
