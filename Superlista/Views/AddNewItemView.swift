@@ -56,16 +56,3 @@ struct AddNewItemView: View {
         presentationMode.wrappedValue.dismiss()
     }
 }
-
-//struct AddNewItemView_Previews: PreviewProvider {
-//    @State static var testing: String = ""
-//
-//    static var previews: some View {
-//        NavigationView {
-//            AddNewItemView(searchText: "")
-//                .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-//                .previewDisplayName("iPhone 12")
-//        }
-//
-//    }
-//}

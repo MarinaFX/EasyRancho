@@ -202,7 +202,8 @@ struct MainView: View {
                 
         self.listId = newList.id
         self.isCreatingList = true
-
+        
+        print(self.listId, "Main View")
     }
     
 }

@@ -20,7 +20,7 @@ struct ListHeader: View {
     let secondary = Color("Secondary")
     let list: ListModel?
     
-    @Binding var listId: String?
+    @Binding var listId: String
     
     var body: some View {
         HStack (spacing: 5){

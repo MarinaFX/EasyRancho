@@ -11,10 +11,15 @@ struct ListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
 
     @State var hasChangedItems = false
-    @State var listId: String?
+    @State var listId: String
     @State var canEditTitle: Bool = false
     @State var list: ListModel?
     @State var listTitle: String = ""
+    
+//    init(listId: String) {
+//        self.list = getList()
+//        self.hasChangedItems
+//    }
     
     var body: some View {
         GeometryReader { geometry in
@@ -62,8 +67,10 @@ struct ListView: View {
                 }
             // MARK: - onAppear
                 .onAppear {
-                    self.list = getList()
-                    
+                    if list == nil {
+                        self.list = getList()
+                    }
+                                        
                     if hasChangedItems, let list = self.list {
                         CloudIntegration.actions.updateCkListItems(updatedList: list)
                         
@@ -75,8 +82,7 @@ struct ListView: View {
     
     // MARK: - getList()
     func getList() -> ListModel? {
-        if let listId = listId,
-           let list = listsViewModel.list.first(where: { $0.id == listId }) {
+        if let list = listsViewModel.list.first(where: { $0.id == listId }) {
             return list
         }
         return nil
