@@ -103,7 +103,7 @@ class CloudIntegration: ObservableObject {
         CKService.currentModel.updateListItems(listItems: ckItemsStrings, listID: ckList.id) { result in
             switch result {
                 case .success(let result): print("updateListItems() success \(result)")
-                case .failure(let error): print("updateListItems() error \(error.localizedDescription)")
+                case .failure(let error): print("updateListItems() error \(error)")
             }
         }
     }

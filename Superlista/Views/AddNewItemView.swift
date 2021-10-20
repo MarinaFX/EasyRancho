@@ -15,6 +15,8 @@ struct AddNewItemView: View {
     
     var list: ListModel
     
+    @Binding var hasChangedItems: Bool
+    
     @State var searchText: String
     
     let products = ProductListViewModel().productsOrdered
@@ -24,7 +26,7 @@ struct AddNewItemView: View {
             MainScreen(customView: AnyView(
                 VStack {
                     
-                    ProductListView(list: list, filter: $searchText)
+                    ProductListView(list: list, filter: $searchText, hasChangedItems: $hasChangedItems)
                     
                     Button(action: prontoButtonPressed, label: {
                         Text("Pronto")

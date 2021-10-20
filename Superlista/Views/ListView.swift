@@ -10,6 +10,7 @@ import SwiftUI
 struct ListView: View {
     @EnvironmentObject var listsViewModel: ListsViewModel
 
+    @State var hasChangedItems = false
     @State var listId: String?
     @State var canEditTitle: Bool = false
     @State var list: ListModel?
@@ -30,7 +31,7 @@ struct ListView: View {
                         if let list = self.list {
                             
                             // MARK: - search bar
-                            NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
+                            NavigationLink(destination: AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "")){
                                 FakeSearchBar()
                                     .padding(.horizontal, 20)
                             }
@@ -62,6 +63,12 @@ struct ListView: View {
             // MARK: - onAppear
                 .onAppear {
                     self.list = getList()
+                    
+                    if hasChangedItems, let list = self.list {
+                        CloudIntegration.actions.updateCkListItems(updatedList: list)
+                        
+                        self.hasChangedItems = false
+                    }
                 }
         }
     }

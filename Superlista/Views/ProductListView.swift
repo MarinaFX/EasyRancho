@@ -18,6 +18,8 @@ struct ProductListView: View {
         
     @Binding var filter: String
     
+    @Binding var hasChangedItems: Bool
+    
     var filteredProducts: [ProductModel] {
         return products.filter({ $0.name.localizedCaseInsensitiveContains(filter) })
     }
@@ -52,6 +54,8 @@ struct ProductListView: View {
                         listsViewModel.addItem(newItem, to: list)
                         selectedItems.append(newItem)
                     }
+                    
+                    self.hasChangedItems = !selectedItems.isEmpty
                 }
             }
             .listRowBackground(Color("background"))

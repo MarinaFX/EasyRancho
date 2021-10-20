@@ -14,7 +14,6 @@ class ListsViewModel: ObservableObject {
     @Published var list: [ListModel] = [] {
         didSet {
             saveItems()
-            print(list)
         }
     }
     
@@ -113,7 +112,8 @@ class ListsViewModel: ObservableObject {
     // MARK: - CRUD List Items
     func addItem(_ item: ItemModel, to listModel: ListModel) {
         if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-            let listWithNewItem = listModel.addItem(item)
+            
+            let listWithNewItem = list[index].addItem(item)
             
             list[index] = listWithNewItem
             
