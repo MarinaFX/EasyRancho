@@ -27,7 +27,7 @@ struct AddNewItemView: View {
                     ProductListView(list: list, filter: $searchText)
                     
                     Button(action: prontoButtonPressed, label: {
-                        Text("Pronto")
+                        Text("ProntoNovosItens")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .frame(height: geometry.size.height * 0.06)

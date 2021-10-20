@@ -57,6 +57,9 @@ struct ListView: View {
                         } label: {
                             Text(canEditTitle ? "Salvar" : "Editar")
                         }
+                        
+                    } label: {
+                        Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
                     }
                 }
             // MARK: - onAppear

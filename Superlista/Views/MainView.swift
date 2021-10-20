@@ -11,6 +11,7 @@ struct MainView: View {
     @State var isLoading: Bool = false
     
     @State var showAlert = false
+    var TituloDaNovaLista = "TituloDaNovaLista"
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
@@ -35,8 +36,7 @@ struct MainView: View {
                 // MARK: - empty state
                 if listsViewModel.list.isEmpty {
                     VStack {
-                        
-                        Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
+                        Text("listaVazia")
                             .multilineTextAlignment(.center)
                             .font(.headline)
                         
@@ -93,25 +93,11 @@ struct MainView: View {
                                             showAlert = true
                                         }
                                 }
-                                // MARK: - on press delete action
-                                .alert(isPresented: $showAlert) {
-                                    var listName = "uma lista"
-                                    
-                                    if let currentList = listsViewModel.currentList {
-                                        listName = currentList.title
-                                    }
-                                    
-                                    return Alert(
-                                        title: Text("Deseja remover \(listName)?"),
-                                        message: Text("A lista removida não poderá ser recuperada após sua exclusão"),
-                                        primaryButton: .cancel(),
-                                        secondaryButton: .destructive(
-                                            Text("Apagar"),
-                                            action: {
-                                                listsViewModel.removeList(listsViewModel.currentList!)
-                                                showAlert = false
-                                            })
-                                    )
+                                .alert(isPresented: $showAlert){
+                                    Alert(title: Text("remover \(listsViewModel.currentList!.title)"), message: Text("subtituloRemoverLista"), primaryButton: .cancel(), secondaryButton: .destructive(Text("ApagarLista"), action:{
+                                        listsViewModel.removeList(listsViewModel.currentList!)
+                                        showAlert = false
+                                    }))
                                 }
                                 // MARK: - list cards drag and drop
                                 .onDrag({
@@ -162,10 +148,9 @@ struct MainView: View {
                     
                     // MARK: - edit button
                     ToolbarItem(placement: .navigationBarLeading){
-                        if !listsViewModel.list.isEmpty {
-                            Button(action: { isEditing.toggle() }, label: {
-                                Text(isEditing ? "Concluir": "Editar")
-                            })
+                        if !listsViewModel.list.isEmpty{
+                            Button(action: {isEditing.toggle()}, label: {
+                                Text(isEditing ? "ConcluirListas": "EditarListas")})
                         }
                     }
                     
@@ -178,7 +163,7 @@ struct MainView: View {
                     
                     // MARK: - new list button
                     ToolbarItem(placement: .destructiveAction){
-                        Button(action: createNewListAction, label: { Text("Nova lista") })
+                        Button(action: createNewListAction, label: { Text("NovaLista") })
                     }
                 }
                 
@@ -195,15 +180,25 @@ struct MainView: View {
     }
     
     func createNewListAction() {
-        
+#warning("Not working to translate this list name")
         let newList: ListModel = ListModel(title: "Nova Lista", owner: ListsViewModel.user)
-
-        listsViewModel.addList(newList)
-                
-        self.listId = newList.id
+        let newListId: String = newList.id
+        listsViewModel.addList(newItem: newList)
+        self.listId = newListId
         self.isCreatingList = true
 
     }
     
 }
 
+struct GridListView_Previews: PreviewProvider {
+    static var listsViewModel: ListsViewModel = ListsViewModel()
+    static var previews: some View {
+        NavigationView {
+#warning("Not working to translate this page list name")
+            GridListView()
+                .navigationTitle("TituloPaginaDeLista")
+        }
+        .environmentObject(listsViewModel)
+    }
+}

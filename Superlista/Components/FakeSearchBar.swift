@@ -10,7 +10,7 @@ import SwiftUI
 struct FakeSearchBar: View {
     var body: some View {
         HStack {
-            Text("Adicionar novos itens")
+            Text("AdicionarItensFake")
                 .foregroundColor(Color(UIColor.secondaryLabel))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(8)
