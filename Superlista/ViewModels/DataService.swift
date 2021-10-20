@@ -1,19 +1,13 @@
-//
-//  ListsViewModel.swift
-//  Superlista
-//
-//  Created by Thaís Fernandes on 10/05/21.
-//
-
 import Foundation
 import CloudKit
 import SwiftUI
 import Combine
 
-class ListsViewModel: ObservableObject {
-    @Published var list: [ListModel] = [] {
+class DataService: ObservableObject {
+    
+    @Published var lists: [ListModel] = [] {
         didSet {
-            saveItems()
+            saveDataOnUserDefaults()
         }
     }
     
@@ -25,20 +19,19 @@ class ListsViewModel: ObservableObject {
     
     let products = ProductListViewModel().productsOrdered
     
-    let itemsKey: String = "lists"
-    
-    static var listsViewModel = ListsViewModel()
+    let userDefaultsKey: String = "lists"
     
     let networkMonitor = NetworkMonitor.shared
     
+    var userSubscription: AnyCancellable?
+
     init() {
         getListsIntegration()
     }
     
-    var userSubscription: AnyCancellable?
     
     func getListsIntegration() {
-        self.list = getUserDefaults()
+        self.lists = getUserDefaults()
 
         networkMonitor.startMonitoring { path in
             if path.status == .satisfied {
@@ -55,14 +48,15 @@ class ListsViewModel: ObservableObject {
                         }
                     }
 
-                    self.list = userDefaults
+                    self.lists = userDefaults
                 }
             }
         }
     }
     
+    // MARK: - User Defaults
     func getUserDefaults() -> [ListModel] {
-        if let data = UserDefaults.standard.data(forKey: itemsKey),
+        if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
            let savedItems = try? JSONDecoder().decode([ListModel].self, from: data) {
             
             return savedItems
@@ -70,92 +64,92 @@ class ListsViewModel: ObservableObject {
         return []
     }
     
-    func saveItems() {
-        if let encodedData = try? JSONEncoder().encode(list) {
-            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+    func saveDataOnUserDefaults() {
+        if let encodedData = try? JSONEncoder().encode(lists) {
+            UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
         }
     }
     
     // MARK: - CRUD lists
     func toggleListFavorite(of listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             let newListState = listModel.toggleFavorite()
             
-            list[index] = newListState
+            lists[index] = newListState
             
             CloudIntegration.actions.toggleFavorite(of: newListState)
         }
     }
     
     func removeList(_ listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-            list.remove(at: index)
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            lists.remove(at: index)
             
             CloudIntegration.actions.deleteList(listModel)
         }
     }
     
     func editListTitle(of listModel: ListModel, newTitle: String) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
-            list[index] = listModel.editTitle(newTitle: newTitle)
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            lists[index] = listModel.editTitle(newTitle: newTitle)
             
             CloudIntegration.actions.updateListTitle(listModel, newTitle)
         }
     }
     
     func addList(_ newList: ListModel) {
-        list.append(newList)
+        lists.append(newList)
         
         CloudIntegration.actions.createList(newList)
     }
     
     // MARK: - CRUD List Items
     func addItem(_ item: ItemModel, to listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             
-            let listWithNewItem = list[index].addItem(item)
+            let listWithNewItem = lists[index].addItem(item)
             
-            list[index] = listWithNewItem
+            lists[index] = listWithNewItem
             
             CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItem)
         }
     }
     
     func removeItem(from row: IndexSet, of category: CategoryModel, of listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             let listWithoutItem = listModel.removeItem(from: row, of: category)
             
-            list[index] = listWithoutItem
+            lists[index] = listWithoutItem
             
             CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
         }
     }
     
     func removeItem(_ item: ItemModel, from listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             let listWithoutItem = listModel.removeItem(item)
             
-            list[index] = listWithoutItem
+            lists[index] = listWithoutItem
             
             CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
         }
     }
     
-    func addComent(_ comment: String, to item: ItemModel, from listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+    func addComment(_ comment: String, to item: ItemModel, from listModel: ListModel) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             let listWithNewItemComment = listModel.addComment(comment, to: item)
             
-            list[index] = listWithNewItemComment
+            lists[index] = listWithNewItemComment
             
             CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemComment)
         }
     }
     
     func toggleCompletion(of item: ItemModel, from listModel: ListModel) {
-        if let index = list.firstIndex(where: { $0.id == listModel.id }) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             let listWithItemNewState = listModel.toggleCompletion(of: item)
             
-            list[index] = listWithItemNewState
+            lists[index] = listWithItemNewState
             
             CloudIntegration.actions.updateCkListItems(updatedList: listWithItemNewState)
         }

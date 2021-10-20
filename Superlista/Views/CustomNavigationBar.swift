@@ -1,10 +1,3 @@
-//
-//  CustomNavigationBar.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 06/05/21.
-//
-
 import Foundation
 import UIKit
 import SwiftUI
@@ -13,7 +6,7 @@ struct NavigationBarModifier: ViewModifier {
         
     var backgroundColor: UIColor?
     
-    init( backgroundColor: UIColor?) {
+    init(backgroundColor: UIColor?) {
         self.backgroundColor = backgroundColor
         let coloredAppearance = UINavigationBarAppearance()
         coloredAppearance.configureWithTransparentBackground()

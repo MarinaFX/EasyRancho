@@ -3,7 +3,7 @@ import UIKit
 import CloudKit
 
 struct MainView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     @State var isEditing : Bool = false
     @State var listId: String = ""
@@ -33,7 +33,7 @@ struct MainView: View {
                     .ignoresSafeArea()
                 
                 // MARK: - empty state
-                if listsViewModel.list.isEmpty {
+                if listsViewModel.lists.isEmpty {
                     VStack {
                         
                         Text("Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?")
@@ -44,7 +44,7 @@ struct MainView: View {
                             .frame(width: 400, height: 400)
                     }
                     .onAppear {
-                        if listsViewModel.list.isEmpty {
+                        if listsViewModel.lists.isEmpty {
                             self.isEditing = false
                         }
                     }
@@ -53,7 +53,7 @@ struct MainView: View {
                 // MARK: - Lists
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 20, content: {
-                        ForEach(listsViewModel.list) { list in
+                        ForEach(listsViewModel.lists) { list in
                             
                             // MARK: - editing state
                             if isEditing {
@@ -162,7 +162,7 @@ struct MainView: View {
                     
                     // MARK: - edit button
                     ToolbarItem(placement: .navigationBarLeading){
-                        if !listsViewModel.list.isEmpty {
+                        if !listsViewModel.lists.isEmpty {
                             Button(action: { isEditing.toggle() }, label: {
                                 Text(isEditing ? "Concluir": "Editar")
                             })
@@ -183,7 +183,7 @@ struct MainView: View {
                 }
                 
                 // MARK: - transparent new list button
-                if listsViewModel.list.isEmpty {
+                if listsViewModel.lists.isEmpty {
                     Button(action: createNewListAction, label : {
                         Rectangle()
                             .fill(Color.clear)
@@ -195,15 +195,12 @@ struct MainView: View {
     }
     
     func createNewListAction() {
-        
         let newList: ListModel = ListModel(title: "Nova Lista")
 
         listsViewModel.addList(newList)
                 
         self.listId = newList.id
         self.isCreatingList = true
-        
-        print(self.listId, "Main View")
     }
     
 }

@@ -1,10 +1,3 @@
-//
-//  FakeSearchBar.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 12/05/21.
-//
-
 import SwiftUI
 
 struct FakeSearchBar: View {

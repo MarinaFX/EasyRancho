@@ -9,7 +9,7 @@ import SwiftUI
 
 #warning("Verificar se essa view esta sendo usada. Caso nao, deletar")
 struct ListsView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
@@ -19,7 +19,7 @@ struct ListsView: View {
                 columns: columns,
                 spacing: 20,
                 content: {
-                    ForEach(listsViewModel.list) { list in
+                    ForEach(listsViewModel.lists) { list in
                         NavigationLink(destination: ListView(listId: list.id), label: {
                             ZStack {
                                 Rectangle()

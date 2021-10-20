@@ -1,17 +1,10 @@
-//
-//  AddNewItemView.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 06/05/21.
-//
-
 import SwiftUI
 import Foundation
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     var list: ListModel
     
@@ -52,7 +45,7 @@ struct AddNewItemView: View {
         }
     }
     
-    func prontoButtonPressed(){
+    func prontoButtonPressed() {
         presentationMode.wrappedValue.dismiss()
     }
 }

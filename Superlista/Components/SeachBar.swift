@@ -1,10 +1,3 @@
-//
-//  SearchBarView.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 06/05/21.
-//
-
 import SwiftUI
 
 struct SearchBar: View {
@@ -49,16 +42,3 @@ struct SearchBar_Previews: PreviewProvider {
         SearchBar(text: .constant(""))
     }
 }
-
-//            if isEditing {
-//                Button(action: {
-//                    self.isEditing = false
-//                    self.text = ""
-//                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//                }) {
-//                    Text("Cancel")
-//                }
-//                .padding(.trailing, 10)
-//                .transition(.move(edge: .trailing))
-//                .animation(.default)
-//            }

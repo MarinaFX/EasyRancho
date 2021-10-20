@@ -1,25 +1,19 @@
-//
-//  TestView.swift
-//  Superlista
-//
-//  Created by Thaís Fernandes on 06/05/21.
-//
-
 import SwiftUI
 
 struct ListView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
 
     @State var hasChangedItems = false
     @State var listId: String
     @State var canEditTitle: Bool = false
-    @State var list: ListModel?
+    
+    var list: ListModel? {
+        return getList()
+    }
+    
     @State var listTitle: String = ""
     
-//    init(listId: String) {
-//        self.list = getList()
-//        self.hasChangedItems
-//    }
+    
     
     var body: some View {
         GeometryReader { geometry in
@@ -67,9 +61,6 @@ struct ListView: View {
                 }
             // MARK: - onAppear
                 .onAppear {
-                    if list == nil {
-                        self.list = getList()
-                    }
                                         
                     if hasChangedItems, let list = self.list {
                         CloudIntegration.actions.updateCkListItems(updatedList: list)
@@ -82,7 +73,7 @@ struct ListView: View {
     
     // MARK: - getList()
     func getList() -> ListModel? {
-        if let list = listsViewModel.list.first(where: { $0.id == listId }) {
+        if let list = listsViewModel.lists.first(where: { $0.id == listId }) {
             return list
         }
         return nil

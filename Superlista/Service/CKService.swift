@@ -1,10 +1,3 @@
-//
-//  CKService.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 04/10/21.
-//
-
 import Foundation
 import CloudKit
 import SwiftUI
@@ -142,7 +135,6 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Get another user name
-    
     func getAnotherUserName(userID: CKRecord.ID, completion: @escaping (Result<String,CKError>) -> Void) {
         publicDB.fetch(withRecordID: userID) { record, error in
             if error == nil {
@@ -226,14 +218,13 @@ class CKService: ObservableObject {
             usersLists = user!.favoriteListsRef!
         }
         
+        print(usersLists, "usersLists delete antes")
+                
         if let listToDeleteIndex = usersLists.firstIndex(where: { $0.recordID.recordName == listId.recordName }) {
-            print("foi?")
             usersLists.remove(at: listToDeleteIndex)
         }
         
-//        for list in usersLists {
-//            if list.recordID.recordName == listId.recordName
-//        }
+        print(usersLists, "usersLists delete depois")
         
         guard let userID = user?.id else {
             completion(.failure(CKError.init(CKError.operationCancelled)))
@@ -277,6 +268,7 @@ class CKService: ObservableObject {
         
         usersLists.append(listToAddRef)
         
+        print(usersLists, "add list depois")
         
         guard let userID = user?.id else {
             completion(.failure(CKError.init(CKError.operationCancelled)))
@@ -409,7 +401,6 @@ class CKService: ObservableObject {
     
     
     // MARK: - Update List
-    
     func updateListItems(listItems: [String], listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.fetch(withRecordID: listID) { record, error in
             if error == nil {
@@ -464,5 +455,4 @@ class CKService: ObservableObject {
             }
         }
     }
-    
 }

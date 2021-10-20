@@ -1,10 +1,3 @@
-//
-//  Helper.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 05/10/21.
-//
-
 import Foundation
 import CloudKit
 import SwiftUI
@@ -56,7 +49,6 @@ func CKAssetToUIImage(ckImage: CKAsset?) -> UIImage? {
 }
 
 // MARK: - ShareSheet
-
 func shareSheet(listID: String, ownerID: String, option: String, listName: String, ownerName: String) {
     let activityVC = UIActivityViewController(activityItems: [CustomSource(listID: listID, ownerID: ownerID, option: option, listName: listName, ownerName: ownerName)], applicationActivities: nil)
     let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)

@@ -45,18 +45,40 @@ class CloudIntegration: ObservableObject {
     }
     
     func deleteList(_ list: ListModel) {
-        CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .MyLists) { result in
+        
+        deleteListFromMyLists(list: list)
+        
+        deleteListFromAll(list: list)
+        
+        //deleteListFromFavorites(list: list)
+
+    }
+    
+    func deleteListFromFavorites(list: ListModel) {
+        CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .FavoriteLists) { result in
             switch result {
-                case .success: print("deleteList() foi")
+                case .success: print("delete fav foi")
  
-                case .failure(let error): print("deleteList() error \(error)")
+                case .failure(let error): print("delete fav error \(error)")
             }
         }
-        
+    }
+    
+    func deleteListFromMyLists(list: ListModel) {
+        CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .MyLists) { result in
+            switch result {
+                case .success: print("delete from myList foi")
+
+                case .failure(let error): print("delete from myList error \(error)")
+            }
+        }
+    }
+    
+    func deleteListFromAll(list: ListModel) {
         CKService.currentModel.deleteList(listID: CKRecord.ID(recordName: list.id)) { result in
             switch result {
                 case .success(let result): print("foi", result)
-            
+
                 case .failure(let error): print("nao foi", error)
             }
         }

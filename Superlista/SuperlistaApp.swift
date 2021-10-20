@@ -11,7 +11,7 @@ import CloudKit
 
 @main
 struct SuperlistaApp: App {
-    @StateObject var listsViewModel: ListsViewModel = ListsViewModel()
+    @StateObject var listsViewModel: DataService = DataService()
     
     let purpleColor = Color("HeaderColor")
     

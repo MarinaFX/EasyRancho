@@ -1,14 +1,7 @@
-//
-//  ContentView.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 30/04/21.
-//
-
 import SwiftUI
 
 struct ProductListView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     let products = ProductListViewModel().productsOrdered
     

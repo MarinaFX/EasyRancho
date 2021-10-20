@@ -1,14 +1,7 @@
-//
-//  ListHeader.swift
-//  Superlista
-//
-//  Created by Thaís Fernandes on 17/05/21.
-//
-
 import SwiftUI
 
 struct ListHeader: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     @Binding var listaTitulo: String
     @State var canComment: Bool = false
