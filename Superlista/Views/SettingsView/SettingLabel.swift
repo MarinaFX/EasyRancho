@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SettingLabel: View {
+    @State var showingSheet = false
+    
     var body: some View {
         VStack(spacing: 10){
             Button(action: {
-                print("Button tapped!")
+                showingSheet = true
             }) {
                 HStack {
                     Text("Editar perfil")
@@ -25,6 +27,9 @@ struct SettingLabel: View {
                 .foregroundColor(.white)
                 .background(Color("ButtonBG"))
                 .cornerRadius(13)
+            }
+            .sheet(isPresented: $showingSheet) {
+                EditProifleView()
             }
             
             Button(action: {
@@ -78,9 +83,9 @@ struct SettingLabel: View {
         }
     }
 }
-    
-    struct SettingLabel_Previews: PreviewProvider {
-        static var previews: some View {
-            SettingLabel()
-        }
+
+struct SettingLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingLabel()
     }
+}
