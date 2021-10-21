@@ -1,19 +1,13 @@
-//
-//  ItemCommentView.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 12/05/21.
-//
-
 import SwiftUI
 
 struct ItemCommentView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
-    let purpleColor = Color("HeaderColor")
     @State var isCommenting: Bool = false
     @State var comment: String = ""
     
+    let purpleColor = Color("HeaderColor")
+
     var item: ItemModel
     var list: ListModel
     
@@ -76,7 +70,7 @@ struct ItemCommentView: View {
                             .foregroundColor(Color.primary)
                             .font(.subheadline)
                             .onTapGesture {
-                                listsViewModel.addComent(comment, to: item, from: list)
+                                listsViewModel.addComment(comment, to: item, from: list)
                                 isCommenting = false
                             }
                     }

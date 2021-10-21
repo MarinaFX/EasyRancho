@@ -1,13 +1,7 @@
-//
-//  CKService.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 04/10/21.
-//
-
 import Foundation
 import CloudKit
 import SwiftUI
+import Combine
 
 class CKService: ObservableObject {
     
@@ -21,7 +15,13 @@ class CKService: ObservableObject {
     let privateDB: CKDatabase // Users
     
     // MARK: - Properties
-    private(set) var user: CKUserModel?
+    private(set) var user: CKUserModel? {
+        didSet {
+            userSubject.value = user
+        }
+    }
+    
+    let userSubject: CurrentValueSubject<CKUserModel?, Never> = .init(nil)
     
     static var currentModel = CKService()
     
@@ -48,10 +48,10 @@ class CKService: ObservableObject {
         if userStatus == .available {
             getUser { result in
                 switch result {
-                case .success(let user):
-                    self.user = user
-                case .failure(let error):
-                    completion(error)
+                    case .success(let user):
+                        self.user = user
+                    case .failure(let error):
+                        completion(error)
                 }
                 dispatchSemaphore.signal()
             }
@@ -59,7 +59,7 @@ class CKService: ObservableObject {
         else {
             dispatchSemaphore.signal()
         }
-    
+        
     }
     
     // MARK: - Verify Account
@@ -78,16 +78,16 @@ class CKService: ObservableObject {
     // MARK: - Account Status
     private func parseCKAccountStatus(status: CKAccountStatus) -> UserStatus {
         switch status {
-        case .available:
-            return .available
-        case .noAccount:
-            return .noAccount
-        case .couldNotDetermine:
-            return .couldNotDetermine
-        case .restricted:
-            return .restricted
-        default:
-            return .none
+            case .available:
+                return .available
+            case .noAccount:
+                return .noAccount
+            case .couldNotDetermine:
+                return .couldNotDetermine
+            case .restricted:
+                return .restricted
+            default:
+                return .none
         }
     }
     
@@ -124,14 +124,16 @@ class CKService: ObservableObject {
                 dispatchSemaphore.signal()
                 return
             }
-            let user = CKUserModel(record: record)
-            completion(.success(user))
-            dispatchSemaphore.signal()
+            
+            let _ = CKUserModel(record: record) { user in
+                completion(.success(user))
+                dispatchSemaphore.signal()
+            }
+            
         }
     }
     
     // MARK: - Get another user name
-    
     func getAnotherUserName(userID: CKRecord.ID, completion: @escaping (Result<String,CKError>) -> Void) {
         publicDB.fetch(withRecordID: userID) { record, error in
             if error == nil {
@@ -149,26 +151,26 @@ class CKService: ObservableObject {
     func updateUserName(name: String, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         getUser { result in
             switch result {
-            case .success(let user):
-                self.publicDB.fetch(withRecordID: user.id) { record, error in
-                    if error == nil {
-                        record!.setValue(name, forKey: "UserName")
-                        
-                        self.publicDB.save(record!) { user, error in
-                            if error == nil {
-                                self.refresh { error in
-                                    completion(.success(record!.recordID))
+                case .success(let user):
+                    self.publicDB.fetch(withRecordID: user.id) { record, error in
+                        if error == nil {
+                            record!.setValue(name, forKey: "UserName")
+                            
+                            self.publicDB.save(record!) { user, error in
+                                if error == nil {
+                                    self.refresh { error in
+                                        completion(.success(record!.recordID))
+                                    }
+                                } else {
+                                    completion(.failure(error as! CKError))
                                 }
-                            } else {
-                                completion(.failure(error as! CKError))
                             }
+                        } else {
+                            completion(.failure(error as! CKError))
                         }
-                    } else {
-                        completion(.failure(error as! CKError))
                     }
-                }
-            case .failure(let error):
-                completion(.failure(error))
+                case .failure(let error):
+                    completion(.failure(error))
             }
         }
     }
@@ -177,26 +179,107 @@ class CKService: ObservableObject {
     func updateUserImage(image: UIImage, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         getUser { result in
             switch result {
-            case .success(let user):
-                self.publicDB.fetch(withRecordID: user.id) { record, error in
-                    if error == nil {
-                        record!.setValue(ImageToCKAsset(uiImage: image), forKey: "Image")
-                        
-                        self.publicDB.save(record!) { user, error in
-                            if error == nil {
-                                self.refresh { error in
-                                    completion(.success(record!.recordID))
+                case .success(let user):
+                    self.publicDB.fetch(withRecordID: user.id) { record, error in
+                        if error == nil {
+                            record!.setValue(ImageToCKAsset(uiImage: image), forKey: "Image")
+                            
+                            self.publicDB.save(record!) { user, error in
+                                if error == nil {
+                                    self.refresh { error in
+                                        completion(.success(record!.recordID))
+                                    }
+                                } else {
+                                    completion(.failure(error as! CKError))
                                 }
-                            } else {
-                                completion(.failure(error as! CKError))
                             }
+                        } else {
+                            completion(.failure(error as! CKError))
+                        }
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: - Remove User's List
+    func deleteUsersList(listId: CKRecord.ID, key: UsersList, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        var usersLists: [CKRecord.Reference] = []
+        
+        if key == UsersList.MyLists {
+            usersLists = user!.myListsRef!
+            
+        } else if key == UsersList.SharedWithMe {
+            usersLists = user!.sharedWithMeRef!
+        }
+                        
+        if let listToDeleteIndex = usersLists.firstIndex(where: { $0.recordID.recordName == listId.recordName }) {
+            usersLists.remove(at: listToDeleteIndex)
+        }
+                
+        guard let userID = user?.id else {
+            completion(.failure(CKError.init(CKError.operationCancelled)))
+            return
+        }
+        
+        publicDB.fetch(withRecordID: userID) { record, error in
+            
+            if error == nil {
+                        
+                record!.setValue(usersLists, forKey: key.rawValue)
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
                         }
                     } else {
                         completion(.failure(error as! CKError))
                     }
                 }
-            case .failure(let error):
-                completion(.failure(error))
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
+    // MARK: - Add User's List
+    func addUsersList(list: CKListModel, key: UsersList, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        var usersLists: [CKRecord.Reference] = []
+        
+        let listToAddRef = ListModelConverter().convertCloudListToReference(withList: list)
+        
+        if key == UsersList.MyLists {
+            usersLists = user!.myListsRef!
+            
+        } else if key == UsersList.SharedWithMe {
+            usersLists = user!.sharedWithMeRef!
+            
+        }
+        
+        usersLists.append(listToAddRef)
+                
+        guard let userID = user?.id else {
+            completion(.failure(CKError.init(CKError.operationCancelled)))
+            return
+        }
+        
+        publicDB.fetch(withRecordID: userID) { record, error in
+            if error == nil {
+                record!.setValue(usersLists, forKey: key.rawValue)
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
             }
         }
     }
@@ -205,26 +288,26 @@ class CKService: ObservableObject {
     func updateCustomItems(customItems: [String], completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         getUser { result in
             switch result {
-            case .success(let user):
-                self.publicDB.fetch(withRecordID: user.id) { record, error in
-                    if error == nil {
-                        record!.setValue(customItems, forKey: "CustomItems")
-                        
-                        self.publicDB.save(record!) { user, error in
-                            if error == nil {
-                                self.refresh { error in
-                                    completion(.success(record!.recordID))
+                case .success(let user):
+                    self.publicDB.fetch(withRecordID: user.id) { record, error in
+                        if error == nil {
+                            record!.setValue(customItems, forKey: "CustomItems")
+                            
+                            self.publicDB.save(record!) { user, error in
+                                if error == nil {
+                                    self.refresh { error in
+                                        completion(.success(record!.recordID))
+                                    }
+                                } else {
+                                    completion(.failure(error as! CKError))
                                 }
-                            } else {
-                                completion(.failure(error as! CKError))
                             }
+                        } else {
+                            completion(.failure(error as! CKError))
                         }
-                    } else {
-                        completion(.failure(error as! CKError))
                     }
-                }
-            case .failure(let error):
-                completion(.failure(error))
+                case .failure(let error):
+                    completion(.failure(error))
             }
         }
     }
@@ -233,7 +316,7 @@ class CKService: ObservableObject {
     func getList(listID: CKRecord.ID, completion: @escaping (Result<CKListModel,CKError>) -> Void) {
         let dispatchSemaphore = DispatchSemaphore(value: 1)
         dispatchSemaphore.wait()
-
+        
         let listIDRecord = listID
         
         publicDB.fetch(withRecordID: listIDRecord) { record, error in
@@ -259,7 +342,7 @@ class CKService: ObservableObject {
         publicDB.save(record) { savedRecord, error in
             if error == nil {
                 completion(.success(savedRecord!.recordID))
-    
+                
             } else {
                 completion(.failure(error as! CKError))
             }
@@ -267,21 +350,20 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Save List in Users Lists
-    #warning("Atualizar key para um enum com MyLists, FavoriteLists e SharedWithMe")
-    func saveListUsersList(listID: CKRecord.ID, key: String, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func saveListUsersList(listID: CKRecord.ID, key: UsersList, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         
         var usersLists: [CKRecord.Reference] = []
         
-        if key == "MyLists" {
+        if key == UsersList.MyLists {
             usersLists = user!.myListsRef!
-        } else if key == "SharedWithMe" {
+            
+        } else if key == UsersList.SharedWithMe {
             usersLists = user!.sharedWithMeRef!
-        } else if key == "FavoriteLists" {
-            usersLists = user!.favoriteListsRef!
+            
         }
         
         usersLists.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
-
+        
         guard let userID = user?.id else {
             completion(.failure(CKError.init(CKError.operationCancelled)))
             return
@@ -289,7 +371,7 @@ class CKService: ObservableObject {
         
         publicDB.fetch(withRecordID: userID) { record, error in
             if error == nil {
-                record!.setValue(usersLists, forKey: key)
+                record!.setValue(usersLists, forKey: key.rawValue)
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
@@ -308,7 +390,6 @@ class CKService: ObservableObject {
     
     
     // MARK: - Update List
-    
     func updateListItems(listItems: [String], listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.fetch(withRecordID: listID) { record, error in
             if error == nil {
@@ -388,5 +469,4 @@ class CKService: ObservableObject {
             }
         }
     }
-    
 }

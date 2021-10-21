@@ -1,10 +1,3 @@
-//
-//  CKItemModel.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 04/10/21.
-//
-
 import Foundation
 
 struct CKItemModel {

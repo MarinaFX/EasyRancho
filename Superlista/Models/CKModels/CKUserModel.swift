@@ -1,10 +1,3 @@
-//
-//  CKUserModel.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 04/10/21.
-//
-
 import Foundation
 import CloudKit
 import SwiftUI
@@ -26,9 +19,6 @@ class CKUserModel {
     var customProductsString: [String]?
     var customProducts: [ProductModel]?
     
-    var favoriteListsRef: [CKRecord.Reference]?
-    var favoriteLists: [CKListModel]?
-    
     var myListsRef: [CKRecord.Reference]?
     var myLists: [CKListModel]?
     
@@ -40,7 +30,10 @@ class CKUserModel {
     let productConverter: ProductModelConverter = ProductModelConverter()
 
     
-    init(record: CKRecord) {
+    init(record: CKRecord, completion: ((CKUserModel) -> Void)? = nil) {
+        
+        let group = DispatchGroup()
+        
         id = record.recordID
         
         name = record["UserName"] as? String
@@ -49,18 +42,41 @@ class CKUserModel {
         
         customProductsString = record["CustomItems"] as? [String] ?? []
         customProducts = productConverter.convertStringToProducts(withString: customProductsString ?? [])
-        
-        favoriteListsRef = record["FavoriteLists"] as? [CKRecord.Reference] ?? []
-        favoriteLists = ListConverter.convertListReferenceToCloudList(withList: favoriteListsRef ?? [])
+                
+        group.enter()
         
         myListsRef = record["MyLists"] as? [CKRecord.Reference] ?? []
-        myLists = ListConverter.convertListReferenceToCloudList(withList: myListsRef ?? [])
+                
+        ListConverter.convertListReferenceToCloudList(withList: myListsRef ?? []) { result in
+            switch result {
+                case .success(let lists):
+                    self.myLists = lists
+                case .failure:
+                    self.myLists = []
+                    
+            }
+            group.leave()
+        }
         
         sharedWithMeRef = record["SharedWithMe"] as? [CKRecord.Reference] ?? []
-        sharedWithMe = ListConverter.convertListReferenceToCloudList(withList: sharedWithMeRef ?? [])
+        
+        group.enter()
+        ListConverter.convertListReferenceToCloudList(withList: sharedWithMeRef ?? []) { result in
+            switch result {
+                case .success(let lists):
+                    self.sharedWithMe = lists
+                case .failure:
+                    self.sharedWithMe = []
+            }
+            group.leave()
+        }
+        
+        group.wait()
+        
+        completion?(self)
     }
     
-    init(id: CKRecord.ID, name: String? = "", ckImage: CKAsset? = nil, customProductsString: [String], favoriteLists: [CKListModel]? = [], myLists: [CKListModel]? = [], sharedWithMe: [CKListModel]? = []) {
+    init(id: CKRecord.ID, name: String? = "", ckImage: CKAsset? = nil, customProductsString: [String], myLists: [CKListModel]? = [], sharedWithMe: [CKListModel]? = []) {
         
         self.id = id
         self.name = name
@@ -69,13 +85,6 @@ class CKUserModel {
         
         self.customProductsString = customProductsString
         self.customProducts = productConverter.convertStringToProducts(withString: customProductsString)
-        
-        self.favoriteLists = favoriteLists
-        self.favoriteListsRef = []
-        
-        for list in favoriteLists! {
-            favoriteListsRef?.append((CKRecord.Reference(recordID: list.id, action: CKRecord.ReferenceAction.none)))
-        }
         
         self.myLists = myLists
         self.myListsRef = []

@@ -1,10 +1,3 @@
-//
-//  MainScreen.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 06/05/21.
-//
-
 import SwiftUI
 
 struct MainScreen: View {
@@ -35,14 +28,3 @@ struct MainScreen: View {
         }
     }
 }
-
-//struct MainScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView{
-//            AddNewItemView(searchText: "")
-//                //.navigationTitle("Adicionar Capa")
-//        }
-//        .accentColor(.white)
-//      
-//    }
-//}

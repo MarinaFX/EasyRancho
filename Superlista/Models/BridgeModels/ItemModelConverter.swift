@@ -1,10 +1,3 @@
-//
-//  ItemModelConverter.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 07/10/21.
-//
-
 import Foundation
 
 //MARK: - ItemModelConverter Class
@@ -101,7 +94,13 @@ class ItemModelConverter {
         var itemsString: [String] = []
         
         items.forEach { item in
-            itemsString.append(item.name + String(item.quantity) + (item.comment ?? "") + String(item.isCompleted))
+            var comment = "nil"
+            
+            if let itemComment = item.comment, itemComment != "" {
+                comment = itemComment
+            }
+            
+            itemsString.append("\(item.name);\(item.category);\(item.quantity);\(comment);\(item.isCompleted)")
         }
         
         return itemsString

@@ -1,10 +1,3 @@
-//
-//  UserModelConverter.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 15/10/21.
-//
-
 import Foundation
 import SwiftUI
 import CloudKit
@@ -34,17 +27,12 @@ class UserModelConverter {
         let id: String
         let name: String
         let customProducts: [ProductModel]
-        var favoriteLists: [ListModel] = []
         var myLists: [ListModel] = []
         var sharedWithMe: [ListModel] = []
                 
         id = user.id.recordName
         name = user.name ?? "nome aleatorio"
         customProducts = productConverter.convertStringToProducts(withString: user.customProductsString ?? [])
-        
-        for list in user.favoriteLists! {
-            favoriteLists.append(listConverter.convertCloudListToLocal(withList: list))
-        }
         
         for list in user.myLists! {
             myLists.append(listConverter.convertCloudListToLocal(withList: list))
@@ -54,7 +42,7 @@ class UserModelConverter {
             sharedWithMe.append(listConverter.convertCloudListToLocal(withList: list))
         }
         
-        let localUser: UserModel = UserModel(id: id, name: name, customProducts: customProducts, favoriteLists: favoriteLists, myLists: myLists, sharedWithMe: sharedWithMe)
+        let localUser: UserModel = UserModel(id: id, name: name, customProducts: customProducts, myLists: myLists, sharedWithMe: sharedWithMe)
 
         
         return localUser
@@ -87,17 +75,12 @@ class UserModelConverter {
         let name: String
         let customProductsString: [String]
         
-        var favoriteLists: [CKListModel] = []
         var myLists: [CKListModel] = []
         var sharedWithMe: [CKListModel] = []
         
         id = CKRecord.ID(recordName: user.id)
         name = user.name ?? "nome aleatorio"
         customProductsString = productConverter.convertLocalProductsToString(withProducts: user.customProducts ?? [])
-        
-        for list in user.favoriteLists! {
-            favoriteLists.append(listConverter.convertLocalListToCloud(withList: list))
-        }
         
         for list in user.myLists! {
             myLists.append(listConverter.convertLocalListToCloud(withList: list))
@@ -107,7 +90,7 @@ class UserModelConverter {
             sharedWithMe.append(listConverter.convertLocalListToCloud(withList: list))
         }
         
-        let cloudUser: CKUserModel = CKUserModel(id: id, name: name, customProductsString: customProductsString, favoriteLists: favoriteLists, myLists: myLists, sharedWithMe: sharedWithMe)
+        let cloudUser: CKUserModel = CKUserModel(id: id, name: name, customProductsString: customProductsString, myLists: myLists, sharedWithMe: sharedWithMe)
         
         return cloudUser
     }

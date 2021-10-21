@@ -1,10 +1,3 @@
-//
-//  DeepLink.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 06/10/21.
-//
-
 import Foundation
 
 struct DeepLink {

@@ -1,10 +1,3 @@
-//
-//  SplashView.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 24/05/21.
-//
-
 import SwiftUI
 
 struct SplashView: View {
@@ -34,7 +27,6 @@ struct SplashView: View {
             }
         }
     }
-    
 }
 
 struct SplashView_Previews: PreviewProvider {

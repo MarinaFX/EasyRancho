@@ -1,10 +1,3 @@
-//
-//  NetworkMonitor.swift
-//  Superlista
-//
-//  Created by Luiz Eduardo Mello dos Reis on 14/10/21.
-//
-
 import Foundation
 import Network
 

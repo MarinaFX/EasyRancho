@@ -1,14 +1,7 @@
-//
-//  ContentView.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 30/04/21.
-//
-
 import SwiftUI
 
 struct ProductListView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     let products = ProductListViewModel().productsOrdered
     
@@ -17,6 +10,8 @@ struct ProductListView: View {
     @State var selectedItems: [ItemModel] = []
         
     @Binding var filter: String
+    
+    @Binding var hasChangedItems: Bool
     
     var filteredProducts: [ProductModel] {
         return products.filter({ $0.name.localizedCaseInsensitiveContains(filter) })
@@ -52,6 +47,8 @@ struct ProductListView: View {
                         listsViewModel.addItem(newItem, to: list)
                         selectedItems.append(newItem)
                     }
+                    
+                    self.hasChangedItems = !selectedItems.isEmpty
                 }
             }
             .listRowBackground(Color("background"))

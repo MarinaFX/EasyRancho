@@ -1,10 +1,3 @@
-//
-//  ItemModel.swift
-//  Superlista
-//
-//  Created by Thaís Fernandes on 05/05/21.
-//
-
 import Foundation
 
 struct ItemModel: Identifiable, Codable {
