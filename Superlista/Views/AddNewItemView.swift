@@ -1,19 +1,14 @@
-//
-//  AddNewItemView.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 06/05/21.
-//
-
 import SwiftUI
 import Foundation
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     var list: ListModel
+    
+    @Binding var hasChangedItems: Bool
     
     @State var searchText: String
     
@@ -24,7 +19,7 @@ struct AddNewItemView: View {
             MainScreen(customView: AnyView(
                 VStack {
                     
-                    ProductListView(list: list, filter: $searchText)
+                    ProductListView(list: list, filter: $searchText, hasChangedItems: $hasChangedItems)
                     
                     Button(action: prontoButtonPressed, label: {
                         Text("ProntoNovosItens")
@@ -50,20 +45,7 @@ struct AddNewItemView: View {
         }
     }
     
-    func prontoButtonPressed(){
+    func prontoButtonPressed() {
         presentationMode.wrappedValue.dismiss()
     }
 }
-
-//struct AddNewItemView_Previews: PreviewProvider {
-//    @State static var testing: String = ""
-//
-//    static var previews: some View {
-//        NavigationView {
-//            AddNewItemView(searchText: "")
-//                .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-//                .previewDisplayName("iPhone 12")
-//        }
-//
-//    }
-//}

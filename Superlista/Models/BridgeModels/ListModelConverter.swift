@@ -1,10 +1,3 @@
-//
-//  ListModelConverter.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 06/10/21.
-//
-
 /**
  - name -> ProductModel
  - category -> ProductModel
@@ -29,23 +22,49 @@ class ListModelConverter {
     private let itemModelConverter = ItemModelConverter()
   //  private let userModelConverter = UserModelConverter()
 
-    //MARK: ListModelConverter Functions: Reference to ☁️
+    // MARK: - ListModelConverter Functions: Reference to ☁️
     
-    func convertListReferenceToCloudList(withList list: [CKRecord.Reference]) -> [CKListModel] {
+    func convertListReferenceToCloudList(withList list: [CKRecord.Reference], completion: @escaping (Result<[CKListModel], CKError>) -> Void) {
         var cloudList: [CKListModel] = []
         
-        for list in list {
-            CKService.currentModel.getList(listID: CKRecord.ID(recordName: list.recordID.recordName)) { result in
-                switch result {
-                case .success(let resultList):
-                    cloudList.append(resultList)
-                case .failure:
-                    return
+        DispatchQueue.global().async {
+            
+            let group = DispatchGroup()
+            
+            var ckError: CKError?
+            
+            for list in list {
+                group.enter()
+                
+                CKService.currentModel.getList(listID: CKRecord.ID(recordName: list.recordID.recordName)) { result in
+                    switch result {
+                        case .success(let resultList):
+                            cloudList.append(resultList)
+                                
+                        case .failure(let error):
+                            ckError = error
+                    }
+                    
+                    group.leave()
                 }
+                
+            }
+            
+            group.wait()
+            
+            if let error = ckError {
+                completion(.failure(error))
+
+            } else {
+                completion(.success(cloudList))
             }
         }
-        
-        return cloudList
+    }
+    
+    // MARK: - ListModelConverter Functions: ☁️ to Reference
+
+    func convertCloudListToReference(withList list: CKListModel) -> CKRecord.Reference {
+        return CKRecord.Reference(recordID: list.id, action: .none)
     }
     
     /**
@@ -69,13 +88,13 @@ class ListModelConverter {
             localSharedWith.append(UserModelConverter().convertCloudUserToLocal(withUser: shared))
         }
         
-        localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, favorite: false, owner: localOwner, sharedWith: localSharedWith)
+        localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, owner: localOwner, sharedWith: localSharedWith)
         
         
         return localList
     }
     
-    //MARK: ListModelConverter Functions: Local to ☁️
+    // MARK: - ListModelConverter Functions: Local to ☁️
     
     /**
     This method converts our current local ListModel structure to our cloud CKListModel structure

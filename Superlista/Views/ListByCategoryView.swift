@@ -1,26 +1,19 @@
-//
-//  ListByCategoryView.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 17/05/21.
-//
-
 import SwiftUI
 
 struct ListByCategoryView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     var categoryName: CategoryModel
     
-    var list: ListModel // ?
+    var list: ListModel
     
-    func rows() -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categoryName]! }
+    func rows() -> [ItemModel] { listsViewModel.lists.first(where: { $0.id == list.id })!.items[categoryName]! }
     
     var body: some View {
         MainScreen(customView: AnyView(
-            VStack (alignment: .leading){
+            VStack (alignment: .leading) {
                 
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     
                     Text(categoryName.title).font(.system(size: 24, weight: .bold))
                         .lineLimit(2)
@@ -30,7 +23,6 @@ struct ListByCategoryView: View {
                 }
                 .padding(.leading, 20)
                 .padding(.trailing, 10)
-                
                 
                 
                 List {
@@ -44,7 +36,6 @@ struct ListByCategoryView: View {
                     
                 }
             }
-            
         ))
     }
 }

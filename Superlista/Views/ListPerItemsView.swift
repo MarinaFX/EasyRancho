@@ -1,23 +1,16 @@
-//
-//  ListPerItemsView.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 12/05/21.
-//
-
 import SwiftUI
 
 struct ListPerItemsView: View {
     
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     var list: ListModel
     
     let background = Color("background")
     
-    var categories: [CategoryModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
+    var categories: [CategoryModel] { listsViewModel.lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
-    func rows(from category: Int) -> [ItemModel] { listsViewModel.list.first(where: { $0.id == list.id })!.items[categories[category]]! }
+    func rows(from category: Int) -> [ItemModel] { listsViewModel.lists.first(where: { $0.id == list.id })!.items[categories[category]]! }
     
     func isLast(_ item: ItemModel, from category: CategoryModel) -> Bool {
         return getRows(from: category).last?.id == item.id

@@ -1,10 +1,3 @@
-//
-//  ProductModelConverter.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 15/10/21.
-//
-
 import Foundation
 
 //MARK: - ProductModelConverter Class

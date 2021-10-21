@@ -1,27 +1,19 @@
-//
-//  ListHeader.swift
-//  Superlista
-//
-//  Created by Thaís Fernandes on 17/05/21.
-//
-
 import SwiftUI
 
 struct ListHeader: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var listsViewModel: DataService
     
     @Binding var listaTitulo: String
     @State var canComment: Bool = false
     @State var comentario: String = ""
     @Binding var canEditTitle: Bool
-    @State var isFavorite: Bool = false
     @State var showCollabSheetView: Bool = false
     
     let purpleColor = Color("HeaderColor")
     let secondary = Color("Secondary")
     let list: ListModel?
     
-    @Binding var listId: String?
+    @Binding var listId: String
     
     var body: some View {
         HStack (spacing: 5){
@@ -80,7 +72,6 @@ struct ListHeader: View {
         .onAppear {
             if let list = list {
                 listaTitulo = list.title
-                isFavorite = list.favorite
                 canEditTitle = false
             }
         }

@@ -1,10 +1,3 @@
-//
-//  NoItemsView.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 27/05/21.
-//
-
 import Foundation
 import SwiftUI
 import Lottie

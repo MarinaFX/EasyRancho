@@ -1,18 +1,16 @@
-//
-//  TestView.swift
-//  Superlista
-//
-//  Created by Thaís Fernandes on 06/05/21.
-//
-
 import SwiftUI
 
 struct ListView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
-    
-    @State var listId: String?
+    @EnvironmentObject var listsViewModel: DataService
+
+    @State var hasChangedItems = false
+    @State var listId: String
     @State var canEditTitle: Bool = false
-    @State var list: ListModel?
+    
+    var list: ListModel? {
+        return getList()
+    }
+    
     @State var listTitle: String = ""
     
     var body: some View {
@@ -30,7 +28,7 @@ struct ListView: View {
                         if let list = self.list {
                             
                             // MARK: - search bar
-                            NavigationLink(destination: AddNewItemView(list: list, searchText: "")){
+                            NavigationLink(destination: AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "")){
                                 FakeSearchBar()
                                     .padding(.horizontal, 20)
                             }
@@ -61,31 +59,35 @@ struct ListView: View {
                 }
             // MARK: - onAppear
                 .onAppear {
-                    self.list = getList()
+                                        
+                    if hasChangedItems, let list = self.list {
+                        CloudIntegration.actions.updateCkListItems(updatedList: list)
+                        
+                        self.hasChangedItems = false
+                    }
                 }
         }
     }
-        
-        // MARK: - getList()
-        func getList() -> ListModel? {
-            if let listId = listId,
-               let list = listsViewModel.list.first(where: { $0.id == listId }) {
-                return list
-            }
-            return nil
+    
+    // MARK: - getList()
+    func getList() -> ListModel? {
+        if let list = listsViewModel.lists.first(where: { $0.id == listId }) {
+            return list
         }
+        return nil
+    }
         
         // MARK: - editList()
-        func editTitle() {
-            if let unwrappedList = self.list {
-                if canEditTitle && !listTitle.isEmpty {
-                    listsViewModel.editListTitle(of: unwrappedList, newTitle: listTitle)
-                    canEditTitle = false
-                } else {
-                    canEditTitle = true
-                }
+    func editTitle() {
+        if let unwrappedList = self.list {
+            if canEditTitle && !listTitle.isEmpty {
+                listsViewModel.editListTitle(of: unwrappedList, newTitle: listTitle)
+                canEditTitle = false
+            } else {
+                canEditTitle = true
             }
         }
     }
+}
     
 
