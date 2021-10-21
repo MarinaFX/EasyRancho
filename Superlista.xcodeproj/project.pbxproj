@@ -50,7 +50,7 @@
 		382E7F5A271DEF4600EE4E5D /* UserArrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382E7F59271DEF4600EE4E5D /* UserArrays.swift */; };
 		382E7F66271E0EA600EE4E5D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 382E7F68271E0EA600EE4E5D /* Localizable.strings */; };
 		389B80CC271F5D2C00ADCBE1 /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B80CB271F5D2C00ADCBE1 /* Wave.swift */; };
-		389B80D0271F61DE00ADCBE1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B80CF271F61DE00ADCBE1 /* MainView.swift */; };
+		389B80D0271F61DE00ADCBE1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B80CF271F61DE00ADCBE1 /* SettingsView.swift */; };
 		389B80D3271F7C5700ADCBE1 /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B80D2271F7C5700ADCBE1 /* ProfilePicture.swift */; };
 		389B80D5271F7C8300ADCBE1 /* SettingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B80D4271F7C8300ADCBE1 /* SettingLabel.swift */; };
 		389B80D7271F7DB300ADCBE1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389B80D6271F7DB300ADCBE1 /* ImagePicker.swift */; };
@@ -135,7 +135,7 @@
 		382E7F69271E0EAA00EE4E5D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		382E7F6A271E0EAB00EE4E5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		389B80CB271F5D2C00ADCBE1 /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
-		389B80CF271F61DE00ADCBE1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		389B80CF271F61DE00ADCBE1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		389B80D2271F7C5700ADCBE1 /* ProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
 		389B80D4271F7C8300ADCBE1 /* SettingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabel.swift; sourceTree = "<group>"; };
 		389B80D6271F7DB300ADCBE1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				389B80DE271F848700ADCBE1 /* Services */,
-				389B80CF271F61DE00ADCBE1 /* MainView.swift */,
+				389B80CF271F61DE00ADCBE1 /* SettingsView.swift */,
 				389B80D2271F7C5700ADCBE1 /* ProfilePicture.swift */,
 				389B80D4271F7C8300ADCBE1 /* SettingLabel.swift */,
 				389B80D6271F7DB300ADCBE1 /* ImagePicker.swift */,
@@ -522,7 +522,6 @@
 				09725B1B264C5FE40006D410 /* FakeSearchBar.swift in Sources */,
 				09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */,
 				389B80D5271F7C8300ADCBE1 /* SettingLabel.swift in Sources */,
-				890913862649BEC800C619A3 /* ListsView.swift in Sources */,
 				1BFA60572641DB770030AE03 /* ProductModel.swift in Sources */,
 				1BFA5FA4263C72900030AE03 /* ProductListView.swift in Sources */,
 				898D6461264321CB0019ABCE /* ItemModel.swift in Sources */,
@@ -531,13 +530,13 @@
 				8980E9CA2644AF91002A5073 /* ListView.swift in Sources */,
 				1B93E8F1270F901500AA89B6 /* ItemModelConverter.swift in Sources */,
 				1B60EC90271DE7D000046FE9 /* AddCollaboratorSheetView.swift in Sources */,
-				1B43E5AE264B0F61002C6D64 /* GridListView.swift in Sources */,
+				1B43E5AE264B0F61002C6D64 /* MainView.swift in Sources */,
 				389B80D7271F7DB300ADCBE1 /* ImagePicker.swift in Sources */,
 				389B80DD271F848300ADCBE1 /* ProfileHeader.swift in Sources */,
 				1B43E5AE264B0F61002C6D64 /* MainView.swift in Sources */,
 				09725B09264470EE0006D410 /* MainScreen.swift in Sources */,
 				389B80D9271F7E0500ADCBE1 /* ProfileContentView.swift in Sources */,
-				389B80D0271F61DE00ADCBE1 /* MainView.swift in Sources */,
+				389B80D0271F61DE00ADCBE1 /* SettingsView.swift in Sources */,
 				1B4678BA26447FC40014B288 /* SeachBar.swift in Sources */,
 				09725B1F264C63510006D410 /* ListPerItemsView.swift in Sources */,
 				893BA28A2654A84600A300DA /* CategoryModel.swift in Sources */,

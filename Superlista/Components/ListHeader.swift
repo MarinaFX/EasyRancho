@@ -73,7 +73,7 @@ struct ListHeader: View {
             .sheet(isPresented: $showCollabSheetView)
             { }
             content: {
-                AddCollaboratorSheetView(showCollabSheetView: self.$showCollabSheetView)
+                AddCollaboratorSheetView(showCollabSheetView: self.$showCollabSheetView, list: self.list, collaborators: list?.sharedWith)
             }
         }
         .padding(.horizontal, 30)
