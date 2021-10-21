@@ -9,10 +9,10 @@ import SwiftUI
 
 struct EditProfileView: View {
     @Binding var showingSheet: Bool
-    @State private var newUsername: String = ""
+    @State private var newUsername = ""
     @State private var isShowGallery = false
-    var username: String
-    @State private var picture: UIImage? = nil
+    @Binding var username: String
+    @Binding var picture: UIImage?
     
     var body: some View {
         NavigationView {
@@ -21,8 +21,20 @@ struct EditProfileView: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 ZStack{
-                    ProfilePicture(username: username)
-                        .padding()
+                    if let picture = picture{
+                        Image(uiImage: picture)
+                            .resizable()
+                            .clipShape(Circle())
+                            .scaledToFill()
+                            .frame(width:140, height: 140)
+                            .padding(.top, 100)
+                    }
+                    else{
+                        if let newusername = newUsername{
+                            ProfilePicture(username: newusername.isEmpty || newusername == "" ? username : newusername)
+                                .padding()
+                        }
+                    }
                     Button{
                         self.isShowGallery = true
                     } label: {
@@ -64,7 +76,17 @@ struct EditProfileView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         //salvar no banco
+                        if newUsername == ""{
+                            self.username = username
+                        }
+                        else{
+                            self.username = newUsername
+                        }
                         CKService.currentModel.updateUserName(name: newUsername) { result in}
+                        if let picture = picture{
+                            CKService.currentModel.updateUserImage(image: picture) { result in}
+                        }
+                        self.picture = picture
                         self.showingSheet = false
                     } label: {
                         Text("Salvar")

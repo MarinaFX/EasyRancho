@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct SettingLabel: View {
-    var username: String
+    @Binding var username: String
     @State var showingSheet = false
+    @Binding var picture: UIImage?
     
     var body: some View {
         VStack(spacing: 10){
@@ -30,7 +31,7 @@ struct SettingLabel: View {
                 .cornerRadius(13)
             }
             .sheet(isPresented: $showingSheet) {
-                EditProfileView(showingSheet: $showingSheet, username: username)
+                EditProfileView(showingSheet: $showingSheet, username: $username, picture: $picture)
             }
             
             Button(action: {
@@ -85,8 +86,8 @@ struct SettingLabel: View {
     }
 }
 
-struct SettingLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingLabel(username: "Luiz")
-    }
-}
+//struct SettingLabel_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingLabel(username: "Luiz")
+//    }
+//}

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct SettingsView: View {
     @State var username = CKService.currentModel.user?.name ?? getNickname()
+    @State var picture: UIImage? = CKService.currentModel.user?.image
+    
     var body: some View {
         VStack{
-            ProfileHeader(username: username)
+            ProfileHeader(username: username, picture: picture)
                 .padding(.top, -30)
             Text(username)
                 .font(.title)
@@ -27,7 +29,7 @@ struct SettingsView: View {
             }
             .padding(.bottom, 35)
         
-            SettingLabel(username: username)
+            SettingLabel(username: $username, picture: $picture)
                 .padding(.horizontal, 15)
             Spacer()
         }

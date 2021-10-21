@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileHeader: View {
     var username: String
-    var picture = UIImage()
+    var picture: UIImage?
     var body: some View {
         ZStack{
             VStack{
@@ -19,12 +19,13 @@ struct ProfileHeader: View {
                     .padding(.horizontal, -30)
             }
             VStack{
-                if((CKService.currentModel.user?.image) != nil){
+                if let picture = picture{
                     Image(uiImage: picture)
                         .resizable()
-                        .frame(width:140, height: 140)
                         .clipShape(Circle())
-                    
+                        .scaledToFill()
+                        .frame(width:140, height: 140)
+                        .padding(.top, 100)
                 }
                 else{
                     ProfilePicture(username: username)
