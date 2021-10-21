@@ -1,10 +1,3 @@
-//
-//  ListModelConverter.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 06/10/21.
-//
-
 /**
  - name -> ProductModel
  - category -> ProductModel
@@ -27,6 +20,7 @@ import CloudKit
  */
 class ListModelConverter {
     private let itemModelConverter = ItemModelConverter()
+  //  private let userModelConverter = UserModelConverter()
 
     // MARK: - ListModelConverter Functions: Reference to ☁️
     
@@ -86,8 +80,15 @@ class ListModelConverter {
         let localList: ListModel
         
         let localItems = itemModelConverter.convertCloudItemsToLocal(withItems: list.itemsModel)
+       
+        let localOwner = UserModelConverter().convertCloudUserToLocal(withUser: list.owner)
         
-        localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, favorite: false)
+        var localSharedWith: [UserModel] = []
+        for shared in list.sharedWith {
+            localSharedWith.append(UserModelConverter().convertCloudUserToLocal(withUser: shared))
+        }
+        
+        localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, owner: localOwner, sharedWith: localSharedWith)
         
         
         return localList
@@ -109,7 +110,21 @@ class ListModelConverter {
         cloudList.name = list.title
         cloudList.itemsModel = itemModelConverter.convertLocalItemsToCloudItems(withItemsList: list.items)
         cloudList.itemsString = itemModelConverter.parseCKItemObjectToString(withItems: cloudList.itemsModel)
-         
+        cloudList.owner = UserModelConverter().convertLocalUserToCloud(withUser: list.owner)
+        
+        var cloudSharedWith: [CKUserModel] = []
+        for shared in list.sharedWith ?? []  {
+            cloudSharedWith.append(UserModelConverter().convertLocalUserToCloud(withUser: shared))
+        }
+        cloudList.sharedWith = cloudSharedWith
+        
+        var cloudSharedWithRef: [CKRecord.Reference] = []
+        for shared in cloudSharedWith {
+            cloudSharedWithRef.append(UserModelConverter().convertCloudUserToReference(withUser: shared))
+        }
+        cloudList.sharedWithRef = cloudSharedWithRef
+        
         return cloudList
     }
+
 }

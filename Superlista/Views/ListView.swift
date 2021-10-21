@@ -13,8 +13,6 @@ struct ListView: View {
     
     @State var listTitle: String = ""
     
-    
-    
     var body: some View {
         GeometryReader { geometry in
             MainScreen(customView: AnyView(
@@ -55,7 +53,7 @@ struct ListView: View {
                         Button {
                             editTitle()
                         } label: {
-                            Text(canEditTitle ? "Salvar" : "Editar")
+                            Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
                         }
                     }
                 }
@@ -78,8 +76,8 @@ struct ListView: View {
         }
         return nil
     }
-    
-    // MARK: - editList()
+        
+        // MARK: - editList()
     func editTitle() {
         if let unwrappedList = self.list {
             if canEditTitle && !listTitle.isEmpty {
@@ -91,4 +89,5 @@ struct ListView: View {
         }
     }
 }
+    
 

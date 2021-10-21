@@ -5,9 +5,26 @@ import Combine
 
 class DataService: ObservableObject {
     
+    static var user: UserModel = UserModelConverter().convertCloudUserToLocal(withUser: CKService.currentModel.user!)
+    
     @Published var lists: [ListModel] = [] {
         didSet {
             saveDataOnUserDefaults()
+            
+            print("on UD")
+            lists.forEach { list in
+                print(list.id)
+            }
+            print("============")
+            
+            print("on CK")
+            CKService.currentModel.user?.myLists?.forEach { list in
+                print(list.id.recordName)
+            }
+            
+            print("============\n")
+
+            
         }
     }
     
@@ -28,7 +45,6 @@ class DataService: ObservableObject {
     init() {
         getListsIntegration()
     }
-    
     
     func getListsIntegration() {
         self.lists = getUserDefaults()
@@ -71,18 +87,9 @@ class DataService: ObservableObject {
     }
     
     // MARK: - CRUD lists
-    func toggleListFavorite(of listModel: ListModel) {
-        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
-            let newListState = listModel.toggleFavorite()
-            
-            lists[index] = newListState
-            
-            CloudIntegration.actions.toggleFavorite(of: newListState)
-        }
-    }
-    
     func removeList(_ listModel: ListModel) {
         if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            
             lists.remove(at: index)
             
             CloudIntegration.actions.deleteList(listModel)

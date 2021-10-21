@@ -1,10 +1,3 @@
-//
-//  CKUserModel.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 04/10/21.
-//
-
 import Foundation
 import CloudKit
 import SwiftUI
@@ -25,9 +18,6 @@ class CKUserModel {
     
     var customProductsString: [String]?
     var customProducts: [ProductModel]?
-    
-    var favoriteListsRef: [CKRecord.Reference]?
-    var favoriteLists: [CKListModel]?
     
     var myListsRef: [CKRecord.Reference]?
     var myLists: [CKListModel]?
@@ -52,26 +42,11 @@ class CKUserModel {
         
         customProductsString = record["CustomItems"] as? [String] ?? []
         customProducts = productConverter.convertStringToProducts(withString: customProductsString ?? [])
-        
-        favoriteListsRef = record["FavoriteLists"] as? [CKRecord.Reference] ?? []
-        
+                
         group.enter()
-        
-        ListConverter.convertListReferenceToCloudList(withList: favoriteListsRef ?? []) { result in
-            switch result {
-                case .success(let lists):
-                    self.favoriteLists = lists
-                case .failure:
-                    self.favoriteLists = []
-                    
-            }
-            group.leave()
-        }
         
         myListsRef = record["MyLists"] as? [CKRecord.Reference] ?? []
-        
-        group.enter()
-        
+                
         ListConverter.convertListReferenceToCloudList(withList: myListsRef ?? []) { result in
             switch result {
                 case .success(let lists):
@@ -101,7 +76,7 @@ class CKUserModel {
         completion?(self)
     }
     
-    init(id: CKRecord.ID, name: String? = "", ckImage: CKAsset? = nil, customProductsString: [String], favoriteLists: [CKListModel]? = [], myLists: [CKListModel]? = [], sharedWithMe: [CKListModel]? = []) {
+    init(id: CKRecord.ID, name: String? = "", ckImage: CKAsset? = nil, customProductsString: [String], myLists: [CKListModel]? = [], sharedWithMe: [CKListModel]? = []) {
         
         self.id = id
         self.name = name
@@ -110,13 +85,6 @@ class CKUserModel {
         
         self.customProductsString = customProductsString
         self.customProducts = productConverter.convertStringToProducts(withString: customProductsString)
-        
-        self.favoriteLists = favoriteLists
-        self.favoriteListsRef = []
-        
-        for list in favoriteLists! {
-            favoriteListsRef?.append((CKRecord.Reference(recordID: list.id, action: CKRecord.ReferenceAction.none)))
-        }
         
         self.myLists = myLists
         self.myListsRef = []

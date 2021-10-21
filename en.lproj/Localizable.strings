@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  Superlista
+
+  Created by Luiz Eduardo Mello dos Reis on 18/10/21.
+  
+*/
+
+"Listas" = "Listas";
+"listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
+"SalvarNovaLista" = "Salvar";
+"EditarNovaLista" = "Editar";
+"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
+"remover %@" = "Deseja remover %@?";
+"subtituloRemoverLista"= "A lista removida não poderá ser recuperada após sua exclusão";
+"ApagarLista"= "Apagar";
+"ConcluirListas" = "Concluir";
+"EditarListas" = "Editar";
+"NovaLista" = "Nova Lista";
+"DefaultLS" = "DefaultLS";
+
+//Not working 4now
+"ProcurarItens" = "Procurar Itens";
+"AdicionarItensFake" = "Adicionar novos itens";
+"TituloPaginaDeLista" = "Listasddddd";
+"TituloDaNovaLista" = "Nova Lista";

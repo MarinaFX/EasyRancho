@@ -1,10 +1,3 @@
-//
-//  ItemModelConverter.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 07/10/21.
-//
-
 import Foundation
 
 //MARK: - ItemModelConverter Class

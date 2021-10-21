@@ -1,10 +1,3 @@
-//
-//  UserModelConverter.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 15/10/21.
-//
-
 import Foundation
 import SwiftUI
 import CloudKit
@@ -17,9 +10,9 @@ import CloudKit
  According to its formal definition, a Bridge is something that meakes its easier to change from one situation to another. In this case, instead of refactoring the whole backend everytime we make a new implementation of a service, a Bridge class connects both arquitectures by parsing each to each. This way is possible to manipulate both strcutures without backend refactoring.
  */
 class UserModelConverter {
-    let itemConverter: ItemModelConverter = ItemModelConverter()
-    let listConverter: ListModelConverter = ListModelConverter()
-    let productConverter: ProductModelConverter = ProductModelConverter()
+    private let itemConverter: ItemModelConverter = ItemModelConverter()
+    private let listConverter: ListModelConverter = ListModelConverter()
+    private let productConverter: ProductModelConverter = ProductModelConverter()
     
     //MARK: UserModelConverter Functions: ☁️ to Local
     
@@ -33,20 +26,13 @@ class UserModelConverter {
     func convertCloudUserToLocal(withUser user: CKUserModel) -> UserModel {
         let id: String
         let name: String
-        let image: UIImage
         let customProducts: [ProductModel]
-        var favoriteLists: [ListModel] = []
         var myLists: [ListModel] = []
         var sharedWithMe: [ListModel] = []
                 
         id = user.id.recordName
         name = user.name ?? "nome aleatorio"
-        image = user.image ?? UIImage(named: "adsada")!
         customProducts = productConverter.convertStringToProducts(withString: user.customProductsString ?? [])
-        
-        for list in user.favoriteLists! {
-            favoriteLists.append(listConverter.convertCloudListToLocal(withList: list))
-        }
         
         for list in user.myLists! {
             myLists.append(listConverter.convertCloudListToLocal(withList: list))
@@ -56,10 +42,23 @@ class UserModelConverter {
             sharedWithMe.append(listConverter.convertCloudListToLocal(withList: list))
         }
         
-        let localUser: UserModel = UserModel(id: id, name: name, image: image, customProducts: customProducts, favoriteLists: favoriteLists, myLists: myLists, sharedWithMe: sharedWithMe)
+        let localUser: UserModel = UserModel(id: id, name: name, customProducts: customProducts, myLists: myLists, sharedWithMe: sharedWithMe)
 
         
         return localUser
+    }
+    
+    
+    /**
+    This method converts our cloud CKUserModel structure to a CKRecord.reference
+     
+     - Parameters:
+        - user: the user to be converted - CKUserModel
+     - Returns: the CKRecord.Reference version of the given CKUserModel
+     */
+    
+    func convertCloudUserToReference(withUser user: CKUserModel) -> CKRecord.Reference {
+            return CKRecord.Reference(recordID: user.id, action: .none)
     }
     
     //MARK: UserModelConverter Functions: Local to ☁️
@@ -74,21 +73,14 @@ class UserModelConverter {
     func convertLocalUserToCloud(withUser user: UserModel) -> CKUserModel {
         let id: CKRecord.ID
         let name: String
-        let image: CKAsset
         let customProductsString: [String]
         
-        var favoriteLists: [CKListModel] = []
         var myLists: [CKListModel] = []
         var sharedWithMe: [CKListModel] = []
         
         id = CKRecord.ID(recordName: user.id)
         name = user.name ?? "nome aleatorio"
-        image = ImageToCKAsset(uiImage: user.image)!
         customProductsString = productConverter.convertLocalProductsToString(withProducts: user.customProducts ?? [])
-        
-        for list in user.favoriteLists! {
-            favoriteLists.append(listConverter.convertLocalListToCloud(withList: list))
-        }
         
         for list in user.myLists! {
             myLists.append(listConverter.convertLocalListToCloud(withList: list))
@@ -98,7 +90,7 @@ class UserModelConverter {
             sharedWithMe.append(listConverter.convertLocalListToCloud(withList: list))
         }
         
-        let cloudUser: CKUserModel = CKUserModel(id: id, name: name, ckImage: image, customProductsString: customProductsString, favoriteLists: favoriteLists, myLists: myLists, sharedWithMe: sharedWithMe)
+        let cloudUser: CKUserModel = CKUserModel(id: id, name: name, customProductsString: customProductsString, myLists: myLists, sharedWithMe: sharedWithMe)
         
         return cloudUser
     }

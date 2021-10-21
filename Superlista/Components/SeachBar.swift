@@ -6,7 +6,8 @@ struct SearchBar: View {
     
     var body: some View {
         HStack {
-            TextField("Procurar Items", text: $text)
+            #warning("Not working this translate for Search Itens")
+            TextField("ProcurarItens", text: $text)
                 .foregroundColor(Color(UIColor.secondaryLabel))
                 .padding(10)
                 .padding(.leading, 30)

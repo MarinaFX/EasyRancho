@@ -92,7 +92,7 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Get User
-    private func getUser(completion: @escaping (Result<CKUserModel,CKError>) -> Void ) {
+     func getUser(completion: @escaping (Result<CKUserModel,CKError>) -> Void ) {
         let dispatchSemaphore = DispatchSemaphore(value: 1)
         dispatchSemaphore.wait()
         
@@ -126,7 +126,6 @@ class CKService: ObservableObject {
             }
             
             let _ = CKUserModel(record: record) { user in
-                print(user, "user")
                 completion(.success(user))
                 dispatchSemaphore.signal()
             }
@@ -213,26 +212,21 @@ class CKService: ObservableObject {
             
         } else if key == UsersList.SharedWithMe {
             usersLists = user!.sharedWithMeRef!
-            
-        } else if key == UsersList.FavoriteLists {
-            usersLists = user!.favoriteListsRef!
         }
-        
-        print(usersLists, "usersLists delete antes")
-                
+                        
         if let listToDeleteIndex = usersLists.firstIndex(where: { $0.recordID.recordName == listId.recordName }) {
             usersLists.remove(at: listToDeleteIndex)
         }
-        
-        print(usersLists, "usersLists delete depois")
-        
+                
         guard let userID = user?.id else {
             completion(.failure(CKError.init(CKError.operationCancelled)))
             return
         }
         
         publicDB.fetch(withRecordID: userID) { record, error in
+            
             if error == nil {
+                        
                 record!.setValue(usersLists, forKey: key.rawValue)
                 
                 self.publicDB.save(record!) { savedUserList, error in
@@ -262,14 +256,10 @@ class CKService: ObservableObject {
         } else if key == UsersList.SharedWithMe {
             usersLists = user!.sharedWithMeRef!
             
-        } else if key == UsersList.FavoriteLists {
-            usersLists = user!.favoriteListsRef!
         }
         
         usersLists.append(listToAddRef)
-        
-        print(usersLists, "add list depois")
-        
+                
         guard let userID = user?.id else {
             completion(.failure(CKError.init(CKError.operationCancelled)))
             return
@@ -347,6 +337,7 @@ class CKService: ObservableObject {
         let record = CKRecord(recordType: "Lists", recordID: listModel.id)
         record.setValue(listModel.name, forKey: "ListName")
         record.setValue(listModel.itemsString, forKey: "Items")
+        record.setValue(CKRecord.Reference(recordID: user!.id, action: .none), forKey: "Owner")
         
         publicDB.save(record) { savedRecord, error in
             if error == nil {
@@ -369,8 +360,6 @@ class CKService: ObservableObject {
         } else if key == UsersList.SharedWithMe {
             usersLists = user!.sharedWithMeRef!
             
-        } else if key == UsersList.FavoriteLists {
-            usersLists = user!.favoriteListsRef!
         }
         
         usersLists.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
@@ -425,6 +414,31 @@ class CKService: ObservableObject {
         publicDB.fetch(withRecordID: listID) { record, error in
             if error == nil {
                 record!.setValue(listName, forKey: "ListName")
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
+    func updateListCollab(listID: CKRecord.ID, sharedWith: [CKUserModel], completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        var sharedWithRef: [CKRecord.Reference] = []
+        for shared in sharedWith {
+            sharedWithRef.append(CKRecord.Reference(recordID: shared.id, action: .none))
+        }
+        
+        publicDB.fetch(withRecordID: listID) { record, error in
+            if error == nil {
+                record!.setValue(sharedWithRef, forKey: "SharedWith")
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {

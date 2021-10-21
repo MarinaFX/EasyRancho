@@ -7,7 +7,6 @@ struct ListHeader: View {
     @State var canComment: Bool = false
     @State var comentario: String = ""
     @Binding var canEditTitle: Bool
-    @State var isFavorite: Bool = false
     
     let purpleColor = Color("HeaderColor")
     let secondary = Color("Secondary")
@@ -57,7 +56,6 @@ struct ListHeader: View {
         .onAppear {
             if let list = list {
                 listaTitulo = list.title
-                isFavorite = list.favorite
                 canEditTitle = false
             }
         }

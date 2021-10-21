@@ -62,6 +62,8 @@ func shareSheet(listID: String, ownerID: String, option: String, listName: Strin
     topController?.present(activityVC, animated: true, completion: nil)
 }
 
+// MARK: - Get Color Categories
+
 func getColor(category: String) -> Color {
     switch category{
     case "Bazar" :
@@ -83,7 +85,7 @@ func getColor(category: String) -> Color {
     case "Fiambreria e laticínios" :
         return Color("Fiambreriaelaticinios")
     case "Grãos e farinhas" :
-        return Color("Grãos e farinhas")
+        return Color("Graosefarinhas")
     case "Higiene e beleza" :
         return Color("Higieneebeleza")
     case "Hortifruti" :
@@ -113,5 +115,13 @@ func getColor(category: String) -> Color {
 
 // MARK: - UsersList Enum
 enum UsersList: String {
-    case FavoriteLists, MyLists, SharedWithMe
+    case MyLists, SharedWithMe
+}
+
+// MARK: - Curtom usernames
+func getNickname() -> String{
+    if let colors = UserArrays().colorsArray.randomElement(), let animals = UserArrays().animalsArray.randomElement() {
+        return "\(colors)\(animals)"
+    }
+    return "User"
 }

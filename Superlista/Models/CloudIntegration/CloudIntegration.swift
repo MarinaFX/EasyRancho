@@ -1,10 +1,3 @@
-//
-//  DataIntegration.swift
-//  Superlista
-//
-//  Created by Thaís Fernandes on 15/10/21.
-//
-
 import Foundation
 import Network
 import CloudKit
@@ -28,40 +21,22 @@ class CloudIntegration: ObservableObject {
                     
                     CKService.currentModel.saveListUsersList(listID: ckList.id, key: .MyLists) { result in
                         switch result {
-                            case .success(let result):
-                                
-                                print("foi", result)
-                                
-                            case .failure(let error):
-                                
-                                print("nao foi", error)
-                                
+                            case .success: return
+                                                                
+                            case .failure(let error): print(error)
                         }
                     }
                 case .failure(let error):
-                    print("createList() error \(error)")
+                    print(error)
             }
         }
     }
     
     func deleteList(_ list: ListModel) {
-        
+                
         deleteListFromMyLists(list: list)
         
         deleteListFromAll(list: list)
-        
-        //deleteListFromFavorites(list: list)
-
-    }
-    
-    func deleteListFromFavorites(list: ListModel) {
-        CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .FavoriteLists) { result in
-            switch result {
-                case .success: print("delete fav foi")
- 
-                case .failure(let error): print("delete fav error \(error)")
-            }
-        }
     }
     
     func deleteListFromMyLists(list: ListModel) {
@@ -94,28 +69,6 @@ class CloudIntegration: ObservableObject {
             }
         }
     }
-    
-    func toggleFavorite(of list: ListModel) {
-        let ckList = listModelConverter.convertLocalListToCloud(withList: list)
-    
-        if list.favorite {
-            CKService.currentModel.addUsersList(list: ckList, key: .FavoriteLists) { result in
-                switch result {
-                    case .success(let result): print("toggleFavorite() success \(result)")
-                    case .failure(let error): print("toggleFavorite() error \(error)")
-                }
-            }
-            
-        } else {
-            CKService.currentModel.deleteUsersList(listId: ckList.id, key: .FavoriteLists) { result in
-                switch result {
-                    case .success(let result): print("toggleFavorite() success \(result)")
-                    case .failure(let error): print("toggleFavorite() error \(error)")
-                }
-            }
-        }
-    }
-    
     
     func updateCkListItems(updatedList: ListModel) {
         let ckList = listModelConverter.convertLocalListToCloud(withList: updatedList)
