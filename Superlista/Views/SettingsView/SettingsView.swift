@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State var username = CKService.currentModel.user?.name ?? getNickname()
     var body: some View {
         VStack{
-            ProfileHeader()
+            ProfileHeader(username: username)
                 .padding(.top, -30)
-            Text("Luiz Eduardo")
+            Text(username)
                 .font(.title)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
@@ -26,12 +27,12 @@ struct SettingsView: View {
             }
             .padding(.bottom, 35)
         
-            SettingLabel()
+            SettingLabel(username: username)
                 .padding(.horizontal, 15)
             Spacer()
         }
         .ignoresSafeArea()
-    }   
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {

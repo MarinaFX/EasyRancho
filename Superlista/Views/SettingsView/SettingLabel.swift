@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingLabel: View {
+    var username: String
     @State var showingSheet = false
     
     var body: some View {
@@ -29,7 +30,7 @@ struct SettingLabel: View {
                 .cornerRadius(13)
             }
             .sheet(isPresented: $showingSheet) {
-                EditProifleView()
+                EditProfileView(showingSheet: $showingSheet, username: username)
             }
             
             Button(action: {
@@ -86,6 +87,6 @@ struct SettingLabel: View {
 
 struct SettingLabel_Previews: PreviewProvider {
     static var previews: some View {
-        SettingLabel()
+        SettingLabel(username: "Luiz")
     }
 }
