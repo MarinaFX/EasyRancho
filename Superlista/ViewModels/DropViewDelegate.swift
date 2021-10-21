@@ -1,15 +1,8 @@
-//
-//  DropViewDelegate.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 11/05/21.
-//
-
 import Foundation
 import SwiftUI
 
 struct ListDropViewDelegate: DropDelegate {
-    var listsViewModel: ListsViewModel
+    var listsViewModel: DataService
     
     var list: ListModel
     
@@ -18,19 +11,19 @@ struct ListDropViewDelegate: DropDelegate {
     }
     
     func dropEntered(info: DropInfo) {
-        let fromIndex = listsViewModel.list.firstIndex{ list -> Bool in
+        let fromIndex = listsViewModel.lists.firstIndex{ list -> Bool in
             return list.id == listsViewModel.currentList?.id
         } ?? 0
         
-        let toIndex = listsViewModel.list.firstIndex{ list -> Bool in
+        let toIndex = listsViewModel.lists.firstIndex{ list -> Bool in
             return list.id == self.list.id
         } ?? 0
         
         if fromIndex != toIndex {
             withAnimation {
-                let fromList = listsViewModel.list[fromIndex]
-                listsViewModel.list[fromIndex] = listsViewModel.list[toIndex]
-                listsViewModel.list[toIndex] = fromList
+                let fromList = listsViewModel.lists[fromIndex]
+                listsViewModel.lists[fromIndex] = listsViewModel.lists[toIndex]
+                listsViewModel.lists[toIndex] = fromList
             }
         }
     }

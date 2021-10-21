@@ -1,10 +1,3 @@
-//
-//  CustomSource.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 14/10/21.
-//
-
 import UIKit
 import LinkPresentation
 
@@ -23,7 +16,6 @@ class CustomSource: NSObject, UIActivityItemSource {
         self.listName = listName
         self.ownerName = ownerName
         self.url = URL(string: "easyrancho://" + ownerID + "$" + listID + "$" + option) ?? URL(string: "apple.com")!
-
     }
     
     func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {

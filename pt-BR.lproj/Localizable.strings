@@ -6,7 +6,7 @@
   
 */
 
-
+"Listas" = "Listas";
 "listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
 "SalvarNovaLista" = "Salvar";
 "EditarNovaLista" = "Editar";
@@ -17,6 +17,7 @@
 "ConcluirListas" = "Concluir";
 "EditarListas" = "Editar";
 "NovaLista" = "Nova Lista";
+"DefaultLS" = "DefaultLS";
 
 //Not working 4now
 "ProcurarItens" = "Procurar Itens";

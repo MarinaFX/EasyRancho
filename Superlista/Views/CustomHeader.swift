@@ -1,20 +1,9 @@
-//
-//  CustomHeader.swift
-//  Superlista
-//
-//  Created by Gabriela Zorzo on 06/05/21.
-//
-
 import SwiftUI
 import UIKit
 
 struct CustomHeader: View {
-    
-//    init(){
-//            UIView.setAnimationsEnabled(false)
-//        }
-    
     @State private var goBack = false
+    
     let headerColor = Color("HeaderColor")
     
     var body: some View {
@@ -22,19 +11,12 @@ struct CustomHeader: View {
             headerColor
                 .ignoresSafeArea()
             
-            ScrollView{
+            ScrollView {
                 
-                HStack{
+                HStack {
                     
-//                    Button(action: {
-//                        goBack.toggle()
-//                    }, label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.white)
-//                    })
-//                    .fullScreenCover(isPresented: $goBack) {
-//                        ProductListView()
-//                    }
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.white)
                     
                     Spacer()
                     

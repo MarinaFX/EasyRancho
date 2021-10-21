@@ -1,10 +1,3 @@
-//
-//  CestinhaView.swift
-//  Superlista
-//
-//  Created by Marina De Pazzi on 27/05/21.
-//
-
 import SwiftUI
 
 struct CestinhaView: View {

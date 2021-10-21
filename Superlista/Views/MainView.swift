@@ -3,7 +3,7 @@ import UIKit
 import CloudKit
 
 struct MainView: View {
-    @EnvironmentObject var listsViewModel: ListsViewModel
+    @EnvironmentObject var dataService: DataService
     
     @State var isEditing : Bool = false
     @State var listId: String = ""
@@ -34,7 +34,7 @@ struct MainView: View {
                     .ignoresSafeArea()
                 
                 // MARK: - empty state
-                if listsViewModel.list.isEmpty {
+                if dataService.lists.isEmpty {
                     VStack {
                         Text("listaVazia")
                             .multilineTextAlignment(.center)
@@ -44,7 +44,7 @@ struct MainView: View {
                             .frame(width: 400, height: 400)
                     }
                     .onAppear {
-                        if listsViewModel.list.isEmpty {
+                        if dataService.lists.isEmpty {
                             self.isEditing = false
                         }
                     }
@@ -53,7 +53,7 @@ struct MainView: View {
                 // MARK: - Lists
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, spacing: 20, content: {
-                        ForEach(listsViewModel.list) { list in
+                        ForEach(dataService.lists) { list in
                             
                             // MARK: - editing state
                             if isEditing {
@@ -75,36 +75,28 @@ struct MainView: View {
                                         .padding(.bottom)
                                         .padding(.horizontal)
                                     
-                                    // MARK: - favorite button
-                                    Image(systemName: list.favorite ? "heart.fill" : "heart")
-                                        .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
-                                        .position(x: 150, y: 22)
-                                        .onTapGesture {
-                                            listsViewModel.toggleListFavorite(of: list)
-                                        }
-                                    
                                     // MARK: - delete button
                                     Image(systemName: "minus.circle.fill")
                                         .font(.title2)
                                         .foregroundColor(Color(.systemGray))
                                         .offset(x: -75, y: -60)
                                         .onTapGesture {
-                                            listsViewModel.currentList = list
+                                            dataService.currentList = list
                                             showAlert = true
                                         }
                                 }
                                 .alert(isPresented: $showAlert){
-                                    Alert(title: Text("remover \(listsViewModel.currentList!.title)"), message: Text("subtituloRemoverLista"), primaryButton: .cancel(), secondaryButton: .destructive(Text("ApagarLista"), action:{
-                                        listsViewModel.removeList(listsViewModel.currentList!)
+                                    Alert(title: Text("remover \(dataService.currentList!.title)"), message: Text("subtituloRemoverLista"), primaryButton: .cancel(), secondaryButton: .destructive(Text("ApagarLista"), action:{
+                                        dataService.removeList(dataService.currentList!)
                                         showAlert = false
                                     }))
                                 }
                                 // MARK: - list cards drag and drop
                                 .onDrag({
-                                    listsViewModel.currentList = list
+                                    dataService.currentList = list
                                     return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
                                 })
-                                .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: listsViewModel, list: list))
+                                .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: dataService, list: list))
                                 
                             }
                             // MARK: - normal state
@@ -129,13 +121,6 @@ struct MainView: View {
                                             .padding(.bottom)
                                             .padding(.horizontal)
                                         
-                                        // MARK: - fav button
-                                        Image(systemName: list.favorite ? "heart.fill" : "heart")
-                                            .foregroundColor(list.favorite ? Color("Favorite") : Color.white)
-                                            .position(x: 145, y: 22)
-                                            .onTapGesture {
-                                                listsViewModel.toggleListFavorite(of: list)
-                                            }
                                     }
                                 })
                             }
@@ -148,7 +133,7 @@ struct MainView: View {
                     
                     // MARK: - edit button
                     ToolbarItem(placement: .navigationBarLeading){
-                        if !listsViewModel.list.isEmpty{
+                        if !dataService.lists.isEmpty {
                             Button(action: {isEditing.toggle()}, label: {
                                 Text(isEditing ? "ConcluirListas": "EditarListas")})
                         }
@@ -168,7 +153,7 @@ struct MainView: View {
                 }
                 
                 // MARK: - transparent new list button
-                if listsViewModel.list.isEmpty {
+                if dataService.lists.isEmpty {
                     Button(action: createNewListAction, label : {
                         Rectangle()
                             .fill(Color.clear)
@@ -180,25 +165,11 @@ struct MainView: View {
     }
     
     func createNewListAction() {
-#warning("Not working to translate this list name")
-        let newList: ListModel = ListModel(title: "Nova Lista", owner: ListsViewModel.user)
-        let newListId: String = newList.id
-        listsViewModel.addList(newList)
-        self.listId = newListId
-        self.isCreatingList = true
+        let newList: ListModel = ListModel(title: "Nova Lista", owner: DataService.user)
 
+        dataService.addList(newList)
+        self.listId = newList.id
+        self.isCreatingList = true
     }
     
 }
-
-//struct GridListView_Previews: PreviewProvider {
-//    static var listsViewModel: ListsViewModel = ListsViewModel()
-//    static var previews: some View {
-//        NavigationView {
-//#warning("Not working to translate this page list name")
-//            GridListView()
-//                .navigationTitle("TituloPaginaDeLista")
-//        }
-//        .environmentObject(listsViewModel)
-//    }
-//}
