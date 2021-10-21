@@ -15,8 +15,14 @@ struct AddCollaboratorSheetView: View {
     @State var showShareActionSheet: Bool = false
     
     let list: ListModel?
-
+    
     var collaborators: [UserModel]?
+    var ckList: CKListModel? {
+        if let list = list {
+            return ListModelConverter().convertLocalListToCloud(withList: list)
+        }
+        return nil
+    }
     
     //MARK: AddCollaboratorSheetView View
     var body: some View {
