@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfilePicture: View {
-    var nameUser: String
+    var username: String
     
     var body: some View {
         GeometryReader { g in
@@ -19,7 +19,7 @@ struct ProfilePicture: View {
                     .stroke(Color.white, style: StrokeStyle(lineWidth: 5))
                     .frame(width: 140, height: 140)
                 
-                let initialName = nameUser.prefix(1)
+                let initialName = username.prefix(1)
                 Text(String(initialName))
                     .foregroundColor(.white)
                     .font(.system(size: g.size.height > g.size.width ? g.size.width * 0.5: g.size.height * 0.5))
@@ -27,13 +27,5 @@ struct ProfilePicture: View {
             }
         }
         .frame(width: 160, height: 160)
-    }
-}
-
-struct ProfilePicture_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfilePicture(nameUser: "Jorge")
-            .previewLayout(.fixed(width: 160, height: 160))
-
     }
 }

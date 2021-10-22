@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfileHeader: View {
+    var username: String
+    var picture: UIImage?
     var body: some View {
         ZStack{
             VStack{
@@ -17,17 +19,20 @@ struct ProfileHeader: View {
                     .padding(.horizontal, -30)
             }
             VStack{
-                //if
-                ProfilePicture(nameUser: "Luiz")
-                    .padding(.top, 100)
+                if let picture = picture{
+                    Image(uiImage: picture)
+                        .resizable()
+                        .clipShape(Circle())
+                        .scaledToFill()
+                        .frame(width:140, height: 140)
+                        .padding(.top, 100)
+                }
+                else{
+                    ProfilePicture(username: username)
+                        .padding(.top, 100)
+                }
             }
         }
         .ignoresSafeArea()
-    }
-}
-
-struct ProfileHeader_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileHeader()
     }
 }

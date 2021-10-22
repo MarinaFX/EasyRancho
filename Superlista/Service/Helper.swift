@@ -26,22 +26,23 @@ func CKAssetToImage(ckImage: CKAsset?) -> Image? {
 
 // MARK: - CKAssetToUIImage
 func CKAssetToUIImage(ckImage: CKAsset?) -> UIImage? {
-    if ckImage == nil { return nil }
-    
+    if ckImage == nil {
+        return nil
+    }
     guard
         let photo = ckImage,
         let fileURL = photo.fileURL //verificar url se voltar a deitar a foto
     else {
         return nil
     }
-    
+
     let imageData: Data
     do {
         imageData = try Data(contentsOf: fileURL)
     } catch {
         return nil
     }
-    
+
     guard let image: UIImage = UIImage(data: imageData) else {
         return nil
     }
