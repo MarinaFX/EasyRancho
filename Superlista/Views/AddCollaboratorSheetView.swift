@@ -180,23 +180,3 @@ struct AddCollaboratorSheetView: View {
         }
     }
 }
-
-//MARK: - AddCollaboratorSheetView Previews
-
-struct AddColaboratorSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AddCollaboratorSheetView(showCollabSheetView: .constant(false), collaborators: .constant([UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")]), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")))
-                .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-                .previewDisplayName("iPhone 12")
-            
-//            AddCollaboratorSheetView(showCollabSheetView: .constant(false), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")), collaborators: [UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")])
-//                .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
-//                .previewDisplayName("iPhone SE")
-//
-//            AddCollaboratorSheetView(showCollabSheetView: .constant(false), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")), collaborators: [UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")])
-//                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-//                .previewDisplayName("iPhone 8")
-        }
-    }
-}
