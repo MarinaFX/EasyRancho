@@ -27,7 +27,6 @@ struct EditProfileView: View {
                             .clipShape(Circle())
                             .scaledToFill()
                             .frame(width:140, height: 140)
-                            .padding(.top, 100)
                     }
                     else{
                         if let newusername = newUsername{
@@ -75,17 +74,12 @@ struct EditProfileView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        //salvar no banco
-                        if newUsername == ""{
-                            self.username = username
+                        if newUsername.isEmpty{
+                            self.newUsername = CKService.currentModel.user?.name ?? ""
                         }
-                        else{
-                            self.username = newUsername
-                        }
-                        CKService.currentModel.updateUserName(name: newUsername) { result in}
-                        if let picture = picture{
-                            CKService.currentModel.updateUserImage(image: picture) { result in}
-                        }
+                        guard let picture = picture else {return}
+                        CKService.currentModel.updateUserImageAndName(image: picture, name: newUsername) { result in}
+                        self.username = newUsername
                         self.picture = picture
                         self.showingSheet = false
                     } label: {

@@ -6,8 +6,8 @@ struct SplashView: View {
     var body: some View {
             VStack {
                 if self.isActive {
-//                    MainView()
-                    SettingsView()
+                    MainView()
+                    //SettingsView()
                 } else {
                     VStack{
                         Spacer()
