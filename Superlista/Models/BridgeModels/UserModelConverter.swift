@@ -17,12 +17,32 @@ class UserModelConverter {
     //MARK: UserModelConverter Functions: ☁️ to Local
     
     /**
+    
+     */
+    func convertCloudUserCollabToLocal(withUser user: CKUserModel) -> UserModel {
+        let id: String
+        let name: String
+        let customProducts: [ProductModel] = []
+        let myLists: [ListModel] = []
+        let sharedWithMe: [ListModel] = []
+                
+        id = user.id.recordName
+        name = user.name ?? "arrumar esse inferno krl merda cu"
+        
+        let localUser: UserModel = UserModel(id: id, name: name, customProducts: customProducts, myLists: myLists, sharedWithMe: sharedWithMe)
+
+        
+        return localUser
+    }
+    
+    /**
     This method converts our current cloud CKItemModel structure to our local ItemModel structure
      
      - Parameters:
         - items: the cloud list of items to be converted
      - Returns: the ItemModel version of the given CKItemModel list
      */
+    #warning("reavaliar funcao. Ela esta chamando outras recursivamente e portanto nunca sai daqui")
     func convertCloudUserToLocal(withUser user: CKUserModel) -> UserModel {
         let id: String
         let name: String
@@ -31,7 +51,7 @@ class UserModelConverter {
         var sharedWithMe: [ListModel] = []
                 
         id = user.id.recordName
-        name = user.name ?? "nome aleatorio"
+        name = user.name!
         customProducts = productConverter.convertStringToProducts(withString: user.customProductsString ?? [])
         
         for list in user.myLists! {
@@ -79,7 +99,7 @@ class UserModelConverter {
         var sharedWithMe: [CKListModel] = []
         
         id = CKRecord.ID(recordName: user.id)
-        name = user.name ?? "nome aleatorio"
+        name = user.name!
         customProductsString = productConverter.convertLocalProductsToString(withProducts: user.customProducts ?? [])
         
         for list in user.myLists! {

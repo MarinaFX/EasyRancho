@@ -48,23 +48,30 @@ class DataService: ObservableObject {
     
     func getListsIntegration() {
         self.lists = getUserDefaults()
-
+        
         networkMonitor.startMonitoring { path in
+            print("começou a monitorar")
             if path.status == .satisfied {
-
+        
                 self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
-                    
-                    var userDefaults = self.getUserDefaults()
+                    print("entrou na subscription")
+                    var localLists = self.getUserDefaults()
                     
                     ckUserModel.myLists?.forEach { list in
-                        if !userDefaults.contains(where: { $0.id == list.id.recordName }) {
-                            
-                            let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                            userDefaults.append(localList)
+                        print("entrou no mylists do integration")
+                        let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                        
+                        let ids = localLists.map(\.id)
+                        
+                        if let index = ids.firstIndex(of: list.id.recordName) {
+                            localLists[index] = localList
+                        }
+                        else {
+                            localLists.append(localList)
                         }
                     }
-
-                    self.lists = userDefaults
+                    
+                    self.lists = localLists
                 }
             }
         }

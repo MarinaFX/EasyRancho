@@ -20,8 +20,8 @@ import CloudKit
  */
 class ListModelConverter {
     private let itemModelConverter = ItemModelConverter()
-  //  private let userModelConverter = UserModelConverter()
-
+    //  private let userModelConverter = UserModelConverter()
+    
     // MARK: - ListModelConverter Functions: Reference to ☁️
     
     func convertListReferenceToCloudList(withList list: [CKRecord.Reference], completion: @escaping (Result<[CKListModel], CKError>) -> Void) {
@@ -38,11 +38,11 @@ class ListModelConverter {
                 
                 CKService.currentModel.getList(listID: CKRecord.ID(recordName: list.recordID.recordName)) { result in
                     switch result {
-                        case .success(let resultList):
-                            cloudList.append(resultList)
-                                
-                        case .failure(let error):
-                            ckError = error
+                    case .success(let resultList):
+                        cloudList.append(resultList)
+                        
+                    case .failure(let error):
+                        ckError = error
                     }
                     
                     group.leave()
@@ -54,7 +54,7 @@ class ListModelConverter {
             
             if let error = ckError {
                 completion(.failure(error))
-
+                
             } else {
                 completion(.success(cloudList))
             }
@@ -62,34 +62,34 @@ class ListModelConverter {
     }
     
     // MARK: - ListModelConverter Functions: ☁️ to Reference
-
+    
     func convertCloudListToReference(withList list: CKListModel) -> CKRecord.Reference {
         return CKRecord.Reference(recordID: list.id, action: .none)
     }
     
+    
     /**
-     /**
      This method converts our current Cloud CKListModel structure to our local ListModel structure
-      
-      - Parameters:
-         - list: the cloud list to be converted - CKListModel
-      - Returns: the ListModel version of the given CKListModel list
-      */
+     
+     - Parameters:
+     - list: the cloud list to be converted - CKListModel
+     - Returns: the ListModel version of the given CKListModel list
      */
     func convertCloudListToLocal(withList list: CKListModel) -> ListModel {
+        #warning("verificar problema na conversao de owner")
         let localList: ListModel
         
         let localItems = itemModelConverter.convertCloudItemsToLocal(withItems: list.itemsModel)
-       
-        let localOwner = UserModelConverter().convertCloudUserToLocal(withUser: list.owner)
         
+        let localOwner = UserModelConverter().convertCloudUserCollabToLocal(withUser: list.owner)
+                
         var localSharedWith: [UserModel] = []
         for shared in list.sharedWith {
-            localSharedWith.append(UserModelConverter().convertCloudUserToLocal(withUser: shared))
+            localSharedWith.append(UserModelConverter().convertCloudUserCollabToLocal(withUser: shared))
+            print("dentro do for local shared with", localSharedWith)
         }
         
         localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, owner: localOwner, sharedWith: localSharedWith)
-        
         
         return localList
     }
@@ -97,10 +97,10 @@ class ListModelConverter {
     // MARK: - ListModelConverter Functions: Local to ☁️
     
     /**
-    This method converts our current local ListModel structure to our cloud CKListModel structure
+     This method converts our current local ListModel structure to our cloud CKListModel structure
      
      - Parameters:
-        - list: the local list to be converted - ListModel
+     - list: the local list to be converted - ListModel
      - Returns: the CKListModel version of the given ListModel list
      */
     func convertLocalListToCloud(withList list: ListModel) -> CKListModel {
@@ -126,5 +126,5 @@ class ListModelConverter {
         
         return cloudList
     }
-
+    
 }

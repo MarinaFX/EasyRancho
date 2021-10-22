@@ -11,12 +11,12 @@ import SwiftUI
 
 struct AddCollaboratorSheetView: View {
     @Binding var showCollabSheetView: Bool
-    
+    @Binding var collaborators: [UserModel]
+
     @State var showShareActionSheet: Bool = false
     
     let list: ListModel?
     
-    var collaborators: [UserModel]?
     var ckList: CKListModel? {
         if let list = list {
             return ListModelConverter().convertLocalListToCloud(withList: list)
@@ -93,6 +93,16 @@ struct AddCollaboratorSheetView: View {
                             .frame(width: geometry.size.width, height: geometry.size.height * 0.45)
                             .listStyle(.insetGrouped)
                         }
+                        else {
+                            VStack {
+                                Text("You haven't added any collaborators yet")
+                                    .foregroundColor(Color(UIColor.lightGray))
+                            }
+                            .frame(width: geometry.size.width - 32, height: geometry.size.height * 0.45)
+                            .background(Color("InsetGroupedBackground"))
+                            .cornerRadius(10)
+                            .padding(.vertical, 16)
+                        }
                         
                         
                         
@@ -165,6 +175,9 @@ struct AddCollaboratorSheetView: View {
                 }
             }
         }
+        .onAppear {
+            CKService.currentModel.refresh { result in }
+        }
     }
 }
 
@@ -173,17 +186,17 @@ struct AddCollaboratorSheetView: View {
 struct AddColaboratorSheetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AddCollaboratorSheetView(showCollabSheetView: .constant(false), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")))
+            AddCollaboratorSheetView(showCollabSheetView: .constant(false), collaborators: .constant([UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")]), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")))
                 .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
                 .previewDisplayName("iPhone 12")
             
-            AddCollaboratorSheetView(showCollabSheetView: .constant(false), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")))
-                .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
-                .previewDisplayName("iPhone SE")
-            
-            AddCollaboratorSheetView(showCollabSheetView: .constant(false), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")))
-                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-                .previewDisplayName("iPhone 8")
+//            AddCollaboratorSheetView(showCollabSheetView: .constant(false), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")), collaborators: [UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")])
+//                .previewDevice(PreviewDevice(rawValue: "iPhone SE (2nd generation)"))
+//                .previewDisplayName("iPhone SE")
+//
+//            AddCollaboratorSheetView(showCollabSheetView: .constant(false), list: ListModel(title: "Lista de Marina", owner: UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")), collaborators: [UserModel(id: "_16eb778c0d991eb8f36e5712f4606b46")])
+//                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
+//                .previewDisplayName("iPhone 8")
         }
     }
 }
