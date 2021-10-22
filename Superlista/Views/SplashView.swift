@@ -6,7 +6,7 @@ struct SplashView: View {
     var body: some View {
             VStack {
                 if self.isActive {
-                    MainView()
+                    OnboardingView()
                 } else {
                     VStack{
                         Spacer()
