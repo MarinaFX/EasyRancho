@@ -59,10 +59,8 @@
 		890913822649BC8100C619A3 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890913812649BC8100C619A3 /* DataService.swift */; };
 		890913842649BCCA00C619A3 /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 890913832649BCCA00C619A3 /* ListModel.swift */; };
 		89398DDA27232F7000C395E5 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89398DD927232F7000C395E5 /* OnboardingView.swift */; };
-		89398DDC2723306A00C395E5 /* OnboardingPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89398DDB2723306A00C395E5 /* OnboardingPages.swift */; };
-		89398DE12723423100C395E5 /* OnboardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89398DE02723423100C395E5 /* OnboardingPage.swift */; };
 		89398DE3272342B000C395E5 /* OnboardingFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89398DE2272342B000C395E5 /* OnboardingFields.swift */; };
-		89398DE5272344EF00C395E5 /* MediumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89398DE4272344EF00C395E5 /* MediumButton.swift */; };
+		89398DE5272344EF00C395E5 /* MediumButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89398DE4272344EF00C395E5 /* MediumButtonStyle.swift */; };
 		893BA28A2654A84600A300DA /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893BA2892654A84600A300DA /* CategoryModel.swift */; };
 		8948F8D4265325E000394EB6 /* ListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8948F8D3265325E000394EB6 /* ListHeader.swift */; };
 		8980E9CA2644AF91002A5073 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8980E9C92644AF91002A5073 /* ListView.swift */; };
@@ -147,10 +145,8 @@
 		890913812649BC8100C619A3 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		890913832649BCCA00C619A3 /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
 		89398DD927232F7000C395E5 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		89398DDB2723306A00C395E5 /* OnboardingPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPages.swift; sourceTree = "<group>"; };
-		89398DE02723423100C395E5 /* OnboardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage.swift; sourceTree = "<group>"; };
 		89398DE2272342B000C395E5 /* OnboardingFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFields.swift; sourceTree = "<group>"; };
-		89398DE4272344EF00C395E5 /* MediumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumButton.swift; sourceTree = "<group>"; };
+		89398DE4272344EF00C395E5 /* MediumButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumButtonStyle.swift; sourceTree = "<group>"; };
 		893BA2892654A84600A300DA /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		8948F8D3265325E000394EB6 /* ListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHeader.swift; sourceTree = "<group>"; };
 		8980E9C92644AF91002A5073 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -236,7 +232,7 @@
 				09725B1A264C5FE40006D410 /* FakeSearchBar.swift */,
 				8948F8D3265325E000394EB6 /* ListHeader.swift */,
 				389B80CB271F5D2C00ADCBE1 /* Wave.swift */,
-				89398DE4272344EF00C395E5 /* MediumButton.swift */,
+				89398DE4272344EF00C395E5 /* MediumButtonStyle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -305,7 +301,6 @@
 				1BE5B6E2270E11FF00338A02 /* BridgeModels */,
 				0914B97F270B7E55008E297F /* CKModels */,
 				0914B980270B7E7A008E297F /* LocalModels */,
-				89398DDB2723306A00C395E5 /* OnboardingPages.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -346,7 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				89398DD927232F7000C395E5 /* OnboardingView.swift */,
-				89398DE02723423100C395E5 /* OnboardingPage.swift */,
 				89398DE2272342B000C395E5 /* OnboardingFields.swift */,
 			);
 			path = OnboardingView;
@@ -565,7 +559,6 @@
 				1B4678B426447F850014B288 /* AddNewItemView.swift in Sources */,
 				1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */,
 				8948F8D4265325E000394EB6 /* ListHeader.swift in Sources */,
-				89398DE12723423100C395E5 /* OnboardingPage.swift in Sources */,
 				89D38E99271A065D0015DFAE /* CloudIntegration.swift in Sources */,
 				1BFA604F2641DAFB0030AE03 /* DataModel.swift in Sources */,
 				389B80DB271F7E8200ADCBE1 /* ProfileViewModel.swift in Sources */,
@@ -587,9 +580,8 @@
 				89398DE3272342B000C395E5 /* OnboardingFields.swift in Sources */,
 				0914E8352718AAF9006E5DB8 /* CustomSource.swift in Sources */,
 				382E7F5627189A9500EE4E5D /* NetworkMonitor.swift in Sources */,
-				89398DDC2723306A00C395E5 /* OnboardingPages.swift in Sources */,
 				09725AFF264460AF0006D410 /* CustomHeader.swift in Sources */,
-				89398DE5272344EF00C395E5 /* MediumButton.swift in Sources */,
+				89398DE5272344EF00C395E5 /* MediumButtonStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

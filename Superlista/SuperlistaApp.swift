@@ -15,7 +15,7 @@ struct SuperlistaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                SplashView()
+                OnboardingView()
                     .onOpenURL(perform: { url in
                         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
                               let host = components.host else {
@@ -36,6 +36,7 @@ struct SuperlistaApp: App {
 
                 loadData()
             }
+            
         }
     }
     

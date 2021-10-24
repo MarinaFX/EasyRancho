@@ -19,7 +19,7 @@ struct OnboardingFields: View {
                     .padding(.horizontal)
                     .multilineTextAlignment(.center)
 
-                ProfilePicture(nameUser: "Luiz")
+                ProfilePicture(username: "Luiz")
                     .padding()
                 
                 TextField("Nome", text: $newUsername)
@@ -33,9 +33,9 @@ struct OnboardingFields: View {
                 
                 Spacer()
                 
-                MediumButton(action: {
-                    print("hello")
-                }, text: "Salvar", backgroundColor: .blue, foregroundColor: .white)
+//                MediumButton(action: {
+//                    print("hello")
+//                }, text: "Salvar", backgroundColor: .blue, foregroundColor: .white)
             }
             .navigationBarItems(trailing: Button(action: {
                     print("aaa")
