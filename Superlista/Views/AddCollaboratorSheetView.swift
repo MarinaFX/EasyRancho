@@ -14,6 +14,7 @@ struct AddCollaboratorSheetView: View {
     @Binding var collaborators: [UserModel]
 
     @State var showShareActionSheet: Bool = false
+    @State var showDeleteCollabAlert: Bool = false
     
     let list: ListModel?
     
@@ -77,13 +78,26 @@ struct AddCollaboratorSheetView: View {
                                         Spacer()
                                         
                                         Button {
-                                            //TODO: User actions (delete, ...)
-                                        } label: {
-                                            Image(systemName: "ellipsis.circle")
+                                            showDeleteCollabAlert = true
+                                        }
+                                        label: {
+                                            Image(systemName: "xmark.circle.fill")
                                                 .resizable()
                                                 .frame(width: 20, height: 20)
                                                 .foregroundColor(.black)
                                         }
+                                        .alert(isPresented: self.$showDeleteCollabAlert) {
+                                            Alert(
+                                                title: Text("DeleteCollabAlertTitle \(collaborators[index].name ?? getNickname())"),
+                                                message: Text("DeleteCollabAlertMessage"),
+                                                primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
+                                                    //TODO: Delete Collab
+                                                }),
+                                                secondaryButton: .cancel(Text("DeleteCollabAlertSecondaryButton"), action: {})
+                                            )
+                                        }
+                                        
+                                        
                                     }
                                 }
                                 .listRowBackground(Color("InsetGroupedBackground"))

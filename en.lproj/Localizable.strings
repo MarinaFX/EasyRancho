@@ -6,6 +6,12 @@
   
 */
 
+//MARK: - AddColaborator screen
+"DeleteCollabAlertTitle %@" = "Are you sure you want to remove %@ from your list?";
+"DeleteCollabAlertMessage" = "This person will no longer be able to collaborate in your list";
+"DeleteCollabAlertPrimaryButton" = "Remove";
+"DeleteCollabAlertSecondaryButton" = "Cancel";
+
 "Listas" = "Listas";
 "listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
 "SalvarNovaLista" = "Salvar";
