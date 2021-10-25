@@ -6,7 +6,6 @@ import CloudKit
 struct SuperlistaApp: App {
     @StateObject var dataService: DataService = DataService()
     
-    
     let purpleColor = Color("Background")
     
     init() {
