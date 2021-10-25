@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ProfileViewModel : ObservableObject{
+class ProfileViewModel : ObservableObject {
     @Published var userName: String = ""
     @Published var showingImagePicker: Bool = false
     @Published var image: UIImage?

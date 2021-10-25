@@ -10,21 +10,22 @@ class DataService: ObservableObject {
     @Published var lists: [ListModel] = [] {
         didSet {
             saveDataOnUserDefaults()
-            
-            print("on UD")
-            lists.forEach { list in
-                print(list.id)
-            }
-            print("============")
-            
-            print("on CK")
-            CKService.currentModel.user?.myLists?.forEach { list in
-                print(list.id.recordName)
-            }
-            
-            print("============\n")
+            print(CKService.currentModel.user?.name)
 
-            
+//            print("on UD")
+//            lists.forEach { list in
+//                print(list.id)
+//            }
+//            print("============")
+//
+//            print("on CK")
+//            CKService.currentModel.user?.myLists?.forEach { list in
+//                print(list.id.recordName)
+//            }
+//
+//            print("============\n")
+//
+//
         }
     }
     
@@ -33,6 +34,7 @@ class DataService: ObservableObject {
     @Published var currentCategory: CategoryModel?
     
     @Published var isGrid: Bool = false
+
     
     let products = ProductListViewModel().productsOrdered
     

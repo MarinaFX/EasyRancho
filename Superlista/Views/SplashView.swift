@@ -2,26 +2,35 @@ import SwiftUI
 
 struct SplashView: View {
     @State var isActive: Bool = false
+    @State var isLogged: Bool = false
     
     var body: some View {
-            VStack {
-                if self.isActive {
+        VStack {
+            if self.isActive {
+                if isLogged {
                     MainView()
                 } else {
-                    VStack{
-                        Spacer()
-                        Image("DefaultLS")
-                            .resizable()
-                            .ignoresSafeArea()
-                            .scaledToFill()
-                        Spacer()
+                    OnboardingView() {
+                        self.isLogged = CKService.currentModel.user != nil
                     }
                 }
+            } else {
+                VStack{
+                    Spacer()
+                    Image("DefaultLS")
+                        .resizable()
+                        .ignoresSafeArea()
+                        .scaledToFill()
+                    Spacer()
+                }
             }
+        }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 withAnimation {
                     self.isActive = true
+                    
+                    self.isLogged = CKService.currentModel.user?.name != nil
                 }
             }
         }

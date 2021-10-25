@@ -1,15 +1,18 @@
 import SwiftUI
 
+
 struct OnboardingView: View {
-    var action: (() -> Void)?
-    
     @State private var currentPage = 0
     @State private var currentColor: Color = onboardingPages[0].color
-    @State private var picture: UIImage? = nil
     
-    init(action: (() -> Void)?) {
-        self.action = action
+    init() {
         UIScrollView.appearance().bounces = false
+    }
+    
+    func changeColor(value: Int) {
+        withAnimation(.easeIn(duration: 0.1)) {
+            currentColor = onboardingPages[value].color
+        }
     }
     
     var body: some View {
@@ -25,7 +28,7 @@ struct OnboardingView: View {
                 .tabViewStyle(PageTabViewStyle())
                 .onChange(of: currentPage, perform: changeColor)
                 
-                NavigationLink("Começar", destination: OnboardingFieldsView(action: action, picture: $picture))
+                NavigationLink("Começar", destination: OnboardingFields())
                     .buttonStyle(MediumButtonStyle(background: .white, foreground: currentColor))
                     .padding(.top)
                     .padding(.bottom, 48)
@@ -35,29 +38,22 @@ struct OnboardingView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
-    
-    func changeColor(value: Int) {
-        withAnimation(.easeIn(duration: 0.1)) {
-            currentColor = onboardingPages[value].color
-        }
-    }
 }
 
 struct OnboardingPageView: View {
     let index: Int
-
+    
     var body: some View {
         VStack {
-            
             Image(onboardingPages[index].image)
-            .frame(width: UIScreen.main.bounds.width, height: 260)
-            .padding(.bottom, 56)
+                .frame(width: UIScreen.main.bounds.width, height: 260)
+                .padding(.bottom, 56)
             
             Text(onboardingPages[index].title)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
-
+            
             
             Text(onboardingPages[index].text)
                 .font(.title3)
@@ -71,7 +67,7 @@ struct OnboardingPageView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(action: {})
+        OnboardingView()
     }
 }
 

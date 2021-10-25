@@ -15,6 +15,7 @@ struct ProfilePicture: View {
             ZStack {
                 Color("Pronto")
                     .clipShape(Circle())
+                
                 Circle()
                     .stroke(Color.white, style: StrokeStyle(lineWidth: 5))
                     .frame(width: 140, height: 140)
