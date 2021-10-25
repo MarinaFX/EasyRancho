@@ -11,7 +11,7 @@ struct SplashView: View {
                     MainView()
                 } else {
                     OnboardingView() {
-                        self.isLogged = CKService.currentModel.user != nil
+                        self.isLogged = CKService.currentModel.user?.name != nil
                     }
                 }
             } else {
