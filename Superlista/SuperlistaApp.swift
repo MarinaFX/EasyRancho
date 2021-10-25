@@ -35,7 +35,6 @@ struct SuperlistaApp: App {
                             })
                     }
                     .alert(isPresented: $presentCollabAlert) {
-                        print("alert1")
                         return Alert(
                             title: Text(list?.name ?? "Lista"),
                             message: Text("Você foi convidado você para colaborar em uma lista. Deseja se tornar um colaborador desta lista?"),
@@ -47,35 +46,18 @@ struct SuperlistaApp: App {
                             secondaryButton: .default(
                                 Text("Aceitar"),
                                 action: {
-//                                    let ds = DispatchSemaphore(value: 1)
-//                                    ds.wait()
-                                    CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in
-//                                        ds.signal()
-                                    }
-//                                    ds.wait()
+                                    CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in }
                                     let user = CKService.currentModel.user!
-//                                    ds.signal()
-//                                    ds.wait()
                                     var sharedWith = list!.sharedWith
-//                                    ds.signal()
-//                                    ds.wait()
                                     sharedWith.append(user)
-//                                    ds.signal()
-//                                    ds.wait()
-                                    print(sharedWith)
-                                    CKService.currentModel.updateListCollab(listID: list!.id, sharedWith: sharedWith) { result in
-//                                        ds.signal()
-                                        print(result, "result")
-                                    }
-//                                    ds.wait()
+                                    CKService.currentModel.updateListCollab(listID: list!.id, sharedWith: sharedWith) { result in }
                                     presentCollabAlert = false
-//                                    ds.signal()
                                 }
                             )
                         )
                     }
                 }
-//              //  .alert(isPresented: $presentSharedAlert) {
+//                .alert(isPresented: $presentSharedAlert) {
 //                    print("alert2")
 //                    return Alert(title: Text(list?.name ?? "Lista"),
 //                          message: Text("Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?"),
@@ -86,25 +68,16 @@ struct SuperlistaApp: App {
 //                          secondaryButton: .default(
 //                            Text("Aceitar"),
 //                            action: {
-//                                let ds = DispatchSemaphore(value: 1)
-//                                ds.wait()
 //                                let newOwnerRef = CKRecord.Reference(recordID: CKService.currentModel.user!.id, action: .none)
 //                                let newListLocal = CKListModel(name: list!.name ?? "Nova Lista", ownerRef: newOwnerRef, itemsString: list!.itemsString, sharedWithRef: [])
-//                                ds.signal()
-//                                ds.wait()
 //                                CKService.currentModel.createList(listModel: newListLocal) { result in
 //                                    switch result {
 //                                    case .success (let newListID):
-//                                        ds.signal()
-//                                        ds.wait()
-//                                        CKService.currentModel.saveListUsersList(listID: newListID, key: .MyLists) { result in
-//                                            presentSharedAlert = false
-//                                            ds.signal()
-//                                        }
+//                                        CKService.currentModel.saveListUsersList(listID: newListID, key: .MyLists) { result in }
 //                                    case .failure:
-//                                        presentSharedAlert = false
-//                                        ds.signal()
+//                                        return
 //                                    }
+//                                    presentSharedAlert = false
 //                                }
 //                            }
 //                          )
@@ -131,7 +104,6 @@ struct SuperlistaApp: App {
         guard let listID = deeplink.listID else { return }
         guard let option = deeplink.option else { return }
         
-        print(presentCollabAlert, "1")
         
         CKService.currentModel.getList(listID: CKRecord.ID(recordName: listID)) { result in
             switch result {
@@ -140,7 +112,6 @@ struct SuperlistaApp: App {
                 print(list.sharedWith)
                 if option == "1" {
                     presentCollabAlert = true
-                    print(presentCollabAlert, "2")
                 } else if option == "2" {
                     presentSharedAlert = true
                 }
