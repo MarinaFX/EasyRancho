@@ -13,7 +13,7 @@ struct ProfilePicture: View {
     var body: some View {
         GeometryReader { g in
             ZStack {
-                Color("Pronto")
+                Color("Button")
                     .clipShape(Circle())
                 
                 Circle()

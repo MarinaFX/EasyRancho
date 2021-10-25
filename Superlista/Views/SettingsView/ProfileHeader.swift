@@ -14,7 +14,7 @@ struct ProfileHeader: View {
         ZStack{
             VStack{
                 Wave()
-                    .fill(Color("HeaderBG"))
+                    .fill(Color("Background"))
                     .frame(height: 205)
                     .padding(.horizontal, -30)
             }

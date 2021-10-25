@@ -12,7 +12,7 @@ let onboardingPages = [
         image: "OnboardingA",
         title: "Bem-vindo",
         text: "Crie listas de supermercado categorizadas de maneira fácil e simples!",
-        color: Color("HeaderColor")
+        color: Color("Background")
     ),
     OnboardingPage(
         image: "OnboardingB",
@@ -24,6 +24,6 @@ let onboardingPages = [
         image: "OnboardingC",
         title: "Personalize itens",
         text: "Adicione novos produtos, quantidades e comentários a sua lista.",
-        color: Color("Selected")
+        color: Color("Button")
     )
 ]

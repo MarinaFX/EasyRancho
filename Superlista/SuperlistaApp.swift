@@ -7,10 +7,10 @@ struct SuperlistaApp: App {
     @StateObject var dataService: DataService = DataService()
     
     
-    let purpleColor = Color("HeaderColor")
+    let purpleColor = Color("Background")
     
     init() {
-        UITableView.appearance().backgroundColor = UIColor(named: "background")
+        UITableView.appearance().backgroundColor = UIColor(named: "PrimaryBackground")
     }
     
     var body: some Scene {

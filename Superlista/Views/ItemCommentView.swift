@@ -6,14 +6,14 @@ struct ItemCommentView: View {
     @State var isCommenting: Bool = false
     @State var comment: String = ""
     
-    let purpleColor = Color("HeaderColor")
+    let purpleColor = Color("Background")
 
     var item: ItemModel
     var list: ListModel
     
     var body: some View {
         ZStack{
-            Color("background")
+            Color("PrimaryBackground")
                 .ignoresSafeArea()
             
             VStack (alignment: .leading, spacing: 0) {
@@ -82,7 +82,7 @@ struct ItemCommentView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color("background"))
+            .background(Color("PrimaryBackground"))
             .onAppear {
                 self.comment = item.comment ?? ""
             }
