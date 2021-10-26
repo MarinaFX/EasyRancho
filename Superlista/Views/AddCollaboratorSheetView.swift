@@ -88,7 +88,7 @@ struct AddCollaboratorSheetView: View {
                                         }
                                         .alert(isPresented: self.$showDeleteCollabAlert) {
                                             Alert(
-                                                title: Text("DeleteCollabAlertTitle \(collaborators[index].name ?? getNickname())"),
+                                                title: Text("DeleteCollabAlertTitle \(collaborators[index].name ?? "")"),
                                                 message: Text("DeleteCollabAlertMessage"),
                                                 primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
                                                     //TODO: Delete Collab

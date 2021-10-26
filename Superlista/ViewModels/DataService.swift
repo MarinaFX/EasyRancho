@@ -50,15 +50,12 @@ class DataService: ObservableObject {
         self.lists = getUserDefaults()
         
         networkMonitor.startMonitoring { path in
-            print("começou a monitorar")
             if path.status == .satisfied {
         
                 self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
-                    print("entrou na subscription")
                     var localLists = self.getUserDefaults()
                     
                     ckUserModel.myLists?.forEach { list in
-                        print("entrou no mylists do integration")
                         let localList = ListModelConverter().convertCloudListToLocal(withList: list)
                         
                         let ids = localLists.map(\.id)

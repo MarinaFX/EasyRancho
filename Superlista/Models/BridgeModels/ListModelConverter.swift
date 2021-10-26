@@ -20,10 +20,16 @@ import CloudKit
  */
 class ListModelConverter {
     private let itemModelConverter = ItemModelConverter()
-    //  private let userModelConverter = UserModelConverter()
     
     // MARK: - ListModelConverter Functions: Reference to ☁️
     
+    /**
+     This method converts our current CloudKit Reference record to a Cloud CKListModel structure
+     
+     - Parameters:
+     - list: the Record Reference to be converted - CKRecord.Reference
+     - Returns: the cloud list of the given Record Reference list
+     */
     func convertListReferenceToCloudList(withList list: [CKRecord.Reference], completion: @escaping (Result<[CKListModel], CKError>) -> Void) {
         var cloudList: [CKListModel] = []
         
@@ -63,6 +69,13 @@ class ListModelConverter {
     
     // MARK: - ListModelConverter Functions: ☁️ to Reference
     
+    /**
+     This method converts our current Cloud CKListModel structure to a CloudKit Reference record
+     
+     - Parameters:
+     - list: the cloud list to be converted - CKListModel
+     - Returns: the Record Reference of the given CKListModel list
+     */
     func convertCloudListToReference(withList list: CKListModel) -> CKRecord.Reference {
         return CKRecord.Reference(recordID: list.id, action: .none)
     }
@@ -86,7 +99,6 @@ class ListModelConverter {
         var localSharedWith: [UserModel] = []
         for shared in list.sharedWith {
             localSharedWith.append(UserModelConverter().convertCloudUserCollabToLocal(withUser: shared))
-            print("dentro do for local shared with", localSharedWith)
         }
         
         localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, owner: localOwner, sharedWith: localSharedWith)
