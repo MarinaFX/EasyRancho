@@ -48,6 +48,11 @@ class UserModelConverter {
         return localUser
     }
     
+    func convertCloudOwnerToLocal(withUser user: CKUserModel) -> UserModel {
+        let localUser = UserModel(id: user.id.recordName, name: user.name, customProducts: [], myLists: [], sharedWithMe: [])
+        return localUser
+    }
+    
     
     /**
     This method converts our cloud CKUserModel structure to a CKRecord.reference

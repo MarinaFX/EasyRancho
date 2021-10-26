@@ -165,7 +165,7 @@ struct MainView: View {
     }
     
     func createNewListAction() {
-        let newList: ListModel = ListModel(title: "Nova Lista", owner: DataService.user)
+        let newList: ListModel = ListModel(title: "Nova Lista")
 
         dataService.addList(newList)
         self.listId = newList.id

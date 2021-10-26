@@ -8,7 +8,7 @@ class CKListModel {
     var itemsModel: [CKItemModel] = []
     
     var ownerRef: CKRecord.Reference
-    var owner: CKUserModel
+    var owner: CKUserModel?
     
     var sharedWithRef: [CKRecord.Reference] = []
     var sharedWith: [CKUserModel] = []
@@ -31,29 +31,13 @@ class CKListModel {
         itemsModel = itemConverter.parseStringToCKItemObject(withString: itemsString)
         
         ownerRef = record["Owner"] as! CKRecord.Reference
-        owner = CKUserModel(record: CKRecord(recordType: "User", recordID: ownerRef.recordID))
-        CKService.currentModel.getAnotherUserName(userID: ownerRef.recordID) { result in
-            switch result {
-            case .success(let name):
-                self.owner.name = name
-            default:
-                return
-            }
-        }
+   //     owner = CKUserModel(record: CKRecord(recordType: "User", recordID: ownerRef.recordID))
         
         sharedWithRef = record["SharedWith"] as? [CKRecord.Reference] ?? []
-        for shared in sharedWithRef {
-            let sharedWithUser = CKUserModel(record: CKRecord(recordType: "User", recordID: shared.recordID))
-            CKService.currentModel.getAnotherUserName(userID: shared.recordID) { result in
-                switch result {
-                case .success(let name):
-                    sharedWithUser.name = name
-                default:
-                    return
-                }
-            }
-            sharedWith.append(sharedWithUser)
-        }
+//        for shared in sharedWithRef {
+//            let sharedWithUser = CKUserModel(record: CKRecord(recordType: "User", recordID: shared.recordID))
+//            sharedWith.append(sharedWithUser)
+//        }
     }
     
     init(name: String, ownerRef: CKRecord.Reference, itemsString: [String], sharedWithRef: [CKRecord.Reference]) {
@@ -63,28 +47,13 @@ class CKListModel {
         itemsModel = itemConverter.parseStringToCKItemObject(withString: itemsString)
         
         self.ownerRef = ownerRef
-        owner = CKUserModel(record: CKRecord(recordType: "User", recordID: ownerRef.recordID))
-        CKService.currentModel.getAnotherUserName(userID: ownerRef.recordID) { result in
-            switch result {
-            case .success(let name):
-                self.owner.name = name
-            default:
-                return
-            }
-        }
+ //       owner = CKUserModel(record: CKRecord(recordType: "User", recordID: ownerRef.recordID))
+       
         
         self.sharedWithRef = sharedWithRef
-        for shared in sharedWithRef {
-            let sharedWithUser = CKUserModel(record: CKRecord(recordType: "User", recordID: shared.recordID))
-            CKService.currentModel.getAnotherUserName(userID: shared.recordID) { result in
-                switch result {
-                case .success(let name):
-                    sharedWithUser.name = name
-                default:
-                    return
-                }
-            }
-            sharedWith.append(sharedWithUser)
-        }
+//        for shared in sharedWithRef {
+//            let sharedWithUser = CKUserModel(record: CKRecord(recordType: "User", recordID: shared.recordID)) 
+//            sharedWith.append(sharedWithUser)
+//        }
     }
 }
