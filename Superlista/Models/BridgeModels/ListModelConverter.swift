@@ -93,15 +93,17 @@ class ListModelConverter {
         let localList: ListModel
         
         let localItems = itemModelConverter.convertCloudItemsToLocal(withItems: list.itemsModel)
+       
+      //  let localOwner = UserModelConverter().convertCloudOwnerToLocal(withUser: list.owner)
         
         let localOwner = UserModelConverter().convertCloudUserCollabToLocal(withUser: list.owner)
                 
         var localSharedWith: [UserModel] = []
-        for shared in list.sharedWith {
-            localSharedWith.append(UserModelConverter().convertCloudUserCollabToLocal(withUser: shared))
-        }
+//        for shared in list.sharedWith {
+//            localSharedWith.append(UserModelConverter().convertCloudOwnerToLocal(withUser: shared))
+//        }
         
-        localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, owner: localOwner, sharedWith: localSharedWith)
+        localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems)
         
         return localList
     }
@@ -122,18 +124,18 @@ class ListModelConverter {
         cloudList.name = list.title
         cloudList.itemsModel = itemModelConverter.convertLocalItemsToCloudItems(withItemsList: list.items)
         cloudList.itemsString = itemModelConverter.parseCKItemObjectToString(withItems: cloudList.itemsModel)
-        cloudList.owner = UserModelConverter().convertLocalUserToCloud(withUser: list.owner)
+      //  cloudList.owner = UserModelConverter().convertLocalUserToCloud(withUser: list.owner)
         
         var cloudSharedWith: [CKUserModel] = []
-        for shared in list.sharedWith ?? []  {
-            cloudSharedWith.append(UserModelConverter().convertLocalUserToCloud(withUser: shared))
-        }
+//        for shared in list.sharedWith ?? []  {
+//            cloudSharedWith.append(UserModelConverter().convertLocalUserToCloud(withUser: shared))
+//        }
         cloudList.sharedWith = cloudSharedWith
         
         var cloudSharedWithRef: [CKRecord.Reference] = []
-        for shared in cloudSharedWith {
-            cloudSharedWithRef.append(UserModelConverter().convertCloudUserToReference(withUser: shared))
-        }
+//        for shared in cloudSharedWith {
+//            cloudSharedWithRef.append(UserModelConverter().convertCloudUserToReference(withUser: shared))
+//        }
         cloudList.sharedWithRef = cloudSharedWithRef
         
         return cloudList

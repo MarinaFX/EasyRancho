@@ -133,19 +133,19 @@ class CKService: ObservableObject {
         }
     }
     
-    // MARK: - Get another user name
-    func getAnotherUserName(userID: CKRecord.ID, completion: @escaping (Result<String,CKError>) -> Void) {
-        publicDB.fetch(withRecordID: userID) { record, error in
-            if error == nil {
-                let user = CKUserModel(record: record!)
-                completion(.success(user.name!))
-                return
-            } else {
-                completion(.failure(error as! CKError))
-                return
-            }
-        }
-    }
+//    // MARK: - Get another user name
+//    func getAnotherUserName(userID: CKRecord.ID, completion: @escaping (Result<String,CKError>) -> Void) {
+//        publicDB.fetch(withRecordID: userID) { record, error in
+//            if error == nil {
+//                let user = CKUserModel(record: record!)
+//                completion(.success(user.name!))
+//                return
+//            } else {
+//                completion(.failure(error as! CKError))
+//                return
+//            }
+//        }
+//    }
     
     // MARK: - Update User Name
 #warning("Verificar se está sendo usado em algum lugar")

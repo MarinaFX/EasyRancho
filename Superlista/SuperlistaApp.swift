@@ -15,6 +15,7 @@ struct SuperlistaApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
+                ZStack {
                 SplashView()
                     .onOpenURL(perform: { url in
                         guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
@@ -28,6 +29,10 @@ struct SuperlistaApp: App {
                         handleDeepLink(deepLink)
                         
                     })
+                Button("Botao") {
+                    CKService.currentModel.updateListName(listName: "SOCORRO FUNCIONA", listID: CKRecord.ID(recordName: "466B6502-7066-4364-93D9-F6A248E0336E")) { result in }
+                }
+                }
             }
             .accentColor(Color("Link"))
             .navigationViewStyle(StackNavigationViewStyle())
@@ -51,17 +56,7 @@ struct SuperlistaApp: App {
         guard let listID = deeplink.listID else { return }
         guard let option = deeplink.option else { return }
         
-        var ownerName: String?
         var listName: String?
-        
-        CKService.currentModel.getAnotherUserName(userID: CKRecord.ID(recordName: ownerID)) { result in
-            switch result {
-                case .success(let name):
-                    ownerName = name
-                case .failure(let error):
-                    print(error)
-            }
-        }
         
         CKService.currentModel.getList(listID: CKRecord.ID(recordName: listID)) { result in
             switch result {
