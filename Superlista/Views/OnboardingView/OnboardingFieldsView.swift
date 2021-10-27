@@ -4,16 +4,11 @@ struct OnboardingFieldsView: View {
     var action: (() -> Void)?
     @State private var newUsername = ""
     @State private var isShowGallery = false
-    @State private var goToMainView = false
     @State var username: String = ""
     @Binding var picture: UIImage?
     
     var hasAddedUsername: Bool {
         return newUsername != ""
-    }
-    
-    var hasAddedPicture: Bool {
-        return picture != nil
     }
     
     var body: some View {
@@ -65,9 +60,6 @@ struct OnboardingFieldsView: View {
             Button("Salvar", action: { saveInfos() })
                 .buttonStyle(MediumButtonStyle(background: .blue, foreground: .white))
                 .padding(.bottom, 48)
-            
-            NavigationLink("", destination: MainView(), isActive: $goToMainView)
-            
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
