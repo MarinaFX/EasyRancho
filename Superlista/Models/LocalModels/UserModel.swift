@@ -10,7 +10,7 @@ class UserModel: Identifiable, Decodable, Encodable {
     var myLists: [ListModel]?
     var sharedWithMe: [ListModel]?
     
-    #warning("Substituir a string fazia pelo nome aleatorio")
+    #warning("Substituir a string vazia pelo nome aleatorio")
     init(id: String, name: String? = "", customProducts: [ProductModel]? = [], myLists: [ListModel]? = [], sharedWithMe: [ListModel]? = []) {
         
         self.id = id

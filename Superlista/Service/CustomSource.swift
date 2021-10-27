@@ -4,18 +4,16 @@ import LinkPresentation
 class CustomSource: NSObject, UIActivityItemSource {
     let url: URL
     let listID: String
-    let ownerID: String
     let option: String
     let listName: String
     let ownerName: String
     
-    init(listID: String, ownerID: String, option: String, listName: String, ownerName: String) {
+    init(listID: String, option: String, listName: String, ownerName: String) {
         self.listID = listID
-        self.ownerID = ownerID
         self.option = option
         self.listName = listName
         self.ownerName = ownerName
-        self.url = URL(string: "easyrancho://" + ownerID + "$" + listID + "$" + option) ?? URL(string: "apple.com")!
+        self.url = URL(string: "easyrancho://" + listID + "$" + option) ?? URL(string: "apple.com")!
     }
     
     func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
