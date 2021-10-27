@@ -40,7 +40,7 @@ struct SuperlistaApp: App {
                     .alert(isPresented: $presentCollabAlert) {
                         return Alert(
                             title: Text(list?.name ?? NSLocalizedString("NovaLista", comment: "")),
-                            message: Text(NSLocalizedString("CollabAllerta", comment: "")),
+                            message: Text(NSLocalizedString("CollabAlerta", comment: "")),
                             primaryButton:  .default(
                                 Text(NSLocalizedString("Cancelar", comment: "")),
                                 action: {
@@ -52,6 +52,9 @@ struct SuperlistaApp: App {
                                     CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in }
                                     let user = CKOwnerModel(id: CKService.currentModel.user!.id, name: CKService.currentModel.user!.name!)
                                     var sharedWith = list!.sharedWith
+                                    for user in sharedWith {
+                                        print(user.id.recordName, "shared with")
+                                    }
                                     sharedWith.append(user)
                                     CKService.currentModel.updateListCollab(listID: list!.id, sharedWith: sharedWith) { result in }
                                     presentCollabAlert = false
