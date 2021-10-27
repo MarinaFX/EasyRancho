@@ -18,12 +18,13 @@ struct OnboardingFieldsView: View {
     
     var body: some View {
         VStack {
-            Text("Personalize Seu Perfil")
+            Text("OnboardingFieldsTitle")
                 .font(.largeTitle)
                 .fontWeight(.bold)
+                .multilineTextAlignment(.center)
                 .padding(.bottom, 12)
             
-            Text("Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.")
+            Text("OnboardingFieldsText")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 27)
@@ -55,6 +56,7 @@ struct OnboardingFieldsView: View {
                 }
             }
             
+            #warning("localizable not working")
             TextField("Nome", text: $newUsername)
                 .modifier(CustomTextFieldStyle())
             

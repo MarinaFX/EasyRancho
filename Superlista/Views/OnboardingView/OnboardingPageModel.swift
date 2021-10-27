@@ -9,21 +9,21 @@ struct OnboardingPage {
 
 let onboardingPages = [
     OnboardingPage(
-        image: "OnboardingA",
-        title: "Bem-vindo",
-        text: "Crie listas de supermercado categorizadas de maneira fácil e simples!",
+        image: NSLocalizedString("OnboardingA", comment: ""),
+        title: NSLocalizedString("OnboardingATitle", comment: ""),
+        text: NSLocalizedString("OnboardingAText", comment: ""),
         color: Color("Background")
     ),
     OnboardingPage(
-        image: "OnboardingB",
-        title: "Listas Colaborativas",
-        text: "Crie listas compartilhadas e adicione colaboradores para que possam editar em tempo real.",
+        image: NSLocalizedString("OnboardingB", comment: ""),
+        title: NSLocalizedString("OnboardingBTitle", comment: ""),
+        text: NSLocalizedString("OnboardingBText", comment: ""),
         color: Color("Higieneebeleza")
     ),
     OnboardingPage(
-        image: "OnboardingC",
-        title: "Personalize itens",
-        text: "Adicione novos produtos, quantidades e comentários a sua lista.",
+        image: NSLocalizedString("OnboardingC", comment: ""),
+        title: NSLocalizedString("OnboardingCTitle", comment: ""),
+        text: NSLocalizedString("OnboardingCText", comment: ""),
         color: Color("Button")
     )
 ]
