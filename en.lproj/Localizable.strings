@@ -18,6 +18,10 @@
 "EditarListas" = "Editar";
 "NovaLista" = "Nova Lista";
 "DefaultLS" = "DefaultLS";
+"CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
+"Cancelar" = "Cancelar";
+"Aceitar" = "Aceitar";
+"SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
 
 //Not working 4now
 "ProcurarItens" = "Procurar Itens";
