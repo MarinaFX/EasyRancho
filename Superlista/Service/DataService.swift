@@ -14,9 +14,6 @@ class DataService: ObservableObject {
     @Published var lists: [ListModel] = [] {
         didSet {
             UDService().saveListsOnUD(lists: lists)
-            
-            let ud = UDService().getUDLists()
-            let ck = CKService.currentModel.user?.myLists
         }
     }
     
