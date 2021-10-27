@@ -29,9 +29,6 @@ struct SuperlistaApp: App {
                         handleDeepLink(deepLink)
                         
                     })
-                Button("Botao") {
-                    CKService.currentModel.updateListName(listName: "SOCORRO FUNCIONA", listID: CKRecord.ID(recordName: "466B6502-7066-4364-93D9-F6A248E0336E")) { result in }
-                }
                 }
             }
             .accentColor(Color("Link"))
@@ -52,7 +49,6 @@ struct SuperlistaApp: App {
     }
     
     func handleDeepLink(_ deeplink: DeepLink) {
-        guard let ownerID = deeplink.ownerID else { return }
         guard let listID = deeplink.listID else { return }
         guard let option = deeplink.option else { return }
         
@@ -71,7 +67,7 @@ struct SuperlistaApp: App {
                         print(result)
                     }
                 } else if option == "2" {
-                    let newListLocal = CKListModel(name: listName!, ownerRef: list.ownerRef, itemsString: list.itemsString, sharedWithRef: list.sharedWithRef)
+                    let newListLocal = CKListModel(name: listName!, ownerRef: list.ownerRef, itemsString: list.itemsString)
                     CKService.currentModel.createList(listModel: newListLocal) { result in
                         switch result {
                         case .success (let newListID):

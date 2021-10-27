@@ -6,27 +6,27 @@ struct ListModel: Identifiable, Decodable, Encodable {
     var title: String
     var items: [CategoryModel: [ItemModel]]
     
-    var owner: UserModel?
-    var sharedWith: [UserModel]?
+    var owner: OwnerModel
+    var sharedWith: [OwnerModel]?
     
-    init(title: String, items: [CategoryModel: [ItemModel]] = [:], sharedWith: [UserModel] = []) {
+    init(title: String, items: [CategoryModel: [ItemModel]] = [:], owner: OwnerModel, sharedWith: [OwnerModel] = []) {
         let recordID = CKRecord.ID()
         
         self.id = recordID.recordName
         self.title = title
         self.items = items
-//        self.owner = owner
+        self.owner = owner
     }
     
-    init(id: String, title: String, items: [CategoryModel: [ItemModel]] = [:], sharedWith: [UserModel] = []) {
+    init(id: String, title: String, items: [CategoryModel: [ItemModel]] = [:], owner: OwnerModel, sharedWith: [OwnerModel] = []) {
         self.id = id
         self.title = title
         self.items = items
- //       self.owner = owner
+        self.owner = owner
     }
     
     func editTitle(newTitle: String) -> ListModel {
-        return ListModel(id: id, title: newTitle, items: items)
+        return ListModel(id: id, title: newTitle, items: items, owner: owner)
     }
     
     func addItem(_ item: ItemModel) -> ListModel {
@@ -38,7 +38,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
             newItemsList[CategoryModel(title: item.product.category)] = [item]
         }
         
-        return ListModel(id: id, title: title, items: newItemsList)
+        return ListModel(id: id, title: title, items: newItemsList, owner: owner)
     }
     
     func removeItem(from row: IndexSet, of category: CategoryModel) -> ListModel {
@@ -54,7 +54,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
             
         }
         
-        return ListModel(id: id, title: title, items: newItemsList)
+        return ListModel(id: id, title: title, items: newItemsList, owner: owner)
     }
     
     func removeItem(_ item: ItemModel) -> ListModel {
@@ -71,7 +71,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
             }
         }
         
-        return ListModel(id: id, title: title, items: newItemsList)
+        return ListModel(id: id, title: title, items: newItemsList, owner: owner)
     }
     
     func addComment(_ comment: String, to item: ItemModel) -> ListModel {
@@ -83,7 +83,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
             newItemsList[category.key]?[itemIndex] = newItem.editComment(newComment: comment)
         }
         
-        return ListModel(id: id, title: title, items: newItemsList)
+        return ListModel(id: id, title: title, items: newItemsList, owner: owner)
     }
     
     func toggleCompletion(of item: ItemModel) -> ListModel {
@@ -95,6 +95,6 @@ struct ListModel: Identifiable, Decodable, Encodable {
             newItemsList[category.key]?[itemIndex] = newItem.toggleCompletion()
         }
         
-        return ListModel(id: id, title: title, items: newItemsList)
+        return ListModel(id: id, title: title, items: newItemsList, owner: owner)
     }
 }
