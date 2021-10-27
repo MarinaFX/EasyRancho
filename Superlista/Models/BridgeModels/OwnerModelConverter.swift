@@ -19,25 +19,14 @@ class OwnerModelConverter {
      - Returns: the CKOwnerModel version of the given reference
      */
     func convertReferenceToCK(withReference reference: CKRecord.Reference, completion: @escaping (Result<CKOwnerModel, CKError>) -> Void) {
-        var owner: CKOwnerModel = CKOwnerModel()
-        
         DispatchQueue.global().async {
-            
-            var ckError: CKError?
-
             CKService.currentModel.getAnotherUser(userID: reference.recordID) { result in
                 switch result {
                 case .success(let user):
-                    owner = user
+                    completion(.success(user))
                 case .failure(let error):
-                    ckError = error
+                    completion(.failure(error))
                 }
-            }
-            if let error = ckError {
-                completion(.failure(error))
-
-            } else {
-                completion(.success(owner))
             }
         }
     }
