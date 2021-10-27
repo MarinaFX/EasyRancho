@@ -26,7 +26,7 @@ class UDService {
     func getUDUser() -> UserModel? {
         if let userData = UserDefaults.standard.data(forKey: UDUserKey),
            let savedUser = try? JSONDecoder().decode(UserModel.self, from: userData) {
-            print("getUDUser", savedUser)
+
             return savedUser
         }
         return nil
