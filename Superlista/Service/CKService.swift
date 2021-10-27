@@ -133,12 +133,12 @@ class CKService: ObservableObject {
         }
     }
     
-    // MARK: - Get another user name
-    func getAnotherUserName(userID: CKRecord.ID, completion: @escaping (Result<String,CKError>) -> Void) {
+//    // MARK: - Get another user name
+    func getAnotherUser(userID: CKRecord.ID, completion: @escaping (Result<CKOwnerModel,CKError>) -> Void) {
         publicDB.fetch(withRecordID: userID) { record, error in
             if error == nil {
-                let user = CKUserModel(record: record!)
-                completion(.success(user.name!))
+                let user = CKOwnerModel(record: record!)
+                completion(.success(user))
                 return
             } else {
                 completion(.failure(error as! CKError))
@@ -452,7 +452,7 @@ class CKService: ObservableObject {
         }
     }
     
-    func updateListCollab(listID: CKRecord.ID, sharedWith: [CKUserModel], completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func updateListCollab(listID: CKRecord.ID, sharedWith: [CKOwnerModel], completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         var sharedWithRef: [CKRecord.Reference] = []
         for shared in sharedWith {
             sharedWithRef.append(CKRecord.Reference(recordID: shared.id, action: .none))

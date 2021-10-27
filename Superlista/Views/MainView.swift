@@ -165,7 +165,8 @@ struct MainView: View {
     }
     
     func createNewListAction() {
-        let newList: ListModel = ListModel(title: "Nova Lista", owner: DataService.user)
+        let newOwner: OwnerModel = OwnerModel(id: CKService.currentModel.user!.id.recordName, name:  CKService.currentModel.user!.name!)
+        let newList: ListModel = ListModel(title: "Nova Lista", owner: newOwner)
 
         dataService.addList(newList)
         self.listId = newList.id
