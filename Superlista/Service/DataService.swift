@@ -8,7 +8,12 @@ class DataService: ObservableObject {
     @Published var user: UserModel? {
         didSet {
             UDService().saveUserOnUD(user: user)
-            print(user ?? "user nil\n")
+
+            print("\nUSUARIO UD: ", UDService().getUDUser()?.name ?? "")
+            
+            print("\nUSUARIO CK: ", CKService.currentModel.user?.name ?? "")
+            
+            print("\n")
         }
     }
     
@@ -63,6 +68,7 @@ class DataService: ObservableObject {
                 if !userDefaults.contains(where: { $0.id == list.id.recordName }) {
                     
                     let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                    
                     userDefaults.append(localList)
                 }
             }
@@ -72,13 +78,42 @@ class DataService: ObservableObject {
         }
     }
     
+    // MARK: - CRUD user
+    func updateUserImageAndName(picture: UIImage, newUsername: String) {
+        if let currentUser = self.user {
+            self.user = UserModel(id: currentUser.id, name: newUsername, customProducts: currentUser.customProducts, myLists: currentUser.myLists, sharedWithMe: currentUser.sharedWithMe)
+        }
+        
+        networkMonitor.startMonitoring { path in
+            if path.status == .satisfied {
+                CKService.currentModel.updateUserImageAndName(image: picture, name: newUsername) { result in }
+            }
+        }
+    }
+    
+    func updateUserName(newUsername: String) {
+        if let currentUser = self.user {
+            self.user = UserModel(id: currentUser.id, name: newUsername, customProducts: currentUser.customProducts, myLists: currentUser.myLists, sharedWithMe: currentUser.sharedWithMe)
+        }
+        
+        networkMonitor.startMonitoring { path in
+            if path.status == .satisfied {
+                CKService.currentModel.updateUserName(name: newUsername) { result in }
+            }
+        }
+    }
+    
     // MARK: - CRUD lists
     func removeList(_ listModel: ListModel) {
         if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             
             lists.remove(at: index)
             
-            CloudIntegration.actions.deleteList(listModel)
+            networkMonitor.startMonitoring { path in
+                if path.status == .satisfied {
+                    CloudIntegration.actions.deleteList(listModel)
+                }
+            }
         }
     }
     
@@ -86,14 +121,22 @@ class DataService: ObservableObject {
         if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             lists[index] = listModel.editTitle(newTitle: newTitle)
             
-            CloudIntegration.actions.updateListTitle(listModel, newTitle)
+            networkMonitor.startMonitoring { path in
+                if path.status == .satisfied {
+                    CloudIntegration.actions.updateListTitle(listModel, newTitle)
+                }
+            }
         }
     }
     
     func addList(_ newList: ListModel) {
         lists.append(newList)
         
-        CloudIntegration.actions.createList(newList)
+        networkMonitor.startMonitoring { path in
+            if path.status == .satisfied {
+                CloudIntegration.actions.createList(newList)
+            }
+        }
     }
     
     // MARK: - CRUD List Items
@@ -104,7 +147,11 @@ class DataService: ObservableObject {
             
             lists[index] = listWithNewItem
             
-            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItem)
+            networkMonitor.startMonitoring { path in
+                if path.status == .satisfied {
+                    CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItem)
+                }
+            }
         }
     }
     
@@ -114,7 +161,11 @@ class DataService: ObservableObject {
             
             lists[index] = listWithoutItem
             
-            CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
+            networkMonitor.startMonitoring { path in
+                if path.status == .satisfied {
+                    CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
+                }
+            }
         }
     }
     
@@ -124,7 +175,11 @@ class DataService: ObservableObject {
             
             lists[index] = listWithoutItem
             
-            CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
+            networkMonitor.startMonitoring { path in
+                if path.status == .satisfied {
+                    CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
+                }
+            }
         }
     }
     
@@ -134,7 +189,11 @@ class DataService: ObservableObject {
             
             lists[index] = listWithNewItemComment
             
-            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemComment)
+            networkMonitor.startMonitoring { path in
+                if path.status == .satisfied {
+                    CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemComment)
+                }
+            }
         }
     }
     
@@ -144,7 +203,11 @@ class DataService: ObservableObject {
             
             lists[index] = listWithItemNewState
             
-            CloudIntegration.actions.updateCkListItems(updatedList: listWithItemNewState)
+            networkMonitor.startMonitoring { path in
+                if path.status == .satisfied {
+                    CloudIntegration.actions.updateCkListItems(updatedList: listWithItemNewState)
+                }
+            }
         }
     }
 }
