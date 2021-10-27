@@ -34,28 +34,31 @@ struct SuperlistaApp: App {
                             handleDeepLink(deepLink)
                             
                         })
-                        .alert(isPresented: $presentCollabAlert) {
-                            return Alert(
-                                title: Text(list?.name ?? "Lista"),
-                                message: Text("Você foi convidado você para colaborar em uma lista. Deseja se tornar um colaborador desta lista?"),
-                                primaryButton:  .default(
-                                    Text("Cancelar"),
-                                    action: {
-                                        presentCollabAlert = false
-                                    }),
-                                secondaryButton: .default(
-                                    Text("Aceitar"),
-                                    action: {
-                                        CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in }
-                                        let user = CKOwnerModel(id: CKService.currentModel.user!.id, name: CKService.currentModel.user!.name!)
-                                        var sharedWith = list!.sharedWith
-                                        sharedWith.append(user)
-                                        CKService.currentModel.updateListCollab(listID: list!.id, sharedWith: sharedWith) { result in }
-                                        presentCollabAlert = false
-                                    }
-                                )
+                    ZStack {
+                        
+                    }
+                    .alert(isPresented: $presentCollabAlert) {
+                        return Alert(
+                            title: Text(list?.name ?? "Lista"),
+                            message: Text("Você foi convidado você para colaborar em uma lista. Deseja se tornar um colaborador desta lista?"),
+                            primaryButton:  .default(
+                                Text("Cancelar"),
+                                action: {
+                                    presentCollabAlert = false
+                                }),
+                            secondaryButton: .default(
+                                Text("Aceitar"),
+                                action: {
+                                    CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in }
+                                    let user = CKOwnerModel(id: CKService.currentModel.user!.id, name: CKService.currentModel.user!.name!)
+                                    var sharedWith = list!.sharedWith
+                                    sharedWith.append(user)
+                                    CKService.currentModel.updateListCollab(listID: list!.id, sharedWith: sharedWith) { result in }
+                                    presentCollabAlert = false
+                                }
                             )
-                        }
+                        )
+                    }
                     ZStack {
                         
                     }
