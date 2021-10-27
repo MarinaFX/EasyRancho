@@ -4,15 +4,15 @@ import SwiftUI
 struct UploadPictureButton: View {
     
     var body: some View {
-        GeometryReader { g in
+        GeometryReader { geometryReader in
             ZStack {
                 Circle()
                     .strokeBorder(Color.blue.opacity(0.2), lineWidth: 1)
                     .background(Circle().fill(Color.blue.opacity(0.15)))
-                    
+                
                 Image(systemName: "photo.on.rectangle")
                     .foregroundColor(.blue)
-                    .font(.system(size: g.size.height > g.size.width ? g.size.width * 0.4: g.size.height * 0.4))
+                    .font(.system(size: geometryReader.size.height > geometryReader.size.width ? geometryReader.size.width * 0.4: geometryReader.size.height * 0.4))
             }
         }
         .frame(width: 122, height: 122)

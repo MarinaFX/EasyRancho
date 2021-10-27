@@ -11,7 +11,7 @@ struct ProfilePicture: View {
     var username: String
     
     var body: some View {
-        GeometryReader { g in
+        GeometryReader { geometryReader in
             ZStack {
                 Color("Button")
                     .clipShape(Circle())
@@ -23,7 +23,7 @@ struct ProfilePicture: View {
                 let initialName = username.prefix(1)
                 Text(String(initialName))
                     .foregroundColor(.white)
-                    .font(.system(size: g.size.height > g.size.width ? g.size.width * 0.5: g.size.height * 0.5))
+                    .font(.system(size: geometryReader.size.height > geometryReader.size.width ? geometryReader.size.width * 0.5: geometryReader.size.height * 0.5))
                 
             }
         }
