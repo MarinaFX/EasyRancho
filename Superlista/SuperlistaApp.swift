@@ -39,15 +39,15 @@ struct SuperlistaApp: App {
                     }
                     .alert(isPresented: $presentCollabAlert) {
                         return Alert(
-                            title: Text(list?.name ?? NSLocalizedString("NovaLista", comment: "")),
-                            message: Text(NSLocalizedString("CollabAlerta", comment: "")),
+                            title: Text(list?.name ?? "NovaLista"),
+                            message: Text("CollabAlerta"),
                             primaryButton:  .default(
-                                Text(NSLocalizedString("Cancelar", comment: "")),
+                                Text("Cancelar"),
                                 action: {
                                     presentCollabAlert = false
                                 }),
                             secondaryButton: .default(
-                                Text(NSLocalizedString("Aceitar", comment: "")),
+                                Text("Aceitar"),
                                 action: {
                                     CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in }
                                     let user = CKOwnerModel(id: CKService.currentModel.user!.id, name: CKService.currentModel.user!.name!)
@@ -66,17 +66,17 @@ struct SuperlistaApp: App {
                         
                     }
                     .alert(isPresented: $presentSharedAlert) {
-                        return Alert(title: Text(list?.name ?? NSLocalizedString("NovaLista", comment: "")),
-                                     message: Text(NSLocalizedString("SharedAlerta", comment: "")),
+                        return Alert(title: Text(list?.name ?? "NovaLista"),
+                                     message: Text("SharedAlerta"),
                                      primaryButton: .default(
-                                        Text(NSLocalizedString("Cancelar", comment: "")), action: {
+                                        Text("Cancelar"), action: {
                                             presentSharedAlert = false
                                         }),
                                      secondaryButton: .default(
                                         Text(NSLocalizedString("Aceitar", comment: "")),
                                         action: {
                                             let newOwnerRef = CKRecord.Reference(recordID: CKService.currentModel.user!.id, action: .none)
-                                            let newListLocal = CKListModel(name: list!.name ?? NSLocalizedString("NovaLista", comment: ""), ownerRef: newOwnerRef, itemsString: list!.itemsString)
+                                            let newListLocal = CKListModel(name: list!.name ?? "NovaLista", ownerRef: newOwnerRef, itemsString: list!.itemsString)
                                             CKService.currentModel.createList(listModel: newListLocal) { result in
                                                 switch result {
                                                 case .success (let newListID):
