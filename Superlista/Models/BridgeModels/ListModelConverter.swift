@@ -95,8 +95,6 @@ class ListModelConverter {
         let localItems = itemModelConverter.convertCloudItemsToLocal(withItems: list.itemsModel)
        
       //  let localOwner = UserModelConverter().convertCloudOwnerToLocal(withUser: list.owner)
-        
-        let localOwner = UserModelConverter().convertCloudUserCollabToLocal(withUser: list.owner)
                 
         var localSharedWith: [UserModel] = []
 //        for shared in list.sharedWith {
