@@ -452,7 +452,7 @@ class CKService: ObservableObject {
         }
     }
     
-    func updateListCollab(listID: CKRecord.ID, sharedWith: [CKUserModel], completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func updateListCollab(listID: CKRecord.ID, sharedWith: [CKOwnerModel], completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         var sharedWithRef: [CKRecord.Reference] = []
         for shared in sharedWith {
             sharedWithRef.append(CKRecord.Reference(recordID: shared.id, action: .none))
