@@ -10,7 +10,7 @@ struct ListHeader: View {
     @State var showCollabSheetView: Bool = false
     @State var collaborators: [UserModel]
     
-    let purpleColor = Color("HeaderColor")
+    let purpleColor = Color("Background")
     let secondary = Color("Secondary")
     let list: ListModel?
     
@@ -30,7 +30,7 @@ struct ListHeader: View {
                         }
                         
                         TextField("", text: $listaTitulo)
-                            .foregroundColor(canEditTitle ? Color("background") : .black)
+                            .foregroundColor(canEditTitle ? Color("PrimaryBackground") : .black)
                             .font(.system(size: 24, weight: .bold))
                             .background(Color("editTitleBackground"))
                             .onTapGesture {

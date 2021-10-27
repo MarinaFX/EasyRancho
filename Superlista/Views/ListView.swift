@@ -19,23 +19,19 @@ struct ListView: View {
         GeometryReader { geometry in
             MainScreen(customView: AnyView(
                 ZStack {
-                    // MARK: - background color
-                    Color("background")
+                    Color("PrimaryBackground")
                         .ignoresSafeArea()
                     
                     VStack (spacing: 20) {
-                        // MARK: - header
-                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: self.list?.sharedWith ?? [], list: self.list, listId: $listId)
+                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, list: self.list, listId: $listId)
                         
                         if let list = self.list {
                             
-                            // MARK: - search bar
                             NavigationLink(destination: AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "")){
                                 FakeSearchBar()
                                     .padding(.horizontal, 20)
                             }
                             
-                            // MARK: - list component
                             ListPerItemsView(list: list)
                                 .padding(.horizontal)
                                 .padding(.bottom, 30)
@@ -46,11 +42,7 @@ struct ListView: View {
                     }
                 }
             ), topPadding: -30)
-            
-            // MARK: - toolbar
                 .toolbar{
-                    
-                    // MARK: - edit button
                     ToolbarItem {
                         Button {
                             editTitle()
@@ -59,7 +51,6 @@ struct ListView: View {
                         }
                     }
                 }
-            // MARK: - onAppear
                 .onAppear {
                     if hasChangedItems, let list = self.list {
                         CloudIntegration.actions.updateCkListItems(updatedList: list)
@@ -78,7 +69,7 @@ struct ListView: View {
         return nil
     }
         
-        // MARK: - editList()
+    // MARK: - editList()
     func editTitle() {
         if let unwrappedList = self.list {
             if canEditTitle && !listTitle.isEmpty {

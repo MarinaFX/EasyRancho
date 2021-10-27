@@ -30,7 +30,7 @@ struct MainView: View {
                 .opacity(0.0)
                 
                 // MARK: - background color
-                Color("background")
+                Color("PrimaryBackground")
                     .ignoresSafeArea()
                 
                 // MARK: - empty state
@@ -61,7 +61,7 @@ struct MainView: View {
                                     
                                     // MARK: - list card
                                     Rectangle()
-                                        .fill(Color("HeaderColor"))
+                                        .fill(Color("Background"))
                                         .frame(width: 160, height: 75)
                                         .cornerRadius(15)
                                         .shadow(color: Color("Shadow"), radius: 10)
@@ -107,7 +107,7 @@ struct MainView: View {
                                         
                                         // MARK: - list card
                                         Rectangle()
-                                            .fill(Color("HeaderColor"))
+                                            .fill(Color("Background"))
                                             .frame(width: 160, height: 75)
                                             .cornerRadius(15)
                                             .shadow(color: Color("Shadow"), radius: 10)
@@ -165,7 +165,8 @@ struct MainView: View {
     }
     
     func createNewListAction() {
-        let newList: ListModel = ListModel(title: "Nova Lista")
+        let newOwner: OwnerModel = OwnerModel(id: CKService.currentModel.user!.id.recordName, name:  CKService.currentModel.user!.name!)
+        let newList: ListModel = ListModel(title: "Nova Lista", owner: newOwner)
 
         dataService.addList(newList)
         self.listId = newList.id

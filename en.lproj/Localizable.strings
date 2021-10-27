@@ -24,9 +24,37 @@
 "EditarListas" = "Editar";
 "NovaLista" = "Nova Lista";
 "DefaultLS" = "DefaultLS";
+"CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
+"Cancelar" = "Cancelar";
+"Aceitar" = "Aceitar";
+"SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
 
 //Not working 4now
 "ProcurarItens" = "Procurar Itens";
 "AdicionarItensFake" = "Adicionar novos itens";
 "TituloPaginaDeLista" = "Listasddddd";
 "TituloDaNovaLista" = "Nova Lista";
+
+// MARK: - OnboardingA
+"OnboardingA" = "OnboardingA";
+"OnboardingATitle" = "Welcome";
+"OnboardingAText" = "Create grocery lists easily categorized!";
+
+// MARK: - OnboardingB
+"OnboardingB" = "OnboardingB";
+"OnboardingBTitle" = "Colaborative Lists";
+"OnboardingBText" = "Create shared lists and add colaborators to edit lists in real time.";
+
+// MARK: - OnboardingC
+"OnboardingC" = "OnboardingC";
+"OnboardingCTitle" = "Personalize Items";
+"OnboardingCText" = "Add new products, quantities and comments to your lists.";
+
+// MARK: - Onboarding Labels
+"Começar" = "Get Started";
+
+// MARK: - Onboarding Fields
+"OnboardingFieldsTitle" = "Personalize your profile";
+"OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
+"Salvar" = "Save";
+"Pular" = "Skip";

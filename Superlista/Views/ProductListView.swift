@@ -28,10 +28,10 @@ struct ProductListView: View {
                 
                 HStack {
                     Image(systemName: isSelected(item: item) ? "checkmark" : "plus")
-                        .foregroundColor(isSelected(item: item) ? Color("Selected") : Color.primary)
+                        .foregroundColor(isSelected(item: item) ? Color("Button") : Color.primary)
                         
                     Text(item.name)
-                        .foregroundColor(isSelected(item: item) ? Color("Selected") : Color.primary)
+                        .foregroundColor(isSelected(item: item) ? Color("Button") : Color.primary)
                         .font(.system(size: 14, weight: isSelected(item: item) ? .bold : .regular))
                     Spacer()
                     Text("                                           ") // gambiarra emergencial
@@ -51,7 +51,7 @@ struct ProductListView: View {
                     self.hasChangedItems = !selectedItems.isEmpty
                 }
             }
-            .listRowBackground(Color("background"))
+            .listRowBackground(Color("PrimaryBackground"))
         }
         .listStyle(PlainListStyle())
     }

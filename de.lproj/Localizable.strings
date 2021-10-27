@@ -18,9 +18,32 @@
 "EditarListas" = "Editar";
 "NovaLista" = "Nova Lista";
 "DefaultLS" = "DefaultLS";
+"CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
+"Cancelar" = "Cancelar";
+"Aceitar" = "Aceitar";
+"SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
 
 //Not working 4now
 "ProcurarItens" = "Procurar Itens";
 "AdicionarItensFake" = "Adicionar novos itens";
 "TituloPaginaDeLista" = "Listasddddd";
 "TituloDaNovaLista" = "Nova Lista";
+
+// MARK: - OnboardingA
+"OnboardingA" = "OnboardingA";
+"OnboardingATitle" = "Bem-vindo";
+"OnboardingAText" = "Crie listas de supermercado categorizadas de maneira fácil e simples!";
+
+// MARK: - OnboardingB
+"OnboardingB" = "OnboardingB";
+"OnboardingBTitle" = "Listas Colaborativas";
+"OnboardingBText" = "Crie listas compartilhadas e adicione colaboradores para que possam editar em tempo real.";
+
+// MARK: - OnboardingC
+"OnboardingC" = "OnboardingC";
+"OnboardingCTitle" = "Personalize Itens";
+"OnboardingCText" = "Adicione novos produtos, quantidades e comentários a sua lista.";
+
+// MARK: - Onboarding Labels
+"Começar" = "Começar";
+
