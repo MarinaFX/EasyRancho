@@ -8,12 +8,6 @@ class DataService: ObservableObject {
     @Published var user: UserModel? {
         didSet {
             UDService().saveUserOnUD(user: user)
-
-            print("\nUSUARIO UD: ", UDService().getUDUser()?.name ?? "")
-            
-            print("\nUSUARIO CK: ", CKService.currentModel.user?.name ?? "")
-            
-            print("\n")
         }
     }
     
@@ -23,23 +17,6 @@ class DataService: ObservableObject {
             
             let ud = UDService().getUDLists()
             let ck = CKService.currentModel.user?.myLists
-            
-            if ud.count > 0 {
-                print("\nLists on UD:")
-                
-                ud.forEach { list in
-                    print("\(list.id); \(list.title); \(list.owner.name ?? "")")
-                }
-            }
-            
-            if let ckList = ck, ckList.count > 0 {
-                print("\nLists on CK:")
-                
-                ckList.forEach { list in
-                    print("\(list.id.recordName); \(list.name ?? ""); \(list.owner?.name ?? "")")
-                }
-            }
-            
         }
     }
     

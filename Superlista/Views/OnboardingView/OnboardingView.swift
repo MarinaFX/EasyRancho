@@ -50,15 +50,14 @@ struct OnboardingPageView: View {
         VStack {
             
             Image(onboardingPages[index].image)
-            .frame(width: UIScreen.main.bounds.width, height: 260)
-            .padding(.bottom, 56)
+                .frame(width: UIScreen.main.bounds.width, height: 260)
+                .padding(.bottom, 56)
             
             Text(onboardingPages[index].title)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
 
-            
             Text(onboardingPages[index].text)
                 .font(.title3)
                 .multilineTextAlignment(.center)
