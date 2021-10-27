@@ -5,65 +5,70 @@ import Combine
 
 class DataService: ObservableObject {
     
-    static var user: UserModel = UserModelConverter().convertCloudUserToLocal(withUser: CKService.currentModel.user!)
+    @Published var user: UserModel? {
+        didSet {
+            UDService().saveUserOnUD(user: user)
+            print(user ?? "user nil\n")
+        }
+    }
     
     @Published var lists: [ListModel] = [] {
         didSet {
-            saveDataOnUserDefaults()
+            UDService().saveListsOnUD(lists: lists)
+            
+            let ud = UDService().getUDLists()
+            let ck = CKService.currentModel.user?.myLists
+            
+            if ud.count > 0 {
+                print("\nLists on UD:")
+                
+                ud.forEach { list in
+                    print("\(list.id); \(list.title); \(list.owner.name ?? "")")
+                }
+            }
+            
+            if let ckList = ck, ckList.count > 0 {
+                print("\nLists on CK:")
+                
+                ckList.forEach { list in
+                    print("\(list.id.recordName); \(list.name ?? ""); \(list.owner?.name ?? "")")
+                }
+            }
+            
         }
     }
     
     @Published var currentList: ListModel?
-        
-    let products = ProductListViewModel().productsOrdered
     
-    let userDefaultsKey: String = "lists"
+    let products = ProductListViewModel().productsOrdered
     
     let networkMonitor = NetworkMonitor.shared
     
     var userSubscription: AnyCancellable?
-
+    
     init() {
-        getListsIntegration()
+        getDataIntegration()
     }
     
-    func getListsIntegration() {
-        self.lists = getUserDefaults()
-
-        networkMonitor.startMonitoring { path in
-            if path.status == .satisfied {
-
-                self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
+    func getDataIntegration() {
+        self.lists = UDService().getUDLists()
+        self.user = UDService().getUDUser()
+        
+        //if online
+        self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
+            
+            var userDefaults = UDService().getUDLists()
+            
+            ckUserModel.myLists?.forEach { list in
+                if !userDefaults.contains(where: { $0.id == list.id.recordName }) {
                     
-                    var userDefaults = self.getUserDefaults()
-                    
-                    ckUserModel.myLists?.forEach { list in
-                        if !userDefaults.contains(where: { $0.id == list.id.recordName }) {
-                            
-                            let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                            userDefaults.append(localList)
-                        }
-                    }
-
-                    self.lists = userDefaults
+                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                    userDefaults.append(localList)
                 }
             }
-        }
-    }
-    
-    // MARK: - User Defaults
-    func getUserDefaults() -> [ListModel] {
-        if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-           let savedItems = try? JSONDecoder().decode([ListModel].self, from: data) {
             
-            return savedItems
-        }
-        return []
-    }
-    
-    func saveDataOnUserDefaults() {
-        if let encodedData = try? JSONEncoder().encode(lists) {
-            UserDefaults.standard.set(encodedData, forKey: userDefaultsKey)
+            self.lists = userDefaults
+            self.user = UserModelConverter().convertCloudUserToLocal(withUser: ckUserModel)
         }
     }
     
