@@ -199,6 +199,7 @@
 		0914B97A270B6B6F008E297F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				890913812649BC8100C619A3 /* DataService.swift */,
 				892774002729ECDC00C19B70 /* UDService.swift */,
 				0914B985270CC7D2008E297F /* Helper.swift */,
 				0914B97B270B6B90008E297F /* CKService.swift */,
@@ -396,7 +397,6 @@
 			children = (
 				898D645A264316300019ABCE /* ProductListViewModel.swift */,
 				1B43E5B2264B13BE002C6D64 /* DropViewDelegate.swift */,
-				890913812649BC8100C619A3 /* DataService.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
