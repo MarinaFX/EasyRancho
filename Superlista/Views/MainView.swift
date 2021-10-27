@@ -30,7 +30,7 @@ struct MainView: View {
                 .opacity(0.0)
                 
                 // MARK: - background color
-                Color("background")
+                Color("PrimaryBackground")
                     .ignoresSafeArea()
                 
                 // MARK: - empty state
@@ -61,7 +61,7 @@ struct MainView: View {
                                     
                                     // MARK: - list card
                                     Rectangle()
-                                        .fill(Color("HeaderColor"))
+                                        .fill(Color("Background"))
                                         .frame(width: 160, height: 75)
                                         .cornerRadius(15)
                                         .shadow(color: Color("Shadow"), radius: 10)
@@ -107,7 +107,7 @@ struct MainView: View {
                                         
                                         // MARK: - list card
                                         Rectangle()
-                                            .fill(Color("HeaderColor"))
+                                            .fill(Color("Background"))
                                             .frame(width: 160, height: 75)
                                             .cornerRadius(15)
                                             .shadow(color: Color("Shadow"), radius: 10)

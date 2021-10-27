@@ -7,7 +7,7 @@ struct MainScreen: View {
     var bottomPadding: CGFloat = -35
     var topPadding: CGFloat = 0
     
-    let headerColor = Color("HeaderColor")
+    let headerColor = Color("Background")
     
     var body: some View {
         ZStack() {
@@ -20,7 +20,7 @@ struct MainScreen: View {
                     .padding(.vertical)
             }
             .frame(maxWidth: .infinity, maxHeight: height) 
-            .background(Color("background"))
+            .background(Color("PrimaryBackground"))
             .foregroundColor(.black)
             .cornerRadius(30)
             .padding(.bottom, bottomPadding)

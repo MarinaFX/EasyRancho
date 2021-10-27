@@ -6,7 +6,7 @@ struct ListPerItemsView: View {
     
     var list: ListModel
     
-    let background = Color("background")
+    let background = Color("PrimaryBackground")
     
     var categories: [CategoryModel] { listsViewModel.lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
@@ -38,7 +38,7 @@ struct ListPerItemsView: View {
                 }
                 .frame(maxHeight: 30)
                 .textCase(nil) // TALVEZ TENHA QUE TIRAR
-                .background(Color("background"))
+                .background(Color("PrimaryBackground"))
                 .listRowInsets(EdgeInsets(
                     top: 0,
                     leading: 0,
@@ -55,11 +55,11 @@ struct ListPerItemsView: View {
                     .onDelete { row in
                         listsViewModel.removeItem(from: row, of: category, of: list)
                     }
-                    .listRowBackground(Color("background"))
+                    .listRowBackground(Color("PrimaryBackground"))
                 }
                 
             }
-            .listRowBackground(Color("background"))
+            .listRowBackground(Color("PrimaryBackground"))
             
         }
         .listStyle(PlainListStyle())

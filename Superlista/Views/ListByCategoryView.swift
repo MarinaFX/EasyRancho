@@ -32,7 +32,7 @@ struct ListByCategoryView: View {
                     .onDelete { row in
                         listsViewModel.removeItem(from: row, of: categoryName, of: list)
                     }
-                    .listRowBackground(Color("background"))
+                    .listRowBackground(Color("PrimaryBackground"))
                     
                 }
             }
