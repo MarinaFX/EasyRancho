@@ -4,12 +4,12 @@ import CloudKit
 
 @main
 struct SuperlistaApp: App {
-    @StateObject var listsViewModel: DataService = DataService()
+    @StateObject var dataService: DataService = DataService()
     
-    let purpleColor = Color("HeaderColor")
+    let purpleColor = Color("Background")
     
     init() {
-        UITableView.appearance().backgroundColor = UIColor(named: "background")
+        UITableView.appearance().backgroundColor = UIColor(named: "PrimaryBackground")
     }
     
     @State var list: CKListModel?
@@ -94,11 +94,13 @@ struct SuperlistaApp: App {
             }
             .accentColor(Color("Link"))
             .navigationViewStyle(StackNavigationViewStyle())
-            .environmentObject(listsViewModel)
+            .environmentObject(dataService)
             .onAppear {
                 
                 loadData()
+                
             }
+            
         }
     }
     
@@ -106,7 +108,6 @@ struct SuperlistaApp: App {
         DispatchQueue.main.async {
             CKService.currentModel.refresh { error in }
         }
-        
     }
     
     func handleDeepLink(_ deeplink: DeepLink) {

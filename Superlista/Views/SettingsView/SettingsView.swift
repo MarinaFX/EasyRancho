@@ -24,7 +24,7 @@ struct SettingsView: View {
 #warning("Premium desativado temporariamente")
 //            HStack {
 //                Image(systemName: "crown.fill")
-//                    .foregroundColor(Color("Selected"))
+//                    .foregroundColor(Color("Button"))
 //                Text("Premium")
 //                    .foregroundColor(.primary)
 //            }

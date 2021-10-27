@@ -27,7 +27,7 @@ struct AddNewItemView: View {
                             .foregroundColor(.white)
                             .frame(height: geometry.size.height * 0.06)
                             .frame(width: geometry.size.height * 0.25)
-                            .background(Color("Pronto"))
+                            .background(Color("Button"))
                             .cornerRadius(30)
                     })
                     .padding(.bottom, geometry.size.height * 0.12)

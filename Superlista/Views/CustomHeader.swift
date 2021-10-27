@@ -4,7 +4,7 @@ import UIKit
 struct CustomHeader: View {
     @State private var goBack = false
     
-    let headerColor = Color("HeaderColor")
+    let headerColor = Color("Background")
     
     var body: some View {
         ZStack{
