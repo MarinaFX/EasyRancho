@@ -45,13 +45,15 @@ struct ItemCommentView: View {
                     
                     Spacer()
                     
-                    Button {
-                        listsViewModel.removeQuantity(of: item, from: list) 
-                    } label: {
+                    ZStack {
                         Image(systemName: "minus")
                             .resizable()
-                            .frame(width: 17, height: 17)
+                            .frame(width: 17, height: 2)
                             .foregroundColor(Color("Comment"))
+                    }
+                    .frame(width: 17, height: 17)
+                    .onTapGesture {
+                        listsViewModel.removeQuantity(of: item, from: list)
                     }
 
                     
@@ -59,14 +61,14 @@ struct ItemCommentView: View {
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundColor(Color.primary)
                     
-                    Button {
-                        listsViewModel.addQuantity(of: item, from: list)
-                    } label: {
-                        Image(systemName: "plus")
-                            .resizable()
-                            .frame(width: 17, height: 17)
-                            .foregroundColor(Color("Comment"))
-                    }
+                    
+                    Image(systemName: "plus")
+                        .resizable()
+                        .frame(width: 17, height: 17)
+                        .foregroundColor(Color("Comment"))
+                        .onTapGesture {
+                            listsViewModel.addQuantity(of: item, from: list)
+                        }
                     
                 }
                 

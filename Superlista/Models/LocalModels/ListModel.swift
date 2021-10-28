@@ -104,7 +104,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
         if let category = items.first(where: { $0.key.title == item.product.category }),
            let itemIndex = category.value.firstIndex(where: { $0.id == item.id }),
            let newItem = newItemsList[category.key]?[itemIndex] {
-            newItemsList[category.key]?[itemIndex] = newItem.addQuantity()
+            newItemsList[category.key]?[itemIndex] = newItem.addQuantity(quantity: item.quantity ?? 1)
         }
         
         return ListModel(id: id, title: title, items: newItemsList, owner: owner)
@@ -116,7 +116,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
         if let category = items.first(where: { $0.key.title == item.product.category }),
            let itemIndex = category.value.firstIndex(where: { $0.id == item.id }),
            let newItem = newItemsList[category.key]?[itemIndex] {
-            newItemsList[category.key]?[itemIndex] = newItem.removeQuantity()
+            newItemsList[category.key]?[itemIndex] = newItem.removeQuantity(quantity: item.quantity ?? 1)
         }
         
         return ListModel(id: id, title: title, items: newItemsList, owner: owner)
