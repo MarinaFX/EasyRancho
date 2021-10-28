@@ -39,6 +39,7 @@
 		1B60EC8A2719E9F500046FE9 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60EC892719E9F500046FE9 /* UserModel.swift */; };
 		1B60EC8C2719EB6000046FE9 /* UserModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60EC8B2719EB6000046FE9 /* UserModelConverter.swift */; };
 		1B60EC8E271A020300046FE9 /* ProductModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60EC8D271A020300046FE9 /* ProductModelConverter.swift */; };
+		1B60EC90271DE7D000046FE9 /* AddCollaboratorSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B60EC8F271DE7D000046FE9 /* AddCollaboratorSheetView.swift */; };
 		1B93E8F1270F901500AA89B6 /* ItemModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B93E8F0270F901500AA89B6 /* ItemModelConverter.swift */; };
 		1BE5B6E4270E126A00338A02 /* ListModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5B6E3270E126A00338A02 /* ListModelConverter.swift */; };
 		1BFA5FA2263C72900030AE03 /* SuperlistaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA5FA1263C72900030AE03 /* SuperlistaApp.swift */; };
@@ -125,6 +126,7 @@
 		1B60EC892719E9F500046FE9 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		1B60EC8B2719EB6000046FE9 /* UserModelConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelConverter.swift; sourceTree = "<group>"; };
 		1B60EC8D271A020300046FE9 /* ProductModelConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModelConverter.swift; sourceTree = "<group>"; };
+		1B60EC8F271DE7D000046FE9 /* AddCollaboratorSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCollaboratorSheetView.swift; sourceTree = "<group>"; };
 		1B93E8F0270F901500AA89B6 /* ItemModelConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModelConverter.swift; sourceTree = "<group>"; };
 		1BE5B6E3270E126A00338A02 /* ListModelConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModelConverter.swift; sourceTree = "<group>"; };
 		1BFA5F9E263C72900030AE03 /* Superlista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Superlista.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,6 +386,7 @@
 				1B32EF0E26600AA1006AE70B /* NoItemsView.swift */,
 				1B32EF1826600B78006AE70B /* CestinhaView.swift */,
 				382E7F5527189A9500EE4E5D /* NetworkMonitor.swift */,
+				1B60EC8F271DE7D000046FE9 /* AddCollaboratorSheetView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				89C5B6D72726287200129A94 /* TextFieldStyle.swift in Sources */,
 				0977040E2728C62500232F9D /* CKOwnerModel.swift in Sources */,
 				1B93E8F1270F901500AA89B6 /* ItemModelConverter.swift in Sources */,
+				1B60EC90271DE7D000046FE9 /* AddCollaboratorSheetView.swift in Sources */,
 				1B43E5AE264B0F61002C6D64 /* MainView.swift in Sources */,
 				389B80D7271F7DB300ADCBE1 /* ImagePicker.swift in Sources */,
 				389B80DD271F848300ADCBE1 /* ProfileHeader.swift in Sources */,

@@ -23,7 +23,9 @@ class NetworkMonitor {
         }
         
         let queue = DispatchQueue(label: "NetworkMonitor")
-        monitor.start(queue: queue)
+        DispatchQueue.global().async {
+            self.monitor.start(queue: queue)
+        }
     }
     
     func stopMonitoring() {

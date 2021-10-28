@@ -20,7 +20,7 @@ struct SettingsView: View {
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
                 .padding(.top, 10)
-            
+
 #warning("Premium desativado temporariamente")
 //            HStack {
 //                Image(systemName: "crown.fill")
@@ -32,10 +32,11 @@ struct SettingsView: View {
         
             SettingLabel(username: $username, picture: $picture)
                 .padding(.horizontal, 15)
+          
             Spacer()
         }
         .ignoresSafeArea()
-    }
+    }   
 }
 
 struct SettingsView_Previews: PreviewProvider {
