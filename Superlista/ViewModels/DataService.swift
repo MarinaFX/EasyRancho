@@ -10,6 +10,7 @@ class DataService: ObservableObject {
     @Published var lists: [ListModel] = [] {
         didSet {
             saveDataOnUserDefaults()
+            print(CKService.currentModel.user?.name)
         }
     }
     
