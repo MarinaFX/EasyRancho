@@ -63,18 +63,18 @@ class CKListModel {
             group.leave()
         }
         
+        group.enter()
+        
         sharedWithRef = record["SharedWith"] as? [CKRecord.Reference] ?? []
-        for shared in sharedWithRef {
-            group.enter()
-            OwnerModelConverter().convertReferenceToCK(withReference: shared) { result in
-                switch result {
-                case .success(let owner):
-                    self.sharedWith.append(owner)
-                case .failure:
-                    return
-                }
-                group.leave()
+        OwnerModelConverter().convertReferenceToCK(withReference: sharedWithRef) { result in
+            switch result {
+            case .success(let cloudOwners):
+                self.sharedWith = cloudOwners
+            case .failure:
+                return
             }
+            
+            group.leave()
         }
         
         group.wait()

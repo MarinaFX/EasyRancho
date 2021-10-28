@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct OnboardingFieldsView: View {
-    var action: (() -> Void)?
+    @EnvironmentObject var dataService: DataService
+    
     @State private var newUsername = ""
     @State private var isShowGallery = false
     @State var username: String = ""
@@ -78,12 +79,10 @@ struct OnboardingFieldsView: View {
         }
         
         if hasAddedUsername, let picture = picture {
-            CKService.currentModel.updateUserImageAndName(image: picture, name: newUsername) { result in }
-            
+            dataService.updateUserImageAndName(picture: picture, newUsername: newUsername)
+
         } else {
-            CKService.currentModel.updateUserName(name: newUsername) { result in }
+            dataService.updateUserName(newUsername: newUsername)
         }
-        
-        action?()
     }
 }

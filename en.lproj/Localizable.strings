@@ -6,21 +6,41 @@
   
 */
 
+//MARK: - Toolbar/navigationbar items
+"leadingCancel" = "Cancel";
+"trailingDone" = "Done";
+
+//MARK: - AddCollaborator screen
+"addCollabTitle" = "Add Collaborators";
+"addCollabTextTip" = "Add collaborators to your list so they can make changes in real time";
+"addCollabButton" = "Add Collaborator";
+"noCollaboratorsText" = "You haven't added any collaborators yet";
+"shareListText" = "Or just share your list with your contacts";
+"shareListButton" = "Share list";
+"shareListWarning" = "Sharing your list with another person will only send a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator";
+
+
+//MARK: - AddCollaborator screen | Alert
+"DeleteCollabAlertTitle %@" = "Are you sure you want to remove %@ from your list?";
+"DeleteCollabAlertMessage" = "This person will no longer be able to collaborate in your list";
+"DeleteCollabAlertPrimaryButton" = "Remove";
+"DeleteCollabAlertSecondaryButton" = "Cancel";
+
 "Listas" = "Listas";
 "listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
-"SalvarNovaLista" = "Salvar";
-"EditarNovaLista" = "Editar";
+"SalvarNovaLista" = "Save";
+"EditarNovaLista" = "Edit";
 "ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
 "remover %@" = "Deseja remover %@?";
 "subtituloRemoverLista"= "A lista removida não poderá ser recuperada após sua exclusão";
-"ApagarLista"= "Apagar";
-"ConcluirListas" = "Concluir";
-"EditarListas" = "Editar";
-"NovaLista" = "Nova Lista";
+"ApagarLista"= "Delete";
+"ConcluirListas" = "Done";
+"EditarListas" = "Edit";
+"NovaLista" = "New list";
 "DefaultLS" = "DefaultLS";
 "CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
-"Cancelar" = "Cancelar";
-"Aceitar" = "Aceitar";
+"Cancelar" = "Cancel";
+"Aceitar" = "Accept";
 "SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
 
 //Not working 4now

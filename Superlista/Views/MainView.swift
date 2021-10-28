@@ -75,39 +75,65 @@ struct MainView: View {
                             Text("Compartilhadas").tag(2)
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        
                         LazyVGrid(columns: columns, spacing: 20, content: {
                             ForEach(appliedSection) { list in
                                 
                                 // MARK: - editing state
                                 if isEditing {
-                                    ZStack(alignment: .bottom) {
+                                    ZStack(alignment: .top) {
                                         
                                         // MARK: - list card
                                         Rectangle()
                                             .fill(Color("Background"))
                                             .frame(width: 171, height: 117)
                                             .cornerRadius(30)
-                                            .shadow(color: Color("Shadow"), radius: 12)
+                                            .shadow(color: Color("Shadow"), radius: 17)
                                         
-                                        // MARK: - list title
-                                        Text(list.title)
-                                            .bold()
-                                            .foregroundColor(Color.white)
-                                            .frame(alignment: .center)
-                                            .lineLimit(1)
-                                            .padding(.bottom)
-                                            .padding(.horizontal)
-                                        
-                                        // MARK: - delete button
-                                        Image(systemName: "minus.circle.fill")
-                                            .font(.title2)
-                                            .foregroundColor(Color(.systemGray))
-                                            .offset(x: -75, y: -60)
-                                            .onTapGesture {
-                                                dataService.currentList = list
-                                                showAlert = true
+                                        VStack(alignment: .leading){
+                                            
+                                            // MARK: - list title
+                                            Text(list.title)
+                                                .font(.callout)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(Color.white)
+                                                .lineLimit(1)
+                                                .padding(.top, 20)
+                                            
+                                            //MARK: - List Owner
+                                            if let listOwner = list.owner?.name{
+                                                Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**")
+                                                    .font(.footnote)
+                                                    .foregroundColor(Color.white)
+                                                    .lineLimit(1)
+                                                    .padding(.bottom, 20)
+                                                    .truncationMode(.tail)
                                             }
+                                            HStack{
+                                                if let sharedList = list.sharedWith{
+                                                    Text(sharedList.isEmpty ? "0" : (String(describing: list.sharedWith?.count)))
+                                                        .font(.footnote)
+                                                        .foregroundColor(Color.white)
+                                                        .lineLimit(1)
+                                                        .padding(.leading, 90)
+                                                }
+                                                
+                                                Image(systemName: "person.2.fill")
+                                                    .font(.caption)
+                                                    .foregroundColor(Color.white)
+                                            }
+                                            // MARK: - delete button
+                                            Image(systemName: "minus.circle.fill")
+                                                .font(.title2)
+                                                .foregroundColor(.red)
+                                                .offset(x: 80, y: 0)
+                                                .onTapGesture {
+                                                    dataService.currentList = list
+                                                    showAlert = true
+                                                }
+                                        }
+                                        .padding(.horizontal, 20)
+                                        
+                                        
                                     }
                                     .alert(isPresented: $showAlert){
                                         Alert(title: Text("remover \(dataService.currentList!.title)"), message: Text("subtituloRemoverLista"), primaryButton: .cancel(), secondaryButton: .destructive(Text("ApagarLista"), action:{
@@ -120,7 +146,7 @@ struct MainView: View {
                                         dataService.currentList = list
                                         return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
                                     })
-                                    .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: dataService, list: list))
+                                    .onDrop(of: [.url], delegate: ListDropViewDelegate(dataService: dataService, list: list))
                                     
                                 }
                                 // MARK: - normal state
@@ -134,7 +160,7 @@ struct MainView: View {
                                                 .fill(Color("Background"))
                                                 .frame(width: 171, height: 117)
                                                 .cornerRadius(30)
-                                                .shadow(color: Color("Shadow"), radius: 12)
+                                                .shadow(color: Color("Shadow"), radius: 17)
                                             
                                             VStack(alignment: .leading){
                                                 
@@ -146,30 +172,30 @@ struct MainView: View {
                                                     .lineLimit(1)
                                                     .padding(.top, 20)
                                                 
-                                                // MARK: - data list
-                                                if let listOwner = list.owner.name{
-                                                    Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**   ")
+                                                //MARK: - List Owner
+                                                if let listOwner = list.owner?.name{
+                                                    Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**")
                                                         .font(.footnote)
                                                         .foregroundColor(Color.white)
                                                         .lineLimit(1)
                                                         .padding(.bottom, 20)
                                                         .truncationMode(.tail)
                                                 }
-                                                
                                                 HStack{
-                                                    Text("5")
-                                                        .font(.footnote)
-                                                        .foregroundColor(Color.white)
-                                                        .lineLimit(1)
-                                                        .padding(.leading, 90)
+                                                    if let sharedList = list.sharedWith{
+                                                        Text(sharedList.isEmpty ? "0" : (String(describing: list.sharedWith?.count)))
+                                                            .font(.footnote)
+                                                            .foregroundColor(Color.white)
+                                                            .lineLimit(1)
+                                                            .padding(.leading, 90)
+                                                    }
+                                                    
                                                     Image(systemName: "person.2.fill")
                                                         .font(.caption)
                                                         .foregroundColor(Color.white)
-                                                    
                                                 }
                                             }
-                                            .padding(.leading, 30)
-                                            .padding(.trailing, 20)
+                                            .padding(.horizontal, 20)                                            
                                             
                                         }
                                     })
@@ -177,47 +203,50 @@ struct MainView: View {
                             }
                         }).padding(.top)
                     }.padding(.horizontal)
-                }
-                // MARK: - transparent new list button
-                if dataService.lists.isEmpty {
-                    Button(action: createNewListAction, label : {
-                        Rectangle()
-                            .fill(Color.clear)
-                            .frame(width: 200, height: 200)
-                    })
-                }
-            }
-            //                        .navigationBarTitle(Text("Listas")
-            //                                                .foregroundColor(Color.primary))
-            .toolbar{
-                
-                // MARK: - edit button
-                ToolbarItem(placement: .navigationBarLeading){
-                    if !dataService.lists.isEmpty {
-                        Button(action: {isEditing.toggle()}, label: {
-                            Text(isEditing ? "ConcluirListas": "EditarListas")})
+                    
+                    // MARK: - toolbar
+                        .toolbar{
+                            // MARK: - edit button
+                            ToolbarItem(placement: .navigationBarLeading){
+                                if !dataService.lists.isEmpty {
+                                    Button(action: {isEditing.toggle()}, label: {
+                                        Text(isEditing ? "ConcluirListas": "EditarListas")})
+                                }
+                            }
+                            // MARK: - new list button
+                            ToolbarItem(placement: .navigationBarTrailing){
+                                Button(action: createNewListAction, label: { Text("NovaLista") })
+                            }
+                            // MARK: - title
+                            ToolbarItem(placement: .principal){
+                                Text("Listas")
+                                    .font(.system(size: 36, weight: .bold))
+                                    .foregroundColor(Color.primary)
+                            }
+                        }
+                    
+                    // MARK: - transparent new list button
+                    if dataService.lists.isEmpty {
+                        Button(action: createNewListAction, label : {
+                            Rectangle()
+                                .fill(Color.clear)
+                                .frame(width: 200, height: 200)
+                        })
                     }
                 }
-                // MARK: - new list button
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button(action: createNewListAction, label: { Text("NovaLista") })
-                }
-                // MARK: - title
-                ToolbarItem(placement: .principal){
-                    Text("Listas")
-                        .font(.system(size: 36, weight: .bold))
-                        .foregroundColor(Color.primary)
-                }
             }
-            
         }
     }
     
+#warning("quando criar uma lista sem estar na internet o newOwner deve ser o user do userdefaults")
     func createNewListAction() {
-        let newOwner: OwnerModel = OwnerModel(id: CKService.currentModel.user!.id.recordName, name:  CKService.currentModel.user!.name!)
+        guard let user = dataService.user else { return }
+        
+        let newOwner: OwnerModel = OwnerModel(id: user.id, name: user.name!)
         let newList: ListModel = ListModel(title: "Nova Lista", owner: newOwner)
         
         dataService.addList(newList)
+        
         self.listId = newList.id
         self.isCreatingList = true
     }

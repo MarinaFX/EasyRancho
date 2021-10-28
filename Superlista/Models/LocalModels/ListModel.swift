@@ -16,6 +16,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
         self.title = title
         self.items = items
         self.owner = owner
+        self.sharedWith = sharedWith
     }
     
     init(id: String, title: String, items: [CategoryModel: [ItemModel]] = [:], owner: OwnerModel, sharedWith: [OwnerModel] = []) {
@@ -23,6 +24,7 @@ struct ListModel: Identifiable, Decodable, Encodable {
         self.title = title
         self.items = items
         self.owner = owner
+        self.sharedWith = sharedWith
     }
     
     func editTitle(newTitle: String) -> ListModel {

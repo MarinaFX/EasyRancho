@@ -18,6 +18,45 @@ class OwnerModelConverter {
         - items: the reference to be converted
      - Returns: the CKOwnerModel version of the given reference
      */
+    func convertReferenceToCK(withReference references: [CKRecord.Reference], completion: @escaping (Result<[CKOwnerModel], CKError>) -> Void) {
+        var cloudOwner: [CKOwnerModel] = []
+        
+        DispatchQueue.global().async {
+            let group = DispatchGroup()
+            var ckError: CKError?
+            
+            for reference in references {
+                group.enter()
+                
+                CKService.currentModel.getAnotherUser(userID: reference.recordID) { result in
+                    switch result {
+                    case .success(let user):
+                        cloudOwner.append(user)
+                    case .failure(let error):
+                        ckError = error
+                    }
+                    group.leave()
+                }
+            }
+            
+            group.wait()
+            
+            if let error = ckError {
+                completion(.failure(error))
+            }
+            else {
+                completion(.success(cloudOwner))
+            }
+        }
+    }
+    
+    /**
+    This method converts the CKRecord.Reference structure to our cloud CKOwnerModel structure
+     
+     - Parameters:
+        - items: the reference to be converted
+     - Returns: the CKOwnerModel version of the given reference
+     */
     func convertReferenceToCK(withReference reference: CKRecord.Reference, completion: @escaping (Result<CKOwnerModel, CKError>) -> Void) {
         DispatchQueue.global().async {
             CKService.currentModel.getAnotherUser(userID: reference.recordID) { result in
