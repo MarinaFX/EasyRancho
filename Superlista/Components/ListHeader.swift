@@ -7,6 +7,9 @@ struct ListHeader: View {
     @State var canComment: Bool = false
     @State var comentario: String = ""
     @Binding var canEditTitle: Bool
+    @State var showCollabSheetView: Bool = false
+    @State var collaborators: [OwnerModel]
+    @State var listOwner: OwnerModel
     
     let purpleColor = Color("Background")
     let secondary = Color("Secondary")
@@ -50,13 +53,29 @@ struct ListHeader: View {
                 }
                 .frame(maxWidth: .infinity)
                 
+                
+            }
+            
+            Button {
+                self.showCollabSheetView.toggle()
+            } label: {
+                Image(systemName: self.collaborators.isEmpty ? "person.crop.circle.badge.plus" : "person.crop.circle.badge.checkmark")
+                    .resizable()
+                    .frame(width: 28, height: 24)
+                    .foregroundColor(.black)
+            }
+            .sheet(isPresented: $showCollabSheetView)
+            { }
+            content: {
+                AddCollaboratorSheetView(showCollabSheetView: self.$showCollabSheetView, collaborators: self.$collaborators, listOwner: self.$listOwner, list: self.list)
             }
         }
         .padding(.horizontal, 30)
-        .onAppear {
+        .onAppear {            
             if let list = list {
                 listaTitulo = list.title
                 canEditTitle = false
+                collaborators = list.sharedWith ?? []
             }
         }
     }

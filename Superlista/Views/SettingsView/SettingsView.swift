@@ -30,7 +30,7 @@ struct SettingsView: View {
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
                 .padding(.top, 10)
-            
+
 #warning("Premium desativado temporariamente")
 //            HStack {
 //                Image(systemName: "crown.fill")
