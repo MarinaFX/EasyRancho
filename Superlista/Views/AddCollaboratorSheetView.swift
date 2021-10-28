@@ -160,7 +160,7 @@ struct AddCollaboratorSheetView: View {
         }
         .onAppear {
             CKService.currentModel.refresh { result in
-                DataService().getListsIntegration()
+                DataService().getDataIntegration()
             }
         }
     }

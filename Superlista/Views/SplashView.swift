@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SplashView: View {
+    @EnvironmentObject var dataService: DataService
+
     @State var isActive: Bool = false
     @State var isLogged: Bool = false
     
@@ -11,7 +13,7 @@ struct SplashView: View {
                     MainView()
                 } else {
                     OnboardingView() {
-                        self.isLogged = CKService.currentModel.user?.name != nil
+                        self.isLogged = dataService.user?.name != nil
                     }
                 }
             } else {
@@ -30,7 +32,7 @@ struct SplashView: View {
                 withAnimation {
                     self.isActive = true
                     
-                    self.isLogged = CKService.currentModel.user?.name != nil
+                    self.isLogged = dataService.user?.name != nil
                 }
             }
         }

@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State var username = CKService.currentModel.user?.name ?? getNickname()
+    @EnvironmentObject var dataService: DataService
+
+    @State var username = getNickname()
     @State var picture: UIImage? = CKService.currentModel.user?.image
     
+    func getUsername() {
+        if let user = dataService.user,
+           let name = user.name {
+            self.username = name
+        }
+    }
+    
     var body: some View {
-        VStack{
+        VStack {
             ProfileHeader(username: username, picture: picture)
                 .padding(.top, -30)
+            
             Text(username)
                 .font(.title)
                 .fontWeight(.bold)
@@ -32,11 +42,14 @@ struct SettingsView: View {
         
             SettingLabel(username: $username, picture: $picture)
                 .padding(.horizontal, 15)
-          
+            
             Spacer()
         }
         .ignoresSafeArea()
-    }   
+        .onAppear {
+            getUsername()
+        }
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
