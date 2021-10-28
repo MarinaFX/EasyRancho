@@ -27,14 +27,54 @@ struct ProductListView: View {
             ForEach(filter.isEmpty ? products : filteredProducts) { item in
                 
                 HStack {
-                    Image(systemName: isSelected(item: item) ? "checkmark" : "plus")
-                        .foregroundColor(isSelected(item: item) ? Color("Button") : Color.primary)
+                    if isSelected(item: item) {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(Color("Button"))
+                            .frame(width: 13, height: 13)
+                    } else {
+                        ZStack {
+                        }
+                        .frame(width: 13, height: 13)
+                    }
                         
                     Text(item.name)
                         .foregroundColor(isSelected(item: item) ? Color("Button") : Color.primary)
                         .font(.system(size: 14, weight: isSelected(item: item) ? .bold : .regular))
+                    
                     Spacer()
-                    Text("                                           ") // gambiarra emergencial
+                    
+                    if !isSelected(item: item) {
+                        Image(systemName: "plus")
+                            .foregroundColor(Color.primary)
+                            .frame(width: 13, height: 13)
+                    } else {
+                        ZStack {
+                            Image(systemName: "minus.square.fill")
+                                .resizable()
+                                .frame(width: 13, height: 13)
+                                .foregroundColor(Color("Button"))
+                        }
+                        .frame(width: 17, height: 17)
+                        .onTapGesture {
+                            let index = selectedItems.firstIndex(where: { $0.product.name == item.name })
+                            listsViewModel.removeQuantity(of: selectedItems[index!], from: list)
+                        }
+
+                        
+                        Text("\(selectedItems[selectedItems.firstIndex(where: { $0.product.name == item.name })!].quantity!)")
+                            .font(.system(size: 14, weight: .regular))
+                            .foregroundColor(Color.primary)
+                        
+                        
+                        Image(systemName: "plus.square.fill")
+                            .resizable()
+                            .frame(width: 13, height: 13)
+                            .foregroundColor(Color("Button"))
+                            .onTapGesture {
+                                let index = selectedItems.firstIndex(where: { $0.product.name == item.name })
+                                listsViewModel.addQuantity(of: selectedItems[index!], from: list)
+                            }
+                    }
                 }
                 .frame(maxWidth: .infinity)
                 .onTapGesture {
