@@ -7,13 +7,13 @@ struct SplashView: View {
     var body: some View {
         VStack {
             if self.isActive {
-//                if isLogged {
+                if isLogged {
                     MainView()
-//                } else {
-//                    OnboardingView() {
-//                        self.isLogged = CKService.currentModel.user?.name != nil
-//                    }
-//                }
+                } else {
+                    OnboardingView() {
+                        self.isLogged = CKService.currentModel.user?.name != nil
+                    }
+                }
             } else {
                 VStack{
                     Spacer()
