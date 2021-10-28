@@ -17,9 +17,7 @@ struct AddCollaboratorSheetView: View {
 
     @State var showShareActionSheet: Bool = false
     @State var showDeleteCollabAlert: Bool = false
-    
-    //@State var displayedCollaborators: [OwnerModel]
-    
+        
     let list: ListModel?
     
     var ckList: CKListModel? {
@@ -67,71 +65,29 @@ struct AddCollaboratorSheetView: View {
                         
                         //MARK: AddCollaboratorSheetView List view
                         if let collaborators = collaborators {
-                            List {
-                                ForEach(0..<self.collaborators.count, id: \.self) { index in
-                                    HStack(alignment: .center, spacing: 16) {
-                                        //TODO: user picture
-                                        Image("cesta")
-                                            .resizable()
-                                            .clipShape(Circle())
-                                            .frame(width: 46, height: 46)
-
-                                        Text(collaborators[index].name!)
-                                            .bold()
-                                        
-                                        Spacer()
-                                        
-                                        Button {
-                                            showDeleteCollabAlert = true
-                                        }
-                                        label: {
-                                            Image(systemName: "xmark.circle.fill")
-                                                .resizable()
-                                                .frame(width: 20, height: 20)
-                                                .foregroundColor(.black)
-                                        }
-                                        .alert(isPresented: self.$showDeleteCollabAlert) {
-                                            Alert(
-                                                title: Text("DeleteCollabAlertTitle \(collaborators[index].name!)"),
-                                                message: Text("DeleteCollabAlertMessage"),
-                                                primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
-                                                    //TODO: Delete Collab
-                                                    var newCollabList: [OwnerModel] = collaborators
-                                                    newCollabList.remove(at: index)
-
-                                                    var newCkCollabList: [CKOwnerModel] = []
-                                                    for owner in newCollabList {
-                                                        newCkCollabList.append(OwnerModelConverter().convertLocalToCKOwner(withUser: owner))
-                                                    }
-                                                    
-                                                    CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list!.id), sharedWith: newCkCollabList) { result in }
-                                                    self.collaborators = newCollabList
-                                                }),
-                                                secondaryButton: .cancel(Text("DeleteCollabAlertSecondaryButton"), action: {})
-                                            )
-                                        }
-                                        
-                                        
+                            if !collaborators.isEmpty {
+                                List {
+                                    ForEach(0..<self.collaborators.count, id: \.self) { index in
+                                        CollaboratorListView(collaborators: self.$collaborators, list: list, name: collaborators[index].name!, index: index)
                                     }
+                                    .listRowBackground(Color("InsetGroupedBackground"))
                                 }
-                                .listRowBackground(Color("InsetGroupedBackground"))
+                                .foregroundColor(.black)
+                                .padding(.vertical, 16)
+                                .frame(width: geometry.size.width, height: geometry.size.height * 0.45)
+                                .listStyle(.insetGrouped)
                             }
-                            .foregroundColor(.black)
-                            .padding(.vertical, 16)
-                            .frame(width: geometry.size.width, height: geometry.size.height * 0.45)
-                            .listStyle(.insetGrouped)
-                        }
-                        else {
-                            VStack {
-                                Text("noCollaboratorsText")
-                                    .foregroundColor(Color(UIColor.lightGray))
+                            else {
+                                VStack {
+                                    Text("noCollaboratorsText")
+                                        .foregroundColor(Color(UIColor.lightGray))
+                                }
+                                .frame(width: geometry.size.width - 32, height: geometry.size.height * 0.45)
+                                .background(Color("InsetGroupedBackground"))
+                                .cornerRadius(10)
+                                .padding(.vertical, 16)
                             }
-                            .frame(width: geometry.size.width - 32, height: geometry.size.height * 0.45)
-                            .background(Color("InsetGroupedBackground"))
-                            .cornerRadius(10)
-                            .padding(.vertical, 16)
                         }
-                        
                         
                         
                         //MARK: AddCollaboratorSheetView Share section
@@ -188,7 +144,6 @@ struct AddCollaboratorSheetView: View {
                             //MARK: AddCollaboratorSheetView Done button
                             ToolbarItem(placement: .navigationBarTrailing) {
                                 Button {
-                                    //TODO: CKService.currentModel.save...
                                     self.showCollabSheetView = false
                                 } label: {
                                     Text("trailingDone")
@@ -204,8 +159,71 @@ struct AddCollaboratorSheetView: View {
             }
         }
         .onAppear {
-            //self.displayedCollaborators = self.collaborators
-            CKService.currentModel.refresh { result in }
+            CKService.currentModel.refresh { result in
+                DataService().getListsIntegration()
+            }
+        }
+    }
+}
+
+
+struct CollaboratorListView: View {
+    @Binding var collaborators: [OwnerModel]
+    @State var showDeleteCollabAlert: Bool = false
+    
+    let list: ListModel?
+    let name: String
+    var collabImage: UIImage?
+    var index: Int
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 16) {
+            //TODO: user picture
+            if let collabImage = collabImage {
+                Image(uiImage: collabImage)
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: 46, height: 46)
+            }
+            else {
+                ProfilePicture(username: name, viewWidth: 46, viewHeight: 46, circleWidth: 37, circleHeight: 37)
+            }
+            
+            Text(name)
+                .bold()
+            
+            Spacer()
+            
+            Button {
+                showDeleteCollabAlert = true
+            }
+            label: {
+                Image(systemName: "xmark.circle.fill")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.black)
+            }
+            .alert(isPresented: self.$showDeleteCollabAlert) {
+                Alert(
+                    title: Text("DeleteCollabAlertTitle \(collaborators[index].name!)"),
+                    message: Text("DeleteCollabAlertMessage"),
+                    primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
+                        //TODO: Delete Collab
+                        var newCollabList: [OwnerModel] = collaborators
+                        newCollabList.remove(at: index)
+
+                        var newCkCollabList: [CKOwnerModel] = []
+                        for owner in newCollabList {
+                            newCkCollabList.append(OwnerModelConverter().convertLocalToCKOwner(withUser: owner))
+                        }
+                        
+                        CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list!.id), sharedWith: newCkCollabList) { result in }
+                        
+                        self.collaborators = newCollabList
+                    }),
+                    secondaryButton: .cancel(Text("DeleteCollabAlertSecondaryButton"), action: {})
+                )
+            }
         }
     }
 }
