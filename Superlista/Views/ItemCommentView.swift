@@ -30,21 +30,24 @@ struct ItemCommentView: View {
                     Text(item.product.name)
                         .strikethrough(item.isCompleted)
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
+                        .font(.system(size: 17, weight: .semibold))
                     
-                    
-                    Spacer()
                     
                     if !isCommenting{
                         Image(systemName: "text.bubble")
                             .resizable()
-                            .frame(width: 22, height: 22)
+                            .frame(width: 18, height: 18)
                             .foregroundColor(Color("Comment"))
                             .onTapGesture {
                                 isCommenting = true
                             }
                     }
+                    
+                    Spacer()
+                    
+                    Text("\(item.quantity!)")
+                        .font(.system(size: 17, weight: .semibold))
+                        .foregroundColor(Color.primary)
                     
                 }
                 
