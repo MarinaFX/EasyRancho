@@ -164,6 +164,7 @@ struct MainView: View {
         }
     }
     
+    #warning("quando criar uma lista sem estar na internet o newOwner deve ser o user do userdefaults")
     func createNewListAction() {
         let newOwner: OwnerModel = OwnerModel(id: CKService.currentModel.user!.id.recordName, name:  CKService.currentModel.user!.name!)
         let newList: ListModel = ListModel(title: "Nova Lista", owner: newOwner)

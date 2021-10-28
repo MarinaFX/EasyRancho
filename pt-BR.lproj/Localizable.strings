@@ -6,6 +6,19 @@
   
 */
 
+//MARK: - Toolbar/navigationbar items
+"leadingCancel" = "Cancelar";
+"trailingDone" = "Salvar";
+
+//MARK: - AddCollaborator screen
+"addCollabTitle" = "Adicionar Colaborador";
+"addCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";
+"addCollabButton" = "Adicionar Colaborador";
+"noCollaboratorsText" = "Você ainda não adicionou nenhum colaborador";
+"shareListText" = "Ou apenas compartilhe sua lista com seus contatos";
+"shareListButton" = "Compartilhar lista";
+"shareListWarning" = "Ao compartilhar uma lista com uma pessoa você enviará somente uma cópia da sua lista, isso não afetará a sua lista atual e a pessoa **não** será adicionada como colaborador.";
+
 //MARK: - AddColaborator screen
 "DeleteCollabAlertTitle %@" = "Você tem certeza que deseja excluir %@ de sua lista?";
 "DeleteCollabAlertMessage" = "Esta pessoa deixará de ser um colaborador na sua lista.";

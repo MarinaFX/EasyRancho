@@ -89,7 +89,6 @@ class ListModelConverter {
      - Returns: the ListModel version of the given CKListModel list
      */
     func convertCloudListToLocal(withList list: CKListModel) -> ListModel {
-        #warning("verificar problema na conversao de owner")
         let localList: ListModel
         
         let localItems = itemModelConverter.convertCloudItemsToLocal(withItems: list.itemsModel)
@@ -102,7 +101,7 @@ class ListModelConverter {
         }
         
         localList = ListModel(id: list.id.recordName, title: list.name ?? "", items: localItems, owner: localOwner, sharedWith: localSharedWith)
-        
+
         return localList
     }
     

@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import CloudKit
 
 //MARK: - AddCollaboratorSheetView Struct
 
 struct AddCollaboratorSheetView: View {
     @Binding var showCollabSheetView: Bool
-    @Binding var collaborators: [UserModel]
+    @Binding var collaborators: [OwnerModel]
+    @Binding var listOwner: OwnerModel
 
     @State var showShareActionSheet: Bool = false
     @State var showDeleteCollabAlert: Bool = false
+    
+    //@State var displayedCollaborators: [OwnerModel]
     
     let list: ListModel?
     
@@ -32,7 +36,7 @@ struct AddCollaboratorSheetView: View {
                 ScrollView(showsIndicators: false) {
                     VStack {
                         //MARK: AddCollaboratorSheetView Collab section
-                        Text("Add collaborators to your list so they can make changes in real time")
+                        Text("addCollabTextTip")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
                         
@@ -42,14 +46,14 @@ struct AddCollaboratorSheetView: View {
                             }
 
                             self.showShareActionSheet.toggle()
-                            shareSheet(listID: list.id, ownerID: "115", option: "1", listName: list.title, ownerName: "Marina")
+                            shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name!)
                         }, label: {
                             HStack(alignment: .center) {
                                 Image(systemName: "plus.circle.fill")
-                                    .foregroundColor(Color("Pronto"))
+                                    .foregroundColor(Color("Button"))
                                 
-                                Text("Add Collaborator")
-                                    .foregroundColor(Color("Pronto"))
+                                Text("addCollabButton")
+                                    .foregroundColor(Color("Button"))
                                     .bold()
                                     
                                 Spacer()
@@ -64,7 +68,7 @@ struct AddCollaboratorSheetView: View {
                         //MARK: AddCollaboratorSheetView List view
                         if let collaborators = collaborators {
                             List {
-                                ForEach(0..<collaborators.count) { index in
+                                ForEach(0..<self.collaborators.count, id: \.self) { index in
                                     HStack(alignment: .center, spacing: 16) {
                                         //TODO: user picture
                                         Image("cesta")
@@ -72,7 +76,7 @@ struct AddCollaboratorSheetView: View {
                                             .clipShape(Circle())
                                             .frame(width: 46, height: 46)
 
-                                        Text(collaborators[index].name ?? getNickname())
+                                        Text(collaborators[index].name!)
                                             .bold()
                                         
                                         Spacer()
@@ -88,10 +92,20 @@ struct AddCollaboratorSheetView: View {
                                         }
                                         .alert(isPresented: self.$showDeleteCollabAlert) {
                                             Alert(
-                                                title: Text("DeleteCollabAlertTitle \(collaborators[index].name ?? "")"),
+                                                title: Text("DeleteCollabAlertTitle \(collaborators[index].name!)"),
                                                 message: Text("DeleteCollabAlertMessage"),
                                                 primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
                                                     //TODO: Delete Collab
+                                                    var newCollabList: [OwnerModel] = collaborators
+                                                    newCollabList.remove(at: index)
+
+                                                    var newCkCollabList: [CKOwnerModel] = []
+                                                    for owner in newCollabList {
+                                                        newCkCollabList.append(OwnerModelConverter().convertLocalToCKOwner(withUser: owner))
+                                                    }
+                                                    
+                                                    CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list!.id), sharedWith: newCkCollabList) { result in }
+                                                    self.collaborators = newCollabList
                                                 }),
                                                 secondaryButton: .cancel(Text("DeleteCollabAlertSecondaryButton"), action: {})
                                             )
@@ -109,7 +123,7 @@ struct AddCollaboratorSheetView: View {
                         }
                         else {
                             VStack {
-                                Text("You haven't added any collaborators yet")
+                                Text("noCollaboratorsText")
                                     .foregroundColor(Color(UIColor.lightGray))
                             }
                             .frame(width: geometry.size.width - 32, height: geometry.size.height * 0.45)
@@ -121,7 +135,7 @@ struct AddCollaboratorSheetView: View {
                         
                         
                         //MARK: AddCollaboratorSheetView Share section
-                        Text("Or just share your list with your contacts")
+                        Text("shareListText")
                             .font(.system(size: 13))
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -133,10 +147,10 @@ struct AddCollaboratorSheetView: View {
                             }
                             
                             self.showShareActionSheet.toggle()
-                            shareSheet(listID: list.id, ownerID: "115", option: "2", listName: list.title, ownerName: "Marina")
+                            shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: listOwner.name!)
                         }, label: {
                             HStack(alignment: .center) {
-                                Text("Share list")
+                                Text("shareListButton")
                                     .foregroundColor(.black)
                                     
                                 Spacer()
@@ -152,7 +166,7 @@ struct AddCollaboratorSheetView: View {
                         .cornerRadius(12)
                         .padding(.horizontal, 16)
                         
-                        Text("Sharing your list with another person will only send a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator")
+                        Text("shareListWarning")
                             .font(.system(size: 13))
                             .foregroundColor(Color("Footnote"))
                             .padding(.horizontal, 16)
@@ -165,7 +179,7 @@ struct AddCollaboratorSheetView: View {
                                 Button {
                                     self.showCollabSheetView = false
                                 } label: {
-                                    Text("Cancel")
+                                    Text("leadingCancel")
                                         .font(.system(size: 17))
                                         .foregroundColor(.blue)
                                 }
@@ -177,19 +191,20 @@ struct AddCollaboratorSheetView: View {
                                     //TODO: CKService.currentModel.save...
                                     self.showCollabSheetView = false
                                 } label: {
-                                    Text("Done")
+                                    Text("trailingDone")
                                         .font(.system(size: 17))
                                         .bold()
                                         .foregroundColor(.blue)
                                 }
                             }
                         }
-                        .navigationTitle("Add Collaborator")
+                        .navigationTitle("addCollabTitle")
                         .navigationBarTitleDisplayMode(.large)
                 }
             }
         }
         .onAppear {
+            //self.displayedCollaborators = self.collaborators
             CKService.currentModel.refresh { result in }
         }
     }

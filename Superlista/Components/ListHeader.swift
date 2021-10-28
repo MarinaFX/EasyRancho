@@ -8,7 +8,8 @@ struct ListHeader: View {
     @State var comentario: String = ""
     @Binding var canEditTitle: Bool
     @State var showCollabSheetView: Bool = false
-    @State var collaborators: [UserModel]
+    @State var collaborators: [OwnerModel]
+    @State var listOwner: OwnerModel
     
     let purpleColor = Color("Background")
     let secondary = Color("Secondary")
@@ -66,7 +67,7 @@ struct ListHeader: View {
             .sheet(isPresented: $showCollabSheetView)
             { }
             content: {
-                AddCollaboratorSheetView(showCollabSheetView: self.$showCollabSheetView, collaborators: self.$collaborators, list: self.list)
+                AddCollaboratorSheetView(showCollabSheetView: self.$showCollabSheetView, collaborators: self.$collaborators, listOwner: self.$listOwner, list: self.list)
             }
         }
         .padding(.horizontal, 30)
