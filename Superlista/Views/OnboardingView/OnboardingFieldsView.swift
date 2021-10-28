@@ -2,8 +2,6 @@ import SwiftUI
 
 struct OnboardingFieldsView: View {
     @EnvironmentObject var dataService: DataService
-
-    var action: (() -> Void)?
     
     @State private var newUsername = ""
     @State private var isShowGallery = false
@@ -86,7 +84,5 @@ struct OnboardingFieldsView: View {
         } else {
             dataService.updateUserName(newUsername: newUsername)
         }
-        
-        action?()
     }
 }
