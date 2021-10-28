@@ -45,9 +45,28 @@ struct ItemCommentView: View {
                     
                     Spacer()
                     
+                    Button {
+                        listsViewModel.removeQuantity(of: item, from: list) 
+                    } label: {
+                        Image(systemName: "minus")
+                            .resizable()
+                            .frame(width: 17, height: 17)
+                            .foregroundColor(Color("Comment"))
+                    }
+
+                    
                     Text("\(item.quantity!)")
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundColor(Color.primary)
+                    
+                    Button {
+                        listsViewModel.addQuantity(of: item, from: list)
+                    } label: {
+                        Image(systemName: "plus")
+                            .resizable()
+                            .frame(width: 17, height: 17)
+                            .foregroundColor(Color("Comment"))
+                    }
                     
                 }
                 

@@ -142,4 +142,24 @@ class DataService: ObservableObject {
             CloudIntegration.actions.updateCkListItems(updatedList: listWithItemNewState)
         }
     }
+    
+    func removeQuantity(of item: ItemModel, from listModel: ListModel) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            let listWithNewItemQuantity = listModel.removeQuantity(of: item)
+            
+            lists[index] = listWithNewItemQuantity
+            
+            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+        }
+    }
+    
+    func addQuantity(of item: ItemModel, from listModel: ListModel) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            let listWithNewItemQuantity = listModel.addQuantity(of: item)
+            
+            lists[index] = listWithNewItemQuantity
+            
+            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+        }
+    }
 }

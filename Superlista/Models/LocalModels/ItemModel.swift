@@ -23,18 +23,19 @@ struct ItemModel: Identifiable, Codable {
         return ItemModel(id: id, product: product, comment: newComment, isCompleted: isCompleted)
     }
     
-    mutating func addQuantity() {
+     func addQuantity() -> ItemModel {
         let newQuantity = (quantity ?? 1) + 1
-        self.quantity = newQuantity
+        return ItemModel(id: id, product: product, comment: comment, isCompleted: isCompleted, quantity: newQuantity)
     }
     
-    mutating func removeQuantity() {
-        guard let quantity = quantity else { return }
+    func removeQuantity() -> ItemModel {
+        guard let quantity = quantity else {
+            return ItemModel(id: id, product: product, comment: comment, isCompleted: isCompleted, quantity: quantity)}
         if quantity > 1 {
             let newQuantity = quantity - 1
-            self.quantity = newQuantity
+            return ItemModel(id: id, product: product, comment: comment, isCompleted: isCompleted, quantity: newQuantity)
         } else {
-            return
+            return ItemModel(id: id, product: product, comment: comment, isCompleted: isCompleted, quantity: quantity)
         }
     }
 }
