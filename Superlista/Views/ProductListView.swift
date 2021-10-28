@@ -51,7 +51,7 @@ struct ProductListView: View {
                         ZStack {
                             Image(systemName: "minus.square.fill")
                                 .resizable()
-                                .frame(width: 13, height: 13)
+                                .frame(width: 17, height: 17)
                                 .foregroundColor(Color("Button"))
                         }
                         .frame(width: 17, height: 17)
@@ -62,13 +62,13 @@ struct ProductListView: View {
 
                         
                         Text("\(selectedItems[selectedItems.firstIndex(where: { $0.product.name == item.name })!].quantity!)")
-                            .font(.system(size: 14, weight: .regular))
+                            .font(.system(size: 17, weight: .regular))
                             .foregroundColor(Color.primary)
                         
                         
                         Image(systemName: "plus.square.fill")
                             .resizable()
-                            .frame(width: 13, height: 13)
+                            .frame(width: 17, height: 17)
                             .foregroundColor(Color("Button"))
                             .onTapGesture {
                                 let index = selectedItems.firstIndex(where: { $0.product.name == item.name })
