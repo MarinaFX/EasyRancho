@@ -14,13 +14,30 @@ struct MainView: View {
     var appliedSection: [ListModel]{
         switch selectedSection{
         case 0:
-            return dataService.lists
-        case 1:
+            #warning("pode dar ruim problema de otimização")
+            var allLists: [ListModel] = []
+            var lists2: [ListModel] = []
             guard let currentUser = CKService.currentModel.user else { return [] }
-            return dataService.lists.filter{$0.owner.id == currentUser.id.recordName}
+            dataService.lists.forEach({list in
+                allLists.append(list)
+                currentUser.sharedWithMe?.forEach({ list in
+                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                    allLists.append(localList)
+                })
+            })
+            return allLists
+        case 1:
+//            guard let currentUser = CKService.currentModel.user else { return [] }
+//            return dataService.lists.filter{$0.owner.id == currentUser.id.recordName}
+            return dataService.lists
         case 2:
             guard let currentUser = CKService.currentModel.user else { return [] }
-            return dataService.lists.filter{$0.owner.id != currentUser.id.recordName}
+            var lists2: [ListModel] = []
+            currentUser.sharedWithMe?.forEach({ list in
+                let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                lists2.append(localList)
+            })
+            return lists2
         default:
             return []
         }
@@ -183,7 +200,7 @@ struct MainView: View {
                                                 }
                                                 HStack{
                                                     if let sharedList = list.sharedWith{
-                                                        Text(sharedList.isEmpty ? "0" : (String(describing: list.sharedWith?.count)))
+                                                        Text(sharedList.isEmpty ? "0" : (String(describing: sharedList.count)))
                                                             .font(.footnote)
                                                             .foregroundColor(Color.white)
                                                             .lineLimit(1)
