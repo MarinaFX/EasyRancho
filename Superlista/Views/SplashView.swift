@@ -1,36 +1,34 @@
 import SwiftUI
 
 struct SplashView: View {
-    @State var isActive: Bool = false
-    @State var isLogged: Bool = false
+    @EnvironmentObject var dataService: DataService
+
+    var isActive: Bool {
+        return dataService.user != nil
+    }
+    
+    var isLogged: Bool {
+        return dataService.user?.name != nil
+    }
     
     var body: some View {
         VStack {
-            if self.isActive {
-                if isLogged {
-                    MainView()
-                } else {
-                    OnboardingView() {
-                        self.isLogged = CKService.currentModel.user?.name != nil
-                    }
-                }
+            if self.isActive && self.isLogged {
+                MainView()
+                
+            } else if !self.isLogged {
+                OnboardingView()
+                
             } else {
-                VStack{
+                VStack {
                     Spacer()
+                    
                     Image("DefaultLS")
                         .resizable()
                         .ignoresSafeArea()
                         .scaledToFill()
-                    Spacer()
-                }
-            }
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                withAnimation {
-                    self.isActive = true
                     
-                    self.isLogged = CKService.currentModel.user?.name != nil
+                    Spacer()
                 }
             }
         }

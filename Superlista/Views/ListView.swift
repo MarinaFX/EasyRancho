@@ -8,8 +8,10 @@ struct ListView: View {
     @State var canEditTitle: Bool = false
     
     var list: ListModel? {
-        return getList()
+        let myList = getList()
+        return myList
     }
+    
     
     @State var listTitle: String = ""
     
@@ -21,7 +23,7 @@ struct ListView: View {
                         .ignoresSafeArea()
                     
                     VStack (spacing: 20) {
-                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, list: self.list, listId: $listId)
+                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list!.sharedWith ?? [], listOwner: list!.owner, list: self.list, listId: $listId)
                         
                         if let list = self.list {
                             
@@ -50,7 +52,6 @@ struct ListView: View {
                     }
                 }
                 .onAppear {
-                                        
                     if hasChangedItems, let list = self.list {
                         CloudIntegration.actions.updateCkListItems(updatedList: list)
                         

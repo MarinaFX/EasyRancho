@@ -64,7 +64,6 @@ func shareSheet(listID: String, option: String, listName: String, ownerName: Str
 }
 
 // MARK: - Get Color Categories
-
 func getColor(category: String) -> Color {
     switch category{
     case "Bazar" :
@@ -122,7 +121,7 @@ enum UsersList: String {
 // MARK: - Curtom usernames
 func getNickname() -> String{
     if let colors = UserArrays().colorsArray.randomElement(), let animals = UserArrays().animalsArray.randomElement() {
-        return "\(colors)\(animals)"
+        return "\(colors) \(animals)"
     }
     return "User"
 }

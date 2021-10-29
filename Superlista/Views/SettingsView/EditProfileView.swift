@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct EditProfileView: View {
+    @EnvironmentObject var dataService: DataService
+
     @Binding var showingSheet: Bool
     @State private var newUsername = ""
     @State private var isShowGallery = false
@@ -20,6 +22,7 @@ struct EditProfileView: View {
                 Text("Editar Perfil")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                
                 ZStack {
                     if let picture = picture {
                         Image(uiImage: picture)
@@ -72,10 +75,15 @@ struct EditProfileView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         if newUsername.isEmpty{
-                            self.newUsername = CKService.currentModel.user?.name ?? ""
+                            self.newUsername = dataService.user?.name ?? ""
                         }
-                        guard let picture = picture else {return}
-                        CKService.currentModel.updateUserImageAndName(image: picture, name: newUsername) { result in}
+                        
+                        if let picture = picture {
+                            dataService.updateUserImageAndName(picture: picture, newUsername: newUsername)
+                        } else {
+                            dataService.updateUserName(newUsername: newUsername)
+                        }
+                        
                         self.username = newUsername
                         self.picture = picture
                         self.showingSheet = false

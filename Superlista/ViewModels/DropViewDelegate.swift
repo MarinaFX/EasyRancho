@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 struct ListDropViewDelegate: DropDelegate {
-    var listsViewModel: DataService
+    var dataService: DataService
     
     var list: ListModel
     
@@ -11,19 +11,19 @@ struct ListDropViewDelegate: DropDelegate {
     }
     
     func dropEntered(info: DropInfo) {
-        let fromIndex = listsViewModel.lists.firstIndex{ list -> Bool in
-            return list.id == listsViewModel.currentList?.id
+        let fromIndex = dataService.lists.firstIndex{ list -> Bool in
+            return list.id == dataService.currentList?.id
         } ?? 0
         
-        let toIndex = listsViewModel.lists.firstIndex{ list -> Bool in
+        let toIndex = dataService.lists.firstIndex{ list -> Bool in
             return list.id == self.list.id
         } ?? 0
         
         if fromIndex != toIndex {
             withAnimation {
-                let fromList = listsViewModel.lists[fromIndex]
-                listsViewModel.lists[fromIndex] = listsViewModel.lists[toIndex]
-                listsViewModel.lists[toIndex] = fromList
+                let fromList = dataService.lists[fromIndex]
+                dataService.lists[fromIndex] = dataService.lists[toIndex]
+                dataService.lists[toIndex] = fromList
             }
         }
     }

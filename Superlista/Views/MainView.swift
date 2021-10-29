@@ -96,7 +96,7 @@ struct MainView: View {
                                     dataService.currentList = list
                                     return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
                                 })
-                                .onDrop(of: [.url], delegate: ListDropViewDelegate(listsViewModel: dataService, list: list))
+                                .onDrop(of: [.url], delegate: ListDropViewDelegate(dataService: dataService, list: list))
                                 
                             }
                             // MARK: - normal state
@@ -164,11 +164,15 @@ struct MainView: View {
         }
     }
     
+    #warning("quando criar uma lista sem estar na internet o newOwner deve ser o user do userdefaults")
     func createNewListAction() {
-        let newOwner: OwnerModel = OwnerModel(id: CKService.currentModel.user!.id.recordName, name:  CKService.currentModel.user!.name!)
+        guard let user = dataService.user else { return }
+        
+        let newOwner: OwnerModel = OwnerModel(id: user.id, name: user.name!)
         let newList: ListModel = ListModel(title: "Nova Lista", owner: newOwner)
 
         dataService.addList(newList)
+        
         self.listId = newList.id
         self.isCreatingList = true
     }

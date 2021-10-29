@@ -24,7 +24,7 @@ class ItemModelConverter {
         
         items.forEach { item in
             let product: ProductModel = ProductModel(id: 999, name: item.name, category: item.category)
-            let localItem: ItemModel = ItemModel(id: UUID().uuidString, product: product, comment: item.comment, isCompleted: item.isCompleted)
+            let localItem: ItemModel = ItemModel(id: UUID().uuidString, product: product, comment: item.comment, isCompleted: item.isCompleted, quantity: item.quantity)
             
             onlyItems.append(localItem)
         }

@@ -1,14 +1,11 @@
 import SwiftUI
 
-struct OnboardingView: View {
-    var action: (() -> Void)?
-    
+struct OnboardingView: View {    
     @State private var currentPage = 0
     @State private var currentColor: Color = onboardingPages[0].color
     @State private var picture: UIImage? = nil
     
-    init(action: (() -> Void)?) {
-        self.action = action
+    init() {
         UIScrollView.appearance().bounces = false
     }
     
@@ -25,7 +22,7 @@ struct OnboardingView: View {
                 .tabViewStyle(PageTabViewStyle())
                 .onChange(of: currentPage, perform: changeColor)
                 
-                NavigationLink("Começar", destination: OnboardingFieldsView(action: action, picture: $picture))
+                NavigationLink("Começar", destination: OnboardingFieldsView(picture: $picture))
                     .buttonStyle(MediumButtonStyle(background: .white, foreground: currentColor))
                     .padding(.top)
                     .padding(.bottom, 48)
@@ -48,17 +45,15 @@ struct OnboardingPageView: View {
 
     var body: some View {
         VStack {
-            
             Image(onboardingPages[index].image)
-            .frame(width: UIScreen.main.bounds.width, height: 260)
-            .padding(.bottom, 56)
+                .frame(width: UIScreen.main.bounds.width, height: 260)
+                .padding(.bottom, 56)
             
             Text(onboardingPages[index].title)
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
 
-            
             Text(onboardingPages[index].text)
                 .font(.title3)
                 .multilineTextAlignment(.center)
@@ -71,7 +66,7 @@ struct OnboardingPageView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(action: {})
+        OnboardingView()
     }
 }
 

@@ -10,6 +10,12 @@ import SwiftUI
 struct ProfilePicture: View {
     var username: String
     
+    var viewWidth: CGFloat?
+    var viewHeight: CGFloat?
+    
+    var circleWidth: CGFloat?
+    var circleHeight: CGFloat?
+    
     var body: some View {
         GeometryReader { geometryReader in
             ZStack {
@@ -18,7 +24,7 @@ struct ProfilePicture: View {
                 
                 Circle()
                     .stroke(Color.white, style: StrokeStyle(lineWidth: 5))
-                    .frame(width: 140, height: 140)
+                    .frame(width: circleWidth ?? 140, height: circleHeight ?? 140)
                 
                 let initialName = username.prefix(1)
                 Text(String(initialName))
@@ -27,6 +33,6 @@ struct ProfilePicture: View {
                 
             }
         }
-        .frame(width: 160, height: 160)
+        .frame(width: viewWidth ?? 160, height: viewHeight ?? 160)
     }
 }
