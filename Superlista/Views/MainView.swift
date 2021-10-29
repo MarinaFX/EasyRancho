@@ -87,7 +87,7 @@ struct MainView: View {
                                             .fill(Color("Background"))
                                             .frame(width: 171, height: 117)
                                             .cornerRadius(30)
-                                            .shadow(color: Color("Shadow"), radius: 17)
+                                            .shadow(color: Color("Shadow"), radius: 12)
                                         
                                         VStack(alignment: .leading){
                                             
@@ -100,8 +100,8 @@ struct MainView: View {
                                                 .padding(.top, 20)
                                             
                                             //MARK: - List Owner
-                                            if let listOwner = list.owner?.name{
-                                                Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**")
+                                            if let listOwner = list.owner.name{
+                                                Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**   ")
                                                     .font(.footnote)
                                                     .foregroundColor(Color.white)
                                                     .lineLimit(1)
@@ -125,7 +125,7 @@ struct MainView: View {
                                             Image(systemName: "minus.circle.fill")
                                                 .font(.title2)
                                                 .foregroundColor(.red)
-                                                .offset(x: 80, y: 0)
+                                                .offset(x: 127, y: -100)
                                                 .onTapGesture {
                                                     dataService.currentList = list
                                                     showAlert = true
@@ -160,7 +160,7 @@ struct MainView: View {
                                                 .fill(Color("Background"))
                                                 .frame(width: 171, height: 117)
                                                 .cornerRadius(30)
-                                                .shadow(color: Color("Shadow"), radius: 17)
+                                                .shadow(color: Color("Shadow"), radius: 12)
                                             
                                             VStack(alignment: .leading){
                                                 
@@ -173,8 +173,8 @@ struct MainView: View {
                                                     .padding(.top, 20)
                                                 
                                                 //MARK: - List Owner
-                                                if let listOwner = list.owner?.name{
-                                                    Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**")
+                                                if let listOwner = list.owner.name{
+                                                    Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**   ")
                                                         .font(.footnote)
                                                         .foregroundColor(Color.white)
                                                         .lineLimit(1)
