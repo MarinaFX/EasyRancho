@@ -48,8 +48,8 @@ struct ItemCommentView: View {
                     ZStack {
                         Image(systemName: "minus")
                             .resizable()
-                            .frame(width: 17, height: 2)
-                            .foregroundColor(Color("Comment"))
+                            .frame(width: 17, height: (item.quantity! > 1) ? 2 : 1.5)
+                            .foregroundColor((item.quantity! > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
                     }
                     .frame(width: 17, height: 17)
                     .onTapGesture {

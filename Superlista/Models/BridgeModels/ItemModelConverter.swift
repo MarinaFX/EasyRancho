@@ -62,7 +62,8 @@ class ItemModelConverter {
                 let name: String = localItem.product.name
                 let comment: String? = localItem.comment
                 let isCompleted: Bool = localItem.isCompleted
-                cloudItems.append(CKItemModel(name: name, category: itemCategory, quantity: 1, comment: comment, isCompleted: isCompleted))
+                let quantity: Int = localItem.quantity ?? 1
+                cloudItems.append(CKItemModel(name: name, category: itemCategory, quantity: quantity, comment: comment, isCompleted: isCompleted))
             }
         }
         
