@@ -8,6 +8,7 @@ struct ProductListView: View {
     var list: ListModel
 
     @State var selectedItems: [ItemModel] = []
+    @State var index: Int = 0
         
     @Binding var filter: String
     
@@ -52,16 +53,16 @@ struct ProductListView: View {
                             Image(systemName: "minus.square.fill")
                                 .resizable()
                                 .frame(width: 17, height: 17)
-                                .foregroundColor(Color("Button"))
+                                .foregroundColor((selectedItems[index].quantity!) > 1 ? Color("Button") : Color(UIColor.secondaryLabel))
                         }
                         .frame(width: 17, height: 17)
                         .onTapGesture {
-                            let index = selectedItems.firstIndex(where: { $0.product.name == item.name })
-                            listsViewModel.removeQuantity(of: selectedItems[index!], from: list)
+                            self.index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
+                            listsViewModel.removeQuantity(of: selectedItems[index], from: list)
                         }
 
                         
-                        Text("\(selectedItems[selectedItems.firstIndex(where: { $0.product.name == item.name })!].quantity!)")
+                        Text("\(selectedItems[index].quantity!)")
                             .font(.system(size: 17, weight: .regular))
                             .foregroundColor(Color.primary)
                         
@@ -71,15 +72,15 @@ struct ProductListView: View {
                             .frame(width: 17, height: 17)
                             .foregroundColor(Color("Button"))
                             .onTapGesture {
-                                let index = selectedItems.firstIndex(where: { $0.product.name == item.name })
-                                listsViewModel.addQuantity(of: selectedItems[index!], from: list)
+                                self.index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
+                                listsViewModel.addQuantity(of: selectedItems[index], from: list)
                             }
                     }
                 }
                 .frame(maxWidth: .infinity)
                 .onTapGesture {
-                    if isSelected(item: item),
-                       let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) {
+                    self.index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
+                    if isSelected(item: item){
                         listsViewModel.removeItem(selectedItems[index], from: list)
                         selectedItems.remove(at: index)
                     } else {
