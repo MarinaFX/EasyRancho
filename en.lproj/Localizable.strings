@@ -18,6 +18,8 @@
 "EditarListas" = "Editar";
 "NovaLista" = "Nova Lista";
 "DefaultLS" = "DefaultLS";
+
+// MARK: - Alerts
 "CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
 "Cancelar" = "Cancelar";
 "Aceitar" = "Aceitar";
@@ -52,3 +54,5 @@
 "OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
 "Salvar" = "Save";
 "Pular" = "Skip";
+
+// MARK: - VoiceOver

@@ -41,6 +41,7 @@ struct ProductListView: View {
                     Text(item.name)
                         .foregroundColor(isSelected(item: item) ? Color("Button") : Color.primary)
                         .font(.system(size: 14, weight: isSelected(item: item) ? .bold : .regular))
+                        .accessibilityLabel(Text("\(item.name)"))
                     
                     Spacer()
                     
@@ -48,12 +49,14 @@ struct ProductListView: View {
                         Image(systemName: "plus")
                             .foregroundColor(Color.primary)
                             .frame(width: 13, height: 13)
+                            .accessibilityLabel(Text("add"))
+                            .accessibility(hint: Text("Adicione \(item.name)"))
                     } else {
                         ZStack {
                             Image(systemName: "minus.square.fill")
                                 .resizable()
                                 .frame(width: 17, height: 17)
-                                .foregroundColor((selectedItems[index].quantity!) > 1 ? Color("Button") : Color(UIColor.secondaryLabel))
+                                .foregroundColor((selectedItems[index].quantity ?? 1) > 1 ? Color("Button") : Color(UIColor.secondaryLabel))
                         }
                         .frame(width: 17, height: 17)
                         .onTapGesture {
@@ -63,11 +66,14 @@ struct ProductListView: View {
                                 selectedItems[index].quantity = selectedItems[index].quantity! - 1
                             }
                         }
+                        .accessibilityLabel(Text("minus"))
+                        .accessibility(hint: Text("remove one item"))
 
                         
-                        Text("\(selectedItems[index].quantity!)")
+                        Text("\(selectedItems[index].quantity ?? 1)")
                             .font(.system(size: 17, weight: .regular))
                             .foregroundColor(Color.primary)
+                            .accessibilityLabel(Text("\(selectedItems[index].quantity ?? 1) items"))
                         
                         
                         Image(systemName: "plus.square.fill")
@@ -77,8 +83,10 @@ struct ProductListView: View {
                             .onTapGesture {
                                 self.index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                                 listsViewModel.addQuantity(of: selectedItems[index], from: list)
-                                selectedItems[index].quantity = selectedItems[index].quantity! + 1
+                                selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
                             }
+                            .accessibilityLabel(Text("plus"))
+                            .accessibility(hint: Text("add one item"))
                     }
                 }
                 .frame(maxWidth: .infinity)
