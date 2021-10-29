@@ -49,3 +49,10 @@
 // MARK: - Onboarding Labels
 "Começar" = "Começar";
 
+// MARK: - VoiceOver
+"Adicione %@" = "tap to add %@";
+"add" = "add";
+"remove" = "remove";
+"removeOneItem" = "tap to remove one item";
+"addOneItem" = "tap to add one item";
+"%@ items" = "%@ items";

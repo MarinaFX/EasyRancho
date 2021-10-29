@@ -66,8 +66,8 @@ struct ProductListView: View {
                                 selectedItems[index].quantity = selectedItems[index].quantity! - 1
                             }
                         }
-                        .accessibilityLabel(Text("minus"))
-                        .accessibility(hint: Text("remove one item"))
+                        .accessibilityLabel(Text("remove"))
+                        .accessibility(hint: Text("removeOneItem"))
 
                         
                         Text("\(selectedItems[index].quantity ?? 1)")
@@ -85,8 +85,8 @@ struct ProductListView: View {
                                 listsViewModel.addQuantity(of: selectedItems[index], from: list)
                                 selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
                             }
-                            .accessibilityLabel(Text("plus"))
-                            .accessibility(hint: Text("add one item"))
+                            .accessibilityLabel(Text("add"))
+                            .accessibility(hint: Text("addOneItem"))
                     }
                 }
                 .frame(maxWidth: .infinity)
