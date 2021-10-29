@@ -24,7 +24,7 @@ struct ListView: View {
                     
                     VStack (spacing: 20) {
                         ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list!.sharedWith ?? [], listOwner: list!.owner, list: self.list, listId: $listId)
-                        
+
                         if let list = self.list {
                             
                             NavigationLink(destination: AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "")){
