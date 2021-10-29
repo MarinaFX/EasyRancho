@@ -48,18 +48,21 @@ struct ItemCommentView: View {
                     ZStack {
                         Image(systemName: "minus")
                             .resizable()
-                            .frame(width: 17, height: (item.quantity! > 1) ? 2 : 1.5)
-                            .foregroundColor((item.quantity! > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
+                            .frame(width: 17, height: ((item.quantity ?? 1) > 1) ? 2 : 1.5)
+                            .foregroundColor(((item.quantity ?? 1) > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
                     }
                     .frame(width: 17, height: 17)
                     .onTapGesture {
                         listsViewModel.removeQuantity(of: item, from: list)
                     }
+                    .accessibilityLabel(Text("remove"))
+                    .accessibility(hint: Text("removeOneItem"))
 
                     
-                    Text("\(item.quantity!)")
+                    Text("\(item.quantity ?? 1)")
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundColor(Color.primary)
+                        .accessibilityLabel(Text("\(item.quantity ?? 1) items"))
                     
                     
                     Image(systemName: "plus")
@@ -69,6 +72,8 @@ struct ItemCommentView: View {
                         .onTapGesture {
                             listsViewModel.addQuantity(of: item, from: list)
                         }
+                        .accessibilityLabel(Text("add"))
+                        .accessibility(hint: Text("addOneItem"))
                     
                 }
                 
