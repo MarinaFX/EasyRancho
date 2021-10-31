@@ -82,4 +82,22 @@ class CloudIntegration: ObservableObject {
             }
         }
     }
+    
+    func updateUserCustomProducts(withProduct customProduct: ProductModel) {
+        let productModelConverter: ProductModelConverter = ProductModelConverter()
+        var ckCustomProducts: [String] = CKService.currentModel.user?.customProductsString ?? []
+        
+        CKService.currentModel.user?.customProducts?.append(customProduct)
+
+        ckCustomProducts.append(productModelConverter.convertLocalProductsToString(withProduct: customProduct))
+        
+        CKService.currentModel.updateCustomItems(customItems: ckCustomProducts) { result in
+            switch result {
+            case .success(let result):
+                print("Updated custom products successfully. Result: \(result)")
+            case .failure(let error):
+                print("Error while trying to update custom products. Error: \(error)")
+            }
+        }
+    }
 }

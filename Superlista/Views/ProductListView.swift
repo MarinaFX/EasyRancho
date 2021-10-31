@@ -3,16 +3,15 @@ import SwiftUI
 struct ProductListView: View {
     @EnvironmentObject var listsViewModel: DataService
     
-    let products = ProductListViewModel().productsOrdered
-    
-    var list: ListModel
+    @Binding var filter: String
+    @Binding var hasChangedItems: Bool
 
     @State var selectedItems: [ItemModel] = []
-        
-    @Binding var filter: String
+    @State var showCreateNewCustomProductView: Bool = false
     
-    @Binding var hasChangedItems: Bool
-    
+    let products = ProductListViewModel().productsOrdered
+    var list: ListModel
+
     var filteredProducts: [ProductModel] {
         return products.filter({ $0.name.localizedCaseInsensitiveContains(filter) })
     }
@@ -22,10 +21,8 @@ struct ProductListView: View {
     }
     
     var body: some View {
-        
         List {
             ForEach(filter.isEmpty ? products : filteredProducts) { item in
-                
                 HStack {
                     Image(systemName: isSelected(item: item) ? "checkmark" : "plus")
                         .foregroundColor(isSelected(item: item) ? Color("Button") : Color.primary)
@@ -33,8 +30,11 @@ struct ProductListView: View {
                     Text(item.name)
                         .foregroundColor(isSelected(item: item) ? Color("Button") : Color.primary)
                         .font(.system(size: 14, weight: isSelected(item: item) ? .bold : .regular))
+                    
                     Spacer()
-                    Text("                                           ") // gambiarra emergencial
+                    
+                    //Text("                                           ") gambiarra emergencial
+                    
                 }
                 .frame(maxWidth: .infinity)
                 .onTapGesture {
@@ -52,8 +52,47 @@ struct ProductListView: View {
                 }
             }
             .listRowBackground(Color("PrimaryBackground"))
+            
+            if filteredProducts.isEmpty {
+                ProductNotFoundView(showCreateNewCustomProductView: self.$showCreateNewCustomProductView)
+            }
+
         }
+        .listSeparatorStyle(style: filteredProducts.isEmpty ? .none : .singleLine)
         .listStyle(PlainListStyle())
+
     }
+
 }
  
+struct ProductNotFoundView: View {
+    @Binding var showCreateNewCustomProductView: Bool
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text("Товар не найден")
+                .foregroundColor(Color("Secondary"))
+                .padding(.bottom, 12)
+            Button {
+                self.showCreateNewCustomProductView.toggle()
+            } label: {
+                HStack(alignment: .center) {
+                    Image(systemName: "plus.circle.fill")
+                        .foregroundColor(Color("Button"))
+                    
+                    Text("один")
+                        .foregroundColor(Color("Button"))
+                        .bold()
+                        
+                    Spacer()
+                }
+            }
+            .sheet(isPresented: $showCreateNewCustomProductView)
+            { }
+            content: {
+                CreateNewCustomProductView(showCreateNewProductView: self.$showCreateNewCustomProductView)
+            }
+
+        }
+    }
+}

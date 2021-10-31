@@ -22,6 +22,12 @@ func load<T: Decodable>(_ filename: String) -> T {
     }
 }
 
+func loadCategoryKeys() -> [String] {
+    let json: [ProductModel] = load("productList.json")
+    
+    return json.map { $0.category }.unique.sorted()
+}
+
 func saveUserData<T: Encodable>(data: [T], to key: String) {
     if let encodedData = try? JSONEncoder().encode(data) {
         UserDefaults.standard.set(encodedData, forKey: key)

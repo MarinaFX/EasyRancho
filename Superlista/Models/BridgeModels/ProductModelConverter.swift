@@ -35,4 +35,12 @@ class ProductModelConverter {
         
         return cloudProducts
     }
+    
+    func convertLocalProductsToString(withProduct product: ProductModel) -> String {
+        var cloudProduct: String = ""
+        
+        cloudProduct = product.name + ";" + product.category
+        
+        return cloudProduct
+    }
 }

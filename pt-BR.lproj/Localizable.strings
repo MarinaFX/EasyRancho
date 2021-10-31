@@ -10,6 +10,12 @@
 "leadingCancel" = "Cancelar";
 "trailingDone" = "Salvar";
 
+//MARK: - CreateNewCustomProductView screen
+"createProductScreenTitle" = "Criar Produto";
+"createProductDescription" = "Crie um novo produto para adicioná-lo a sua lista. Escolha um nome e uma categoria.";
+"productNameTextField" = "Nome do produto";
+"productCategoryTextField" = "Categoria";
+
 //MARK: - AddCollaborator screen
 "addCollabTitle" = "Adicionar Colaborador";
 "addCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";
