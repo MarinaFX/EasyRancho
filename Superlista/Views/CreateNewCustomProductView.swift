@@ -11,8 +11,10 @@ struct CreateNewCustomProductView: View {
     @Binding var showCreateNewProductView: Bool
     
     @State var productName: String = ""
-    @State var selectedCategory: String = ""
+    //@State var selectedCategory: String = ""
     @State private var lastSelectedItem: Int?
+    @State var didFillNameTextField: Bool = false
+    @State var didFillCategoryTextField: Bool = false
     
     let categories: [String] = loadCategoryKeys()
 
@@ -30,8 +32,27 @@ struct CreateNewCustomProductView: View {
                         .padding(EdgeInsets(top: -8, leading: 16, bottom: 24, trailing: 16))
                         .multilineTextAlignment(.center)
                     
-                    TextField(NSLocalizedString("productNameTextField", comment: ""), text: $productName)
-                        .modifier(CustomTextFieldStyle())
+                    Text("textFieldRequired")
+                        .opacity(didFillNameTextField == true ? 0.0 : 1.0)
+                        .font(.system(size: 13))
+                        .foregroundColor(.red)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: -32, trailing: 256))
+                    
+                    TextField(
+                        NSLocalizedString("productNameTextField", comment: ""),
+                        text: $productName,
+                        onEditingChanged: { (isBegin) in
+                            if !isBegin {
+                                if productName != "" {
+                                    self.didFillNameTextField = true
+                                }
+                                else {
+                                    self.didFillNameTextField = false
+                                }
+                            }
+                        }
+                    )
+                        .modifier(CustomTextFieldStyle(strokeColor: didFillNameTextField == true ? Color.gray : Color.red))
                         .padding(.bottom, -12)
                     
                     PickerTextField(lastSelectedIndex: self.$lastSelectedItem, data: categories, placeholder: NSLocalizedString("productCategoryTextField", comment: ""))
@@ -42,14 +63,21 @@ struct CreateNewCustomProductView: View {
                     
                     //MARK: CreateNewCustomProductView - Bottom Button
                     Button {
-                        //TODO: Save to CloudKit
-                        self.showCreateNewProductView = false
-
                         guard let lastSelectedItem = lastSelectedItem else {
                             return
                         }
+                        
+                        let cloudCustomProduct: String = productName + ";" + categories[lastSelectedItem]
+                        let localCustomProduct: ProductModel = ProductModel(id: 999, name: productName, category: categories[lastSelectedItem])
+                        
+                        //TODO: Save locally on user's product json or a custom product json
+                        
+                        if didFillNameTextField {
+                            //CloudIntegration().updateUserCustomProducts(withProduct: localCustomProduct)
+                            
+                            self.showCreateNewProductView = false
+                        }
 
-                        print(categories[lastSelectedItem])
                     } label: {
                         Text("trailingDone")
                             .fontWeight(.semibold)
@@ -99,5 +127,32 @@ struct CreateNewCustomProductView: View {
 struct CreateNewCustomProductView_Previews: PreviewProvider {
     static var previews: some View {
         CreateNewCustomProductView(showCreateNewProductView: .constant(false))
+    }
+}
+
+extension View {
+    /// Hide or show the view based on a boolean value.
+    ///
+    /// Example for visibility:
+    ///
+    ///     Text("Label")
+    ///         .isHidden(true)
+    ///
+    /// Example for complete removal:
+    ///
+    ///     Text("Label")
+    ///         .isHidden(true, remove: true)
+    ///
+    /// - Parameters:
+    ///   - hidden: Set to `false` to show the view. Set to `true` to hide the view.
+    ///   - remove: Boolean value indicating whether or not to remove the view.
+    @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = false) -> some View {
+        if hidden {
+            if !remove {
+                self.hidden()
+            }
+        } else {
+            self
+        }
     }
 }

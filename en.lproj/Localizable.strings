@@ -15,6 +15,7 @@
 "createProductDescription" = "Create a new product to add it to your list. Pick up a name and a category.";
 "productNameTextField" = "Name of the product";
 "productCategoryTextField" = "Category";
+"textFieldRequired" = "Required field";
 
 //MARK: - AddCollaborator screen
 "addCollabTitle" = "Add Collaborators";
