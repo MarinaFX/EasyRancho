@@ -37,6 +37,7 @@ struct CreateNewCustomProductView: View {
                         .font(.system(size: 13))
                         .foregroundColor(.red)
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: -32, trailing: 256))
+                        .accessibility(hidden: true)
                     
                     TextField(
                         NSLocalizedString("productNameTextField", comment: ""),
@@ -54,10 +55,14 @@ struct CreateNewCustomProductView: View {
                     )
                         .modifier(CustomTextFieldStyle(strokeColor: didFillNameTextField == true ? Color.gray : Color.red))
                         .padding(.bottom, -12)
+                        .accessibilityHint("ACtextFieldRequiredHint")
                     
                     PickerTextField(lastSelectedIndex: self.$lastSelectedItem, data: categories, placeholder: NSLocalizedString("productCategoryTextField", comment: ""))
                         .modifier(CustomTextFieldStyle())
                         .frame(width: geometry.size.width, height: geometry.size.height * 0.1)
+                        .accessibilityLabel("ACpickerFieldLabel")
+                        .accessibilityValue("ACpickerFieldValue")
+                        .accessibilityHint("ACtextFieldRequiredHint")
                     
                     Spacer()
                     
@@ -85,6 +90,8 @@ struct CreateNewCustomProductView: View {
                             .fontWeight(.semibold)
                             .font(.system(size: 20))
                             .foregroundColor(.blue)
+                            .accessibilityHint("ACDoneButtonHint")
+
                     }
                     .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
                     .background(Color("InsetGroupedBackground"))
@@ -102,6 +109,7 @@ struct CreateNewCustomProductView: View {
                             Text("leadingCancel")
                                 .font(.system(size: 17))
                                 .foregroundColor(.blue)
+                                .accessibilityHint("ACCancelButtonHint")
                         }
                     }
                     
@@ -130,6 +138,7 @@ struct CreateNewCustomProductView: View {
                                 .font(.system(size: 17))
                                 .bold()
                                 .foregroundColor(.blue)
+                                .accessibilityHint("ACDoneButtonHint")
                         }
                     }
                 }

@@ -6,8 +6,7 @@ struct SearchBar: View {
     
     var body: some View {
         HStack {
-            #warning("Not working this translate for Search Itens")
-            TextField("ProcurarItens", text: $text)
+            TextField(NSLocalizedString("ProcurarItens", comment: ""), text: $text)
                 .foregroundColor(Color(UIColor.secondaryLabel))
                 .padding(10)
                 .padding(.leading, 30)
@@ -19,6 +18,7 @@ struct SearchBar: View {
                             .foregroundColor(Color(UIColor.secondaryLabel))
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                             .padding(.leading, 15)
+                            .accessibility(hidden: true)
                         
                         if isEditing {
                             Button(action: {
@@ -26,6 +26,7 @@ struct SearchBar: View {
                             }) {
                                 Image(systemName: "multiply.circle.fill")
                                     .padding(.trailing, 8)
+                                    .accessibilityHint("ACSearchBarXHint")
                             }
                         }
                     }

@@ -9,10 +9,13 @@
 //MARK: - Toolbar/navigationbar items
 "leadingCancel" = "Cancel";
 "trailingDone" = "Done";
+"ACSearchBarXHint" = "Tap twice to erase search";
 
 //MARK: - ProductListView - ProductNotFoundView subview
 "itemNotFoundMessage" = "Product not found";
 "itemNotFoundButton" = "Create a New Product";
+"ACItemNotFoundButtonHint" = "Tap twice to go to product creation screen";
+
 
 //MARK: - CreateNewCustomProductView screen
 "createProductScreenTitle" = "Create Product";
@@ -20,6 +23,11 @@
 "productNameTextField" = "Name of the product";
 "productCategoryTextField" = "Category";
 "textFieldRequired" = "Required field";
+"ACCancelButtonHint" = "Tap twice to back to product search screen";
+"ACDoneButtonHint" = "Tap twice to save this product to the product list. The product will only be saved if both name and category fields are complete";
+"ACtextFieldRequiredHint" = "Text field is required";
+"ACpickerFieldLabel" = "Category";
+"ACpickerFieldValue" = "Wheel picker";
 
 //MARK: - AddCollaborator screen
 "addCollabTitle" = "Add Collaborators";
@@ -55,7 +63,7 @@
 "SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
 
 //Not working 4now
-"ProcurarItens" = "Procurar Itens";
+"ProcurarItens" = "Search products";
 "AdicionarItensFake" = "Adicionar novos itens";
 "TituloPaginaDeLista" = "Listasddddd";
 "TituloDaNovaLista" = "Nova Lista";

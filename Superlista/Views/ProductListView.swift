@@ -84,6 +84,7 @@ struct ProductNotFoundView: View {
                         .foregroundColor(Color("Button"))
                         .bold()
                         
+                        
                     Spacer()
                 }
             }
@@ -92,7 +93,8 @@ struct ProductNotFoundView: View {
             content: {
                 CreateNewCustomProductView(showCreateNewProductView: self.$showCreateNewCustomProductView)
             }
-
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityHint("ACItemNotFoundButtonHint")
     }
 }
