@@ -70,7 +70,7 @@ struct ProductNotFoundView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text("Товар не найден")
+            Text("itemNotFoundMessage")
                 .foregroundColor(Color("Secondary"))
                 .padding(.bottom, 12)
             Button {
@@ -80,7 +80,7 @@ struct ProductNotFoundView: View {
                     Image(systemName: "plus.circle.fill")
                         .foregroundColor(Color("Button"))
                     
-                    Text("один")
+                    Text("itemNotFoundButton")
                         .foregroundColor(Color("Button"))
                         .bold()
                         

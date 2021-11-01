@@ -10,6 +10,10 @@
 "leadingCancel" = "Cancelar";
 "trailingDone" = "Salvar";
 
+//MARK: - ProductListView - ProductNotFoundView subview
+"itemNotFoundMessage" = "Item não encontrado";
+"itemNotFoundButton" = "Criar Novo Produto";
+
 //MARK: - CreateNewCustomProductView screen
 "createProductScreenTitle" = "Criar Produto";
 "createProductDescription" = "Crie um novo produto para adicioná-lo a sua lista. Escolha um nome e uma categoria.";
