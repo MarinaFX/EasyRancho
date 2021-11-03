@@ -27,8 +27,6 @@ struct MainView: View {
     }
     
     @State var showAlert = false
-    var TituloDaNovaLista = "TituloDaNovaLista"
-    
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     @State var shouldChangeView = false
@@ -39,35 +37,23 @@ struct MainView: View {
                 
                 ZStack {
                     
-                    // MARK: - new list button
                     NavigationLink(destination: ListView(listId: listId),
                                    isActive: $isCreatingList,
                                    label: { EmptyView() }
                     )
                         .opacity(0.0)
                     
-                    // MARK: - background color
                     Color("PrimaryBackground")
                         .ignoresSafeArea()
                     
-                    // MARK: - empty state
                     if dataService.lists.isEmpty {
-                        VStack {
-                            Text("listaVazia")
-                                .multilineTextAlignment(.center)
-                                .font(.headline)
-                            
-                            NoItemsView()
-                                .frame(width: 400, height: 400)
-                        }
+                        EmptyView()
                         .onAppear {
                             if dataService.lists.isEmpty {
                                 self.isEditing = false
                             }
                         }
                     }
-                    
-                    // MARK: - Lists
                     ScrollView(showsIndicators: false) {
                         Picker("Lists Sections", selection: $selectedSection) {
                             Text("TudoSegmentedPicker").tag(0)
@@ -75,14 +61,11 @@ struct MainView: View {
                             Text("ColaborativasSegmentedPicker").tag(2)
                         }
                         .pickerStyle(SegmentedPickerStyle())
+                        
                         LazyVGrid(columns: columns, spacing: 20, content: {
                             ForEach(appliedSection) { list in
-                                
-                                // MARK: - editing state
                                 if isEditing {
-                                    ZStack(alignment: .top) {
-                                        
-                                        // MARK: - list card
+                                    ZStack(alignment: .leading) {
                                         Rectangle()
                                             .fill(Color("Background"))
                                             .frame(width: 171, height: 117)
@@ -90,23 +73,19 @@ struct MainView: View {
                                             .shadow(color: Color("Shadow"), radius: 12)
                                         
                                         VStack(alignment: .leading){
-                                            
-                                            // MARK: - list title
                                             Text(list.title)
                                                 .font(.callout)
                                                 .fontWeight(.semibold)
                                                 .foregroundColor(Color.white)
                                                 .lineLimit(1)
-                                                .padding(.top, 20)
                                             
-                                            //MARK: - List Owner
                                             if let listOwner = list.owner.name{
-                                                Text(listOwner == CKService.currentModel.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
+                                                Text(listOwner == dataService.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
                                                     .font(.footnote)
                                                     .foregroundColor(Color.white)
                                                     .lineLimit(1)
-                                                    .padding(.bottom, 20)
                                                     .truncationMode(.tail)
+                                                    .padding(.bottom, 25)
                                             }
                                             HStack{
                                                 if let sharedList = list.sharedWith{
@@ -114,36 +93,25 @@ struct MainView: View {
                                                         .font(.footnote)
                                                         .foregroundColor(Color.white)
                                                         .lineLimit(1)
+                                                        .padding(.trailing, -7)
                                                 }
                                                 
                                                 Image(systemName: "person.2.fill")
                                                     .font(.caption)
                                                     .foregroundColor(Color.white)
-                                                    .padding(.leading, -7)
                                             }
-                               
-                                            // MARK: - delete button
-                                            Image(systemName: "minus.circle.fill")
-                                                .font(.title2)
-                                                .foregroundColor(.red)
-                                                .offset(x: 110, y: -100)
-                                                .onTapGesture {
-                                                    dataService.currentList = list
-                                                    showAlert = true
-                                                }
                                         }
-                                        .padding(.horizontal, 25)
+                                        .padding(.horizontal, 20)
                                         
-                                        
-                                        // MARK: - delete button
                                         Image(systemName: "minus.circle.fill")
                                             .font(.title2)
                                             .foregroundColor(Color(.systemGray))
-                                            .offset(x: -75, y: -60)
+                                            .offset(x: 150, y: -45)
                                             .onTapGesture {
                                                 dataService.currentList = list
                                                 showAlert = true
                                             }
+                                        
                                     }
                                     .alert(isPresented: $showAlert){
                                         Alert(title: Text("remover \(dataService.currentList!.title)"), message: Text("subtituloRemoverLista"), primaryButton: .cancel(), secondaryButton: .destructive(Text("ApagarLista"), action:{
@@ -163,7 +131,7 @@ struct MainView: View {
                                 else {
                                     // MARK: - list card
                                     NavigationLink(destination: ListView(listId: list.id), label: {
-                                        ZStack(alignment: .top) {
+                                        ZStack(alignment: .leading) {
                                             
                                             // MARK: - list card
                                             Rectangle()
@@ -173,14 +141,12 @@ struct MainView: View {
                                                 .shadow(color: Color("Shadow"), radius: 12)
                                             
                                             VStack(alignment: .leading){
-                                                
                                                 // MARK: - list title
                                                 Text(list.title)
                                                     .font(.callout)
                                                     .fontWeight(.semibold)
                                                     .foregroundColor(Color.white)
                                                     .lineLimit(1)
-                                                    .padding(.top, 20)
                                                 
                                                 //MARK: - List Owner
                                                 if let listOwner = list.owner.name{
@@ -188,8 +154,8 @@ struct MainView: View {
                                                         .font(.footnote)
                                                         .foregroundColor(Color.white)
                                                         .lineLimit(1)
-                                                        .padding(.bottom, 20)
                                                         .truncationMode(.tail)
+                                                        .padding(.bottom, 25)
                                                 }
                                                 HStack{
                                                     if let sharedList = list.sharedWith{
@@ -197,15 +163,15 @@ struct MainView: View {
                                                             .font(.footnote)
                                                             .foregroundColor(Color.white)
                                                             .lineLimit(1)
+                                                            .padding(.trailing, -7)
                                                     }
                                                     
                                                     Image(systemName: "person.2.fill")
                                                         .font(.caption)
                                                         .foregroundColor(Color.white)
-                                                        .padding(.leading, -7)
                                                 }
                                             }
-                                            .padding(.horizontal, 25)
+                                            .padding(.horizontal, 20)
                                             
                                         }
                                     })
@@ -260,5 +226,18 @@ struct MainView: View {
         
         self.listId = newList.id
         self.isCreatingList = true
+    }
+}
+
+struct EmptyState: View {
+    var body: some View {
+        VStack {
+            Text("listaVazia")
+                .multilineTextAlignment(.center)
+                .font(.headline)
+            
+            NoItemsView()
+                .frame(width: 400, height: 400)
+        }
     }
 }
