@@ -60,7 +60,7 @@ struct ProductListView: View {
                         .frame(width: 17, height: 17)
                         .onTapGesture {
                             let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-                            listsViewModel.removeQuantity(of: selectedItems[index], from: list) 
+                            listsViewModel.removeQuantity(of: selectedItems[index], from: list)
                             if selectedItems[index].quantity! > 1 {
                                 selectedItems[index].quantity = selectedItems[index].quantity! - 1
                             }
