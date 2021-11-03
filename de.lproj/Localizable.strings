@@ -7,68 +7,68 @@
 */
 
 //MARK: - Toolbar/navigationbar items
-"leadingCancel" = "Cancel";
-"trailingDone" = "Done";
+"leadingCancel" = "Abbrechen";
+"trailingDone" = "Fertig";
 
 //MARK: - AddCollaborator screen
-"addCollabTitle" = "Add Collaborators";
-"addCollabTextTip" = "Add collaborators to your list so they can make changes in real time.";
-"addCollabButton" = "Add Collaborator";
-"noCollaboratorsText" = "You haven't added any collaborators yet";
-"shareListText" = "Or just share your list with your contacts";
-"shareListButton" = "Share list";
-"shareListWarning" = "Sharing your list with another person will only send a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator";
+"addCollabTitle" = "Mitwirkende hinzufügen";
+"addCollabTextTip" = "Mitwirkende zu Ihrer Liste hinzufügen damit sie Änderungen in Echtzeit vornehmen können.";
+"addCollabButton" = "Mitwirkende hinzufügen";
+"noCollaboratorsText" = "Du hast noch keine Mitwirkende hinzugefügt";
+"shareListText" = "Oder freigibst du Ihre Liste einfach mit Ihren Kontakten";
+"shareListButton" = "Liste freigeben";
+"shareListWarning" = "Wenn du eine Liste mit jemandem freigibst, sendest du ihm nur eine Kopie Ihrer Liste. Ihre aktuelle Liste bleibt davon unberührt und die Person wird nicht als Beitragszahler hinzugefügt.";
 
 //MARK: - AddCollaborator screen | Alert
-"DeleteCollabAlertTitle %@" = "Are you sure you want to remove %@ from your list?";
-"DeleteCollabAlertMessage" = "This person will no longer be able to collaborate in your list";
-"DeleteCollabAlertPrimaryButton" = "Remove";
-"DeleteCollabAlertSecondaryButton" = "Cancel";
+"DeleteCollabAlertTitle %@" = "Bist du sicher, dass du %@ aus Ihrer Liste entfernen möchtest?";
+"DeleteCollabAlertMessage" = "Diese Person wird nicht mehr als Mitwirkende in Ihrer Liste geführt.";
+"DeleteCollabAlertPrimaryButton" = "Entfernen";
+"DeleteCollabAlertSecondaryButton" = "Abbrechen";
 
-"Listas" = "Listas";
-"listaVazia" = "You don't have any list!\nHow about adding a new list?";
-"SalvarNovaLista" = "Save";
-"EditarNovaLista" = "Edit";
-"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
-"remover %@" = "Do you want to remove %@?";
-"subtituloRemoverLista"= "The removed list cannot be recovered after its deletion.";
-"ApagarLista"= "Delete";
-"ConcluirListas" = "Done";
-"EditarListas" = "Edit";
-"NovaLista" = "New list";
+"Listas" = "Listen";
+"listaVazia" = "Du hast keine Liste!\nWie wäre es, eine neue Liste hinzuzufügen?";
+"SalvarNovaLista" = "Speichern";
+"EditarNovaLista" = "Bearbeiten";
+"ProntoNovosItens" = "Fertig"; //Será que n seria melhor um "Confirmar"?
+"remover %@" = "Möchtest du %@ entfernen?";
+"subtituloRemoverLista"= "Die Liste kann nicht wiederhergestellt werden, wenn sie einmal gelöscht wurde.";
+"ApagarLista"= "Entfernen";
+"ConcluirListas" = "Fertig";
+"EditarListas" = "Bearbeiten";
+"NovaLista" = "Neue Liste";
 "DefaultLS" = "DefaultLS";
-"CollabAlerta" = "You have been invited to collaborate on a list. Do you want to become a contributor to this list?";
-"Cancelar" = "Cancel";
-"Aceitar" = "Accept";
-"SharedAlerta" = "This list has been shared with you. Want to add a copy of this list to your lists?";
+"CollabAlerta" = "Du bist eingeladen worden, an einer Liste mitzuwirken. Möchtest du einen Beitrag zu dieser Liste leisten?";
+"Cancelar" = "Abbrechen";
+"Aceitar" = "Akzeptieren";
+"SharedAlerta" = "Diese Liste wurde mit Ihnen freigegeben. Möchtest du eine Kopie dieser Liste zu Ihren Listen hinzufügen?";
 
 //Not working 4now
-"ProcurarItens" = "Search Items";
-"AdicionarItensFake" = "Add new items";
-"TituloPaginaDeLista" = "Lists";
-"TituloDaNovaLista" = "New List";
+"ProcurarItens" = "Suche Posten";
+"AdicionarItensFake" = "Neue Posten hinzufügen";
+"TituloPaginaDeLista" = "Listen";
+"TituloDaNovaLista" = "Neue Liste";
 
 // MARK: - OnboardingA
 "OnboardingA" = "OnboardingA";
-"OnboardingATitle" = "Welcome";
-"OnboardingAText" = "Create grocery lists easily categorized!";
+"OnboardingATitle" = "Willkommen";
+"OnboardingAText" = "Erstellst du kategorisierte Einkaufslisten auf einfache Weise!";
 
 // MARK: - OnboardingB
 "OnboardingB" = "OnboardingB";
-"OnboardingBTitle" = "Colaborative Lists";
-"OnboardingBText" = "Create shared lists and add colaborators to edit lists in real time.";
+"OnboardingBTitle" = "Kollaborativ Listen";
+"OnboardingBText" = "Du erstellst Kollaborativ Listen und fügst du Mitwirkende hinzu, damit diese in Echtzeit bearbeiten können.";
 
 // MARK: - OnboardingC
 "OnboardingC" = "OnboardingC";
-"OnboardingCTitle" = "Personalize Items";
-"OnboardingCText" = "Add new products, quantities and comments to your lists.";
+"OnboardingCTitle" = "Posten Personalisieren";
+"OnboardingCText" = "Fügst du neue Produkte, Mengen und Kommentare zu Ihren Listen hinzu.";
 
 // MARK: - Onboarding Labels
-"Começar" = "Get Started";
+"Começar" = "Los geht's";
 
 // MARK: - Onboarding Fields
-"OnboardingFieldsTitle" = "Personalize your profile";
-"OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
+"OnboardingFieldsTitle" = "Personalisierung Ihres Profils";
+"OnboardingFieldsText" = "Fügst du einen Namen und ein Profilbild hinzu, damit du leicht zu identifizieren bist.";
 "Nome" = "Name";
-"Salvar" = "Save";
-"Pular" = "Skip";
+"Salvar" = "Speichern";
+"Pular" = "Überspringen";
