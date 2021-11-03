@@ -59,31 +59,24 @@ struct SuperlistaApp: App {
                                 presentCollabAlert = false
                             }
                         )
-                    )
-                }
-                ZStack {
-                    
-                }
-                .alert(isPresented: $presentSharedAlert) {
-                    return Alert(title: Text(list?.name ?? "NovaLista"),
-                                 message: Text("SharedAlerta"),
-                                 primaryButton: .default(
-                                    Text("Cancelar"), action: {
-                                        presentSharedAlert = false
-                                    }),
-                                 secondaryButton: .default(
-                                    Text(NSLocalizedString("Aceitar", comment: "")),
-                                    action: {
-                                        let newOwnerRef = CKRecord.Reference(recordID: CKService.currentModel.user!.id, action: .none)
-                                        let newListLocal = CKListModel(name: list!.name ?? "NovaLista", ownerRef: newOwnerRef, itemsString: list!.itemsString)
-                                        CKService.currentModel.createList(listModel: newListLocal) { result in
-                                            switch result {
-                                            case .success (let newListID):
-                                                CKService.currentModel.saveListUsersList(listID: newListID, key: .MyLists) { result in }
-                                            case .failure:
-                                                return
-                                            }
+                    }
+                    ZStack {
+                        
+                    }
+                    .alert(isPresented: $presentSharedAlert) {
+                        return Alert(title: Text(list?.name ?? "NovaLista"),
+                                     message: Text("SharedAlerta"),
+                                     primaryButton: .default(
+                                        Text("Cancelar"), action: {
                                             presentSharedAlert = false
+                                        }),
+                                     secondaryButton: .default(
+                                        Text(NSLocalizedString("Aceitar", comment: "")),
+                                        action: {
+                                            let ckList = ListModelConverter().convertCloudListToLocal(withList: list!)
+                                            dataService.duplicateList(of: ckList)
+                                            presentSharedAlert = false
+                                            
                                         }
                                     }
                                  )

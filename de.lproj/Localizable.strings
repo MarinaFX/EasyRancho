@@ -18,6 +18,8 @@
 "EditarListas" = "Editar";
 "NovaLista" = "Nova Lista";
 "DefaultLS" = "DefaultLS";
+
+// MARK: - Alerts
 "CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
 "Cancelar" = "Cancelar";
 "Aceitar" = "Aceitar";
@@ -47,3 +49,10 @@
 // MARK: - Onboarding Labels
 "Começar" = "Começar";
 
+// MARK: - VoiceOver
+"Adicione %@" = "Tap to add %@";
+"Add" = "Add";
+"Remove" = "Remove";
+"RemoveOneItem" = "Tap to remove one item";
+"AddOneItem" = "Tap to add one item";
+"%@ items" = "%@ items";

@@ -202,4 +202,31 @@ class DataService: ObservableObject {
             }
         }
     }
+    
+    func removeQuantity(of item: ItemModel, from listModel: ListModel) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            let listWithNewItemQuantity = listModel.removeQuantity(of: item)
+            
+            lists[index] = listWithNewItemQuantity
+            
+            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+        }
+    }
+    
+    func addQuantity(of item: ItemModel, from listModel: ListModel) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            let listWithNewItemQuantity = listModel.addQuantity(of: item)
+            
+            lists[index] = listWithNewItemQuantity
+            
+            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+        }
+    }
+    
+    func duplicateList(of list: ListModel) {
+        guard let user = user, let name = user.name else { return }
+        let owner = OwnerModel(id: user.id, name: name)
+        let newList = ListModel(title: list.title, items: list.items, owner: owner, sharedWith: list.sharedWith ?? [])
+        addList(newList)
+    }
 }
