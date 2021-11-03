@@ -16,11 +16,11 @@ struct ItemModel: Identifiable, Codable {
     }
     
     func toggleCompletion() -> ItemModel {
-        return ItemModel(id: id, product: product, comment: comment, isCompleted: !isCompleted, quantity: quantity!)
+        return ItemModel(id: id, product: product, comment: comment, isCompleted: !isCompleted, quantity: quantity ?? 1)
     }
 
     func editComment(newComment: String) -> ItemModel {
-        return ItemModel(id: id, product: product, comment: newComment, isCompleted: isCompleted, quantity: quantity!)
+        return ItemModel(id: id, product: product, comment: newComment, isCompleted: isCompleted, quantity: quantity ?? 1)
     }
     
     func addQuantity(quantity: Int) -> ItemModel {

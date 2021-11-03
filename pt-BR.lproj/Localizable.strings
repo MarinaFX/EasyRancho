@@ -76,9 +76,9 @@
 "Pular" = "Pular";
 
 // MARK: - VoiceOver
-"Adicione %@" = "aperte para adicionar %@";
-"add" = "adicione";
-"remove" = "remova";
-"removeOneItem" = "aperte para remover um ítem";
-"addOneItem" = "aperte para adicionar um ítem";
+"Adicione %@" = "Aperte para adicionar %@";
+"Add" = "Adicione";
+"Remove" = "Remova";
+"RemoveOneItem" = "Aperte para remover um ítem";
+"AddOneItem" = "Aperte para adicionar um ítem";
 "%@ items" = "%@ ítens";
