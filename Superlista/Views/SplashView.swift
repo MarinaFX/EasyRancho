@@ -22,10 +22,10 @@ struct SplashView: View {
                         .navigationBarHidden(true)
                         .navigationBarBackButtonHidden(true)
                         .navigationBarTitleDisplayMode(.inline)
-                    ListView(listId: "test")
-                        .tabItem {
-                            Label("Nova Lista", systemImage: "plus.circle.fill")
-                        }
+//                    ListView()
+//                        .tabItem {
+//                            Label("Nova Lista", systemImage: "plus.circle.fill")
+//                        }
                     SettingsView()
                         .tabItem {
                             Label("Configurações", systemImage: "person.crop.circle.fill")

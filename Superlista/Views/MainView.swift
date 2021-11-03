@@ -14,30 +14,13 @@ struct MainView: View {
     var appliedSection: [ListModel]{
         switch selectedSection{
         case 0:
-            #warning("pode dar ruim problema de otimização")
-            var allLists: [ListModel] = []
-            var lists2: [ListModel] = []
-            guard let currentUser = CKService.currentModel.user else { return [] }
-            dataService.lists.forEach({list in
-                allLists.append(list)
-                currentUser.sharedWithMe?.forEach({ list in
-                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                    allLists.append(localList)
-                })
-            })
-            return allLists
-        case 1:
-//            guard let currentUser = CKService.currentModel.user else { return [] }
-//            return dataService.lists.filter{$0.owner.id == currentUser.id.recordName}
             return dataService.lists
+        case 1:
+            guard let currentUser = dataService.user else { return [] }
+            return dataService.lists.filter{$0.owner.id == currentUser.id}
         case 2:
-            guard let currentUser = CKService.currentModel.user else { return [] }
-            var lists2: [ListModel] = []
-            currentUser.sharedWithMe?.forEach({ list in
-                let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                lists2.append(localList)
-            })
-            return lists2
+            guard let currentUser = dataService.user else { return [] }
+            return dataService.lists.filter{$0.owner.id != currentUser.id}
         default:
             return []
         }
@@ -62,7 +45,6 @@ struct MainView: View {
                                    label: { EmptyView() }
                     )
                         .opacity(0.0)
-                    
                     // MARK: - background color
                     Color("PrimaryBackground")
                         .ignoresSafeArea()
@@ -89,7 +71,7 @@ struct MainView: View {
                         Picker("Lists Sections", selection: $selectedSection) {
                             Text("Tudo").tag(0)
                             Text("Minhas listas").tag(1)
-                            Text("Compartilhadas").tag(2)
+                            Text("Colaborativas").tag(2)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         LazyVGrid(columns: columns, spacing: 20, content: {
@@ -204,15 +186,15 @@ struct MainView: View {
                                                             .font(.footnote)
                                                             .foregroundColor(Color.white)
                                                             .lineLimit(1)
-                                                            .padding(.leading, 90)
                                                     }
                                                     
                                                     Image(systemName: "person.2.fill")
                                                         .font(.caption)
                                                         .foregroundColor(Color.white)
+                                                        .padding(.leading, -7)
                                                 }
                                             }
-                                            .padding(.horizontal, 20)                                            
+                                            .padding(.horizontal, 25)
                                             
                                         }
                                     })
@@ -267,5 +249,4 @@ struct MainView: View {
         self.listId = newList.id
         self.isCreatingList = true
     }
-    
 }
