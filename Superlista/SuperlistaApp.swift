@@ -19,7 +19,7 @@ struct SuperlistaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
+            VStack {
                 ZStack {
                     SplashView()
                         .onOpenURL(perform: { url in
@@ -86,7 +86,6 @@ struct SuperlistaApp: App {
                 }
             }
             .accentColor(Color("Link"))
-            .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(dataService)
             .onAppear {
                 
