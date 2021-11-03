@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct CreateNewCustomProductView: View {
+    @Environment(\.sizeCategory) var sizeCategory
+    @ScaledMetric var textViewHeight: CGFloat = UIScreen.main.bounds.height * 0.1
+    @ScaledMetric var buttonHeight: CGFloat = UIScreen.main.bounds.width * 0.15
+    
     @Binding var showCreateNewProductView: Bool
     
     @State var productName: String = ""
-    //@State var selectedCategory: String = ""
     @State private var lastSelectedItem: Int?
     @State var didFillNameTextField: Bool = false
     @State var didFillCategoryTextField: Bool = false
@@ -19,24 +22,30 @@ struct CreateNewCustomProductView: View {
     let categories: [String] = loadCategoryKeys()
 
     var body: some View {
-        GeometryReader { geometry in
-            NavigationView {
+        NavigationView {
+            ScrollView {
                 VStack(alignment: .center) {
                     Text("createProductScreenTitle")
-                        .font(.system(size: 34))
+                        .font(.title)
                         .bold()
                         .padding(.top, 16)
                     
                     //MARK: CreateNewCustomProductView Form section
                     Text("createProductDescription")
-                        .padding(EdgeInsets(top: -8, leading: 16, bottom: 24, trailing: 16))
+                        .font(.body)
+                        .padding(EdgeInsets(top: 8, leading: 16, bottom: 24, trailing: 16))
                         .multilineTextAlignment(.center)
                     
                     Text("textFieldRequired")
                         .opacity(didFillNameTextField == true ? 0.0 : 1.0)
-                        .font(.system(size: 13))
+                        .font(.callout)
                         .foregroundColor(.red)
-                        .padding(EdgeInsets(top: 0, leading: 0, bottom: -32, trailing: 256))
+                        .padding(.bottom, -24)
+                        .padding(.trailing,
+                                 sizeCategory > ContentSizeCategory.accessibilityExtraLarge ?
+                                 UIScreen.main.bounds.width * 0.25 :
+                                    (sizeCategory < ContentSizeCategory.extraExtraLarge ? UIScreen.main.bounds.width * 0.6 : UIScreen.main.bounds.width * 0.55)
+                                 )
                         .accessibility(hidden: true)
                     
                     TextField(
@@ -54,12 +63,13 @@ struct CreateNewCustomProductView: View {
                         }
                     )
                         .modifier(CustomTextFieldStyle(strokeColor: didFillNameTextField == true ? Color.gray : Color.red))
-                        .padding(.bottom, -12)
+                        .padding(.bottom, -16)
                         .accessibilityHint("ACtextFieldRequiredHint")
                     
-                    PickerTextField(lastSelectedIndex: self.$lastSelectedItem, data: categories, placeholder: NSLocalizedString("productCategoryTextField", comment: ""))
+                    PickerTextField(lastSelectedIndex: self.$lastSelectedItem, data: categories, placeholder: NSLocalizedString("productCategoryTextField", comment: "")
+                    )
                         .modifier(CustomTextFieldStyle())
-                        .frame(width: geometry.size.width, height: geometry.size.height * 0.1)
+                        .frame(height: textViewHeight)
                         .accessibilityLabel("ACpickerFieldLabel")
                         .accessibilityValue("ACpickerFieldValue")
                         .accessibilityHint("ACtextFieldRequiredHint")
@@ -75,9 +85,6 @@ struct CreateNewCustomProductView: View {
                         let cloudCustomProduct: String = productName + ";" + categories[lastSelectedItem]
                         let localCustomProduct: ProductModel = ProductModel(id: 999, name: productName, category: categories[lastSelectedItem])
                         
-                        //MARK: CreateNewCustomProductView update users product list locally
-                        
-                        
                         //MARK: CreateNewCustomProductView update users product list on cloud
                         if didFillNameTextField {
                             CloudIntegration().updateUserCustomProducts(withProduct: localCustomProduct)
@@ -87,19 +94,21 @@ struct CreateNewCustomProductView: View {
 
                     } label: {
                         Text("trailingDone")
+                            .font(.title3)
                             .fontWeight(.semibold)
                             .font(.system(size: 20))
                             .foregroundColor(.blue)
                             .accessibilityHint("ACDoneButtonHint")
 
                     }
-                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
+                    .frame(width: UIScreen.main.bounds.width * 0.9, height: buttonHeight)
                     .background(Color("InsetGroupedBackground"))
                     .cornerRadius(14)
-                    .padding(.bottom, 16)
+                    .padding(.bottom, 20)
                     
                 }
-                
+                .frame(minHeight: UIScreen.main.bounds.height * 0.85)
+
                 
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -121,9 +130,6 @@ struct CreateNewCustomProductView: View {
                             
                             let cloudCustomProduct: String = productName + ";" + categories[lastSelectedItem]
                             let localCustomProduct: ProductModel = ProductModel(id: 999, name: productName, category: categories[lastSelectedItem])
-                            
-                            //MARK: CreateNewCustomProductView update users product list locally
-                            
                             
                             //MARK: CreateNewCustomProductView update users product list on cloud
                             if didFillNameTextField {
@@ -151,5 +157,20 @@ struct CreateNewCustomProductView: View {
 struct CreateNewCustomProductView_Previews: PreviewProvider {
     static var previews: some View {
         CreateNewCustomProductView(showCreateNewProductView: .constant(false))
+    }
+}
+
+extension View {
+    func embedInScrollView(alignment: Alignment = .center) -> some View {
+        GeometryReader { geometry in
+            ScrollView {
+                self.frame(
+                    minWidth: geometry.size.width,
+                    minHeight: geometry.size.height,
+                    maxHeight: .infinity,
+                    alignment: alignment
+                )
+            }
+        }
     }
 }

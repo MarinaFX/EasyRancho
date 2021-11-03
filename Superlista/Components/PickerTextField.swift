@@ -29,8 +29,10 @@ struct PickerTextField: UIViewRepresentable {
         //Accessory view configuration
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: NSLocalizedString("trailingDone", comment: ""), style: .plain, target: self.accessoryView, action: #selector(self.accessoryView.doneButtonAction))
+        
         toolbar.setItems([flexibleSpace, doneButton], animated: true)
         self.textField.inputAccessoryView = toolbar
         

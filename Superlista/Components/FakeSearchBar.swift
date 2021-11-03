@@ -8,7 +8,7 @@ struct FakeSearchBar: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(8)
                 .padding(.leading, 30)
-                .background(Color("SearchColor"))
+                .background(Color("searchColor"))
                 .cornerRadius(50)
                 .overlay(
                     HStack {
