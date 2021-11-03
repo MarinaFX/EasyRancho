@@ -17,7 +17,7 @@ struct SplashView: View {
                 TabView{
                     MainView()
                         .tabItem {
-                            Label("Listas", systemImage: "rectangle.grid.2x2.fill")
+                            Label("ListasMenu", systemImage: "rectangle.grid.2x2.fill")
                         }
                         .navigationBarHidden(true)
                         .navigationBarBackButtonHidden(true)
@@ -28,7 +28,7 @@ struct SplashView: View {
 //                        }
                     SettingsView()
                         .tabItem {
-                            Label("Configurações", systemImage: "person.crop.circle.fill")
+                            Label("ConfigsMenu", systemImage: "person.crop.circle.fill")
                         }
                 }
                 

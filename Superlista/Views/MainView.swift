@@ -69,9 +69,9 @@ struct MainView: View {
                     // MARK: - Lists
                     ScrollView(showsIndicators: false) {
                         Picker("Lists Sections", selection: $selectedSection) {
-                            Text("Tudo").tag(0)
-                            Text("Minhas listas").tag(1)
-                            Text("Colaborativas").tag(2)
+                            Text("TudoSegmentedPicker").tag(0)
+                            Text("MinhasListasSegmentedPicker").tag(1)
+                            Text("ColaborativasSegmentedPicker").tag(2)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         LazyVGrid(columns: columns, spacing: 20, content: {
@@ -100,7 +100,7 @@ struct MainView: View {
                                             
                                             //MARK: - List Owner
                                             if let listOwner = list.owner.name{
-                                                Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**   ")
+                                                Text(listOwner == CKService.currentModel.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
                                                     .font(.footnote)
                                                     .foregroundColor(Color.white)
                                                     .lineLimit(1)
@@ -174,7 +174,7 @@ struct MainView: View {
                                                 
                                                 //MARK: - List Owner
                                                 if let listOwner = list.owner.name{
-                                                    Text(listOwner == CKService.currentModel.user?.name ? "Criada por **mim**" : "Criada por **\(String(describing: listOwner))**   ")
+                                                    Text(listOwner == CKService.currentModel.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
                                                         .font(.footnote)
                                                         .foregroundColor(Color.white)
                                                         .lineLimit(1)
@@ -219,7 +219,7 @@ struct MainView: View {
                             }
                             // MARK: - title
                             ToolbarItem(placement: .principal){
-                                Text("Listas")
+                                Text("ListasTitle")
                                     .font(.system(size: 36, weight: .bold))
                                     .foregroundColor(Color.primary)
                             }

@@ -18,7 +18,7 @@ struct SettingLabel: View {
                 showingSheet = true
             }) {
                 HStack {
-                    Text("Editar perfil")
+                    Text("EditarPerfilLabel")
                         .foregroundColor(.primary)
                     Spacer()
                     Image(systemName: "pencil.circle.fill")
@@ -56,7 +56,7 @@ struct SettingLabel: View {
                 UIApplication.shared.open(instagram)
             }) {
                 HStack {
-                    Text("Contato")
+                    Text("ContatoLabel")
                         .foregroundColor(.primary)
                     Spacer()
                     Image(systemName: "ellipsis.bubble.fill")
@@ -76,7 +76,7 @@ struct SettingLabel: View {
                 
             }) {
                     HStack {
-                        Text("Convide um amigo")
+                        Text("ConvideUmAmigoLabel")
                             .foregroundColor(.primary)
                         Spacer()
                         Image(systemName: "bolt.heart.fill")
