@@ -33,33 +33,6 @@ struct SuperlistaApp: App {
                         handleDeepLink(deepLink)
                         
                     })
-                ZStack {
-                    
-                }
-                .alert(isPresented: $presentCollabAlert) {
-                    return Alert(
-                        title: Text(list?.name ?? "NovaLista"),
-                        message: Text("CollabAlerta"),
-                        primaryButton:  .default(
-                            Text("Cancelar"),
-                            action: {
-                                presentCollabAlert = false
-                            }),
-                        secondaryButton: .default(
-                            Text("Aceitar"),
-                            action: {
-                                CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in }
-                                let user = CKOwnerModel(id: CKService.currentModel.user!.id, name: CKService.currentModel.user!.name!)
-                                var sharedWith = list!.sharedWith
-                                for user in sharedWith {
-                                    print(user.id.recordName, "shared with")
-                                }
-                                sharedWith.append(user)
-                                CKService.currentModel.updateListCollab(listID: list!.id, sharedWith: sharedWith) { result in }
-                                presentCollabAlert = false
-                            }
-                        )
-                    }
                     ZStack {
                         
                     }
@@ -78,7 +51,6 @@ struct SuperlistaApp: App {
                                             presentSharedAlert = false
                                             
                                         }
-                                    }
                                  )
                     )
                 }
@@ -90,7 +62,6 @@ struct SuperlistaApp: App {
                 loadData()
                 
             }
-            
         }
     }
     
