@@ -210,23 +210,9 @@ class DataService: ObservableObject {
     }
     
     func duplicateList(of list: ListModel) {
-        let newOwnerRef = CKRecord.Reference(recordID: CKService.currentModel.user!.id, action: .none)
-        let ckList = ListModelConverter().convertLocalListToCloud(withList: list)
-        let newListLocal = CKListModel(name: ckList.name ?? "NovaLista", ownerRef: newOwnerRef, itemsString: ckList.itemsString)
-        CKService.currentModel.createList(listModel: newListLocal) { result in
-            switch result {
-            case .success (let newListID):
-                CKService.currentModel.saveListUsersList(listID: newListID, key: .MyLists) { result in
-                    switch result {
-                    case .success:
-                        CKService.currentModel.refresh { result in }
-                    case .failure:
-                        return
-                    }
-                }
-            case .failure:
-                return
-            }
-        }
+        guard let user = user, let name = user.name else { return }
+        let owner = OwnerModel(id: user.id, name: name)
+        let newList = ListModel(title: list.title, items: list.items, owner: owner, sharedWith: list.sharedWith ?? [])
+        addList(newList)
     }
 }
