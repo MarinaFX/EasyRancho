@@ -30,7 +30,8 @@ struct ItemCommentView: View {
                     Text(item.product.name)
                         .strikethrough(item.isCompleted)
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.body)
+                        .fontWeight(.bold)
                     
                     
                     if !isCommenting{
@@ -55,12 +56,13 @@ struct ItemCommentView: View {
                     .onTapGesture {
                         listsViewModel.removeQuantity(of: item, from: list)
                     }
-                    .accessibilityLabel(Text("remove"))
-                    .accessibility(hint: Text("removeOneItem"))
+                    .accessibilityLabel(Text("Remove"))
+                    .accessibility(hint: Text("RemoveOneItem"))
 
                     
                     Text("\(item.quantity ?? 1)")
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.body)
+                        .fontWeight(.bold)
                         .foregroundColor(Color.primary)
                         .accessibilityLabel(Text("\(item.quantity ?? 1) items"))
                     
@@ -72,8 +74,8 @@ struct ItemCommentView: View {
                         .onTapGesture {
                             listsViewModel.addQuantity(of: item, from: list)
                         }
-                        .accessibilityLabel(Text("add"))
-                        .accessibility(hint: Text("addOneItem"))
+                        .accessibilityLabel(Text("Add"))
+                        .accessibility(hint: Text("AddOneItem"))
                     
                 }
                 

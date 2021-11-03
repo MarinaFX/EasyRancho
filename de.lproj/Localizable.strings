@@ -50,9 +50,9 @@
 "Começar" = "Começar";
 
 // MARK: - VoiceOver
-"Adicione %@" = "tap to add %@";
-"add" = "add";
-"remove" = "remove";
-"removeOneItem" = "tap to remove one item";
-"addOneItem" = "tap to add one item";
+"Adicione %@" = "Tap to add %@";
+"Add" = "Add";
+"Remove" = "Remove";
+"RemoveOneItem" = "Tap to remove one item";
+"AddOneItem" = "Tap to add one item";
 "%@ items" = "%@ items";
