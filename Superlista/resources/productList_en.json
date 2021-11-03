@@ -1,52 +1,52 @@
 [
   {
     "id": 1,
-    "name": "Utensílios para cozinha",
+    "name": "Kitchen utensils",
     "category": "Home"
   },
   {
     "id": 2,
-    "name": "Papelaria escolar",
+    "name": "School supplies",
     "category": "Home"
   },
   {
     "id": 3,
-    "name": "Tabacaria",
+    "name": "Tobacconist",
     "category": "Home"
   },
   {
     "id": 4,
-    "name": "Ferragem",
+    "name": "Hardware",
     "category": "Home"
   },
   {
     "id": 5,
-    "name": "Automotivo",
+    "name": "Automotive",
     "category": "Home"
   },
   {
     "id": 6,
-    "name": "Lavanderia",
+    "name": "Laundry",
     "category": "Home"
   },
   {
     "id": 7,
-    "name": "Camping e lazer",
+    "name": "Camping",
     "category": "Home"
   },
   {
     "id": 8,
-    "name": "Piscina",
+    "name": "Pool",
     "category": "Home"
   },
   {
     "id": 9,
-    "name": "Cama, mesa e banho",
+    "name": "Bed, table and bath",
     "category": "Home"
   },
   {
     "id": 10,
-    "name": "Cerveja",
+    "name": "Beer",
     "category": "Drinks"
   },
   {
@@ -56,47 +56,47 @@
   },
   {
     "id": 12,
-    "name": "Espumante",
+    "name": "Sparkling wine",
     "category": "Drinks"
   },
   {
     "id": 13,
-    "name": "Vinho",
+    "name": "Wine",
     "category": "Drinks"
   },
   {
     "id": 14,
-    "name": "Água",
+    "name": "Water",
     "category": "Drinks"
   },
   {
     "id": 15,
-    "name": "Refrigerante",
+    "name": "Soda",
     "category": "Drinks"
   },
   {
     "id": 16,
-    "name": "Energético",
+    "name": "Energy drink",
     "category": "Drinks"
   },
   {
     "id": 17,
-    "name": "Água de coco",
+    "name": "Coconut Water",
     "category": "Drinks"
   },
   {
     "id": 18,
-    "name": "Refresco em pó",
+    "name": "Powder refreshment",
     "category": "Drinks"
   },
   {
     "id": 19,
-    "name": "Tônica",
+    "name": "Tonic",
     "category": "Drinks"
   },
   {
     "id": 20,
-    "name": "Isotônico",
+    "name": "Isotonic",
     "category": "Drinks"
   },
   {
@@ -106,7 +106,7 @@
   },
   {
     "id": 22,
-    "name": "Saque",
+    "name": "Sake",
     "category": "Drinks"
   },
   {
@@ -116,7 +116,7 @@
   },
   {
     "id": 24,
-    "name": "Cachaça",
+    "name": "Cane liquor",
     "category": "Drinks"
   },
   {
@@ -131,17 +131,17 @@
   },
   {
     "id": 27,
-    "name": "Suco",
+    "name": "Juice",
     "category": "Drinks"
   },
   {
     "id": 28,
-    "name": "Chá gelado",
+    "name": "Iced tea",
     "category": "Drinks"
   },
   {
     "id": 29,
-    "name": "Bebida de soja",
+    "name": "Soy drink",
     "category": "Drinks"
   },
   {
@@ -151,7 +151,7 @@
   },
   {
     "id": 31,
-    "name": "Licor",
+    "name": "Liqueur",
     "category": "Drinks"
   },
   {
@@ -161,47 +161,37 @@
   },
   {
     "id": 33,
-    "name": "Bala",
+    "name": "Candy",
     "category": "Bomboniere"
   },
   {
     "id": 34,
-    "name": "Goma de mascar",
+    "name": "Chewing gum",
     "category": "Bomboniere"
   },
   {
     "id": 35,
-    "name": "Rapadura",
-    "category": "Bomboniere"
-  },
-  {
-    "id": 36,
-    "name": "Paçoca",
+    "name": "Brown sugar candy",
     "category": "Bomboniere"
   },
   {
     "id": 37,
-    "name": "Salgadinho",
-    "category": "Bomboniere"
-  },
-  {
-    "id": 38,
-    "name": "Torrone",
+    "name": "Snacks",
     "category": "Bomboniere"
   },
   {
     "id": 39,
-    "name": "Pasta de amendoim",
+    "name": "Peanut butter",
     "category": "Bomboniere"
   },
   {
     "id": 40,
-    "name": "Amendoim",
+    "name": "Peanut",
     "category": "Bomboniere"
   },
   {
     "id": 41,
-    "name": "Batata palha",
+    "name": "Straw potato",
     "category": "Bomboniere"
   },
   {
@@ -211,22 +201,22 @@
   },
   {
     "id": 43,
-    "name": "Carne bovina",
+    "name": "Beef",
     "category": "Meats"
   },
   {
     "id": 44,
-    "name": "Frango",
+    "name": "Chicken",
     "category": "Meats"
   },
   {
     "id": 45,
-    "name": "Carne moída",
+    "name": "Ground beef",
     "category": "Meats"
   },
   {
     "id": 46,
-    "name": "Linguiça",
+    "name": "Sausage",
     "category": "Meats"
   },
   {
@@ -236,67 +226,57 @@
   },
   {
     "id": 48,
-    "name": "Peixe",
+    "name": "Fish",
     "category": "Meats"
   },
   {
     "id": 49,
-    "name": "Camarão",
+    "name": "Shrimp",
     "category": "Meats"
   },
   {
     "id": 50,
-    "name": "Carne suína",
+    "name": "Pork",
     "category": "Meats"
   },
   {
     "id": 51,
-    "name": "Carne ovina",
+    "name": "Sheep",
     "category": "Meats"
   },
   {
-    "id": 52,
-    "name": "Doce de ovos",
-    "category": "Jams and sweets"
-  },
-  {
     "id": 53,
-    "name": "Uva passa",
+    "name": "Raisins",
     "category": "Jams and sweets"
   },
   {
     "id": 54,
-    "name": "Frutas secas",
+    "name": "Dried fruits",
     "category": "Jams and sweets"
   },
   {
     "id": 55,
-    "name": "Melado",
+    "name": "Syrup",
     "category": "Jams and sweets"
   },
   {
     "id": 56,
-    "name": "Creme de avelã",
+    "name": "Hazelnut cream",
     "category": "Jams and sweets"
   },
   {
     "id": 57,
-    "name": "Doce de leite",
+    "name": "Sweet milk",
     "category": "Jams and sweets"
   },
   {
     "id": 58,
-    "name": "Geléia",
-    "category": "Jams and sweets"
-  },
-  {
-    "id": 59,
-    "name": "Chimia",
+    "name": "Jam",
     "category": "Jams and sweets"
   },
   {
     "id": 60,
-    "name": "Empanado de frango",
+    "name": "Chicken breaded",
     "category": "Frozen"
   },
   {
@@ -306,52 +286,52 @@
   },
   {
     "id": 62,
-    "name": "Lasanha",
+    "name": "Lasagna",
     "category": "Frozen"
   },
   {
     "id": 63,
-    "name": "Comida congelada",
+    "name": "Frozen food",
     "category": "Frozen"
   },
   {
     "id": 64,
-    "name": "Sorvete",
+    "name": "Ice cream",
     "category": "Frozen"
   },
   {
     "id": 65,
-    "name": "Açaí",
+    "name": "Acai",
     "category": "Frozen"
   },
   {
     "id": 66,
-    "name": "Legumes Frozen",
+    "name": "Frozen vegetables",
     "category": "Frozen"
   },
   {
     "id": 67,
-    "name": "Almôndegas",
+    "name": "Meatballs",
     "category": "Frozen"
   },
   {
     "id": 68,
-    "name": "Hambúrguer",
+    "name": "Hamburger",
     "category": "Frozen"
   },
   {
     "id": 69,
-    "name": "Pão de queijo",
+    "name": "Cheese bread",
     "category": "Frozen"
   },
   {
     "id": 70,
-    "name": "Batata frita",
+    "name": "French fries",
     "category": "Frozen"
   },
   {
     "id": 71,
-    "name": "Óleo",
+    "name": "Oil",
     "category": "Canned, pickled and oils"
   },
   {
@@ -361,142 +341,137 @@
   },
   {
     "id": 73,
-    "name": "Sardinha",
+    "name": "Sardine",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 74,
-    "name": "Pepino em conserva",
+    "name": "Pickled cucumbers",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 75,
-    "name": "Atum",
+    "name": "Tuna",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 76,
-    "name": "Ovo de codorna",
+    "name": "Quail eggs",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 77,
-    "name": "Cebola em conserva",
-    "category": "Canned, pickled and oils"
-  },
-  {
-    "id": 78,
-    "name": "Patê em lata",
+    "name": "Pickled onions",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 79,
-    "name": "Azeitonas",
+    "name": "Olives",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 80,
-    "name": "Alcaparras",
+    "name": "Capers",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 81,
-    "name": "Pimenta biquinho",
+    "name": "Pickled pepper",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 82,
-    "name": "Ervilha em conserva",
+    "name": "Pickled peas",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 83,
-    "name": "Milho em conserva",
+    "name": "Pickled corn",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 84,
-    "name": "Seleta de legumes",
+    "name": "Pickled vegetables",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 85,
-    "name": "Tomate pelado",
+    "name": "Naked tomatoes",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 86,
-    "name": "Azeite de oliva",
+    "name": "Olive oil",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 87,
-    "name": "Cogumelo em conserva",
+    "name": "Pickled mushrooms",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 88,
-    "name": "Palmito",
+    "name": "Palm heart",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 89,
-    "name": "Tomate seco",
+    "name": "Dried tomatoes",
     "category": "Canned, pickled and oils"
   },
   {
     "id": 90,
-    "name": "Açúcar mascavo",
+    "name": "Brown sugar",
     "category": "Especiais"
   },
   {
     "id": 91,
-    "name": "Barra de cereal",
+    "name": "Cereal bar",
     "category": "Especiais"
   },
   {
     "id": 92,
-    "name": "Adoçante",
+    "name": "Sweetner",
     "category": "Especiais"
   },
   {
     "id": 93,
-    "name": "Sem glúten",
+    "name": "Gluten free",
     "category": "Especiais"
   },
   {
     "id": 94,
-    "name": "Dietéticos",
+    "name": "Sugar free",
     "category": "Especiais"
   },
   {
     "id": 95,
-    "name": "Ovos",
+    "name": "Eggs",
     "category": "Hams and dairy products"
   },
   {
     "id": 96,
-    "name": "Patê",
+    "name": "Pâté",
     "category": "Hams and dairy products"
   },
   {
     "id": 97,
-    "name": "Requeijão",
+    "name": "Curd cheese",
     "category": "Hams and dairy products"
   },
   {
     "id": 98,
-    "name": "Queijo",
+    "name": "Cheese",
     "category": "Hams and dairy products"
   },
   {
     "id": 99,
-    "name": "Presunto",
+    "name": "Ham",
     "category": "Hams and dairy products"
   },
   {
     "id": 100,
-    "name": "Queijo ralado",
+    "name": "Grated cheese",
     "category": "Hams and dairy products"
   },
   {
@@ -506,92 +481,82 @@
   },
   {
     "id": 102,
-    "name": "Iogurte",
+    "name": "Yogurt",
     "category": "Hams and dairy products"
   },
   {
     "id": 103,
-    "name": "Margarina",
+    "name": "Butter",
     "category": "Hams and dairy products"
   },
   {
     "id": 104,
-    "name": "Manteiga",
+    "name": "Margarine",
     "category": "Hams and dairy products"
   },
   {
     "id": 105,
-    "name": "Achocolatado líquido",
+    "name": "Chocolate milk",
     "category": "Hams and dairy products"
   },
   {
     "id": 106,
-    "name": "Leite",
+    "name": "Milk",
     "category": "Hams and dairy products"
   },
   {
     "id": 107,
-    "name": "Leite fermentado",
+    "name": "Fermented milk",
     "category": "Hams and dairy products"
   },
   {
     "id": 108,
-    "name": "Mortadela",
+    "name": "Mortadella",
     "category": "Hams and dairy products"
   },
   {
     "id": 109,
-    "name": "Salame",
+    "name": "Salami",
     "category": "Hams and dairy products"
   },
   {
     "id": 110,
-    "name": "Salsicha",
+    "name": "Sausage",
     "category": "Hams and dairy products"
   },
   {
     "id": 111,
-    "name": "Massa fresca",
-    "category": "Hams and dairy products"
-  },
-  {
-    "id": 112,
-    "name": "Massa para pastel",
+    "name": "Fresh pasta",
     "category": "Hams and dairy products"
   },
   {
     "id": 113,
-    "name": "Nhoque",
+    "name": "Gnocchi",
     "category": "Hams and dairy products"
   },
   {
     "id": 114,
-    "name": "Massa folhada",
+    "name": "Veneered dough",
     "category": "Hams and dairy products"
   },
   {
     "id": 115,
-    "name": "Massa para pizza",
+    "name": "Pizza dough",
     "category": "Hams and dairy products"
   },
   {
     "id": 116,
-    "name": "Nata",
+    "name": "Heavy cream",
     "category": "Hams and dairy products"
   },
   {
     "id": 117,
-    "name": "Feijão",
+    "name": "Beans",
     "category": "Grains and flours"
   },
   {
     "id": 118,
-    "name": "Arroz",
-    "category": "Grains and flours"
-  },
-  {
-    "id": 119,
-    "name": "Farofa",
+    "name": "Rice",
     "category": "Grains and flours"
   },
   {
@@ -606,97 +571,97 @@
   },
   {
     "id": 122,
-    "name": "Milho para pipoca",
+    "name": "Popcorn corn",
     "category": "Grains and flours"
   },
   {
     "id": 123,
-    "name": "Ervilha",
+    "name": "Peas",
     "category": "Grains and flours"
   },
   {
     "id": 124,
-    "name": "Lentilha",
+    "name": "Lentil",
     "category": "Grains and flours"
   },
   {
     "id": 125,
-    "name": "Farinha de trigo",
+    "name": "Wheat flour",
     "category": "Grains and flours"
   },
   {
     "id": 126,
-    "name": "Farinha de milho",
+    "name": "Corn flour",
     "category": "Grains and flours"
   },
   {
     "id": 127,
-    "name": "Farinha de mandioca",
+    "name": "Flour",
     "category": "Grains and flours"
   },
   {
     "id": 128,
-    "name": "Canjica",
+    "name": "Canjica corn",
     "category": "Grains and flours"
   },
   {
     "id": 129,
-    "name": "Grão de bico",
+    "name": "Chickpeas",
     "category": "Grains and flours"
   },
   {
     "id": 130,
-    "name": "Preservativo",
+    "name": "Condom",
     "category": "Beauty and hygiene"
   },
   {
     "id": 131,
-    "name": "Papel higiênico",
+    "name": "Toilet paper",
     "category": "Beauty and hygiene"
   },
   {
     "id": 132,
-    "name": "Lenço de papel",
+    "name": "Tissue paper",
     "category": "Beauty and hygiene"
   },
   {
     "id": 133,
-    "name": "Creme dental",
+    "name": "Toothpaste",
     "category": "Beauty and hygiene"
   },
   {
     "id": 134,
-    "name": "Escova dental",
+    "name": "Toothbrush",
     "category": "Beauty and hygiene"
   },
   {
     "id": 135,
-    "name": "Aparelho de barbear",
+    "name": "Razor",
     "category": "Beauty and hygiene"
   },
   {
     "id": 136,
-    "name": "Escova de cabelo",
+    "name": "Hairbrush",
     "category": "Beauty and hygiene"
   },
   {
     "id": 137,
-    "name": "Absorvente",
+    "name": "Sanitary napkin",
     "category": "Beauty and hygiene"
   },
   {
     "id": 138,
-    "name": "Fralda",
+    "name": "Diapers",
     "category": "Beauty and hygiene"
   },
   {
     "id": 139,
-    "name": "Algodão",
+    "name": "Cotton",
     "category": "Beauty and hygiene"
   },
   {
     "id": 140,
-    "name": "Esmalte",
+    "name": "Nail polish",
     "category": "Beauty and hygiene"
   },
   {
@@ -706,257 +671,242 @@
   },
   {
     "id": 142,
-    "name": "Condicionador",
+    "name": "Conditioner",
     "category": "Beauty and hygiene"
   },
   {
     "id": 143,
-    "name": "Creme hidratante",
+    "name": "Moisturizing cream",
     "category": "Beauty and hygiene"
   },
   {
     "id": 144,
-    "name": "Creme para pentear",
+    "name": "Brushing cream",
     "category": "Beauty and hygiene"
   },
   {
     "id": 145,
-    "name": "Fio dental",
+    "name": "Dental floss",
     "category": "Beauty and hygiene"
   },
   {
     "id": 146,
-    "name": "Enxaguante bucal",
+    "name": "Rinsing mouthwash",
     "category": "Beauty and hygiene"
   },
   {
     "id": 147,
-    "name": "Desodorante",
+    "name": "Deodorant",
     "category": "Beauty and hygiene"
   },
   {
     "id": 148,
-    "name": "Sabonete",
+    "name": "Soap",
     "category": "Beauty and hygiene"
   },
   {
     "id": 149,
-    "name": "Lenço umidecido",
+    "name": "Wet wipes",
     "category": "Beauty and hygiene"
   },
   {
     "id": 150,
-    "name": "Sabonete líquido",
+    "name": "Liquid soap",
     "category": "Beauty and hygiene"
   },
   {
     "id": 151,
-    "name": "Pente para cabelo",
+    "name": "Hair comb",
     "category": "Beauty and hygiene"
   },
   {
     "id": 152,
-    "name": "Removedor de esmalte",
+    "name": "Nail polish remover",
     "category": "Beauty and hygiene"
   },
   {
     "id": 153,
-    "name": "Tinta para cabelo",
+    "name": "Hair dye",
     "category": "Beauty and hygiene"
   },
   {
     "id": 154,
-    "name": "Espuma para barbear",
+    "name": "Shaving foam",
     "category": "Beauty and hygiene"
   },
   {
     "id": 155,
-    "name": "Gel para cabelo",
+    "name": "Hair gel",
     "category": "Beauty and hygiene"
   },
   {
     "id": 156,
-    "name": "Cogumelos",
+    "name": "Mushrooms",
     "category": "Vegetables"
   },
   {
     "id": 157,
-    "name": "Orégano",
+    "name": "Oregano",
     "category": "Vegetables"
   },
   {
     "id": 158,
-    "name": "Manjericão",
+    "name": "Basil",
     "category": "Vegetables"
   },
   {
     "id": 159,
-    "name": "Manjerona",
+    "name": "Marjoram",
     "category": "Vegetables"
   },
   {
     "id": 160,
-    "name": "Alecrim",
+    "name": "Rosemary",
     "category": "Vegetables"
   },
   {
     "id": 161,
-    "name": "Louro",
+    "name": "Bay leaves",
     "category": "Vegetables"
   },
   {
     "id": 162,
-    "name": "Cebolinha",
+    "name": "Green onions",
     "category": "Vegetables"
   },
   {
     "id": 163,
-    "name": "Alho",
+    "name": "Garlic",
     "category": "Vegetables"
   },
   {
     "id": 164,
-    "name": "Salsa",
+    "name": "Parsley",
     "category": "Vegetables"
   },
   {
     "id": 165,
-    "name": "Tempero verde",
+    "name": "Green seasoning",
     "category": "Vegetables"
   },
   {
     "id": 166,
-    "name": "Pimenta",
+    "name": "Pepper",
     "category": "Vegetables"
   },
   {
     "id": 167,
-    "name": "Batata",
+    "name": "Potato",
     "category": "Vegetables"
   },
   {
     "id": 168,
-    "name": "Tomate",
+    "name": "Tomato",
     "category": "Vegetables"
   },
   {
     "id": 169,
-    "name": "Beterraba",
+    "name": "Beet",
     "category": "Vegetables"
   },
   {
     "id": 170,
-    "name": "Nabo",
+    "name": "Turnip",
     "category": "Vegetables"
   },
   {
     "id": 171,
-    "name": "Cenoura",
+    "name": "Carrot",
     "category": "Vegetables"
   },
   {
     "id": 172,
-    "name": "Chuchu",
+    "name": "Pear squash",
     "category": "Vegetables"
   },
   {
     "id": 173,
-    "name": "Cebola",
+    "name": "Onion",
     "category": "Vegetables"
   },
   {
     "id": 174,
-    "name": "Pepino",
+    "name": "Cucumber",
     "category": "Vegetables"
   },
   {
     "id": 175,
-    "name": "Pepino japonês",
-    "category": "Vegetables"
-  },
-  {
-    "id": 176,
-    "name": "Pimentão",
+    "name": "Japanese cucumber",
     "category": "Vegetables"
   },
   {
     "id": 177,
-    "name": "Batata doce",
+    "name": "Sweet potato",
     "category": "Vegetables"
   },
   {
     "id": 178,
-    "name": "Moranga",
+    "name": "Squash",
     "category": "Vegetables"
   },
   {
     "id": 179,
-    "name": "Abobrinha",
+    "name": "Pumpkin",
     "category": "Vegetables"
   },
   {
     "id": 180,
-    "name": "Vagem",
+    "name": "Pod",
     "category": "Vegetables"
   },
   {
     "id": 181,
-    "name": "Berinjela",
+    "name": "Eggplant",
     "category": "Vegetables"
   },
   {
     "id": 182,
-    "name": "Milho",
+    "name": "Corn",
     "category": "Vegetables"
   },
   {
     "id": 183,
-    "name": "Alface",
+    "name": "Lettuce",
     "category": "Vegetables"
   },
   {
     "id": 184,
-    "name": "Rúcula",
+    "name": "Rocket",
     "category": "Vegetables"
   },
   {
     "id": 185,
-    "name": "Brócolis",
+    "name": "Broccoli",
     "category": "Vegetables"
   },
   {
     "id": 186,
-    "name": "Couve-flor",
+    "name": "Cauliflower",
     "category": "Vegetables"
   },
   {
     "id": 187,
-    "name": "Agrião",
+    "name": "Watercress",
     "category": "Vegetables"
   },
   {
     "id": 188,
-    "name": "Espinafre",
+    "name": "Spinach",
     "category": "Vegetables"
   },
   {
     "id": 189,
-    "name": "Couve",
-    "category": "Vegetables"
-  },
-  {
-    "id": 190,
-    "name": "Radiche",
+    "name": "Cabbage",
     "category": "Vegetables"
   },
   {
     "id": 191,
-    "name": "Salsão",
-    "category": "Vegetables"
-  },
-  {
-    "id": 192,
-    "name": "Repolho",
+    "name": "Celery",
     "category": "Vegetables"
   },
   {
@@ -966,77 +916,77 @@
   },
   {
     "id": 194,
-    "name": "Laranja",
+    "name": "Orange",
     "category": "Vegetables"
   },
   {
     "id": 195,
-    "name": "Uva",
+    "name": "Grape",
     "category": "Vegetables"
   },
   {
     "id": 196,
-    "name": "Abacaxi",
+    "name": "Pineaple",
     "category": "Vegetables"
   },
   {
     "id": 197,
-    "name": "Mirtilo",
+    "name": "Blueberry",
     "category": "Vegetables"
   },
   {
     "id": 198,
-    "name": "Morango",
+    "name": "Strawberry",
     "category": "Vegetables"
   },
   {
     "id": 199,
-    "name": "Coco",
+    "name": "Coconut",
     "category": "Vegetables"
   },
   {
     "id": 200,
-    "name": "Limão",
+    "name": "Lime",
     "category": "Vegetables"
   },
   {
     "id": 201,
-    "name": "Maçã",
+    "name": "Apple",
     "category": "Vegetables"
   },
   {
     "id": 202,
-    "name": "Mamão",
+    "name": "Pawpaw",
     "category": "Vegetables"
   },
   {
     "id": 203,
-    "name": "Manga",
+    "name": "Mango",
     "category": "Vegetables"
   },
   {
     "id": 204,
-    "name": "Maracujá",
+    "name": "Passion fruit",
     "category": "Vegetables"
   },
   {
     "id": 205,
-    "name": "Melancia",
+    "name": "Watermelon",
     "category": "Vegetables"
   },
   {
     "id": 206,
-    "name": "Melão",
+    "name": "Melon",
     "category": "Vegetables"
   },
   {
     "id": 207,
-    "name": "Abacate",
+    "name": "Avocado",
     "category": "Vegetables"
   },
   {
     "id": 208,
-    "name": "Bergamota",
+    "name": "Tangerine",
     "category": "Vegetables"
   },
   {
@@ -1046,27 +996,27 @@
   },
   {
     "id": 210,
-    "name": "Nectarina",
+    "name": "Nectarine",
     "category": "Vegetables"
   },
   {
     "id": 211,
-    "name": "Ameixa",
+    "name": "Plum",
     "category": "Vegetables"
   },
   {
     "id": 212,
-    "name": "Pêra",
+    "name": "Pear",
     "category": "Vegetables"
   },
   {
     "id": 213,
-    "name": "Lima",
+    "name": "Lemon",
     "category": "Vegetables"
   },
   {
     "id": 214,
-    "name": "Pêssego",
+    "name": "Peach",
     "category": "Vegetables"
   },
   {
@@ -1076,187 +1026,187 @@
   },
   {
     "id": 216,
-    "name": "Esponja",
+    "name": "Sponge",
     "category": "Cleaning"
   },
   {
     "id": 217,
-    "name": "Escova",
+    "name": "Brush",
     "category": "Cleaning"
   },
   {
     "id": 218,
-    "name": "Vassoura",
+    "name": "Brum",
     "category": "Cleaning"
   },
   {
     "id": 219,
-    "name": "Rodo",
+    "name": "Squeegee",
     "category": "Cleaning"
   },
   {
     "id": 220,
-    "name": "Água sanitária",
+    "name": "Sanitary water",
     "category": "Cleaning"
   },
   {
     "id": 221,
-    "name": "Purificador de ambientes",
+    "name": "Ambient purifier",
     "category": "Cleaning"
   },
   {
     "id": 222,
-    "name": "Sabão em barra",
+    "name": "Bar soap",
     "category": "Cleaning"
   },
   {
     "id": 223,
-    "name": "Sabão líquido",
+    "name": "Liquid soap",
     "category": "Cleaning"
   },
   {
     "id": 224,
-    "name": "Detergente líquido",
+    "name": "Liquid dtergent",
     "category": "Cleaning"
   },
   {
     "id": 225,
-    "name": "Detergente em pó",
+    "name": "Powder detergent",
     "category": "Cleaning"
   },
   {
     "id": 226,
-    "name": "Alvejante",
+    "name": "Bleach",
     "category": "Cleaning"
   },
   {
     "id": 227,
-    "name": "Amaciante",
+    "name": "Cloathing softener",
     "category": "Cleaning"
   },
   {
     "id": 228,
-    "name": "Lava louça",
+    "name": "Dishwasher",
     "category": "Cleaning"
   },
   {
     "id": 229,
-    "name": "Limpador",
+    "name": "Cleanser",
     "category": "Cleaning"
   },
   {
     "id": 230,
-    "name": "Inseticida",
+    "name": "Insecticide",
     "category": "Cleaning"
   },
   {
     "id": 231,
-    "name": "Desinfetante",
+    "name": "Disinfectant",
     "category": "Cleaning"
   },
   {
     "id": 232,
-    "name": "Pá",
+    "name": "Shovel",
     "category": "Cleaning"
   },
   {
     "id": 233,
-    "name": "Desentupidor",
+    "name": "Unblocker",
     "category": "Cleaning"
   },
   {
     "id": 234,
-    "name": "Pano",
+    "name": "Cloth",
     "category": "Cleaning"
   },
   {
     "id": 235,
-    "name": "Corda pra varal",
+    "name": "Clothesline rope",
     "category": "Cleaning"
   },
   {
     "id": 236,
-    "name": "Esfregão",
+    "name": "Mop",
     "category": "Cleaning"
   },
   {
     "id": 237,
-    "name": "Solvente",
+    "name": "Solvent",
     "category": "Cleaning"
   },
   {
     "id": 238,
-    "name": "Óleo de peroba",
+    "name": "Peroba oil",
     "category": "Cleaning"
   },
   {
     "id": 239,
-    "name": "Antimofo",
+    "name": "Anti-mildew",
     "category": "Cleaning"
   },
   {
     "id": 240,
-    "name": "Incenso",
+    "name": "Incense",
     "category": "Cleaning"
   },
   {
     "id": 241,
-    "name": "Saco pra lixo",
+    "name": "Garbage bag",
     "category": "Cleaning"
   },
   {
     "id": 242,
-    "name": "Álcool",
+    "name": "Alcohol",
     "category": "Cleaning"
   },
   {
     "id": 243,
-    "name": "Polidor de sapato",
+    "name": "Shoe polisher",
     "category": "Cleaning"
   },
   {
     "id": 244,
-    "name": "Lustra móveis",
+    "name": "Furniture polisher",
     "category": "Cleaning"
   },
   {
     "id": 245,
-    "name": "Cera",
+    "name": "Wax",
     "category": "Cleaning"
   },
   {
     "id": 246,
-    "name": "Repelente",
+    "name": "Repelent",
     "category": "Cleaning"
   },
   {
     "id": 247,
-    "name": "Saponáceo",
+    "name": "Saponaceous",
     "category": "Cleaning"
   },
   {
     "id": 248,
-    "name": "Guardanapo",
+    "name": "Napkin",
     "category": "Cleaning"
   },
   {
     "id": 249,
-    "name": "Massa",
+    "name": "Pasta",
     "category": "Pastas and cookies"
   },
   {
     "id": 250,
-    "name": "Macarrão instantâneo",
+    "name": "Noodles",
     "category": "Pastas and cookies"
   },
   {
     "id": 251,
-    "name": "Bolacha",
+    "name": "Cookies",
     "category": "Pastas and cookies"
   },
   {
     "id": 252,
-    "name": "Bolacha recheada",
+    "name": "Stuffed biscuit",
     "category": "Pastas and cookies"
   },
   {
@@ -1266,37 +1216,37 @@
   },
   {
     "id": 254,
-    "name": "Filtro de papel",
+    "name": "Paper filter",
     "category": "Breakfast"
   },
   {
     "id": 255,
-    "name": "Café",
+    "name": "Coffee",
     "category": "Breakfast"
   },
   {
     "id": 256,
-    "name": "Chá",
+    "name": "Tea",
     "category": "Breakfast"
   },
   {
     "id": 257,
-    "name": "Aveia",
+    "name": "Oatmeal",
     "category": "Breakfast"
   },
   {
     "id": 258,
-    "name": "Açúcar",
+    "name": "Sugar",
     "category": "Breakfast"
   },
   {
     "id": 259,
-    "name": "Achocolatado em pó",
+    "name": "Chocolate powder",
     "category": "Breakfast"
   },
   {
     "id": 260,
-    "name": "Leite em pó",
+    "name": "Milk powder",
     "category": "Breakfast"
   },
   {
@@ -1306,22 +1256,17 @@
   },
   {
     "id": 262,
-    "name": "Porta filtro",
-    "category": "Breakfast"
-  },
-  {
-    "id": 263,
-    "name": "Erva-mate",
+    "name": "Filter holder",
     "category": "Breakfast"
   },
   {
     "id": 264,
-    "name": "Linhaça",
+    "name": "Flaxseed",
     "category": "Breakfast"
   },
   {
     "id": 265,
-    "name": "Molho de tomate",
+    "name": "Tomato sauce",
     "category": "Sauces"
   },
   {
@@ -1331,37 +1276,37 @@
   },
   {
     "id": 267,
-    "name": "Catchup",
+    "name": "Ketchup",
     "category": "Sauces"
   },
   {
     "id": 268,
-    "name": "Maionese",
+    "name": "Mayonnaise",
     "category": "Sauces"
   },
   {
     "id": 269,
-    "name": "Mostarda",
+    "name": "Mustard",
     "category": "Sauces"
   },
   {
     "id": 270,
-    "name": "Molho de salada",
+    "name": "Salad sauce",
     "category": "Sauces"
   },
   {
     "id": 271,
-    "name": "Molho de pimenta",
+    "name": "Pepper sauce",
     "category": "Sauces"
   },
   {
     "id": 272,
-    "name": "Molho branco",
+    "name": "Cheese sauce",
     "category": "Sauces"
   },
   {
     "id": 273,
-    "name": "Molho madeira",
+    "name": "Brown sauce",
     "category": "Sauces"
   },
   {
@@ -1371,102 +1316,102 @@
   },
   {
     "id": 275,
-    "name": "Pão de alho",
+    "name": "Garlic bread",
     "category": "Bakery"
   },
   {
     "id": 276,
-    "name": "Pão de forma",
+    "name": "Loaf bread",
     "category": "Bakery"
   },
   {
     "id": 277,
-    "name": "Pão",
+    "name": "Bread",
     "category": "Bakery"
   },
   {
     "id": 278,
-    "name": "Tortilha",
+    "name": "Tortilla",
     "category": "Bakery"
   },
   {
     "id": 279,
-    "name": "Bolo",
+    "name": "Cake",
     "category": "Bakery"
   },
   {
     "id": 280,
-    "name": "Biscoito",
+    "name": "Bicuit",
     "category": "Bakery"
   },
   {
     "id": 281,
-    "name": "Torta",
+    "name": "Pie",
     "category": "Bakery"
   },
   {
     "id": 282,
-    "name": "Pão árabe",
+    "name": "Peeta bread",
     "category": "Bakery"
   },
   {
     "id": 283,
-    "name": "Tapete higiênico",
+    "name": "Hygienic mat",
     "category": "PetShop"
   },
   {
     "id": 284,
-    "name": "Sachê para pet",
+    "name": "Pet sachet",
     "category": "PetShop"
   },
   {
     "id": 285,
-    "name": "Petisco para pet",
+    "name": "Pet snack food",
     "category": "PetShop"
   },
   {
     "id": 286,
-    "name": "Ração",
+    "name": "Pet feed",
     "category": "PetShop"
   },
   {
     "id": 287,
-    "name": "Granulado sanitário",
+    "name": "Sanitary granulated",
     "category": "PetShop"
   },
   {
     "id": 288,
-    "name": "Antipulgas",
+    "name": "Anti-fleas",
     "category": "PetShop"
   },
   {
     "id": 289,
-    "name": "Coco ralado",
+    "name": "Grated coconut",
     "category": "Desserts"
   },
   {
     "id": 290,
-    "name": "Chocolate em pó",
+    "name": "Powdered chocolate",
     "category": "Desserts"
   },
   {
     "id": 291,
-    "name": "Mistura para bolo",
+    "name": "Cake mix",
     "category": "Desserts"
   },
   {
     "id": 292,
-    "name": "Fermento",
+    "name": "Yeast",
     "category": "Desserts"
   },
   {
     "id": 293,
-    "name": "Pudim",
+    "name": "Pudding",
     "category": "Desserts"
   },
   {
     "id": 294,
-    "name": "Gelatina",
+    "name": "Gelatin",
     "category": "Desserts"
   },
   {
@@ -1481,82 +1426,82 @@
   },
   {
     "id": 297,
-    "name": "Leite condensado",
+    "name": "Condensed milk",
     "category": "Desserts"
   },
   {
     "id": 298,
-    "name": "Creme de leite",
+    "name": "Sour cream",
     "category": "Desserts"
   },
   {
     "id": 299,
-    "name": "Canela",
+    "name": "Cinnamon",
     "category": "Desserts"
   },
   {
     "id": 300,
-    "name": "Polvilho",
+    "name": "Cassava starch",
     "category": "Desserts"
   },
   {
     "id": 301,
-    "name": "Sagu",
+    "name": "Sago palm",
     "category": "Desserts"
   },
   {
     "id": 302,
-    "name": "Leite de coco",
+    "name": "Coconut milk",
     "category": "Desserts"
   },
   {
     "id": 303,
-    "name": "Sal",
+    "name": "Salt",
     "category": "Seasonings"
   },
   {
     "id": 304,
-    "name": "Caldo de galinha",
+    "name": "Chicken stock",
     "category": "Seasonings"
   },
   {
     "id": 305,
-    "name": "Caldo de carne",
+    "name": "Meat stock",
     "category": "Seasonings"
   },
   {
     "id": 306,
-    "name": "Caldo de legumes",
+    "name": "Vegetables stock",
     "category": "Seasonings"
   },
   {
     "id": 307,
-    "name": "Vinagre",
+    "name": "Vinegar",
     "category": "Seasonings"
   },
   {
     "id": 308,
-    "name": "Pimenta em pó",
+    "name": "Pepper flakes",
     "category": "Seasonings"
   },
   {
     "id": 309,
-    "name": "Tempero",
+    "name": "Seasoning",
     "category": "Seasonings"
   },
   {
     "id": 310,
-    "name": "Aceto balsâmico",
+    "name": "Balsamic aceto",
     "category": "Seasonings"
   },
   {
     "id": 311,
-    "name": "Outro",
+    "name": "Other",
     "category": "Others"
   },
   {
     "id": 312,
-    "name": "Coentro",
+    "name": "Cilantro",
     "category": "Vegetables"
   },
   {
@@ -1566,18 +1511,13 @@
   },
   {
     "id": 314,
-    "name": "Gergelim",
+    "name": "Sesame seeds",
     "category": "Grains and flours"
   },
   {
     "id": 315,
-    "name": "Mel",
+    "name": "Honey",
     "category": "Jams and sweets"
-  },
-  {
-    "id": 316,
-    "name": "Azeite de dendê",
-    "category": "Canned, pickled and oils"
   },
   {
     "id": 317,
@@ -1585,13 +1525,8 @@
     "category": "Frozen"
   },
   {
-    "id": 318,
-    "name": "Molho de queijo",
-    "category": "Sauces"
-  },
-  {
     "id": 319,
-    "name": "Massa para lasanha",
+    "name": "Lasagna pasta",
     "category": "Hams and dairy products"
   }
 ]
