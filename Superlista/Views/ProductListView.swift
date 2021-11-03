@@ -8,7 +8,6 @@ struct ProductListView: View {
     var list: ListModel
 
     @State var selectedItems: [ItemModel] = []
-    @State var index: Int = 0
         
     @Binding var filter: String
     
@@ -56,11 +55,11 @@ struct ProductListView: View {
                             Image(systemName: "minus.square.fill")
                                 .resizable()
                                 .frame(width: 17, height: 17)
-                                .foregroundColor((selectedItems[index].quantity ?? 1) > 1 ? Color("Button") : Color(UIColor.secondaryLabel))
+                                .foregroundColor((selectedItems[selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0].quantity ?? 0 > 1) ? Color("Button") : Color(UIColor.secondaryLabel))
                         }
                         .frame(width: 17, height: 17)
                         .onTapGesture {
-                            self.index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
+                            let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                             listsViewModel.removeQuantity(of: selectedItems[index], from: list) 
                             if selectedItems[index].quantity! > 1 {
                                 selectedItems[index].quantity = selectedItems[index].quantity! - 1
@@ -70,10 +69,10 @@ struct ProductListView: View {
                         .accessibility(hint: Text("removeOneItem"))
 
                         
-                        Text("\(selectedItems[index].quantity ?? 1)")
+                        Text("\(selectedItems[selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0].quantity ?? 1)")
                             .font(.system(size: 17, weight: .regular))
                             .foregroundColor(Color.primary)
-                            .accessibilityLabel(Text("\(selectedItems[index].quantity ?? 1) items"))
+                            .accessibilityLabel(Text("\(selectedItems[selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0].quantity ?? 1) items"))
                         
                         
                         Image(systemName: "plus.square.fill")
@@ -81,7 +80,7 @@ struct ProductListView: View {
                             .frame(width: 17, height: 17)
                             .foregroundColor(Color("Button"))
                             .onTapGesture {
-                                self.index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
+                                let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                                 listsViewModel.addQuantity(of: selectedItems[index], from: list)
                                 selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
                             }
@@ -91,7 +90,7 @@ struct ProductListView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .onTapGesture {
-                    self.index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
+                    let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                     if isSelected(item: item){
                         listsViewModel.removeItem(selectedItems[index], from: list)
                         selectedItems.remove(at: index)
