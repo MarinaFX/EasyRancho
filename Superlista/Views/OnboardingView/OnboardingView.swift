@@ -22,7 +22,7 @@ struct OnboardingView: View {
                 .tabViewStyle(PageTabViewStyle())
                 .onChange(of: currentPage, perform: changeColor)
                 
-                NavigationLink("Começar", destination: OnboardingFieldsView(picture: $picture))
+                NavigationLink("OnboardingViewButtonLabel", destination: OnboardingFieldsView(picture: $picture))
                     .buttonStyle(MediumButtonStyle(background: .white, foreground: currentColor))
                     .padding(.top)
                     .padding(.bottom, 48)

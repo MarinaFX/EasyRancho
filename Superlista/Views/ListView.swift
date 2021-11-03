@@ -47,7 +47,7 @@ struct ListView: View {
                         Button {
                             editTitle()
                         } label: {
-                            Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
+                            Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
                         }
                     }
                 }

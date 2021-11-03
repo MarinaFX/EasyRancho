@@ -18,9 +18,11 @@ struct SettingLabel: View {
                 showingSheet = true
             }) {
                 HStack {
-                    Text("Editar perfil")
+                    Text("SettingLabelA")
                         .foregroundColor(.primary)
+                    
                     Spacer()
+                    
                     Image(systemName: "pencil.circle.fill")
                         .foregroundColor(.primary)
                         .font(.system(size: 20.0, weight: .bold))
@@ -34,7 +36,7 @@ struct SettingLabel: View {
                 EditProfileView(showingSheet: $showingSheet, username: $username, picture: $picture)
             }
             
-#warning("Premium desativado temporariamente")
+// Premium desativado temporariamente
             //            Button(action: {
             //                print("Button tapped!")
             //            }) {
@@ -56,7 +58,7 @@ struct SettingLabel: View {
                 UIApplication.shared.open(instagram)
             }) {
                 HStack {
-                    Text("Contato")
+                    Text("SettingLabelB")
                         .foregroundColor(.primary)
                     Spacer()
                     Image(systemName: "ellipsis.bubble.fill")
@@ -69,16 +71,18 @@ struct SettingLabel: View {
                 .cornerRadius(13)
             }
             Button(action: {
-                #warning("Tá dando varias mensagens de 'erro' mas nada que se preocupar por enquanto #pas ")
+                //Tá dando varias mensagens de 'erro' mas nada que se preocupar por enquanto #pas
                 guard let urlShare = URL(string: "https://apps.apple.com/br/app/easyrancho-lista-de-compras/id1568546773") else { return }
-                let activityVC = UIActivityViewController(activityItems: ["Veja o App que estou usando para fazer minhas listas de compras. Baixa vc também! =)", urlShare], applicationActivities: nil)
+                let activityVC = UIActivityViewController(activityItems: [NSLocalizedString("InviteMessage", comment: "InviteMessage"), urlShare], applicationActivities: nil)
                 UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
                 
             }) {
                     HStack {
-                        Text("Convide um amigo")
+                        Text("SettingLabelC")
                             .foregroundColor(.primary)
+                        
                         Spacer()
+                        
                         Image(systemName: "bolt.heart.fill")
                             .foregroundColor(.primary)
                             .font(.system(size: 20.0, weight: .bold))
@@ -91,9 +95,3 @@ struct SettingLabel: View {
         }
     }
 }
-
-//struct SettingLabel_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingLabel(username: "Luiz")
-//    }
-//}

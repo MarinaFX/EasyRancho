@@ -52,7 +52,7 @@ struct ItemCommentView: View {
                     HStack {
                         ZStack(alignment: .leading){
                             if (comment == "") {
-                                Text("Insira um comentário")
+                                Text("ItemCommentViewPlaceholder")
                                     .foregroundColor(Color(UIColor.secondaryLabel))
                                     .font(.system(size: 13))
                                     .padding(.leading, 30)
@@ -66,7 +66,7 @@ struct ItemCommentView: View {
                         
                         Spacer()
                         
-                        Text("OK")
+                        Text("ItemCommentViewButtonLabel")
                             .foregroundColor(Color.primary)
                             .font(.subheadline)
                             .onTapGesture {

@@ -34,7 +34,7 @@ struct AddCollaboratorSheetView: View {
                 ScrollView(showsIndicators: false) {
                     VStack {
                         //MARK: AddCollaboratorSheetView Collab section
-                        Text("addCollabTextTip")
+                        Text("AddCollabTextTip")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
                         
@@ -50,7 +50,7 @@ struct AddCollaboratorSheetView: View {
                                 Image(systemName: "plus.circle.fill")
                                     .foregroundColor(Color("Button"))
                                 
-                                Text("addCollabButton")
+                                Text("AddCollabButton")
                                     .foregroundColor(Color("Button"))
                                     .bold()
                                     
@@ -79,7 +79,7 @@ struct AddCollaboratorSheetView: View {
                             }
                             else {
                                 VStack {
-                                    Text("noCollaboratorsText")
+                                    Text("NoCollaboratorsText")
                                         .foregroundColor(Color(UIColor.lightGray))
                                 }
                                 .frame(width: geometry.size.width - 32, height: geometry.size.height * 0.45)
@@ -91,7 +91,7 @@ struct AddCollaboratorSheetView: View {
                         
                         
                         //MARK: AddCollaboratorSheetView Share section
-                        Text("shareListText")
+                        Text("ShareListText")
                             .font(.system(size: 13))
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -106,7 +106,7 @@ struct AddCollaboratorSheetView: View {
                             shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: listOwner.name!)
                         }, label: {
                             HStack(alignment: .center) {
-                                Text("shareListButton")
+                                Text("ShareListButton")
                                     .foregroundColor(.black)
                                     
                                 Spacer()
@@ -122,7 +122,7 @@ struct AddCollaboratorSheetView: View {
                         .cornerRadius(12)
                         .padding(.horizontal, 16)
                         
-                        Text("shareListWarning")
+                        Text("ShareListWarning")
                             .font(.system(size: 13))
                             .foregroundColor(Color("Footnote"))
                             .padding(.horizontal, 16)
@@ -135,7 +135,7 @@ struct AddCollaboratorSheetView: View {
                                 Button {
                                     self.showCollabSheetView = false
                                 } label: {
-                                    Text("leadingCancel")
+                                    Text("AddCollaboratorLeadingNavigationLabel")
                                         .font(.system(size: 17))
                                         .foregroundColor(.blue)
                                 }
@@ -146,14 +146,14 @@ struct AddCollaboratorSheetView: View {
                                 Button {
                                     self.showCollabSheetView = false
                                 } label: {
-                                    Text("trailingDone")
+                                    Text("AddCollaboratorTrailingNavigationLabel")
                                         .font(.system(size: 17))
                                         .bold()
                                         .foregroundColor(.blue)
                                 }
                             }
                         }
-                        .navigationTitle("addCollabTitle")
+                        .navigationTitle("AddCollabTitle")
                         .navigationBarTitleDisplayMode(.large)
                 }
             }
