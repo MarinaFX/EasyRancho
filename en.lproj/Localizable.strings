@@ -1,75 +1,98 @@
-/* 
-  Localizable.strings
-  Superlista
+// MARK: - Global
+"NovaLista" = "New List";
 
-  Created by Luiz Eduardo Mello dos Reis on 18/10/21.
-  
-*/
+// MARK: - CustomSource
+"Lista: %@" = "List: %@";
+"Criada por: %@" = "Created by: %@";
 
-//MARK: - Toolbar/navigationbar items
-"leadingCancel" = "Cancel";
-"trailingDone" = "Done";
+// MARK: - SearchBar
+"SearchBarPlaceholder" = "Search Items";
 
-//MARK: - AddCollaborator screen
-"addCollabTitle" = "Add Collaborators";
-"addCollabTextTip" = "Add collaborators to your list so they can make changes in real time";
-"addCollabButton" = "Add Collaborator";
-"noCollaboratorsText" = "You haven't added any collaborators yet";
-"shareListText" = "Or just share your list with your contacts";
-"shareListButton" = "Share list";
-"shareListWarning" = "Sharing your list with another person will only send them a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator";
+// MARK: - FakeSearchBar
+"FakeSearchBarPlaceholder" = "Add new items";
 
+// MARK: - OnboardingView
+"OnboardingViewButtonLabel" = "Get Started";
 
-//MARK: - AddCollaborator screen | Alert
+// MARK: - OnboardingFieldsView
+"OnboardingFieldsTitle" = "Personalize your profile";
+"OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
+"OnboardingFieldPlaceholder" = "Name";
+"OnboardingBottomButtonLabel" = "Save";
+"OnboardingTrailingNavigationLabel" = "Skip";
+
+// MARK: - OnboardingPageModel
+"OnboardingA" = "OnboardingA";
+"OnboardingATitle" = "Welcome";
+"OnboardingAText" = "Create categorized grocery lists in a easy and simple way!";
+
+"OnboardingB" = "OnboardingB";
+"OnboardingBTitle" = "Collaborative Lists";
+"OnboardingBText" = "Create shared lists and add collaborators to edit lists in real time.";
+
+"OnboardingC" = "OnboardingC";
+"OnboardingCTitle" = "Personalize Items";
+"OnboardingCText" = "Add new products, quantities and comments to your lists.";
+
+// MARK: - SettingLabel
+"SettingLabelA" = "Edit profile";
+"SettingLabelB" = "Contact";
+"SettingLabelC" = "Invite a Friend";
+"InviteMessage" = "Take a look at the app I'm using to create my groceries lists. Download now =)";
+
+// MARK: - EditProfileView
+"EditProfileTitle" = "Edit Profile";
+"EditProfileFieldPlaceholder" = "Name";
+"EditProfileText" = "Add a name and a profile picture for you to be easily identified when sharing a list or being added to one.";
+"EditProfileLeadingNavigationLabel" = "Cancel";
+"EditProfileTrailingNavigationLabel" = "Save";
+
+// MARK: - ListView
+"ListViewLabelA" = "Save";
+"ListViewLabelB" = "Edit";
+
+// MARK: - AddNewItemView
+"AddNewItemViewBottomButtonLabel" = "Done";
+
+// MARK: - MainView
+"EmptyListText" = "You do not have any lists!\nHow about adding a new one?";
+"MainViewTrailingNavigationLabelA" = "Done";
+"MainViewTrailingNavigationLabelB" = "Edit";
+"MainViewTitle" = "Lists";
+"MainViewLeadingNavigationLabel" = "New List";
+
+"Remover %@" = "Do you want to delete %@?";
+"DeleteListAlertText"= "The deleted list cannot be recovered after its deletion.";
+"DeleteListAlertButton"= "Delete";
+
+// MARK: - ItemCommentView
+"ItemCommentViewPlaceholder"= "Add a comment";
+"ItemCommentViewButtonLabel"= "OK";
+
+//MARK: - AddCollaboratorSheetView
+"AddCollabTitle" = "Add Collaborators";
+"AddCollabTextTip" = "Add collaborators to your list so they can make changes in real time";
+"AddCollabButton" = "Add Collaborator";
+"NoCollaboratorsText" = "You haven't added any collaborators yet";
+"ShareListText" = "Or just share your list with your contacts";
+"ShareListButton" = "Share list";
+"ShareListWarning" = "Sharing your list with another person will only send them a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator.";
+
 "DeleteCollabAlertTitle %@" = "Are you sure you want to remove %@ from your list?";
 "DeleteCollabAlertMessage" = "This person will no longer be a collaborator to your list";
 "DeleteCollabAlertPrimaryButton" = "Remove";
 "DeleteCollabAlertSecondaryButton" = "Cancel";
 
-"Listas" = "Listas";
-"listaVazia" = "You don't have any list!\nHow about adding a new list?";
-"SalvarNovaLista" = "Save";
-"EditarNovaLista" = "Edit";
-"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
-"remover %@" = "Do you want to remove %@?";
-"subtituloRemoverLista"= "The removed list cannot be recovered after its deletion.";
-"ApagarLista"= "Delete";
-"ConcluirListas" = "Done";
-"EditarListas" = "Edit";
-"NovaLista" = "New list";
+"AddCollaboratorLeadingNavigationLabel" = "Cancel";
+"AddCollaboratorTrailingNavigationLabel" = "Done";
+
+// MARK: - SuperlistaApp Alerts
+"CollabAlertText" = "You have been invited to collaborate on a list. Do you want to become a contributor to this list?";
+
+"AlertPrimaryButtonLabel" = "Cancel";
+"AlertSecondaryButtonLabel" = "Accept";
+
+"SharedAlertText" = "This list has been shared with you. Want to add a copy of this list to your lists?";
+
+// MARK: - Random Assets
 "DefaultLS" = "DefaultLS";
-"CollabAlerta" = "You have been invited to collaborate on a list. Do you want to become a contributor to this list?";
-"Cancelar" = "Cancel";
-"Aceitar" = "Accept";
-"SharedAlerta" = "This list has been shared with you. Want to add a copy of this list to your lists?";
-
-//Not working 4now
-"ProcurarItens" = "Search Items";
-"AdicionarItensFake" = "Add new items";
-"TituloPaginaDeLista" = "Lists";
-"TituloDaNovaLista" = "New List";
-
-// MARK: - OnboardingA
-"OnboardingA" = "OnboardingA";
-"OnboardingATitle" = "Welcome";
-"OnboardingAText" = "Create categorized grocery lists in a easy and simple way!";
-
-// MARK: - OnboardingB
-"OnboardingB" = "OnboardingB";
-"OnboardingBTitle" = "Collaborative Lists";
-"OnboardingBText" = "Create shared lists and add collaborators to edit lists in real time.";
-
-// MARK: - OnboardingC
-"OnboardingC" = "OnboardingC";
-"OnboardingCTitle" = "Personalize Items";
-"OnboardingCText" = "Add new products, quantities and comments to your lists.";
-
-// MARK: - Onboarding Labels
-"Começar" = "Get Started";
-
-// MARK: - Onboarding Fields
-"OnboardingFieldsTitle" = "Personalize your profile";
-"OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
-"Nome" = "Name";
-"Salvar" = "Save";
-"Pular" = "Skip";
