@@ -17,12 +17,12 @@
 "noCollaboratorsText" = "You haven't added any collaborators yet";
 "shareListText" = "Or just share your list with your contacts";
 "shareListButton" = "Share list";
-"shareListWarning" = "Sharing your list with another person will only send a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator";
+"shareListWarning" = "Sharing your list with another person will only send them a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator";
 
 
 //MARK: - AddCollaborator screen | Alert
 "DeleteCollabAlertTitle %@" = "Are you sure you want to remove %@ from your list?";
-"DeleteCollabAlertMessage" = "This person will no longer be able to collaborate in your list";
+"DeleteCollabAlertMessage" = "This person will no longer be a collaborator to your list";
 "DeleteCollabAlertPrimaryButton" = "Remove";
 "DeleteCollabAlertSecondaryButton" = "Cancel";
 
@@ -52,12 +52,12 @@
 // MARK: - OnboardingA
 "OnboardingA" = "OnboardingA";
 "OnboardingATitle" = "Welcome";
-"OnboardingAText" = "Create grocery lists easily categorized!";
+"OnboardingAText" = "Create categorized grocery lists in a easy and simple way!";
 
 // MARK: - OnboardingB
 "OnboardingB" = "OnboardingB";
-"OnboardingBTitle" = "Colaborative Lists";
-"OnboardingBText" = "Create shared lists and add colaborators to edit lists in real time.";
+"OnboardingBTitle" = "Collaborative Lists";
+"OnboardingBText" = "Create shared lists and add collaborators to edit lists in real time.";
 
 // MARK: - OnboardingC
 "OnboardingC" = "OnboardingC";
