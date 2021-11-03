@@ -75,17 +75,10 @@ struct SuperlistaApp: App {
                                      secondaryButton: .default(
                                         Text(NSLocalizedString("Aceitar", comment: "")),
                                         action: {
-                                            let newOwnerRef = CKRecord.Reference(recordID: CKService.currentModel.user!.id, action: .none)
-                                            let newListLocal = CKListModel(name: list!.name ?? "NovaLista", ownerRef: newOwnerRef, itemsString: list!.itemsString)
-                                            CKService.currentModel.createList(listModel: newListLocal) { result in
-                                                switch result {
-                                                case .success (let newListID):
-                                                    CKService.currentModel.saveListUsersList(listID: newListID, key: .MyLists) { result in }
-                                                case .failure:
-                                                    return
-                                                }
-                                                presentSharedAlert = false
-                                            }
+                                            let ckList = ListModelConverter().convertCloudListToLocal(withList: list!)
+                                            dataService.duplicateList(of: ckList)
+                                            presentSharedAlert = false
+                                            
                                         }
                                      )
                         )

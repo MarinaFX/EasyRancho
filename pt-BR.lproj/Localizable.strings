@@ -37,6 +37,8 @@
 "EditarListas" = "Editar";
 "NovaLista" = "Nova Lista";
 "DefaultLS" = "DefaultLS";
+
+// MARK: - Alerts
 "CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
 "Cancelar" = "Cancelar";
 "Aceitar" = "Aceitar";
@@ -72,3 +74,11 @@
 "Nome" = "Nome";
 "Salvar" = "Salvar";
 "Pular" = "Pular";
+
+// MARK: - VoiceOver
+"Adicione %@" = "Aperte para adicionar %@";
+"Add" = "Adicione";
+"Remove" = "Remova";
+"RemoveOneItem" = "Aperte para remover um ítem";
+"AddOneItem" = "Aperte para adicionar um ítem";
+"%@ items" = "%@ ítens";

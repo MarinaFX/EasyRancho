@@ -38,6 +38,8 @@
 "EditarListas" = "Edit";
 "NovaLista" = "New list";
 "DefaultLS" = "DefaultLS";
+
+// MARK: - Alerts
 "CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
 "Cancelar" = "Cancel";
 "Aceitar" = "Accept";
@@ -72,3 +74,11 @@
 "OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
 "Salvar" = "Save";
 "Pular" = "Skip";
+
+// MARK: - VoiceOver
+"Adicione %@" = "Tap to add %@";
+"Add" = "Add";
+"Remove" = "Remove";
+"RemoveOneItem" = "Tap to remove one item";
+"AddOneItem" = "Tap to add one item";
+"%@ items" = "%@ items";
