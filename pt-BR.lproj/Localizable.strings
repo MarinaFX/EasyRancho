@@ -38,12 +38,11 @@
 "SettingLabelA" = "Editar perfil";
 "SettingLabelB" = "Contato";
 "SettingLabelC" = "Convide um amigo";
-"InviteMessage" = "Veja o App que estou usando para fazer minhas listas de compras. Baixa vc também! =)";
+"InviteMessage" = "Veja o App que estou usando para fazer minhas listas de compras. Baixa você também! =)";
 
 // MARK: - EditProfileView
 "EditProfileTitle" = "Editar Perfil";
 "EditProfileFieldPlaceholder" = "Nome";
-"EditProfileText" = "Adicione um nome e uma foto ao seu perfil para que você possa se identificado mais facilmente quando compartilhar ou for adicionado à uma lista.";
 "EditProfileText" = "Adicione um nome e uma foto ao seu perfil para que você possa se identificado mais facilmente quando compartilhar ou for adicionado à uma lista.";
 "EditProfileLeadingNavigationLabel" = "Cancelar";
 "EditProfileTrailingNavigationLabel" = "Salvar";
