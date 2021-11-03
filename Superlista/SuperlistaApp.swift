@@ -91,7 +91,6 @@ struct SuperlistaApp: App {
                 }
             }
             .accentColor(Color("Link"))
-            //            .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(dataService)
             .onAppear {
                 

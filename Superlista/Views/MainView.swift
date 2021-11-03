@@ -34,7 +34,7 @@ struct MainView: View {
     @State var shouldChangeView = false
     
     var body: some View {
-        NavigationView{
+        NavigationView {
             GeometryReader { geometry in
                 
                 ZStack {
@@ -45,6 +45,7 @@ struct MainView: View {
                                    label: { EmptyView() }
                     )
                         .opacity(0.0)
+                    
                     // MARK: - background color
                     Color("PrimaryBackground")
                         .ignoresSafeArea()
@@ -134,6 +135,15 @@ struct MainView: View {
                                         .padding(.horizontal, 25)
                                         
                                         
+                                        // MARK: - delete button
+                                        Image(systemName: "minus.circle.fill")
+                                            .font(.title2)
+                                            .foregroundColor(Color(.systemGray))
+                                            .offset(x: -75, y: -60)
+                                            .onTapGesture {
+                                                dataService.currentList = list
+                                                showAlert = true
+                                            }
                                     }
                                     .alert(isPresented: $showAlert){
                                         Alert(title: Text("remover \(dataService.currentList!.title)"), message: Text("subtituloRemoverLista"), primaryButton: .cancel(), secondaryButton: .destructive(Text("ApagarLista"), action:{
@@ -206,6 +216,7 @@ struct MainView: View {
                     
                     // MARK: - toolbar
                         .toolbar{
+                            
                             // MARK: - edit button
                             ToolbarItem(placement: .navigationBarLeading){
                                 if !dataService.lists.isEmpty {
