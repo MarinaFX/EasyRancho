@@ -109,28 +109,29 @@ struct MainView: View {
                                             }
                                             HStack{
                                                 if let sharedList = list.sharedWith{
-                                                    Text(sharedList.isEmpty ? "0" : (String(describing: list.sharedWith?.count)))
+                                                    Text(sharedList.isEmpty ? "0" : (String(describing: sharedList.count)))
                                                         .font(.footnote)
                                                         .foregroundColor(Color.white)
                                                         .lineLimit(1)
-                                                        .padding(.leading, 90)
                                                 }
                                                 
                                                 Image(systemName: "person.2.fill")
                                                     .font(.caption)
                                                     .foregroundColor(Color.white)
+                                                    .padding(.leading, -7)
                                             }
+                               
                                             // MARK: - delete button
                                             Image(systemName: "minus.circle.fill")
                                                 .font(.title2)
                                                 .foregroundColor(.red)
-                                                .offset(x: 127, y: -100)
+                                                .offset(x: 110, y: -100)
                                                 .onTapGesture {
                                                     dataService.currentList = list
                                                     showAlert = true
                                                 }
                                         }
-                                        .padding(.horizontal, 20)
+                                        .padding(.horizontal, 25)
                                         
                                         
                                     }
