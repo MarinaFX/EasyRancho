@@ -1,0 +1,1598 @@
+[
+  {
+    "id": 1,
+    "name": "Utensílios para cozinha",
+    "category": "Home"
+  },
+  {
+    "id": 2,
+    "name": "Papelaria escolar",
+    "category": "Home"
+  },
+  {
+    "id": 3,
+    "name": "Tabacaria",
+    "category": "Home"
+  },
+  {
+    "id": 4,
+    "name": "Ferragem",
+    "category": "Home"
+  },
+  {
+    "id": 5,
+    "name": "Automotivo",
+    "category": "Home"
+  },
+  {
+    "id": 6,
+    "name": "Lavanderia",
+    "category": "Home"
+  },
+  {
+    "id": 7,
+    "name": "Camping e lazer",
+    "category": "Home"
+  },
+  {
+    "id": 8,
+    "name": "Piscina",
+    "category": "Home"
+  },
+  {
+    "id": 9,
+    "name": "Cama, mesa e banho",
+    "category": "Home"
+  },
+  {
+    "id": 10,
+    "name": "Cerveja",
+    "category": "Drinks"
+  },
+  {
+    "id": 11,
+    "name": "Aperol",
+    "category": "Drinks"
+  },
+  {
+    "id": 12,
+    "name": "Espumante",
+    "category": "Drinks"
+  },
+  {
+    "id": 13,
+    "name": "Vinho",
+    "category": "Drinks"
+  },
+  {
+    "id": 14,
+    "name": "Água",
+    "category": "Drinks"
+  },
+  {
+    "id": 15,
+    "name": "Refrigerante",
+    "category": "Drinks"
+  },
+  {
+    "id": 16,
+    "name": "Energético",
+    "category": "Drinks"
+  },
+  {
+    "id": 17,
+    "name": "Água de coco",
+    "category": "Drinks"
+  },
+  {
+    "id": 18,
+    "name": "Refresco em pó",
+    "category": "Drinks"
+  },
+  {
+    "id": 19,
+    "name": "Tônica",
+    "category": "Drinks"
+  },
+  {
+    "id": 20,
+    "name": "Isotônico",
+    "category": "Drinks"
+  },
+  {
+    "id": 21,
+    "name": "Whisky",
+    "category": "Drinks"
+  },
+  {
+    "id": 22,
+    "name": "Saque",
+    "category": "Drinks"
+  },
+  {
+    "id": 23,
+    "name": "Rum",
+    "category": "Drinks"
+  },
+  {
+    "id": 24,
+    "name": "Cachaça",
+    "category": "Drinks"
+  },
+  {
+    "id": 25,
+    "name": "Gin",
+    "category": "Drinks"
+  },
+  {
+    "id": 26,
+    "name": "Vodka",
+    "category": "Drinks"
+  },
+  {
+    "id": 27,
+    "name": "Suco",
+    "category": "Drinks"
+  },
+  {
+    "id": 28,
+    "name": "Chá gelado",
+    "category": "Drinks"
+  },
+  {
+    "id": 29,
+    "name": "Bebida de soja",
+    "category": "Drinks"
+  },
+  {
+    "id": 30,
+    "name": "Tequila",
+    "category": "Drinks"
+  },
+  {
+    "id": 31,
+    "name": "Licor",
+    "category": "Drinks"
+  },
+  {
+    "id": 32,
+    "name": "Chocolate",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 33,
+    "name": "Bala",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 34,
+    "name": "Goma de mascar",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 35,
+    "name": "Rapadura",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 36,
+    "name": "Paçoca",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 37,
+    "name": "Salgadinho",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 38,
+    "name": "Torrone",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 39,
+    "name": "Pasta de amendoim",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 40,
+    "name": "Amendoim",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 41,
+    "name": "Batata palha",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 42,
+    "name": "Marshmallow",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 43,
+    "name": "Carne bovina",
+    "category": "Meats"
+  },
+  {
+    "id": 44,
+    "name": "Frango",
+    "category": "Meats"
+  },
+  {
+    "id": 45,
+    "name": "Carne moída",
+    "category": "Meats"
+  },
+  {
+    "id": 46,
+    "name": "Linguiça",
+    "category": "Meats"
+  },
+  {
+    "id": 47,
+    "name": "Bacon",
+    "category": "Meats"
+  },
+  {
+    "id": 48,
+    "name": "Peixe",
+    "category": "Meats"
+  },
+  {
+    "id": 49,
+    "name": "Camarão",
+    "category": "Meats"
+  },
+  {
+    "id": 50,
+    "name": "Carne suína",
+    "category": "Meats"
+  },
+  {
+    "id": 51,
+    "name": "Carne ovina",
+    "category": "Meats"
+  },
+  {
+    "id": 52,
+    "name": "Doce de ovos",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 53,
+    "name": "Uva passa",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 54,
+    "name": "Frutas secas",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 55,
+    "name": "Melado",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 56,
+    "name": "Creme de avelã",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 57,
+    "name": "Doce de leite",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 58,
+    "name": "Geléia",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 59,
+    "name": "Chimia",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 60,
+    "name": "Empanado de frango",
+    "category": "Frozen"
+  },
+  {
+    "id": 61,
+    "name": "Pizza",
+    "category": "Frozen"
+  },
+  {
+    "id": 62,
+    "name": "Lasanha",
+    "category": "Frozen"
+  },
+  {
+    "id": 63,
+    "name": "Comida congelada",
+    "category": "Frozen"
+  },
+  {
+    "id": 64,
+    "name": "Sorvete",
+    "category": "Frozen"
+  },
+  {
+    "id": 65,
+    "name": "Açaí",
+    "category": "Frozen"
+  },
+  {
+    "id": 66,
+    "name": "Legumes Frozen",
+    "category": "Frozen"
+  },
+  {
+    "id": 67,
+    "name": "Almôndegas",
+    "category": "Frozen"
+  },
+  {
+    "id": 68,
+    "name": "Hambúrguer",
+    "category": "Frozen"
+  },
+  {
+    "id": 69,
+    "name": "Pão de queijo",
+    "category": "Frozen"
+  },
+  {
+    "id": 70,
+    "name": "Batata frita",
+    "category": "Frozen"
+  },
+  {
+    "id": 71,
+    "name": "Óleo",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 72,
+    "name": "Funghi",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 73,
+    "name": "Sardinha",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 74,
+    "name": "Pepino em conserva",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 75,
+    "name": "Atum",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 76,
+    "name": "Ovo de codorna",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 77,
+    "name": "Cebola em conserva",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 78,
+    "name": "Patê em lata",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 79,
+    "name": "Azeitonas",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 80,
+    "name": "Alcaparras",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 81,
+    "name": "Pimenta biquinho",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 82,
+    "name": "Ervilha em conserva",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 83,
+    "name": "Milho em conserva",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 84,
+    "name": "Seleta de legumes",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 85,
+    "name": "Tomate pelado",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 86,
+    "name": "Azeite de oliva",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 87,
+    "name": "Cogumelo em conserva",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 88,
+    "name": "Palmito",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 89,
+    "name": "Tomate seco",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 90,
+    "name": "Açúcar mascavo",
+    "category": "Especiais"
+  },
+  {
+    "id": 91,
+    "name": "Barra de cereal",
+    "category": "Especiais"
+  },
+  {
+    "id": 92,
+    "name": "Adoçante",
+    "category": "Especiais"
+  },
+  {
+    "id": 93,
+    "name": "Sem glúten",
+    "category": "Especiais"
+  },
+  {
+    "id": 94,
+    "name": "Dietéticos",
+    "category": "Especiais"
+  },
+  {
+    "id": 95,
+    "name": "Ovos",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 96,
+    "name": "Patê",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 97,
+    "name": "Requeijão",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 98,
+    "name": "Queijo",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 99,
+    "name": "Presunto",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 100,
+    "name": "Queijo ralado",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 101,
+    "name": "Cream cheese",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 102,
+    "name": "Iogurte",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 103,
+    "name": "Margarina",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 104,
+    "name": "Manteiga",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 105,
+    "name": "Achocolatado líquido",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 106,
+    "name": "Leite",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 107,
+    "name": "Leite fermentado",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 108,
+    "name": "Mortadela",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 109,
+    "name": "Salame",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 110,
+    "name": "Salsicha",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 111,
+    "name": "Massa fresca",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 112,
+    "name": "Massa para pastel",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 113,
+    "name": "Nhoque",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 114,
+    "name": "Massa folhada",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 115,
+    "name": "Massa para pizza",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 116,
+    "name": "Nata",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 117,
+    "name": "Feijão",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 118,
+    "name": "Arroz",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 119,
+    "name": "Farofa",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 120,
+    "name": "Polenta",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 121,
+    "name": "Tapioca",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 122,
+    "name": "Milho para pipoca",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 123,
+    "name": "Ervilha",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 124,
+    "name": "Lentilha",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 125,
+    "name": "Farinha de trigo",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 126,
+    "name": "Farinha de milho",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 127,
+    "name": "Farinha de mandioca",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 128,
+    "name": "Canjica",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 129,
+    "name": "Grão de bico",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 130,
+    "name": "Preservativo",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 131,
+    "name": "Papel higiênico",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 132,
+    "name": "Lenço de papel",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 133,
+    "name": "Creme dental",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 134,
+    "name": "Escova dental",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 135,
+    "name": "Aparelho de barbear",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 136,
+    "name": "Escova de cabelo",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 137,
+    "name": "Absorvente",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 138,
+    "name": "Fralda",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 139,
+    "name": "Algodão",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 140,
+    "name": "Esmalte",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 141,
+    "name": "Shampoo",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 142,
+    "name": "Condicionador",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 143,
+    "name": "Creme hidratante",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 144,
+    "name": "Creme para pentear",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 145,
+    "name": "Fio dental",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 146,
+    "name": "Enxaguante bucal",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 147,
+    "name": "Desodorante",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 148,
+    "name": "Sabonete",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 149,
+    "name": "Lenço umidecido",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 150,
+    "name": "Sabonete líquido",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 151,
+    "name": "Pente para cabelo",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 152,
+    "name": "Removedor de esmalte",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 153,
+    "name": "Tinta para cabelo",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 154,
+    "name": "Espuma para barbear",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 155,
+    "name": "Gel para cabelo",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 156,
+    "name": "Cogumelos",
+    "category": "Vegetables"
+  },
+  {
+    "id": 157,
+    "name": "Orégano",
+    "category": "Vegetables"
+  },
+  {
+    "id": 158,
+    "name": "Manjericão",
+    "category": "Vegetables"
+  },
+  {
+    "id": 159,
+    "name": "Manjerona",
+    "category": "Vegetables"
+  },
+  {
+    "id": 160,
+    "name": "Alecrim",
+    "category": "Vegetables"
+  },
+  {
+    "id": 161,
+    "name": "Louro",
+    "category": "Vegetables"
+  },
+  {
+    "id": 162,
+    "name": "Cebolinha",
+    "category": "Vegetables"
+  },
+  {
+    "id": 163,
+    "name": "Alho",
+    "category": "Vegetables"
+  },
+  {
+    "id": 164,
+    "name": "Salsa",
+    "category": "Vegetables"
+  },
+  {
+    "id": 165,
+    "name": "Tempero verde",
+    "category": "Vegetables"
+  },
+  {
+    "id": 166,
+    "name": "Pimenta",
+    "category": "Vegetables"
+  },
+  {
+    "id": 167,
+    "name": "Batata",
+    "category": "Vegetables"
+  },
+  {
+    "id": 168,
+    "name": "Tomate",
+    "category": "Vegetables"
+  },
+  {
+    "id": 169,
+    "name": "Beterraba",
+    "category": "Vegetables"
+  },
+  {
+    "id": 170,
+    "name": "Nabo",
+    "category": "Vegetables"
+  },
+  {
+    "id": 171,
+    "name": "Cenoura",
+    "category": "Vegetables"
+  },
+  {
+    "id": 172,
+    "name": "Chuchu",
+    "category": "Vegetables"
+  },
+  {
+    "id": 173,
+    "name": "Cebola",
+    "category": "Vegetables"
+  },
+  {
+    "id": 174,
+    "name": "Pepino",
+    "category": "Vegetables"
+  },
+  {
+    "id": 175,
+    "name": "Pepino japonês",
+    "category": "Vegetables"
+  },
+  {
+    "id": 176,
+    "name": "Pimentão",
+    "category": "Vegetables"
+  },
+  {
+    "id": 177,
+    "name": "Batata doce",
+    "category": "Vegetables"
+  },
+  {
+    "id": 178,
+    "name": "Moranga",
+    "category": "Vegetables"
+  },
+  {
+    "id": 179,
+    "name": "Abobrinha",
+    "category": "Vegetables"
+  },
+  {
+    "id": 180,
+    "name": "Vagem",
+    "category": "Vegetables"
+  },
+  {
+    "id": 181,
+    "name": "Berinjela",
+    "category": "Vegetables"
+  },
+  {
+    "id": 182,
+    "name": "Milho",
+    "category": "Vegetables"
+  },
+  {
+    "id": 183,
+    "name": "Alface",
+    "category": "Vegetables"
+  },
+  {
+    "id": 184,
+    "name": "Rúcula",
+    "category": "Vegetables"
+  },
+  {
+    "id": 185,
+    "name": "Brócolis",
+    "category": "Vegetables"
+  },
+  {
+    "id": 186,
+    "name": "Couve-flor",
+    "category": "Vegetables"
+  },
+  {
+    "id": 187,
+    "name": "Agrião",
+    "category": "Vegetables"
+  },
+  {
+    "id": 188,
+    "name": "Espinafre",
+    "category": "Vegetables"
+  },
+  {
+    "id": 189,
+    "name": "Couve",
+    "category": "Vegetables"
+  },
+  {
+    "id": 190,
+    "name": "Radiche",
+    "category": "Vegetables"
+  },
+  {
+    "id": 191,
+    "name": "Salsão",
+    "category": "Vegetables"
+  },
+  {
+    "id": 192,
+    "name": "Repolho",
+    "category": "Vegetables"
+  },
+  {
+    "id": 193,
+    "name": "Banana",
+    "category": "Vegetables"
+  },
+  {
+    "id": 194,
+    "name": "Laranja",
+    "category": "Vegetables"
+  },
+  {
+    "id": 195,
+    "name": "Uva",
+    "category": "Vegetables"
+  },
+  {
+    "id": 196,
+    "name": "Abacaxi",
+    "category": "Vegetables"
+  },
+  {
+    "id": 197,
+    "name": "Mirtilo",
+    "category": "Vegetables"
+  },
+  {
+    "id": 198,
+    "name": "Morango",
+    "category": "Vegetables"
+  },
+  {
+    "id": 199,
+    "name": "Coco",
+    "category": "Vegetables"
+  },
+  {
+    "id": 200,
+    "name": "Limão",
+    "category": "Vegetables"
+  },
+  {
+    "id": 201,
+    "name": "Maçã",
+    "category": "Vegetables"
+  },
+  {
+    "id": 202,
+    "name": "Mamão",
+    "category": "Vegetables"
+  },
+  {
+    "id": 203,
+    "name": "Manga",
+    "category": "Vegetables"
+  },
+  {
+    "id": 204,
+    "name": "Maracujá",
+    "category": "Vegetables"
+  },
+  {
+    "id": 205,
+    "name": "Melancia",
+    "category": "Vegetables"
+  },
+  {
+    "id": 206,
+    "name": "Melão",
+    "category": "Vegetables"
+  },
+  {
+    "id": 207,
+    "name": "Abacate",
+    "category": "Vegetables"
+  },
+  {
+    "id": 208,
+    "name": "Bergamota",
+    "category": "Vegetables"
+  },
+  {
+    "id": 209,
+    "name": "Kiwi",
+    "category": "Vegetables"
+  },
+  {
+    "id": 210,
+    "name": "Nectarina",
+    "category": "Vegetables"
+  },
+  {
+    "id": 211,
+    "name": "Ameixa",
+    "category": "Vegetables"
+  },
+  {
+    "id": 212,
+    "name": "Pêra",
+    "category": "Vegetables"
+  },
+  {
+    "id": 213,
+    "name": "Lima",
+    "category": "Vegetables"
+  },
+  {
+    "id": 214,
+    "name": "Pêssego",
+    "category": "Vegetables"
+  },
+  {
+    "id": 215,
+    "name": "Pitaya",
+    "category": "Vegetables"
+  },
+  {
+    "id": 216,
+    "name": "Esponja",
+    "category": "Cleaning"
+  },
+  {
+    "id": 217,
+    "name": "Escova",
+    "category": "Cleaning"
+  },
+  {
+    "id": 218,
+    "name": "Vassoura",
+    "category": "Cleaning"
+  },
+  {
+    "id": 219,
+    "name": "Rodo",
+    "category": "Cleaning"
+  },
+  {
+    "id": 220,
+    "name": "Água sanitária",
+    "category": "Cleaning"
+  },
+  {
+    "id": 221,
+    "name": "Purificador de ambientes",
+    "category": "Cleaning"
+  },
+  {
+    "id": 222,
+    "name": "Sabão em barra",
+    "category": "Cleaning"
+  },
+  {
+    "id": 223,
+    "name": "Sabão líquido",
+    "category": "Cleaning"
+  },
+  {
+    "id": 224,
+    "name": "Detergente líquido",
+    "category": "Cleaning"
+  },
+  {
+    "id": 225,
+    "name": "Detergente em pó",
+    "category": "Cleaning"
+  },
+  {
+    "id": 226,
+    "name": "Alvejante",
+    "category": "Cleaning"
+  },
+  {
+    "id": 227,
+    "name": "Amaciante",
+    "category": "Cleaning"
+  },
+  {
+    "id": 228,
+    "name": "Lava louça",
+    "category": "Cleaning"
+  },
+  {
+    "id": 229,
+    "name": "Limpador",
+    "category": "Cleaning"
+  },
+  {
+    "id": 230,
+    "name": "Inseticida",
+    "category": "Cleaning"
+  },
+  {
+    "id": 231,
+    "name": "Desinfetante",
+    "category": "Cleaning"
+  },
+  {
+    "id": 232,
+    "name": "Pá",
+    "category": "Cleaning"
+  },
+  {
+    "id": 233,
+    "name": "Desentupidor",
+    "category": "Cleaning"
+  },
+  {
+    "id": 234,
+    "name": "Pano",
+    "category": "Cleaning"
+  },
+  {
+    "id": 235,
+    "name": "Corda pra varal",
+    "category": "Cleaning"
+  },
+  {
+    "id": 236,
+    "name": "Esfregão",
+    "category": "Cleaning"
+  },
+  {
+    "id": 237,
+    "name": "Solvente",
+    "category": "Cleaning"
+  },
+  {
+    "id": 238,
+    "name": "Óleo de peroba",
+    "category": "Cleaning"
+  },
+  {
+    "id": 239,
+    "name": "Antimofo",
+    "category": "Cleaning"
+  },
+  {
+    "id": 240,
+    "name": "Incenso",
+    "category": "Cleaning"
+  },
+  {
+    "id": 241,
+    "name": "Saco pra lixo",
+    "category": "Cleaning"
+  },
+  {
+    "id": 242,
+    "name": "Álcool",
+    "category": "Cleaning"
+  },
+  {
+    "id": 243,
+    "name": "Polidor de sapato",
+    "category": "Cleaning"
+  },
+  {
+    "id": 244,
+    "name": "Lustra móveis",
+    "category": "Cleaning"
+  },
+  {
+    "id": 245,
+    "name": "Cera",
+    "category": "Cleaning"
+  },
+  {
+    "id": 246,
+    "name": "Repelente",
+    "category": "Cleaning"
+  },
+  {
+    "id": 247,
+    "name": "Saponáceo",
+    "category": "Cleaning"
+  },
+  {
+    "id": 248,
+    "name": "Guardanapo",
+    "category": "Cleaning"
+  },
+  {
+    "id": 249,
+    "name": "Massa",
+    "category": "Pastas and cookies"
+  },
+  {
+    "id": 250,
+    "name": "Macarrão instantâneo",
+    "category": "Pastas and cookies"
+  },
+  {
+    "id": 251,
+    "name": "Bolacha",
+    "category": "Pastas and cookies"
+  },
+  {
+    "id": 252,
+    "name": "Bolacha recheada",
+    "category": "Pastas and cookies"
+  },
+  {
+    "id": 253,
+    "name": "Granola",
+    "category": "Breakfast"
+  },
+  {
+    "id": 254,
+    "name": "Filtro de papel",
+    "category": "Breakfast"
+  },
+  {
+    "id": 255,
+    "name": "Café",
+    "category": "Breakfast"
+  },
+  {
+    "id": 256,
+    "name": "Chá",
+    "category": "Breakfast"
+  },
+  {
+    "id": 257,
+    "name": "Aveia",
+    "category": "Breakfast"
+  },
+  {
+    "id": 258,
+    "name": "Açúcar",
+    "category": "Breakfast"
+  },
+  {
+    "id": 259,
+    "name": "Achocolatado em pó",
+    "category": "Breakfast"
+  },
+  {
+    "id": 260,
+    "name": "Leite em pó",
+    "category": "Breakfast"
+  },
+  {
+    "id": 261,
+    "name": "Cereal",
+    "category": "Breakfast"
+  },
+  {
+    "id": 262,
+    "name": "Porta filtro",
+    "category": "Breakfast"
+  },
+  {
+    "id": 263,
+    "name": "Erva-mate",
+    "category": "Breakfast"
+  },
+  {
+    "id": 264,
+    "name": "Linhaça",
+    "category": "Breakfast"
+  },
+  {
+    "id": 265,
+    "name": "Molho de tomate",
+    "category": "Sauces"
+  },
+  {
+    "id": 266,
+    "name": "Shoyo",
+    "category": "Sauces"
+  },
+  {
+    "id": 267,
+    "name": "Catchup",
+    "category": "Sauces"
+  },
+  {
+    "id": 268,
+    "name": "Maionese",
+    "category": "Sauces"
+  },
+  {
+    "id": 269,
+    "name": "Mostarda",
+    "category": "Sauces"
+  },
+  {
+    "id": 270,
+    "name": "Molho de salada",
+    "category": "Sauces"
+  },
+  {
+    "id": 271,
+    "name": "Molho de pimenta",
+    "category": "Sauces"
+  },
+  {
+    "id": 272,
+    "name": "Molho branco",
+    "category": "Sauces"
+  },
+  {
+    "id": 273,
+    "name": "Molho madeira",
+    "category": "Sauces"
+  },
+  {
+    "id": 274,
+    "name": "Pesto",
+    "category": "Sauces"
+  },
+  {
+    "id": 275,
+    "name": "Pão de alho",
+    "category": "Bakery"
+  },
+  {
+    "id": 276,
+    "name": "Pão de forma",
+    "category": "Bakery"
+  },
+  {
+    "id": 277,
+    "name": "Pão",
+    "category": "Bakery"
+  },
+  {
+    "id": 278,
+    "name": "Tortilha",
+    "category": "Bakery"
+  },
+  {
+    "id": 279,
+    "name": "Bolo",
+    "category": "Bakery"
+  },
+  {
+    "id": 280,
+    "name": "Biscoito",
+    "category": "Bakery"
+  },
+  {
+    "id": 281,
+    "name": "Torta",
+    "category": "Bakery"
+  },
+  {
+    "id": 282,
+    "name": "Pão árabe",
+    "category": "Bakery"
+  },
+  {
+    "id": 283,
+    "name": "Tapete higiênico",
+    "category": "PetShop"
+  },
+  {
+    "id": 284,
+    "name": "Sachê para pet",
+    "category": "PetShop"
+  },
+  {
+    "id": 285,
+    "name": "Petisco para pet",
+    "category": "PetShop"
+  },
+  {
+    "id": 286,
+    "name": "Ração",
+    "category": "PetShop"
+  },
+  {
+    "id": 287,
+    "name": "Granulado sanitário",
+    "category": "PetShop"
+  },
+  {
+    "id": 288,
+    "name": "Antipulgas",
+    "category": "PetShop"
+  },
+  {
+    "id": 289,
+    "name": "Coco ralado",
+    "category": "Desserts"
+  },
+  {
+    "id": 290,
+    "name": "Chocolate em pó",
+    "category": "Desserts"
+  },
+  {
+    "id": 291,
+    "name": "Mistura para bolo",
+    "category": "Desserts"
+  },
+  {
+    "id": 292,
+    "name": "Fermento",
+    "category": "Desserts"
+  },
+  {
+    "id": 293,
+    "name": "Pudim",
+    "category": "Desserts"
+  },
+  {
+    "id": 294,
+    "name": "Gelatina",
+    "category": "Desserts"
+  },
+  {
+    "id": 295,
+    "name": "Flan",
+    "category": "Desserts"
+  },
+  {
+    "id": 296,
+    "name": "Chantilly",
+    "category": "Desserts"
+  },
+  {
+    "id": 297,
+    "name": "Leite condensado",
+    "category": "Desserts"
+  },
+  {
+    "id": 298,
+    "name": "Creme de leite",
+    "category": "Desserts"
+  },
+  {
+    "id": 299,
+    "name": "Canela",
+    "category": "Desserts"
+  },
+  {
+    "id": 300,
+    "name": "Polvilho",
+    "category": "Desserts"
+  },
+  {
+    "id": 301,
+    "name": "Sagu",
+    "category": "Desserts"
+  },
+  {
+    "id": 302,
+    "name": "Leite de coco",
+    "category": "Desserts"
+  },
+  {
+    "id": 303,
+    "name": "Sal",
+    "category": "Seasonings"
+  },
+  {
+    "id": 304,
+    "name": "Caldo de galinha",
+    "category": "Seasonings"
+  },
+  {
+    "id": 305,
+    "name": "Caldo de carne",
+    "category": "Seasonings"
+  },
+  {
+    "id": 306,
+    "name": "Caldo de legumes",
+    "category": "Seasonings"
+  },
+  {
+    "id": 307,
+    "name": "Vinagre",
+    "category": "Seasonings"
+  },
+  {
+    "id": 308,
+    "name": "Pimenta em pó",
+    "category": "Seasonings"
+  },
+  {
+    "id": 309,
+    "name": "Tempero",
+    "category": "Seasonings"
+  },
+  {
+    "id": 310,
+    "name": "Aceto balsâmico",
+    "category": "Seasonings"
+  },
+  {
+    "id": 311,
+    "name": "Outro",
+    "category": "Others"
+  },
+  {
+    "id": 312,
+    "name": "Coentro",
+    "category": "Vegetables"
+  },
+  {
+    "id": 313,
+    "name": "Chia",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 314,
+    "name": "Gergelim",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 315,
+    "name": "Mel",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 316,
+    "name": "Azeite de dendê",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 317,
+    "name": "Nuggets",
+    "category": "Frozen"
+  },
+  {
+    "id": 318,
+    "name": "Molho de queijo",
+    "category": "Sauces"
+  },
+  {
+    "id": 319,
+    "name": "Massa para lasanha",
+    "category": "Hams and dairy products"
+  }
+]
+
