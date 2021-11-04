@@ -19,7 +19,7 @@ struct EditProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("EditarPerfilTitutlo")
+                Text("EditProfileTitle")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                 
@@ -51,11 +51,11 @@ struct EditProfileView: View {
                         ImagePicker(image: self.$picture)
                     }
                 }
-                TextField(LocalizedStringKey("NomeTextField"), text: $newUsername)
+                TextField(LocalizedStringKey("EditProfileFieldPlaceholder"), text: $newUsername)
                     .modifier(CustomTextFieldStyle())
 
                 
-                Text("DicaTextoTextField")
+                Text("EditProfileText")
                     .padding(.horizontal)
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -68,7 +68,7 @@ struct EditProfileView: View {
                     Button {
                         self.showingSheet = false
                     } label: {
-                        Text("CancelarEditProfile")
+                        Text("EditProfileLeadingNavigationLabel")
                     }
                     
                 }
@@ -88,7 +88,7 @@ struct EditProfileView: View {
                         self.picture = picture
                         self.showingSheet = false
                     } label: {
-                        Text("SalvarEditProfile")
+                        Text("EditProfileTrailingNavigationLabel")
                     }
                 }
             }

@@ -6,8 +6,7 @@ struct SearchBar: View {
     
     var body: some View {
         HStack {
-            #warning("Not working this translate for Search Itens")
-            TextField(LocalizedStringKey("ProcurarItens"), text: $text)
+            TextField(NSLocalizedString("SearchBarPlaceholder", comment: "SearchBarPlaceholder"), text: $text)
                 .foregroundColor(Color(UIColor.secondaryLabel))
                 .padding(10)
                 .padding(.leading, 30)
