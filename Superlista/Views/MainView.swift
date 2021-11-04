@@ -28,6 +28,7 @@ struct MainView: View {
     
     @State var showAlertDelete = false
     @State var showAlertDuplicate = false
+    @State var editNavigation = false
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     @State var shouldChangeView = false
@@ -182,8 +183,8 @@ struct MainView: View {
                                                         .foregroundColor(Color.white)
                                                         .contextMenu {
                                                             Button {
-                                                              //  NavigationLink(destination: ListView(listId: list.id)
-                                                                print("edit")
+                                                                dataService.currentList = list
+                                                                editNavigation = true
                                                             } label: {
                                                                 Label("ContextMenu1", systemImage: "pencil")
                                                             }
@@ -217,7 +218,9 @@ struct MainView: View {
                                             }
                                             .padding(.horizontal, 20)
                                             ZStack {
-                                                
+                                                NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
+                                                    EmptyView()
+                                                }
                                             }
                                             .alert(isPresented: $showAlertDelete){
                                                 Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
