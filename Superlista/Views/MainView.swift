@@ -26,7 +26,8 @@ struct MainView: View {
         }
     }
     
-    @State var showAlert = false
+    @State var showAlertDelete = false
+    @State var showAlertDuplicate = false
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     @State var shouldChangeView = false
@@ -109,14 +110,14 @@ struct MainView: View {
                                             .offset(x: 150, y: -45)
                                             .onTapGesture {
                                                 dataService.currentList = list
-                                                showAlert = true
+                                                showAlertDelete = true
                                             }
                                         
                                     }
-                                    .alert(isPresented: $showAlert){
+                                    .alert(isPresented: $showAlertDelete){
                                         Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
                                             dataService.removeList(dataService.currentList!)
-                                            showAlert = false
+                                            showAlertDelete = false
                                         }))
                                     }
                                     // MARK: - list cards drag and drop
@@ -187,7 +188,8 @@ struct MainView: View {
                                                                 Label("ContextMenu1", systemImage: "pencil")
                                                             }
                                                             Button {
-                                                                dataService.duplicateList(of: list)
+                                                                dataService.currentList = list
+                                                                showAlertDuplicate = true
                                                             } label: {
                                                                 Label("ContextMenu2", systemImage: "doc.on.doc")
                                                             }
@@ -205,7 +207,7 @@ struct MainView: View {
                                                             }
                                                             Button {
                                                                 dataService.currentList = list
-                                                                showAlert = true
+                                                                showAlertDelete = true
                                                             } label: {
                                                                 Label("ContextMenu5", systemImage: "trash")
                                                             }
@@ -214,13 +216,24 @@ struct MainView: View {
                                                 }
                                             }
                                             .padding(.horizontal, 20)
-                                            
-                                        }
-                                        .alert(isPresented: $showAlert){
-                                            Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
-                                                dataService.removeList(dataService.currentList!)
-                                                showAlert = false
-                                            }))
+                                            ZStack {
+                                                
+                                            }
+                                            .alert(isPresented: $showAlertDelete){
+                                                Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
+                                                    dataService.removeList(dataService.currentList!)
+                                                    showAlertDelete = false
+                                                }))
+                                            }
+                                            ZStack {
+                                                
+                                            }
+                                            .alert(isPresented: $showAlertDuplicate){
+                                                Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
+                                                    dataService.duplicateList(of: dataService.currentList!)
+                                                    showAlertDuplicate = false
+                                                }))
+                                            }
                                         }
                                     })
                                 }

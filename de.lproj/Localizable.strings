@@ -76,8 +76,11 @@
 "ContextMenu1" = "Edit";
 "ContextMenu2" = "Duplicate List";
 "ContextMenu3" = "Add Collaborator";
-"ContextMenu4" = "Share";
+"ContextMenu4" = "Share List";
 "ContextMenu5" = "Delete List";
+"DuplicateListAlertText" = "Are you sure you want to duplicate this list?";
+"DuplicateListAlertButton" = "Duplicate";
+"Duplicar %@" = "Do you want to %@?";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Kommentar hinzufügen";
