@@ -265,11 +265,6 @@
     "category": "Jams and sweets"
   },
   {
-    "id": 57,
-    "name": "Sweet milk",
-    "category": "Jams and sweets"
-  },
-  {
     "id": 58,
     "name": "Jam",
     "category": "Jams and sweets"
@@ -365,6 +360,11 @@
     "category": "Canned, pickled and oils"
   },
   {
+    "id": 78,
+    "name": "Canned pâté",
+    "category": "Canned, pickled and oils"
+  },
+  {
     "id": 79,
     "name": "Olives",
     "category": "Canned, pickled and oils"
@@ -396,7 +396,7 @@
   },
   {
     "id": 85,
-    "name": "Naked tomatoes",
+    "name": "Peeled tomatoes",
     "category": "Canned, pickled and oils"
   },
   {
@@ -422,27 +422,27 @@
   {
     "id": 90,
     "name": "Brown sugar",
-    "category": "Especiais"
+    "category": "Specials"
   },
   {
     "id": 91,
     "name": "Cereal bar",
-    "category": "Especiais"
+    "category": "Specials"
   },
   {
     "id": 92,
     "name": "Sweetner",
-    "category": "Especiais"
+    "category": "Specials"
   },
   {
     "id": 93,
     "name": "Gluten free",
-    "category": "Especiais"
+    "category": "Specials"
   },
   {
     "id": 94,
     "name": "Sugar free",
-    "category": "Especiais"
+    "category": "Specials"
   },
   {
     "id": 95,
@@ -1066,7 +1066,7 @@
   },
   {
     "id": 224,
-    "name": "Liquid dtergent",
+    "name": "Liquid detergent",
     "category": "Cleaning"
   },
   {
@@ -1301,7 +1301,7 @@
   },
   {
     "id": 272,
-    "name": "Cheese sauce",
+    "name": "White sauce",
     "category": "Sauces"
   },
   {
@@ -1523,6 +1523,11 @@
     "id": 317,
     "name": "Nuggets",
     "category": "Frozen"
+  },
+  {
+    "id": 318,
+    "name": "Cheese sauce",
+    "category": "Sauces"
   },
   {
     "id": 319,
