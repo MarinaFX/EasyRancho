@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091459392733113900583586 /* productList_en.json in Sources */ = {isa = PBXBuildFile; fileRef = 091459382733113900583586 /* productList_en.json */; };
 		0914B97C270B6B90008E297F /* CKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B97B270B6B90008E297F /* CKService.swift */; };
 		0914B97E270B6CF8008E297F /* CKUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B97D270B6CF8008E297F /* CKUserModel.swift */; };
 		0914B982270B8016008E297F /* CKListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B981270B8016008E297F /* CKListModel.swift */; };
@@ -94,6 +95,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		091459382733113900583586 /* productList_en.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = productList_en.json; sourceTree = "<group>"; };
 		0914B97B270B6B90008E297F /* CKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKService.swift; sourceTree = "<group>"; };
 		0914B97D270B6CF8008E297F /* CKUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKUserModel.swift; sourceTree = "<group>"; };
 		0914B981270B8016008E297F /* CKListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKListModel.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				09725B2E2656E0000006D410 /* DefaultLS.png */,
 				1BFA60672641DE9B0030AE03 /* productList.json */,
 				1B32EF1326600B4F006AE70B /* cestinha-v2.json */,
+				091459382733113900583586 /* productList_en.json */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091459392733113900583586 /* productList_en.json in Sources */,
 				09725B1B264C5FE40006D410 /* FakeSearchBar.swift in Sources */,
 				09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */,
 				389B80D5271F7C8300ADCBE1 /* SettingLabel.swift in Sources */,
@@ -561,7 +565,6 @@
 				1B43E5AE264B0F61002C6D64 /* MainView.swift in Sources */,
 				389B80D7271F7DB300ADCBE1 /* ImagePicker.swift in Sources */,
 				389B80DD271F848300ADCBE1 /* ProfileHeader.swift in Sources */,
-				1B43E5AE264B0F61002C6D64 /* MainView.swift in Sources */,
 				09725B09264470EE0006D410 /* MainScreen.swift in Sources */,
 				389B80D0271F61DE00ADCBE1 /* SettingsView.swift in Sources */,
 				89C5B6DB2726308F00129A94 /* UploadPictureButton.swift in Sources */,
@@ -652,6 +655,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -713,6 +717,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

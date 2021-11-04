@@ -51,10 +51,10 @@ struct EditProfileView: View {
                         ImagePicker(image: self.$picture)
                     }
                 }
-                
-                TextField(NSLocalizedString("EditProfileFieldPlaceholder", comment: "EditProfileFieldPlaceholder"), text: $newUsername)
+                TextField(LocalizedStringKey("EditProfileFieldPlaceholder"), text: $newUsername)
                     .modifier(CustomTextFieldStyle())
 
+                
                 Text("EditProfileText")
                     .padding(.horizontal)
                     .font(.caption)

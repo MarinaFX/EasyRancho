@@ -68,6 +68,11 @@
 "MainViewTrailingNavigationLabelB" = "Editar";
 "MainViewTitle" = "Listas";
 "MainViewLeadingNavigationLabel" = "Nova Lista";
+"TudoSegmentedPicker" = "Tudo";
+"MinhasListasSegmentedPicker" = "Minhas listas";
+"ColaborativasSegmentedPicker" = "Colaborativas";
+"CriadaPorMim" = "Criada por **mim**";
+"CriadaPor %@" = "Criada por **%@**";
 
 "Remover %@" = "Deseja remover %@?";
 "DeleteListAlertText"= "A lista removida não poderá ser recuperada após sua exclusão";
@@ -128,3 +133,13 @@
 "Sobremesas" = "Sobremesas";
 "Temperos" = "Temperos";
 "Outros" = "Outros";
+// MARK: - Onboarding Fields
+"OnboardingFieldsTitle" = "Personalize seu perfil";
+"OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
+"Nome" = "Nome";
+"Salvar" = "Salvar";
+"Pular" = "Pular";
+
+// MARK: - Tab Bar
+"ListasMenu" = "Minhas listas";
+"ConfigsMenu" = "Configurações";

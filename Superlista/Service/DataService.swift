@@ -37,6 +37,20 @@ class DataService: ObservableObject {
         self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
             var localLists = UDService().getUDLists()
             
+            ckUserModel.sharedWithMe?.forEach { list in
+                let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                
+                let ids = localLists.map(\.id)
+                
+                if let index = ids.firstIndex(of: list.id.recordName) {
+                    localLists[index] = localList
+                }
+                else {
+                    localLists.append(localList)
+                }
+            }
+            
+            
             ckUserModel.myLists?.forEach { list in
                 let localList = ListModelConverter().convertCloudListToLocal(withList: list)
                 
