@@ -38,12 +38,12 @@
 "SettingLabelA" = "Profil bearbeiten";
 "SettingLabelB" = "Kontakt";
 "SettingLabelC" = "Freund einladen";
-"InviteMessage" = "Take a look at the app I'm using to create my groceries lists. Download now =)";
+"InviteMessage" = "Siehst du sich die App an, mit der ich meine Einkaufslisten erstelle. Lädst du es auch herunter! =)";
 
 // MARK: - EditProfileView
 "EditProfileTitle" = "Profil bearbeiten";
 "EditProfileFieldPlaceholder" = "Name";
-"EditProfileText" = "Add a name and a profile picture for you to be easily identified when sharing a list or being added to one.";
+"EditProfileText" = "Fügst du einen Namen und ein Profilbild, damit du leicht identifiziert werden kannst, wenn du eine Liste teilst oder zu einer Liste hinzugefügt werden.";
 "EditProfileLeadingNavigationLabel" = "Abbrechen";
 "EditProfileTrailingNavigationLabel" = "Speichern";
 
