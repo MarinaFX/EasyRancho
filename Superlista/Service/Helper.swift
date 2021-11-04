@@ -66,47 +66,47 @@ func shareSheet(listID: String, option: String, listName: String, ownerName: Str
 // MARK: - Get Color Categories
 func getColor(category: String) -> Color {
     switch category{
-    case "Bazar" :
+    case NSLocalizedString("Bazar", comment: "Bazar"):
         return Color("Bazar")
-    case "Bebidas" :
+    case NSLocalizedString("Bebidas", comment: "Bebidas"):
         return Color("Bebidas")
-    case "Bomboniere" :
+    case NSLocalizedString("Bomboniere", comment: "Bomboniere"):
         return Color("Bomboniere")
-    case "Carnes" :
+    case NSLocalizedString("Carnes", comment: "Carnes"):
         return Color("Carnes")
-    case "Compotas e doces" :
+    case NSLocalizedString("Compotasedoces", comment: "Compotas e doces"):
         return Color("Compotasedoces")
-    case "Congelados" :
+    case NSLocalizedString("Congelados", comment: "Congelados"):
         return Color("Congelados")
-    case "Enlatados, conservas e óleos" :
+    case NSLocalizedString("Enlatadosconservaseoleos", comment: "Enlatados, conservas e oleos"):
         return Color("Enlatadosconservaseoleos")
-    case "Especiais" :
+    case NSLocalizedString("Especiais", comment: "Especiais"):
         return Color("Especiais")
-    case "Fiambreria e laticínios" :
+    case NSLocalizedString("Fiambreriaelaticinios", comment: "Fiambreria e laticinios"):
         return Color("Fiambreriaelaticinios")
-    case "Grãos e farinhas" :
+    case NSLocalizedString("Graosefarinhas", comment: "Graos e farinhas"):
         return Color("Graosefarinhas")
-    case "Higiene e beleza" :
+    case NSLocalizedString("Higieneebeleza", comment: "Higiene e beleza"):
         return Color("Higieneebeleza")
-    case "Hortifruti" :
+    case NSLocalizedString("Hortifruti", comment: "Hortifruti"):
         return Color("Hortifruti")
-    case "Limpeza" :
+    case NSLocalizedString("Limpeza", comment: "Limpeza"):
         return Color("Limpeza")
-    case "Massas e biscoitos" :
+    case NSLocalizedString("Massasebiscoitos", comment: "Massas e biscoitos"):
         return Color("Massasebiscoitos")
-    case "Matinais" :
+    case NSLocalizedString("Matinais", comment: "Matinais"):
         return Color("Matinais")
-    case "Molhos" :
+    case NSLocalizedString("Molhos", comment: "Molhos"):
         return Color("Molhos")
-    case "Padaria" :
+    case NSLocalizedString("Padaria", comment: "Padaria"):
         return Color("Padaria")
-    case "PetShop" :
+    case NSLocalizedString("PetShop", comment: "PetShop"):
         return Color("PetShop")
-    case "Sobremesas" :
+    case NSLocalizedString("Sobremesas", comment: "Sobremesas"):
         return Color("Sobremesas")
-    case "Temperos" :
+    case NSLocalizedString("Temperos", comment: "Temperos"):
         return Color("Temperos")
-    case "Outros" :
+    case NSLocalizedString("Outros", comment: "Outros"):
         return Color("Outros")
     default:
         return Color.black

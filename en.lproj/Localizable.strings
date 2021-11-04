@@ -94,5 +94,29 @@
 
 "SharedAlertText" = "This list has been shared with you. Want to add a copy of this list to your lists?";
 
-// MARK: - Random Assets
+// MARK: - Assets
 "DefaultLS" = "DefaultLS";
+"ProductList" = "productList_en.json";
+
+// MARK: - Products
+"Bazar" = "Home";
+"Bebidas" = "Drinks";
+"Bomboniere" = "Bomboniere";
+"Carnes" = "Meats";
+"Compotasedoces" = "Jams and sweets";
+"Congelados" = "Frozen";
+"Enlatadosconservaseoleos" = "Canned, pickled and oils";
+"Especiais" = "Specials";
+"Fiambreriaelaticinios" = "Hams and dairy products";
+"Graosefarinhas" = "Grains and flours";
+"Higieneebeleza" = "Beauty and hygiene";
+"Hortifruti" = "Vegetables";
+"Limpeza" = "Cleaning";
+"Massasebiscoitos" = "Pasta and cookies";
+"Matinais" = "Breakfast";
+"Molhos" = "Sauces";
+"Padaria" = "Bakery";
+"PetShop" = "PetShop";
+"Sobremesas" = "Desserts";
+"Temperos" = "Seasonings";
+"Outros" = "Others";

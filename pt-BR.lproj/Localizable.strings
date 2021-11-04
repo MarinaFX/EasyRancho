@@ -94,5 +94,29 @@
 
 "SharedAlertText" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
 
-// MARK: - Random Assets
+// MARK: - Assets
 "DefaultLS" = "DefaultLS";
+"ProductList" = "productList.json";
+
+// MARK: - Products
+"Bazar" = "Bazar";
+"Bebidas" = "Bebidas";
+"Bomboniere" = "Bomboniere";
+"Carnes" = "Carnes";
+"Compotasedoces" = "Compotas e doces";
+"Congelados" = "Congelados";
+"Enlatadosconservaseoleos" = "Enlatados, conservas e óleos";
+"Especiais" = "Especiais";
+"Fiambreriaelaticinios" = "Fiambreria e laticínios";
+"Graosefarinhas" = "Grãos e farinhas";
+"Higieneebeleza" = "Higiene e beleza";
+"Hortifruti" = "Hortifruti";
+"Limpeza" = "Limpeza";
+"Massasebiscoitos" = "Massas e biscoitos";
+"Matinais" = "Matinais";
+"Molhos" = "Molhos";
+"Padaria" = "Padaria";
+"PetShop" = "PetShop";
+"Sobremesas" = "Sobremesas";
+"Temperos" = "Temperos";
+"Outros" = "Outros";

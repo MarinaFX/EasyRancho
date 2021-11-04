@@ -94,5 +94,29 @@
 
 "SharedAlertText" = "Diese Liste wurde mit Ihnen freigegeben. Möchtest du eine Kopie dieser Liste zu Ihren Listen hinzufügen?";
 
-// MARK: - Random Assets
+// MARK: - Assets
 "DefaultLS" = "DefaultLS";
+"ProductList" = "productList_de.json";
+
+// MARK: - Products
+"Bazar" = "Haushaltsartikel";
+"Bebidas" = "Getränke";
+"Bomboniere" = "Bomboniere";
+"Carnes" = "Fleisch";
+"Compotasedoces" = "Konfitüren und Gelees";
+"Congelados" = "Tiefkühlkost";
+"Enlatadosconservaseoleos" = "Lebensmittelkonserven und Öle";
+"Especiais" = "Sonderposten";
+"Fiambreriaelaticinios" = "Schinken und Molkereiprodukte";
+"Graosefarinhas" = "Körner und Mehle";
+"Higieneebeleza" = "Hygiene und Schönheit";
+"Hortifruti" = "Obst und Gemüse";
+"Limpeza" = "Reinigung";
+"Massasebiscoitos" = "Nudeln und Kekse";
+"Matinais" = "Morgen";
+"Molhos" = "Saucen";
+"Padaria" = "Bäckerei";
+"PetShop" = "Zoohandlung";
+"Sobremesas" = "Desserts";
+"Temperos" = "Gewürze";
+"Outros" = "Andere";
