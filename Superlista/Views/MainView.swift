@@ -11,6 +11,8 @@ struct MainView: View {
     @State var isLoading: Bool = false
     @State var selectedSection = 0
     @State var createdBy = ""
+    @State var counter = 0
+    
     var appliedSection: [ListModel]{
         switch selectedSection{
         case 0:
@@ -25,6 +27,19 @@ struct MainView: View {
             return []
         }
     }
+    
+    //                                switch selectedSection{
+    //                                case 1:
+    //                                    guard let currentUser = dataService.user,
+    //                                          list.owner.id == currentUser.id
+    //                                    else { EmptyView() }
+    //                                case 2:
+    //                                    guard let currentUser = dataService.user,
+    //                                          list.owner.id != currentUser.id
+    //                                    else { EmptyView() }
+    //                                default:
+    //                                    EmptyView()
+    //                                }
     
     @State var showAlert = false
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
@@ -48,11 +63,11 @@ struct MainView: View {
                     
                     if dataService.lists.isEmpty {
                         EmptyView()
-                        .onAppear {
-                            if dataService.lists.isEmpty {
-                                self.isEditing = false
+                            .onAppear {
+                                if dataService.lists.isEmpty {
+                                    self.isEditing = false
+                                }
                             }
-                        }
                     }
                     ScrollView(showsIndicators: false) {
                         Picker("Lists Sections", selection: $selectedSection) {
@@ -64,6 +79,10 @@ struct MainView: View {
                         
                         LazyVGrid(columns: columns, spacing: 20, content: {
                             ForEach(appliedSection) { list in
+//                                if !(selectedSection == 1 && list.owner.id == dataService.user) {
+//                                    EmptyView()
+//                                }
+                                
                                 if isEditing {
                                     ZStack(alignment: .leading) {
                                         Rectangle()
@@ -93,7 +112,7 @@ struct MainView: View {
                                                         .font(.footnote)
                                                         .foregroundColor(Color.white)
                                                         .lineLimit(1)
-                                                        .padding(.trailing, -7)
+                                                        .padding(.trailing, -3)
                                                 }
                                                 
                                                 Image(systemName: "person.2.fill")
@@ -150,7 +169,7 @@ struct MainView: View {
                                                 
                                                 //MARK: - List Owner
                                                 if let listOwner = list.owner.name{
-                                                    Text(listOwner == CKService.currentModel.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
+                                                    Text(listOwner == dataService.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
                                                         .font(.footnote)
                                                         .foregroundColor(Color.white)
                                                         .lineLimit(1)
@@ -163,7 +182,7 @@ struct MainView: View {
                                                             .font(.footnote)
                                                             .foregroundColor(Color.white)
                                                             .lineLimit(1)
-                                                            .padding(.trailing, -7)
+                                                            .padding(.trailing, -3)
                                                     }
                                                     
                                                     Image(systemName: "person.2.fill")
@@ -212,6 +231,10 @@ struct MainView: View {
                     }
                 }
             }
+        }
+        .onReceive(dataService.objectWillChange) { _ in
+            print("\n\nAAAAAAAAAAAAAAAAAAAAA\n\n")
+            counter += 1
         }
     }
     
