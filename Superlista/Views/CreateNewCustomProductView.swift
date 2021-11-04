@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateNewCustomProductView: View {
     @Environment(\.sizeCategory) var sizeCategory
+    
     @ScaledMetric var textViewHeight: CGFloat = UIScreen.main.bounds.height * 0.1
     @ScaledMetric var buttonHeight: CGFloat = UIScreen.main.bounds.width * 0.15
     
@@ -30,7 +31,6 @@ struct CreateNewCustomProductView: View {
                         .bold()
                         .padding(.top, 16)
                     
-                    //MARK: CreateNewCustomProductView Form section
                     Text("createProductDescription")
                         .font(.body)
                         .padding(EdgeInsets(top: 8, leading: 16, bottom: 24, trailing: 16))
@@ -48,6 +48,7 @@ struct CreateNewCustomProductView: View {
                                  )
                         .accessibility(hidden: true)
                     
+                    //MARK: CreateNewCustomProductView Form section
                     TextField(
                         NSLocalizedString("productNameTextField", comment: ""),
                         text: $productName,
@@ -68,6 +69,7 @@ struct CreateNewCustomProductView: View {
                     
                     PickerTextField(lastSelectedIndex: self.$lastSelectedItem, data: categories, placeholder: NSLocalizedString("productCategoryTextField", comment: "")
                     )
+                        .lineLimit(2)
                         .modifier(CustomTextFieldStyle())
                         .frame(height: textViewHeight)
                         .accessibilityLabel("ACpickerFieldLabel")
@@ -82,7 +84,6 @@ struct CreateNewCustomProductView: View {
                             return
                         }
                         
-                        let cloudCustomProduct: String = productName + ";" + categories[lastSelectedItem]
                         let localCustomProduct: ProductModel = ProductModel(id: 999, name: productName, category: categories[lastSelectedItem])
                         
                         //MARK: CreateNewCustomProductView update users product list on cloud
@@ -107,7 +108,7 @@ struct CreateNewCustomProductView: View {
                     .padding(.bottom, 20)
                     
                 }
-                .frame(minHeight: UIScreen.main.bounds.height * 0.85)
+                .frame(maxWidth: UIScreen.main.bounds.width, minHeight: UIScreen.main.bounds.height * 0.85)
 
                 
                 .toolbar {
@@ -128,7 +129,6 @@ struct CreateNewCustomProductView: View {
                                 return
                             }
                             
-                            let cloudCustomProduct: String = productName + ";" + categories[lastSelectedItem]
                             let localCustomProduct: ProductModel = ProductModel(id: 999, name: productName, category: categories[lastSelectedItem])
                             
                             //MARK: CreateNewCustomProductView update users product list on cloud
@@ -160,17 +160,3 @@ struct CreateNewCustomProductView_Previews: PreviewProvider {
     }
 }
 
-extension View {
-    func embedInScrollView(alignment: Alignment = .center) -> some View {
-        GeometryReader { geometry in
-            ScrollView {
-                self.frame(
-                    minWidth: geometry.size.width,
-                    minHeight: geometry.size.height,
-                    maxHeight: .infinity,
-                    alignment: alignment
-                )
-            }
-        }
-    }
-}

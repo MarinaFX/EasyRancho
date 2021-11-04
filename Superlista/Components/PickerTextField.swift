@@ -23,6 +23,15 @@ struct PickerTextField: UIViewRepresentable {
         self.pickerView.delegate = context.coordinator
         self.pickerView.dataSource = context.coordinator
         
+        //Dynamic Types
+        let fontMetrics = UIFontMetrics.init(forTextStyle: .body)
+        let font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        let placeholderScaledFont = fontMetrics.scaledFont(for: font)
+        self.textField.font = placeholderScaledFont
+        self.textField.adjustsFontForContentSizeCategory = true
+        self.textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
+        
         self.textField.placeholder = self.placeholder
         self.textField.inputView = self.pickerView
         
