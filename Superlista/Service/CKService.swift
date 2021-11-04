@@ -148,7 +148,6 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Update User Name
-#warning("Verificar se está sendo usado em algum lugar")
     func updateUserName(name: String, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         getUser { result in
             switch result {

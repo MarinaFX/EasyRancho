@@ -17,6 +17,8 @@ struct SuperlistaApp: App {
     @State var presentCollabAlert: Bool = false
     @State var presentSharedAlert: Bool = false
     
+    let newListLocalizedLabel = NSLocalizedString("NovaLista", comment: "NovaLista")
+    
     var body: some Scene {
         WindowGroup {
             VStack {
@@ -39,15 +41,15 @@ struct SuperlistaApp: App {
                     }
                     .alert(isPresented: $presentCollabAlert) {
                         return Alert(
-                            title: Text(list?.name ?? "NovaLista"),
-                            message: Text("CollabAlerta"),
+                            title: Text(list?.name ?? newListLocalizedLabel),
+                            message: Text("CollabAlertText"),
                             primaryButton:  .default(
-                                Text("Cancelar"),
+                                Text("AlertPrimaryButtonLabel"),
                                 action: {
                                     presentCollabAlert = false
                                 }),
                             secondaryButton: .default(
-                                Text("Aceitar"),
+                                Text("AlertSecondaryButtonLabel"),
                                 action: {
                                     CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in }
                                     let user = CKOwnerModel(id: CKService.currentModel.user!.id, name: CKService.currentModel.user!.name!)
@@ -66,19 +68,18 @@ struct SuperlistaApp: App {
                         
                     }
                     .alert(isPresented: $presentSharedAlert) {
-                        return Alert(title: Text(list?.name ?? "NovaLista"),
-                                     message: Text("SharedAlerta"),
+                        return Alert(title: Text(list?.name ?? newListLocalizedLabel),
+                                     message: Text("SharedAlertText"),
                                      primaryButton: .default(
-                                        Text("Cancelar"), action: {
+                                        Text("AlertPrimaryButtonLabel"), action: {
                                             presentSharedAlert = false
                                         }),
                                      secondaryButton: .default(
-                                        Text(NSLocalizedString("Aceitar", comment: "")),
+                                        Text(NSLocalizedString("AlertSecondaryButtonLabel", comment: "")),
                                         action: {
                                             let ckList = ListModelConverter().convertCloudListToLocal(withList: list!)
                                             dataService.duplicateList(of: ckList)
                                             presentSharedAlert = false
-                                            
                                         }
                                      )
                         )

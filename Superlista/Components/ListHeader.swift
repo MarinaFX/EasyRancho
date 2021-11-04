@@ -24,7 +24,7 @@ struct ListHeader: View {
                 ZStack(alignment: .leading) {
                     if canEditTitle {
                         if listaTitulo.isEmpty {
-                            Text("Nova Lista")
+                            Text("NovaLista")
                                 .foregroundColor(secondary)
                                 .font(.system(size: 24, weight: .bold))
                             
@@ -35,7 +35,7 @@ struct ListHeader: View {
                             .font(.system(size: 24, weight: .bold))
                             .background(Color("editTitleBackground"))
                             .onTapGesture {
-                                if listaTitulo == "Nova Lista"{
+                                if listaTitulo == NSLocalizedString("NovaLista", comment: "NovaLista") {
                                     listaTitulo = ""
                                 }
                             }

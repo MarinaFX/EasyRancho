@@ -52,20 +52,19 @@ struct OnboardingFieldsView: View {
                 }
             }
             
-            #warning("localizable not working")
-            TextField("Nome", text: $newUsername)
+            TextField(NSLocalizedString("OnboardingFieldPlaceholder", comment: "OnboardingFieldPlaceholder"), text: $newUsername)
                 .modifier(CustomTextFieldStyle())
             
             Spacer()
             
-            Button("Salvar", action: { saveInfos() })
+            Button("OnboardingBottomButtonLabel", action: { saveInfos() })
                 .buttonStyle(MediumButtonStyle(background: .blue, foreground: .white))
                 .padding(.bottom, 48)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { saveInfos() }) {
-                    Text("Pular")
+                    Text("OnboardingTrailingNavigationLabel")
                         .underline()
                         .foregroundColor(.blue)
                 }
