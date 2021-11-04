@@ -64,6 +64,7 @@ class CloudIntegration: ObservableObject {
     func deleteListCollab(list: ListModel) {
         for collab in list.sharedWith ?? [] {
             CKService.currentModel.deleteListCollab(collabID: CKRecord.ID(recordName: collab.id), listID: CKRecord.ID(recordName: list.id)) { result in
+                print("entrou aqui")
                 switch result {
                     case .success: print("delete from Collab foi")
 
