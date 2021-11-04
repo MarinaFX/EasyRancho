@@ -47,7 +47,7 @@
 //Not working 4now
 "ProcurarItens" = "Procurar Itens";
 "AdicionarItensFake" = "Adicionar novos itens";
-"TituloPaginaDeLista" = "Listas";
+"ListasTitle" = "Listas";
 "TituloDaNovaLista" = "Nova Lista";
 
 // MARK: - OnboardingA
@@ -74,6 +74,29 @@
 "Nome" = "Nome";
 "Salvar" = "Salvar";
 "Pular" = "Pular";
+
+// MARK: - Main View
+"TudoSegmentedPicker" = "Tudo";
+"MinhasListasSegmentedPicker" = "Minhas listas";
+"ColaborativasSegmentedPicker" = "Colaborativas";
+"CriadaPorMim" = "Criada por **mim**";
+"CriadaPor %@" = "Criada por **%@**";
+
+// MARK: - Tab Bar
+"ListasMenu" = "Minhas listas";
+"ConfigsMenu" = "Configurações";
+
+// MARK: Settings Profile Main
+"EditarPerfilLabel" = "Editar perfil";
+"ContatoLabel" = "Contato";
+"ConvideUmAmigoLabel" = "Convide um amigo";
+
+// MARK: Settings Profile Sheet
+"EditarPerfilTitutlo" = "Editar perfil";
+"DicaTextoTextField" = "Adicione um nome e uma foto ao seu perfil para que você possa se identificado mais facilmente quando compartilhar ou for adicionado à uma lista.";
+"SalvarEditProfile" = "Salvar";
+"CancelarEditProfile" = "Cancelar";
+"NomeTextField" = "Nome";
 
 // MARK: - VoiceOver
 "Adicione %@" = "Aperte para adicionar %@";
