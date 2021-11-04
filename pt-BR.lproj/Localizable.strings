@@ -78,6 +78,12 @@
 "DeleteListAlertText"= "A lista removida não poderá ser recuperada após sua exclusão";
 "DeleteListAlertButton"= "Apagar";
 
+"ContextMenu1" = "Editar";
+"ContextMenu2" = "Duplicar Lista";
+"ContextMenu3" = "Adicionar Colaborador";
+"ContextMenu4" = "Compartilhar";
+"ContextMenu5" = "Apagar Lista";
+
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Insira um comentário";
 "ItemCommentViewButtonLabel"= "OK";

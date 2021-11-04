@@ -48,11 +48,11 @@ struct MainView: View {
                     
                     if dataService.lists.isEmpty {
                         EmptyView()
-                        .onAppear {
-                            if dataService.lists.isEmpty {
-                                self.isEditing = false
+                            .onAppear {
+                                if dataService.lists.isEmpty {
+                                    self.isEditing = false
+                                }
                             }
-                        }
                     }
                     ScrollView(showsIndicators: false) {
                         Picker("Lists Sections", selection: $selectedSection) {
@@ -157,22 +157,70 @@ struct MainView: View {
                                                         .truncationMode(.tail)
                                                         .padding(.bottom, 25)
                                                 }
-                                                HStack{
-                                                    if let sharedList = list.sharedWith{
-                                                        Text(sharedList.isEmpty ? "0" : (String(describing: sharedList.count)))
-                                                            .font(.footnote)
-                                                            .foregroundColor(Color.white)
-                                                            .lineLimit(1)
-                                                            .padding(.trailing, -7)
+                                                HStack {
+                                                    HStack (alignment: .bottom) {
+                                                        if let sharedList = list.sharedWith {
+                                                            if !sharedList.isEmpty {
+                                                                Image(systemName: "person.2.fill")
+                                                                    .font(.body)
+                                                                    .foregroundColor(Color.white)
+                                                                
+                                                                Text(sharedList.isEmpty ? "0" : (String(describing: sharedList.count)))
+                                                                    .font(.footnote)
+                                                                    .foregroundColor(Color.white)
+                                                                    .lineLimit(1)
+                                                                    .padding(.trailing)
+                                                            }
+                                                        }
                                                     }
                                                     
-                                                    Image(systemName: "person.2.fill")
-                                                        .font(.caption)
+                                                    Spacer()
+                                                    
+                                                    Image(systemName: "ellipsis.circle.fill")
+                                                        .font(.body)
                                                         .foregroundColor(Color.white)
+                                                        .contextMenu {
+                                                            Button {
+                                                              //  NavigationLink(destination: ListView(listId: list.id)
+                                                                print("edit")
+                                                            } label: {
+                                                                Label("ContextMenu1", systemImage: "pencil")
+                                                            }
+                                                            Button {
+                                                                dataService.duplicateList(of: list)
+                                                            } label: {
+                                                                Label("ContextMenu2", systemImage: "doc.on.doc")
+                                                            }
+                                                            Button {
+                                                                guard let ownerName = list.owner.name else { return }
+                                                                shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
+                                                            } label: {
+                                                                Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                                                            }
+                                                            Button {
+                                                                guard let ownerName = list.owner.name else { return }
+                                                                shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
+                                                            } label: {
+                                                                Label("ContextMenu4", systemImage: "square.and.arrow.up")
+                                                            }
+                                                            Button {
+                                                                dataService.currentList = list
+                                                                showAlert = true
+                                                            } label: {
+                                                                Label("ContextMenu5", systemImage: "trash")
+                                                            }
+                                                        }
+                                                    
                                                 }
                                             }
                                             .padding(.horizontal, 20)
                                             
+                                        }
+                                        .alert(isPresented: $showAlert){
+                                            Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
+                                                dataService.removeList(dataService.currentList!)
+                                                showAlert = false
+                                            }))
                                         }
                                     })
                                 }

@@ -73,6 +73,12 @@
 "DeleteListAlertText"= "The deleted list cannot be recovered after its deletion.";
 "DeleteListAlertButton"= "Delete";
 
+"ContextMenu1" = "Edit";
+"ContextMenu2" = "Duplicate List";
+"ContextMenu3" = "Add Collaborator";
+"ContextMenu4" = "Share";
+"ContextMenu5" = "Delete List";
+
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Add a comment";
 "ItemCommentViewButtonLabel"= "OK";
