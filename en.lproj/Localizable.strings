@@ -54,6 +54,14 @@
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Done";
 
+// MARK: - AddNewItemView VoiceOver
+ "Adicione %@" = "Tap to add %@";
+ "Add" = "Add";
+ "Remove" = "Remove";
+ "RemoveOneItem" = "Tap to remove one item";
+ "AddOneItem" = "Tap to add one item";
+ "%@ items" = "%@ items";
+
 // MARK: - MainView
 "EmptyListText" = "You do not have any lists!\nHow about adding a new one?";
 "MainViewTrailingNavigationLabelA" = "Done";
