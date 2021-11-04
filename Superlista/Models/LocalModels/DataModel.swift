@@ -23,9 +23,7 @@ func load<T: Decodable>(_ filename: String) -> T {
 }
 
 func loadCategoryKeys() -> [String] {
-    let json: [ProductModel] = load("productList.json")
-    
-    return json.map { $0.category }.unique.sorted()
+    return ProductListViewModel().products.map { $0.category }.unique.sorted()
 }
 
 func saveUserData<T: Encodable>(data: [T], to key: String) {

@@ -23,6 +23,7 @@
 "productNameTextField" = "Name of the product";
 "productCategoryTextField" = "Category";
 "textFieldRequired" = "Required field";
+"duplicateProductWarning %@" = "There was a problem while adding this product. A product named \"%@\" already exists";
 "ACCancelButtonHint" = "Tap twice to back to product search screen";
 "ACDoneButtonHint" = "Tap twice to save this product to the product list. The product will only be saved if both name and category fields are complete";
 "ACtextFieldRequiredHint" = "Text field is required";

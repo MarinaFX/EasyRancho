@@ -188,4 +188,39 @@ class DataService: ObservableObject {
             }
         }
     }
+    
+    func updateCustomProducts(withName productName: String, for category: String) -> Bool {
+        if let user = user,
+           let userCustomProducts = user.customProducts {
+            let id: Int = getRandomUniqueID(blacklist: userCustomProducts.map({ $0.id }))
+            let userNewProduct: ProductModel = ProductModel(id: id, name: productName, category: category)
+
+            if !userCustomProducts.map({ $0.name.lowercased() }).contains(userNewProduct.name.lowercased()) &&
+                !products.map({ $0.name.lowercased() }).contains(userNewProduct.name.lowercased()) {
+                user.customProducts?.append(userNewProduct)
+                
+                networkMonitor.startMonitoring { path in
+                    if path.status == .satisfied {
+                        CloudIntegration.actions.updateUserCustomProducts(withProduct: userNewProduct)
+                    }
+                }
+                return true
+            }
+        }
+        return false
+    }
+    
+    private func getRandomUniqueID(blacklist existingIds: [Int]) -> Int {
+        var random: Int = random()
+
+        while existingIds.contains(random) {
+            random = self.random()
+        }
+        
+        return random
+    }
+    
+    private func random() -> Int{
+        return Int.random(in: 1000..<9999)
+    }
 }

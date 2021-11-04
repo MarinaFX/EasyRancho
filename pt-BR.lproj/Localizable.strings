@@ -22,6 +22,7 @@
 "productNameTextField" = "Nome do produto";
 "productCategoryTextField" = "Categoria";
 "textFieldRequired" = "Campo obrigatorio";
+"duplicateProductWarning %@" = "Não foi possivel adicionar este produto. Um produto com o nome \"%@\" já existe";
 "ACCancelButtonHint" = "Toque duas vezes para retornar a tela de procura de produtos";
 "ACDoneButtonHint" = "Toque duas vezes para salvar o produto criado a lista de produtos. O produto somente será criado caso o campo de nome e categoria estejam preenchidos";
 "ACtextFieldRequiredHint" = "Campo de texto obrigatório";

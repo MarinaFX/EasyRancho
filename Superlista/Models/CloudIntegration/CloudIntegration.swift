@@ -87,9 +87,9 @@ class CloudIntegration: ObservableObject {
         let productModelConverter: ProductModelConverter = ProductModelConverter()
         var ckCustomProducts: [String] = CKService.currentModel.user?.customProductsString ?? []
         
-        CKService.currentModel.user?.customProducts?.append(customProduct)
-
-        ckCustomProducts.append(productModelConverter.convertLocalProductsToString(withProduct: customProduct))
+        let customProductString: String = productModelConverter.convertLocalProductsToString(withProduct: customProduct)
+        
+        ckCustomProducts.append(customProductString)
         
         CKService.currentModel.updateCustomItems(customItems: ckCustomProducts) { result in
             switch result {
