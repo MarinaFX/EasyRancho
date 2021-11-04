@@ -208,7 +208,10 @@ struct CollaboratorListView: View {
                     title: Text("DeleteCollabAlertTitle \(collaborators[index].name!)"),
                     message: Text("DeleteCollabAlertMessage"),
                     primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
-                        //TODO: Delete Collab
+                        guard let list = list else { return }
+                        
+                        CKService.currentModel.deleteListCollab(collabID: CKRecord.ID(recordName: collaborators[index].id), listID: CKRecord.ID(recordName: list.id)) { result in }
+                        
                         var newCollabList: [OwnerModel] = collaborators
                         newCollabList.remove(at: index)
 
@@ -217,7 +220,7 @@ struct CollaboratorListView: View {
                             newCkCollabList.append(OwnerModelConverter().convertLocalToCKOwner(withUser: owner))
                         }
                         
-                        CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list!.id), sharedWith: newCkCollabList) { result in }
+                        CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list.id), sharedWith: newCkCollabList) { result in }
                         
                         self.collaborators = newCollabList
                     }),
