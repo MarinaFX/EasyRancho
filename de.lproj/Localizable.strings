@@ -1,58 +1,130 @@
-/* 
-  Localizable.strings
-  Superlista
+// MARK: - Global
+"NovaLista" = "Neue Liste";
 
-  Created by Luiz Eduardo Mello dos Reis on 18/10/21.
-  
-*/
+// MARK: - CustomSource
+"Lista: %@" = "Liste: %@";
+"Criada por: %@" = "Erstellt von: %@";
 
-"Listas" = "Listas";
-"listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
-"SalvarNovaLista" = "Salvar";
-"EditarNovaLista" = "Editar";
-"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
-"remover %@" = "Deseja remover %@?";
-"subtituloRemoverLista"= "A lista removida não poderá ser recuperada após sua exclusão";
-"ApagarLista"= "Apagar";
-"ConcluirListas" = "Concluir";
-"EditarListas" = "Editar";
-"NovaLista" = "Nova Lista";
-"DefaultLS" = "DefaultLS";
+// MARK: - SearchBar
+"SearchBarPlaceholder" = "Suche Posten";
 
-// MARK: - Alerts
-"CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
-"Cancelar" = "Cancelar";
-"Aceitar" = "Aceitar";
-"SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
+// MARK: - FakeSearchBar
+"FakeSearchBarPlaceholder" = "Neue Posten hinzufügen";
 
-//Not working 4now
-"ProcurarItens" = "Procurar Itens";
-"AdicionarItensFake" = "Adicionar novos itens";
-"TituloPaginaDeLista" = "Listas";
-"TituloDaNovaLista" = "Nova Lista";
+// MARK: - OnboardingView
+"OnboardingViewButtonLabel" = "Los geht's";
 
-// MARK: - OnboardingA
+// MARK: - OnboardingFieldsView
+"OnboardingFieldsTitle" = "Personalisierung Ihres Profils";
+"OnboardingFieldsText" = "Fügst du einen Namen und ein Profilbild hinzu, damit du leicht zu identifizieren bist.";
+"OnboardingFieldPlaceholder" = "Name";
+"OnboardingBottomButtonLabel" = "Speichern";
+"OnboardingTrailingNavigationLabel" = "Überspringen";
+
+// MARK: - OnboardingPageModel
 "OnboardingA" = "OnboardingA";
-"OnboardingATitle" = "Bem-vindo";
-"OnboardingAText" = "Crie listas de supermercado categorizadas de maneira fácil e simples!";
+"OnboardingATitle" = "Willkommen";
+"OnboardingAText" = "Erstellst du kategorisierte Einkaufslisten auf einfache Weise!";
 
-// MARK: - OnboardingB
 "OnboardingB" = "OnboardingB";
-"OnboardingBTitle" = "Listas Colaborativas";
-"OnboardingBText" = "Crie listas compartilhadas e adicione colaboradores para que possam editar em tempo real.";
+"OnboardingBTitle" = "Kollaborativ Listen";
+"OnboardingBText" = "Du erstellst Kollaborativ Listen und fügst du Mitwirkende hinzu, damit diese in Echtzeit bearbeiten können.";
 
-// MARK: - OnboardingC
 "OnboardingC" = "OnboardingC";
-"OnboardingCTitle" = "Personalize Itens";
-"OnboardingCText" = "Adicione novos produtos, quantidades e comentários a sua lista.";
+"OnboardingCTitle" = "Posten Personalisieren";
+"OnboardingCText" = "Fügst du neue Produkte, Mengen und Kommentare zu Ihren Listen hinzu.";
 
-// MARK: - Onboarding Labels
-"Começar" = "Começar";
+// MARK: - SettingLabel
+"SettingLabelA" = "Profil bearbeiten";
+"SettingLabelB" = "Kontakt";
+"SettingLabelC" = "Freund einladen";
+"InviteMessage" = "Siehst du sich die App an, mit der ich meine Einkaufslisten erstelle. Lädst du es auch herunter! =)";
 
-// MARK: - VoiceOver
-"Adicione %@" = "Tap to add %@";
-"Add" = "Add";
-"Remove" = "Remove";
-"RemoveOneItem" = "Tap to remove one item";
-"AddOneItem" = "Tap to add one item";
-"%@ items" = "%@ items";
+// MARK: - EditProfileView
+"EditProfileTitle" = "Profil bearbeiten";
+"EditProfileFieldPlaceholder" = "Name";
+"EditProfileText" = "Fügst du einen Namen und ein Profilbild, damit du leicht identifiziert werden kannst, wenn du eine Liste teilst oder zu einer Liste hinzugefügt werden.";
+"EditProfileLeadingNavigationLabel" = "Abbrechen";
+"EditProfileTrailingNavigationLabel" = "Speichern";
+
+// MARK: - ListView
+"ListViewLabelA" = "Speichern";
+"ListViewLabelB" = "Bearbeiten";
+
+// MARK: - AddNewItemView
+"AddNewItemViewBottomButtonLabel" = "Fertig";
+
+// MARK: - AddNewItemView VoiceOver
+ "Adicione %@" = "Tap to add %@";
+ "Add" = "Add";
+ "Remove" = "Remove";
+ "RemoveOneItem" = "Tap to remove one item";
+ "AddOneItem" = "Tap to add one item";
+ "%@ items" = "%@ items";
+
+// MARK: - MainView
+"EmptyListText" = "Du hast keine Liste!\nWie wäre es, eine neue Liste hinzuzufügen?";
+"MainViewTrailingNavigationLabelA" = "Fertig";
+"MainViewTrailingNavigationLabelB" = "Bearbeiten";
+"MainViewTitle" = "Listen";
+"MainViewLeadingNavigationLabel" = "Neue Liste";
+
+"Remover %@" = "Möchtest du %@ entfernen?";
+"DeleteListAlertText"= "Die Liste kann nicht wiederhergestellt werden, wenn sie einmal gelöscht wurde.";
+"DeleteListAlertButton"= "Entfernen";
+
+// MARK: - ItemCommentView
+"ItemCommentViewPlaceholder"= "Kommentar hinzufügen";
+"ItemCommentViewButtonLabel"= "OK";
+
+//MARK: - AddCollaboratorSheetView
+"AddCollabTitle" = "Mitwirkende hinzufügen";
+"AddCollabTextTip" = "Mitwirkende zu Ihrer Liste hinzufügen damit sie Änderungen in Echtzeit vornehmen können.";
+"AddCollabButton" = "Mitwirkende hinzufügen";
+"NoCollaboratorsText" = "Du hast noch keine Mitwirkende hinzugefügt";
+"ShareListText" = "Oder freigibst du Ihre Liste einfach mit Ihren Kontakten";
+"ShareListButton" = "Liste freigeben";
+"ShareListWarning" = "Wenn du eine Liste mit jemandem freigibst, sendest du ihm nur eine Kopie Ihrer Liste. Ihre aktuelle Liste bleibt davon unberührt und die Person wird nicht als Beitragszahler hinzugefügt.";
+
+"DeleteCollabAlertTitle %@" = "Bist du sicher, dass du %@ aus Ihrer Liste entfernen möchtest?";
+"DeleteCollabAlertMessage" = "Diese Person wird nicht mehr als Mitwirkende in Ihrer Liste geführt.";
+"DeleteCollabAlertPrimaryButton" = "Entfernen";
+"DeleteCollabAlertSecondaryButton" = "Abbrechen";
+
+"AddCollaboratorLeadingNavigationLabel" = "Abbrechen";
+"AddCollaboratorTrailingNavigationLabel" = "Done";
+
+// MARK: - SuperlistaApp Alerts
+"CollabAlertText" = "Du bist eingeladen worden, an einer Liste mitzuwirken. Möchtest du einen Beitrag zu dieser Liste leisten?";
+
+"AlertPrimaryButtonLabel" = "Abbrechen";
+"AlertSecondaryButtonLabel" = "Akzeptieren";
+
+"SharedAlertText" = "Diese Liste wurde mit Ihnen freigegeben. Möchtest du eine Kopie dieser Liste zu Ihren Listen hinzufügen?";
+
+// MARK: - Assets
+"DefaultLS" = "DefaultLS";
+"ProductList" = "productList_de.json";
+
+// MARK: - Products
+"Bazar" = "Haushaltsartikel";
+"Bebidas" = "Getränke";
+"Bomboniere" = "Bomboniere";
+"Carnes" = "Fleisch";
+"Compotasedoces" = "Konfitüren und Gelees";
+"Congelados" = "Tiefkühlkost";
+"Enlatadosconservaseoleos" = "Lebensmittelkonserven und Öle";
+"Especiais" = "Sonderposten";
+"Fiambreriaelaticinios" = "Schinken und Molkereiprodukte";
+"Graosefarinhas" = "Körner und Mehle";
+"Higieneebeleza" = "Hygiene und Schönheit";
+"Hortifruti" = "Obst und Gemüse";
+"Limpeza" = "Reinigung";
+"Massasebiscoitos" = "Nudeln und Kekse";
+"Matinais" = "Morgen";
+"Molhos" = "Saucen";
+"Padaria" = "Bäckerei";
+"PetShop" = "Zoohandlung";
+"Sobremesas" = "Desserts";
+"Temperos" = "Gewürze";
+"Outros" = "Andere";

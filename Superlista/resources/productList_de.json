@@ -1,0 +1,1553 @@
+[
+  {
+    "id": 1,
+    "name": "Küchenutensilien",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 2,
+    "name": "Schulsachen",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 3,
+    "name": "Tabakladen",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 4,
+    "name": "Hardware",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 5,
+    "name": "Kraftfahrzeuge",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 6,
+    "name": "Wäscherei",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 7,
+    "name": "Camping und Freizeit",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 8,
+    "name": "Pool",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 9,
+    "name": "Haushaltswäsche",
+    "category": "Haushaltsartikel"
+  },
+  {
+    "id": 10,
+    "name": "Bier",
+    "category": "Getränke"
+  },
+  {
+    "id": 11,
+    "name": "Aperol",
+    "category": "Getränke"
+  },
+  {
+    "id": 12,
+    "name": "Schaumwein",
+    "category": "Getränke"
+  },
+  {
+    "id": 13,
+    "name": "Wein",
+    "category": "Getränke"
+  },
+  {
+    "id": 14,
+    "name": "Mineralwasser",
+    "category": "Getränke"
+  },
+  {
+    "id": 15,
+    "name": "Erfrischungsgetränk",
+    "category": "Getränke"
+  },
+  {
+    "id": 16,
+    "name": "Energy-Drink",
+    "category": "Getränke"
+  },
+  {
+    "id": 17,
+    "name": "Kokosnusswasser",
+    "category": "Getränke"
+  },
+  {
+    "id": 18,
+    "name": "Getränkepulver",
+    "category": "Getränke"
+  },
+  {
+    "id": 19,
+    "name": "Tonic-Wasser",
+    "category": "Getränke"
+  },
+  {
+    "id": 20,
+    "name": "Isotonisches Getränk",
+    "category": "Getränke"
+  },
+  {
+    "id": 21,
+    "name": "Whisky",
+    "category": "Getränke"
+  },
+  {
+    "id": 22,
+    "name": "Sake",
+    "category": "Getränke"
+  },
+  {
+    "id": 23,
+    "name": "Rum",
+    "category": "Getränke"
+  },
+  {
+    "id": 25,
+    "name": "Gin",
+    "category": "Getränke"
+  },
+  {
+    "id": 26,
+    "name": "Wodka",
+    "category": "Getränke"
+  },
+  {
+    "id": 27,
+    "name": "Saft",
+    "category": "Getränke"
+  },
+  {
+    "id": 28,
+    "name": "Eistee",
+    "category": "Getränke"
+  },
+  {
+    "id": 29,
+    "name": "Sojagetränk",
+    "category": "Getränke"
+  },
+  {
+    "id": 30,
+    "name": "Tequila",
+    "category": "Getränke"
+  },
+  {
+    "id": 31,
+    "name": "Likör",
+    "category": "Getränke"
+  },
+  {
+    "id": 32,
+    "name": "Schokolade",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 33,
+    "name": "Bonbons",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 34,
+    "name": "Kaugummi",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 35,
+    "name": "Brauner Kandiszucker",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 37,
+    "name": "Salzige Snacks",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 39,
+    "name": "Erdnussbutter",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 40,
+    "name": "Erdnuss",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 41,
+    "name": "Strohkartoffeln",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 42,
+    "name": "Marshmallow",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 43,
+    "name": "Rindfleisch",
+    "category": "Fleisch"
+  },
+  {
+    "id": 44,
+    "name": "Hühnerfleisch",
+    "category": "Fleisch"
+  },
+  {
+    "id": 45,
+    "name": "Hackfleisch",
+    "category": "Fleisch"
+  },
+  {
+    "id": 46,
+    "name": "Wurst",
+    "category": "Fleisch"
+  },
+  {
+    "id": 47,
+    "name": "Speck",
+    "category": "Fleisch"
+  },
+  {
+    "id": 48,
+    "name": "Fischfleisch",
+    "category": "Fleisch"
+  },
+  {
+    "id": 49,
+    "name": "Garnelen",
+    "category": "Fleisch"
+  },
+  {
+    "id": 50,
+    "name": "Schweinefleisch",
+    "category": "Fleisch"
+  },
+  {
+    "id": 51,
+    "name": "Schafsfleisch",
+    "category": "Fleisch"
+  },
+  {
+    "id": 52,
+    "name": "Konfitüre aus Eiern",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 53,
+    "name": "Sultaninen",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 54,
+    "name": "Trockenfrüchte",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 55,
+    "name": "Syrup",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 56,
+    "name": "Haselnusscreme",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 57,
+    "name": "Dulce de leche",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 58,
+    "name": "Gelee",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 59,
+    "name": "Konfitüren",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 60,
+    "name": "Hähnchen paniert",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 61,
+    "name": "Pizza",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 62,
+    "name": "Lasagne",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 63,
+    "name": "Tiefkühlkost",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 64,
+    "name": "Eis",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 65,
+    "name": "Acai",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 66,
+    "name": "Tiefgekühltes Gemüse",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 67,
+    "name": "Frikadellen",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 68,
+    "name": "Hamburger",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 69,
+    "name": "Käsebrot",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 70,
+    "name": "Pommes frites",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 71,
+    "name": "Öl",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 72,
+    "name": "Funghi",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 73,
+    "name": "Sardine",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 74,
+    "name": "Essiggurken",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 75,
+    "name": "Thunfisch",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 76,
+    "name": "Wachteleier",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 77,
+    "name": "Eingelegte Zwiebeln",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 79,
+    "name": "Oliven",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 80,
+    "name": "Kapern",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 81,
+    "name": "Eingelegter Pfeffer",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 82,
+    "name": "Eingelegte Erbsen",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 83,
+    "name": "Eingelegter Mais",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 84,
+    "name": "Eingelegtes Gemüse",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 85,
+    "name": "Geschälte Tomaten",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 86,
+    "name": "Olivenöl",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 87,
+    "name": "Eingelegte Champignons",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 88,
+    "name": "Palmenherz",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 89,
+    "name": "Getrocknete Tomaten",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 90,
+    "name": "Brauner Zucker",
+    "category": "Sonderposten"
+  },
+  {
+    "id": 91,
+    "name": "Müsliriegel",
+    "category": "Sonderposten"
+  },
+  {
+    "id": 92,
+    "name": "Süßstoff",
+    "category": "Sonderposten"
+  },
+  {
+    "id": 93,
+    "name": "Glutenfrei",
+    "category": "Sonderposten"
+  },
+  {
+    "id": 94,
+    "name": "Zuckerfrei",
+    "category": "Sonderposten"
+  },
+  {
+    "id": 95,
+    "name": "Ei",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 96,
+    "name": "Pastete",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 97,
+    "name": "Quarkkäse",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 98,
+    "name": "Käse",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 99,
+    "name": "Schinken",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 100,
+    "name": "Geriebener Käse",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 101,
+    "name": "Frischkäse",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 102,
+    "name": "Joghurt",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 103,
+    "name": "Margarine",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 104,
+    "name": "Butter",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 105,
+    "name": "Schokoladenmilch",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 106,
+    "name": "Milch",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 107,
+    "name": "Fermentierte Milch",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 108,
+    "name": "Mortadella",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 109,
+    "name": "Salami",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 110,
+    "name": "Wurst",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 111,
+    "name": "Frische Nudeln",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 113,
+    "name": "Gnocchi",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 114,
+    "name": "Blätterteig",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 115,
+    "name": "Pizzateig",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 116,
+    "name": "Sahne",
+    "category": "Schinken und Molkereiprodukte"
+  },
+  {
+    "id": 117,
+    "name": "Bohnen",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 118,
+    "name": "Reis",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 120,
+    "name": "Maisbrei",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 121,
+    "name": "Tapioka",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 122,
+    "name": "Popcorn-Mais",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 123,
+    "name": "Erbsen",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 124,
+    "name": "Linsen",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 125,
+    "name": "Weizenmehl",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 126,
+    "name": "Maismehl",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 127,
+    "name": "Maniokmehl",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 129,
+    "name": "Kichererbsen",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 130,
+    "name": "Kondom",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 131,
+    "name": "Toilettenpapier",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 132,
+    "name": "Papiertaschentuch",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 133,
+    "name": "Zahnpasta",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 134,
+    "name": "Zahnbürste",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 135,
+    "name": "Rasierklinge",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 136,
+    "name": "Haarbürste",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 137,
+    "name": "Damenbinde",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 138,
+    "name": "Windeln",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 139,
+    "name": "Baumwolle",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 140,
+    "name": "Nagellack",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 141,
+    "name": "Shampoo",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 142,
+    "name": "Conditioner",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 143,
+    "name": "Feuchthaltecreme",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 144,
+    "name": "Kämmen Creme",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 145,
+    "name": "Zahnseide",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 146,
+    "name": "Mundspülung",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 147,
+    "name": "Deodorant",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 148,
+    "name": "Seife",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 149,
+    "name": "Feuchttücher",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 150,
+    "name": "Flüssigseife",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 151,
+    "name": "Haarkamm",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 152,
+    "name": "Nagellackentferner",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 153,
+    "name": "Haarfärbemittel",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 154,
+    "name": "Rasierschaum",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 155,
+    "name": "Haargel",
+    "category": "Hygiene und Schönheit"
+  },
+  {
+    "id": 156,
+    "name": "Pilze",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 157,
+    "name": "Oregano",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 158,
+    "name": "Basilikum",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 159,
+    "name": "Majoran",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 160,
+    "name": "Rosemary",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 161,
+    "name": "Lorbeerblätter",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 162,
+    "name": "Frühlingszwiebel",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 163,
+    "name": "Knoblauch",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 164,
+    "name": "Petersilie",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 165,
+    "name": "Grünes Gewürz",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 166,
+    "name": "Pfeffer",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 167,
+    "name": "Kartoffel",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 168,
+    "name": "Tomate",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 169,
+    "name": "Rote Bete",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 170,
+    "name": "Steckrübe",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 171,
+    "name": "Karotte",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 172,
+    "name": "Stachelgurke",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 173,
+    "name": "Zwiebel",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 174,
+    "name": "Gurke",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 175,
+    "name": "Japanische Salatgurke",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 176,
+    "name": "Paprika",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 177,
+    "name": "Süßkartoffel",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 178,
+    "name": "Kürbis",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 179,
+    "name": "Zucchini",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 180,
+    "name": "Bohnen",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 181,
+    "name": "Aubergine",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 182,
+    "name": "Mais",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 183,
+    "name": "Kopfsalat",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 184,
+    "name": "Rucola",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 185,
+    "name": "Brokkoli",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 186,
+    "name": "Blumenkohl",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 187,
+    "name": "Brunnenkresse",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 188,
+    "name": "Spinat",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 189,
+    "name": "Kraut",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 191,
+    "name": "Petersilie",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 192,
+    "name": "Kohl",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 193,
+    "name": "Banane",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 194,
+    "name": "Orange",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 195,
+    "name": "Weintrauben",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 196,
+    "name": "Ananas",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 197,
+    "name": "Blaubeere",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 198,
+    "name": "Erdbeere",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 199,
+    "name": "Kokosnuss",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 200,
+    "name": "Zitrone",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 201,
+    "name": "Apfel",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 202,
+    "name": "Papaya",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 203,
+    "name": "Mango",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 204,
+    "name": "Passionsfrucht",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 205,
+    "name": "Wassermelone",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 206,
+    "name": "Melone",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 207,
+    "name": "Avocado",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 208,
+    "name": "Bergamotte",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 209,
+    "name": "Kiwi",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 210,
+    "name": "Nektarine",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 211,
+    "name": "Pflaume",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 212,
+    "name": "Birne",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 213,
+    "name": "Limette",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 214,
+    "name": "Pfirsich",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 215,
+    "name": "Pitaya",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 216,
+    "name": "Schwamm",
+    "category": "Reinigung"
+  },
+  {
+    "id": 217,
+    "name": "Reinigungsbürste",
+    "category": "Reinigung"
+  },
+  {
+    "id": 218,
+    "name": "Besen",
+    "category": "Reinigung"
+  },
+  {
+    "id": 219,
+    "name": "Reinigungswischer",
+    "category": "Reinigung"
+  },
+  {
+    "id": 220,
+    "name": "Sanitäres Wasser",
+    "category": "Reinigung"
+  },
+  {
+    "id": 221,
+    "name": "Luftreiniger",
+    "category": "Reinigung"
+  },
+  {
+    "id": 222,
+    "name": "Stück Seife",
+    "category": "Reinigung"
+  },
+  {
+    "id": 223,
+    "name": "Flüssigseife",
+    "category": "Reinigung"
+  },
+  {
+    "id": 224,
+    "name": "Flüssigwaschmittel",
+    "category": "Reinigung"
+  },
+  {
+    "id": 225,
+    "name": "Waschmittelpulver",
+    "category": "Reinigung"
+  },
+  {
+    "id": 226,
+    "name": "Bleichen",
+    "category": "Reinigung"
+  },
+  {
+    "id": 227,
+    "name": "Weichspüler für Kleidung",
+    "category": "Reinigung"
+  },
+  {
+    "id": 228,
+    "name": "Geschirrspüler",
+    "category": "Reinigung"
+  },
+  {
+    "id": 229,
+    "name": "Reinigungsmittel",
+    "category": "Reinigung"
+  },
+  {
+    "id": 230,
+    "name": "Insektizid",
+    "category": "Reinigung"
+  },
+  {
+    "id": 231,
+    "name": "Desinfektionsmittel",
+    "category": "Reinigung"
+  },
+  {
+    "id": 232,
+    "name": "Schaufel",
+    "category": "Reinigung"
+  },
+  {
+    "id": 233,
+    "name": "Plunger",
+    "category": "Reinigung"
+  },
+  {
+    "id": 234,
+    "name": "Tuch",
+    "category": "Reinigung"
+  },
+  {
+    "id": 235,
+    "name": "Wäscheleine Seil",
+    "category": "Reinigung"
+  },
+  {
+    "id": 236,
+    "name": "Mopp",
+    "category": "Reinigung"
+  },
+  {
+    "id": 237,
+    "name": "Lösungsmittel",
+    "category": "Reinigung"
+  },
+  {
+    "id": 238,
+    "name": "Peroba-Öl",
+    "category": "Reinigung"
+  },
+  {
+    "id": 239,
+    "name": "Anti-Schimmel",
+    "category": "Reinigung"
+  },
+  {
+    "id": 240,
+    "name": "Räucherstäbchen",
+    "category": "Reinigung"
+  },
+  {
+    "id": 241,
+    "name": "Müllsack",
+    "category": "Reinigung"
+  },
+  {
+    "id": 242,
+    "name": "Alkohol",
+    "category": "Reinigung"
+  },
+  {
+    "id": 243,
+    "name": "Schuhpolierer",
+    "category": "Reinigung"
+  },
+  {
+    "id": 244,
+    "name": "Möbelpolitur",
+    "category": "Reinigung"
+  },
+  {
+    "id": 245,
+    "name": "Wachs",
+    "category": "Reinigung"
+  },
+  {
+    "id": 246,
+    "name": "Schutzmittel",
+    "category": "Reinigung"
+  },
+  {
+    "id": 247,
+    "name": "Saponaceous",
+    "category": "Reinigung"
+  },
+  {
+    "id": 248,
+    "name": "Serviette",
+    "category": "Reinigung"
+  },
+  {
+    "id": 249,
+    "name": "Nudeln",
+    "category": "Nudeln und Kekse"
+  },
+  {
+    "id": 250,
+    "name": "Instant-Nudeln",
+    "category": "Nudeln und Kekse"
+  },
+  {
+    "id": 251,
+    "name": "Cookies",
+    "category": "Nudeln und Kekse"
+  },
+  {
+    "id": 252,
+    "name": "Gefüllte Kekse",
+    "category": "Nudeln und Kekse"
+  },
+  {
+    "id": 253,
+    "name": "Müsli",
+    "category": "Morgen"
+  },
+  {
+    "id": 254,
+    "name": "Papierfilter",
+    "category": "Morgen"
+  },
+  {
+    "id": 255,
+    "name": "Kaffee",
+    "category": "Morgen"
+  },
+  {
+    "id": 256,
+    "name": "Tee",
+    "category": "Morgen"
+  },
+  {
+    "id": 257,
+    "name": "Haferflocken",
+    "category": "Morgen"
+  },
+  {
+    "id": 258,
+    "name": "Zucker",
+    "category": "Morgen"
+  },
+  {
+    "id": 259,
+    "name": "Schokoladenpulver",
+    "category": "Morgen"
+  },
+  {
+    "id": 260,
+    "name": "Milchpulver",
+    "category": "Morgen"
+  },
+  {
+    "id": 261,
+    "name": "Getreide",
+    "category": "Morgen"
+  },
+  {
+    "id": 262,
+    "name": "Kaffeefilterhalter",
+    "category": "Morgen"
+  },
+  {
+    "id": 263,
+    "name": "Yerba mate",
+    "category": "Morgen"
+  },
+  {
+    "id": 264,
+    "name": "Leinsamen",
+    "category": "Morgen"
+  },
+  {
+    "id": 265,
+    "name": "Tomatensauce",
+    "category": "Saucen"
+  },
+  {
+    "id": 266,
+    "name": "Shoyo",
+    "category": "Saucen"
+  },
+  {
+    "id": 267,
+    "name": "Ketchup",
+    "category": "Saucen"
+  },
+  {
+    "id": 268,
+    "name": "Mayonnaise",
+    "category": "Saucen"
+  },
+  {
+    "id": 269,
+    "name": "Senf",
+    "category": "Saucen"
+  },
+  {
+    "id": 270,
+    "name": "Salatdressing",
+    "category": "Saucen"
+  },
+  {
+    "id": 271,
+    "name": "Pfeffersauce",
+    "category": "Saucen"
+  },
+  {
+    "id": 272,
+    "name": "Weiße Sauce",
+    "category": "Saucen"
+  },
+  {
+    "id": 273,
+    "name": "Bratensoße",
+    "category": "Saucen"
+  },
+  {
+    "id": 274,
+    "name": "Pesto",
+    "category": "Saucen"
+  },
+  {
+    "id": 275,
+    "name": "Knoblauchbrot",
+    "category": "Bäckerei"
+  },
+  {
+    "id": 276,
+    "name": "Kastenbrot",
+    "category": "Bäckerei"
+  },
+  {
+    "id": 277,
+    "name": "Brot",
+    "category": "Bäckerei"
+  },
+  {
+    "id": 278,
+    "name": "Tortilla",
+    "category": "Bäckerei"
+  },
+  {
+    "id": 279,
+    "name": "Torte",
+    "category": "Bäckerei"
+  },
+  {
+    "id": 280,
+    "name": "Kekse",
+    "category": "Bäckerei"
+  },
+  {
+    "id": 281,
+    "name": "Kuchen",
+    "category": "Bäckerei"
+  },
+  {
+    "id": 282,
+    "name": "Arabisches Brot",
+    "category": "Bäckerei"
+  },
+  {
+    "id": 283,
+    "name": "Hygienematte",
+    "category": "Zoohandlung"
+  },
+  {
+    "id": 284,
+    "name": "Sachet für Haustiere",
+    "category": "Zoohandlung"
+  },
+  {
+    "id": 285,
+    "name": "Haustier-Snack",
+    "category": "Zoohandlung"
+  },
+  {
+    "id": 286,
+    "name": "Futtermittel",
+    "category": "Zoohandlung"
+  },
+  {
+    "id": 287,
+    "name": "Sanitär Granulat",
+    "category": "Zoohandlung"
+  },
+  {
+    "id": 288,
+    "name": "Flohmittel",
+    "category": "Zoohandlung"
+  },
+  {
+    "id": 289,
+    "name": "Kokosnussraspeln",
+    "category": "Desserts"
+  },
+  {
+    "id": 290,
+    "name": "Schokoladenpulver",
+    "category": "Desserts"
+  },
+  {
+    "id": 291,
+    "name": "Backmischung",
+    "category": "Desserts"
+  },
+  {
+    "id": 292,
+    "name": "Hefe",
+    "category": "Desserts"
+  },
+  {
+    "id": 293,
+    "name": "Pudding",
+    "category": "Desserts"
+  },
+  {
+    "id": 294,
+    "name": "Gelatine",
+    "category": "Desserts"
+  },
+  {
+    "id": 295,
+    "name": "Flan",
+    "category": "Desserts"
+  },
+  {
+    "id": 296,
+    "name": "Chantilly",
+    "category": "Desserts"
+  },
+  {
+    "id": 297,
+    "name": "Kondensmilch",
+    "category": "Desserts"
+  },
+  {
+    "id": 298,
+    "name": "Milchcreme",
+    "category": "Desserts"
+  },
+  {
+    "id": 299,
+    "name": "Zimt",
+    "category": "Desserts"
+  },
+  {
+    "id": 300,
+    "name": "Cassavastärke",
+    "category": "Desserts"
+  },
+  {
+    "id": 302,
+    "name": "Kokosnussmilch",
+    "category": "Desserts"
+  },
+  {
+    "id": 303,
+    "name": "Salz",
+    "category": "Gewürze"
+  },
+  {
+    "id": 304,
+    "name": "Hühnerbrühe",
+    "category": "Gewürze"
+  },
+  {
+    "id": 305,
+    "name": "Fleischbrühe",
+    "category": "Gewürze"
+  },
+  {
+    "id": 306,
+    "name": "Gemüsebrühe",
+    "category": "Gewürze"
+  },
+  {
+    "id": 307,
+    "name": "Essig",
+    "category": "Gewürze"
+  },
+  {
+    "id": 308,
+    "name": "Chilipulver",
+    "category": "Gewürze"
+  },
+  {
+    "id": 309,
+    "name": "Gewürz",
+    "category": "Gewürze"
+  },
+  {
+    "id": 310,
+    "name": "Balsamico Aceto",
+    "category": "Gewürze"
+  },
+  {
+    "id": 311,
+    "name": "Andere",
+    "category": "Andere"
+  },
+  {
+    "id": 312,
+    "name": "Koriander",
+    "category": "Obst und Gemüse"
+  },
+  {
+    "id": 313,
+    "name": "Chia",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 314,
+    "name": "Sesam",
+    "category": "Körner und Mehle"
+  },
+  {
+    "id": 315,
+    "name": "Honig",
+    "category": "Konfitüren und Gelees"
+  },
+  {
+    "id": 316,
+    "name": "Palmöl",
+    "category": "Lebensmittelkonserven und Öle"
+  },
+  {
+    "id": 317,
+    "name": "Nuggets",
+    "category": "Tiefkühlkost"
+  },
+  {
+    "id": 318,
+    "name": "Käsesauce",
+    "category": "Saucen"
+  },
+  {
+    "id": 319,
+    "name": "Lasagne-Nudeln",
+    "category": "Schinken und Molkereiprodukte"
+  }
+]
+

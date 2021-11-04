@@ -28,7 +28,11 @@ class CustomSource: NSObject, UIActivityItemSource {
         let metadata = LPLinkMetadata()
         let image = UIImage(named: "AppIcon")
         
-        metadata.title = "Lista: \(listName) \nCriada por: \(ownerName)"
+        let title1 = NSLocalizedString("Lista: \(listName)", comment: "List Name")
+        
+        let title2 = NSLocalizedString("Criada por: \(ownerName)", comment: "Owner Name")
+        
+        metadata.title = "\(title1)\n\(title2)"
         
         metadata.imageProvider = NSItemProvider(object: image!)
         return metadata

@@ -21,9 +21,3 @@ func load<T: Decodable>(_ filename: String) -> T {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
 }
-
-func saveUserData<T: Encodable>(data: [T], to key: String) {
-    if let encodedData = try? JSONEncoder().encode(data) {
-        UserDefaults.standard.set(encodedData, forKey: key)
-    }
-}

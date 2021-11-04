@@ -114,7 +114,7 @@ struct MainView: View {
                                         
                                     }
                                     .alert(isPresented: $showAlert){
-                                        Alert(title: Text("remover \(dataService.currentList!.title)"), message: Text("subtituloRemoverLista"), primaryButton: .cancel(), secondaryButton: .destructive(Text("ApagarLista"), action:{
+                                        Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
                                             dataService.removeList(dataService.currentList!)
                                             showAlert = false
                                         }))
@@ -187,7 +187,7 @@ struct MainView: View {
                             ToolbarItem(placement: .navigationBarLeading){
                                 if !dataService.lists.isEmpty {
                                     Button(action: {isEditing.toggle()}, label: {
-                                        Text(isEditing ? "ConcluirListas": "EditarListas")})
+                                        Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
                                 }
                             }
                             // MARK: - new list button
@@ -196,7 +196,7 @@ struct MainView: View {
                             }
                             // MARK: - title
                             ToolbarItem(placement: .principal){
-                                Text("ListasTitle")
+                                Text("MainViewTitle")
                                     .font(.system(size: 36, weight: .bold))
                                     .foregroundColor(Color.primary)
                             }
@@ -232,7 +232,7 @@ struct MainView: View {
 struct EmptyState: View {
     var body: some View {
         VStack {
-            Text("listaVazia")
+            Text("EmptyListText")
                 .multilineTextAlignment(.center)
                 .font(.headline)
             
