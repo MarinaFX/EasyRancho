@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SplashView: View {
     @EnvironmentObject var dataService: DataService
-
+    
     var isActive: Bool {
         return dataService.user != nil
     }
@@ -14,7 +14,23 @@ struct SplashView: View {
     var body: some View {
         VStack {
             if self.isActive && self.isLogged {
-                MainView()
+                TabView{
+                    MainView()
+                        .tabItem {
+                            Label("ListasMenu", systemImage: "rectangle.grid.2x2.fill")
+                        }
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true)
+                        .navigationBarTitleDisplayMode(.inline)
+//                    ListView()
+//                        .tabItem {
+//                            Label("Nova Lista", systemImage: "plus.circle.fill")
+//                        }
+                    SettingsView()
+                        .tabItem {
+                            Label("ConfigsMenu", systemImage: "person.crop.circle.fill")
+                        }
+                }
                 
             } else if !self.isLogged {
                 OnboardingView()
@@ -34,7 +50,6 @@ struct SplashView: View {
         }
     }
 }
-
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()

@@ -12,7 +12,7 @@ struct ListView: View {
         return myList
     }
     
-    
+        
     @State var listTitle: String = ""
     
     var body: some View {
