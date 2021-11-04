@@ -16,10 +16,24 @@ struct ItemModel: Identifiable, Codable {
     }
     
     func toggleCompletion() -> ItemModel {
-        return ItemModel(id: id, product: product, comment: comment, isCompleted: !isCompleted)
+        return ItemModel(id: id, product: product, comment: comment, isCompleted: !isCompleted, quantity: quantity ?? 1)
     }
 
     func editComment(newComment: String) -> ItemModel {
-        return ItemModel(id: id, product: product, comment: newComment, isCompleted: isCompleted)
+        return ItemModel(id: id, product: product, comment: newComment, isCompleted: isCompleted, quantity: quantity ?? 1)
+    }
+    
+    func addQuantity(quantity: Int) -> ItemModel {
+        let newQuantity = quantity + 1
+        return ItemModel(id: id, product: product, comment: comment, isCompleted: isCompleted, quantity: newQuantity)
+    }
+    
+    func removeQuantity(quantity: Int) -> ItemModel {
+        if quantity > 1 {
+            let newQuantity = quantity - 1
+            return ItemModel(id: id, product: product, comment: comment, isCompleted: isCompleted, quantity: newQuantity)
+        } else {
+            return ItemModel(id: id, product: product, comment: comment, isCompleted: isCompleted, quantity: quantity)
+        }
     }
 }

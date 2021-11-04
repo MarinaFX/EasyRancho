@@ -21,7 +21,7 @@ struct SuperlistaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
+            VStack {
                 ZStack {
                     SplashView()
                         .onOpenURL(perform: { url in
@@ -77,17 +77,9 @@ struct SuperlistaApp: App {
                                      secondaryButton: .default(
                                         Text(NSLocalizedString("AlertSecondaryButtonLabel", comment: "")),
                                         action: {
-                                            let newOwnerRef = CKRecord.Reference(recordID: CKService.currentModel.user!.id, action: .none)
-                                            let newListLocal = CKListModel(name: list!.name ?? newListLocalizedLabel, ownerRef: newOwnerRef, itemsString: list!.itemsString)
-                                            CKService.currentModel.createList(listModel: newListLocal) { result in
-                                                switch result {
-                                                case .success (let newListID):
-                                                    CKService.currentModel.saveListUsersList(listID: newListID, key: .MyLists) { result in }
-                                                case .failure:
-                                                    return
-                                                }
-                                                presentSharedAlert = false
-                                            }
+                                            let ckList = ListModelConverter().convertCloudListToLocal(withList: list!)
+                                            dataService.duplicateList(of: ckList)
+                                            presentSharedAlert = false
                                         }
                                      )
                         )
@@ -95,7 +87,6 @@ struct SuperlistaApp: App {
                 }
             }
             .accentColor(Color("Link"))
-            .navigationViewStyle(StackNavigationViewStyle())
             .environmentObject(dataService)
             .onAppear {
                 

@@ -10,27 +10,29 @@ struct OnboardingView: View {
     }
     
     var body: some View {
-        ZStack {
-            currentColor.ignoresSafeArea()
-            
-            VStack {
-                TabView(selection: $currentPage) {
-                    ForEach(0..<onboardingPages.count) { i in
-                        OnboardingPageView(index: i)
-                    }
-                }
-                .tabViewStyle(PageTabViewStyle())
-                .onChange(of: currentPage, perform: changeColor)
+        NavigationView {
+            ZStack {
+                currentColor.ignoresSafeArea()
                 
-                NavigationLink("OnboardingViewButtonLabel", destination: OnboardingFieldsView(picture: $picture))
-                    .buttonStyle(MediumButtonStyle(background: .white, foreground: currentColor))
-                    .padding(.top)
-                    .padding(.bottom, 48)
+                VStack {
+                    TabView(selection: $currentPage) {
+                        ForEach(0..<onboardingPages.count) { i in
+                            OnboardingPageView(index: i)
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle())
+                    .onChange(of: currentPage, perform: changeColor)
+                    
+                    NavigationLink("OnboardingViewButtonLabel", destination: OnboardingFieldsView(picture: $picture))
+                        .buttonStyle(MediumButtonStyle(background: .white, foreground: currentColor))
+                        .padding(.top)
+                        .padding(.bottom, 48)
+                }
             }
+            .foregroundColor(.white)
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        .foregroundColor(.white)
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
     }
     
     func changeColor(value: Int) {
@@ -42,7 +44,7 @@ struct OnboardingView: View {
 
 struct OnboardingPageView: View {
     let index: Int
-
+    
     var body: some View {
         VStack {
             Image(onboardingPages[index].image)
@@ -53,7 +55,7 @@ struct OnboardingPageView: View {
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
-
+            
             Text(onboardingPages[index].text)
                 .font(.title3)
                 .multilineTextAlignment(.center)
