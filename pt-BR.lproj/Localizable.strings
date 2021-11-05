@@ -64,10 +64,13 @@
 
 // MARK: - MainView
 "EmptyListText" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
-"MainViewTrailingNavigationLabelA" = "Concluir";
-"MainViewTrailingNavigationLabelB" = "Editar";
+"MainViewLeadingNavigationLabelA" = "Concluir";
+"MainViewLeadingNavigationLabelAHint" = "Clique para concluir";
+"MainViewLeadingNavigationLabelB" = "Editar";
+"MainViewLeadingNavigationLabelBHint" = "Clique para editar";
 "MainViewTitle" = "Listas";
-"MainViewLeadingNavigationLabel" = "Nova Lista";
+"MainViewTrailingNavigationLabel" = "Configurações";
+"MainViewTrailingNavigationLabelHint" = "Clique aqui para ir as configurações";
 "TudoSegmentedPicker" = "Tudo";
 "MinhasListasSegmentedPicker" = "Minhas listas";
 "ColaborativasSegmentedPicker" = "Colaborativas";
@@ -77,6 +80,11 @@
 "Remover %@" = "Deseja remover %@?";
 "DeleteListAlertText"= "A lista removida não poderá ser recuperada após sua exclusão";
 "DeleteListAlertButton"= "Apagar";
+
+"AddListMainButton" = "Criar nova lista";
+"AddListMainButtonHint" = "Clique para criar nova lista";
+
+
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Insira um comentário";
@@ -133,13 +141,4 @@
 "Sobremesas" = "Sobremesas";
 "Temperos" = "Temperos";
 "Outros" = "Outros";
-// MARK: - Onboarding Fields
-"OnboardingFieldsTitle" = "Personalize seu perfil";
-"OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
-"Nome" = "Nome";
-"Salvar" = "Salvar";
-"Pular" = "Pular";
 
-// MARK: - Tab Bar
-"ListasMenu" = "Minhas listas";
-"ConfigsMenu" = "Configurações";

@@ -41,7 +41,7 @@ struct MainView: View {
                                    isActive: $isCreatingList,
                                    label: { EmptyView() }
                     )
-                        .opacity(0.0)
+                    .opacity(0.0)
                     
                     if dataService.lists.isEmpty {
                         EmptyView()
@@ -186,19 +186,26 @@ struct MainView: View {
                                 NavigationLink(destination: SettingsView()) {
                                     Image(systemName: "gearshape.fill")
                                 }
+                                .accessibilityLabel(Text("MainViewTrailingNavigationLabel"))
+                                .accessibility(hint: Text("MainViewTrailingNavigationLabelHint"))
                             }
                             // MARK: - new list button
                             ToolbarItem(placement: .navigationBarTrailing){
                                 if !dataService.lists.isEmpty {
-                                    Button(action: {isEditing.toggle()}, label: {
-                                        Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
+                                    Button(action: { isEditing.toggle() }, label: {
+                                        Text(isEditing ? "MainViewLeadingNavigationLabelA": "MainViewLeadingNavigationLabelB")
+                                    })
+                                    .accessibilityLabel(Text(isEditing ? "MainViewLeadingNavigationLabelA": "MainViewLeadingNavigationLabelB"))
+                                    .accessibility(hint: Text(isEditing ? "MainViewLeadingNavigationLabelAHint": "MainViewLeadingNavigationLabelBHint"))
                                 }
                             }
-                            // MARK: - title
+                            
+
                             ToolbarItem(placement: .principal){
                                 Text("MainViewTitle")
                                     .font(.system(size: 36, weight: .bold))
                                     .foregroundColor(Color.primary)
+                                    .accessibilityLabel(Text("MainViewTitle"))
                             }
                         }
                     
@@ -210,33 +217,11 @@ struct MainView: View {
                                 .frame(width: 200, height: 200)
                         })
                     }
-                    
                 }
                 
-                Button(action: createNewListAction) {
-                    VStack(alignment: .trailing) {
-                        
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.title2)
-
-                            Text("Criar nova lista")
-                                .fontWeight(.bold)
-                                .font(.title3)
-
-                            Spacer()
-                        }
-                        .foregroundColor(Color("Button"))
-                        .padding(.bottom, 34)
-                        .padding(.horizontal, 14)
-                        .padding(.top, 18)
-
-                    }
-                    .frame(width: UIScreen.main.bounds.width, height: 83)
-                    .background(Color("ButtonBG"))
-                    .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
-                    
-                }
+                FooterButton(action: createNewListAction)
+                    .accessibilityLabel(Text("AddListMainButton"))
+                    .accessibility(hint: Text("AddListMainButtonHint"))
             }
             .edgesIgnoringSafeArea(.bottom)
         }
@@ -247,12 +232,43 @@ struct MainView: View {
         guard let user = dataService.user else { return }
         
         let newOwner: OwnerModel = OwnerModel(id: user.id, name: user.name!)
-        let newList: ListModel = ListModel(title: "Nova Lista", owner: newOwner)
+        let newList: ListModel = ListModel(title: NSLocalizedString("NovaLista", comment: "Nova Lista"), owner: newOwner)
         
         dataService.addList(newList)
         
         self.listId = newList.id
         self.isCreatingList = true
+    }
+}
+
+struct FooterButton: View {
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .trailing) {
+                
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title2)
+
+                    Text("AddListMainButton")
+                        .fontWeight(.bold)
+                        .font(.title3)
+
+                    Spacer()
+                }
+                .foregroundColor(Color("Button"))
+                .padding(.bottom, 34)
+                .padding(.horizontal, 14)
+                .padding(.top, 18)
+
+            }
+            .frame(width: UIScreen.main.bounds.width, height: 83)
+            .background(Color("ButtonBG"))
+            .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
+            
+        }
     }
 }
 
