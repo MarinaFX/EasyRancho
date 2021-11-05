@@ -11,6 +11,7 @@ struct MainView: View {
     @State var isLoading: Bool = false
     @State var selectedSection = 0
     @State var createdBy = ""
+    
     var appliedSection: [ListModel]{
         switch selectedSection{
             case 0:
@@ -243,21 +244,23 @@ struct MainView: View {
                 // MARK: - toolbar
                     .toolbar{
                         
-                        // MARK: - edit button
                         ToolbarItem(placement: .navigationBarLeading){
+                            NavigationLink(destination: SettingsView()) {
+                                Image(systemName: "gearshape.fill")
+                            }
+                        }
+
+                        ToolbarItem(placement: .navigationBarTrailing){
                             if !dataService.lists.isEmpty {
                                 Button(action: {isEditing.toggle()}, label: {
                                     Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
                             }
                         }
-                        // MARK: - new list button
-                        ToolbarItem(placement: .navigationBarTrailing){
-                            Button(action: createNewListAction, label: { Text("NovaLista") })
-                        }
-                        // MARK: - title
+
                         ToolbarItem(placement: .principal){
                             Text("MainViewTitle")
-                                .font(.system(size: 36, weight: .bold))
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
                                 .foregroundColor(Color.primary)
                         }
                     }
