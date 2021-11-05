@@ -14,32 +14,23 @@ struct MainView: View {
     @State var counter = 0
     
     var appliedSection: [ListModel]{
+        let section: [ListModel]
+        
         switch selectedSection{
         case 0:
-            return dataService.lists
+            section =  dataService.lists
         case 1:
             guard let currentUser = dataService.user else { return [] }
-            return dataService.lists.filter{$0.owner.id == currentUser.id}
+            section = dataService.lists.filter{$0.owner.id == currentUser.id}
         case 2:
             guard let currentUser = dataService.user else { return [] }
-            return dataService.lists.filter{$0.owner.id != currentUser.id}
+            section =  dataService.lists.filter{$0.owner.id != currentUser.id}
         default:
-            return []
+            section =  []
         }
+//        print(section.map({$0.id}), "-------")
+        return section
     }
-    
-    //                                switch selectedSection{
-    //                                case 1:
-    //                                    guard let currentUser = dataService.user,
-    //                                          list.owner.id == currentUser.id
-    //                                    else { EmptyView() }
-    //                                case 2:
-    //                                    guard let currentUser = dataService.user,
-    //                                          list.owner.id != currentUser.id
-    //                                    else { EmptyView() }
-    //                                default:
-    //                                    EmptyView()
-    //                                }
     
     @State var showAlert = false
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
@@ -233,7 +224,6 @@ struct MainView: View {
             }
         }
         .onReceive(dataService.objectWillChange) { _ in
-            print("\n\nAAAAAAAAAAAAAAAAAAAAA\n\n")
             counter += 1
         }
     }

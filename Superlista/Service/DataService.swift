@@ -14,6 +14,11 @@ class DataService: ObservableObject {
     @Published var lists: [ListModel] = [] {
         didSet {
             UDService().saveListsOnUD(lists: lists)
+            print(UDService().getUDLists().map({$0.id}))
+            print(CKService.currentModel.user?.myLists?.map({$0.id.recordName}))
+            print(CKService.currentModel.user?.sharedWithMe?.map({$0.id.recordName}))
+
+
         }
     }
     
@@ -30,7 +35,10 @@ class DataService: ObservableObject {
     }
     
     func getDataIntegration() {
-        self.lists = UDService().getUDLists()
+        let listas = UDService().getUDLists()
+//
+        self.lists = listas
+        
         self.user = UDService().getUDUser()
         
         //if online
@@ -65,6 +73,7 @@ class DataService: ObservableObject {
             }
             
             self.lists = localLists
+            print(localLists, "localLists -----------")
             
             self.user = UserModelConverter().convertCloudUserToLocal(withUser: ckUserModel)
         }
