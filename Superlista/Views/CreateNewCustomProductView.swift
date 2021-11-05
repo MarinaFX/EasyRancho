@@ -97,16 +97,6 @@ struct CreateNewCustomProductView: View {
                         })
                     }
                 }
-                .onAppear(perform: {
-                    guard let customProducts = CKService.currentModel.user?.customProducts,
-                          let customProductsString = CKService.currentModel.user?.customProductsString
-                    else {
-                        return
-                    }
-                    
-                    print("\nMeus produtos customizados\n", customProducts)
-                    print("\nMeus produtos customizados String\n", customProductsString)
-                })
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
