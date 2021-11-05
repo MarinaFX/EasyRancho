@@ -37,6 +37,8 @@ class CloudIntegration: ObservableObject {
         deleteListFromMyLists(list: list)
         
         deleteListFromAll(list: list)
+        
+        deleteListCollab(list: list)
     }
     
     func deleteListFromMyLists(list: ListModel) {
@@ -55,6 +57,18 @@ class CloudIntegration: ObservableObject {
                 case .success(let result): print("foi", result)
 
                 case .failure(let error): print("nao foi", error)
+            }
+        }
+    }
+    
+    func deleteListCollab(list: ListModel) {
+        for collab in list.sharedWith ?? [] {
+            CKService.currentModel.deleteListCollab(collabID: CKRecord.ID(recordName: collab.id), listID: CKRecord.ID(recordName: list.id)) { result in
+                switch result {
+                    case .success: print("delete from Collab foi")
+
+                    case .failure(let error): print("delete from Collab error \(error)")
+                }
             }
         }
     }

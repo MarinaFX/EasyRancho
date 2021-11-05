@@ -490,4 +490,31 @@ class CKService: ObservableObject {
             }
         }
     }
+    
+    func deleteListCollab(collabID: CKRecord.ID, listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        
+        publicDB.fetch(withRecordID: collabID) { record, error in
+            if error == nil {
+                var usersLists = record!["SharedWithMe"] as? [CKRecord.Reference] ?? []
+                
+                if let listToDeleteIndex = usersLists.firstIndex(where: { $0.recordID.recordName == listID.recordName }) {
+                    usersLists.remove(at: listToDeleteIndex)
+                }
+                
+                record!.setValue(usersLists, forKey: UsersList.SharedWithMe.rawValue)
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
 }

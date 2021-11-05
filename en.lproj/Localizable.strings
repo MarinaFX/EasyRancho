@@ -81,6 +81,29 @@
 "DeleteListAlertText"= "The deleted list cannot be recovered after its deletion.";
 "DeleteListAlertButton"= "Delete";
 
+"ContextMenu1" = "Edit";
+"ContextMenu2" = "Duplicate List";
+"ContextMenu3" = "Add Collaborator";
+"ContextMenu4" = "Share List";
+"ContextMenu5" = "Delete List";
+"DuplicateListAlertText" = "Are you sure you want to duplicate this list?";
+"DuplicateListAlertButton" = "Duplicate";
+"Duplicar %@" = "Do you want to %@?";
+
+// MARK: - MainView VoiceOver
+"Options" = "More options";
+"MoreOptions" = "Tap to show more options";
+"Option1" = "Edit";
+"Option1Hint" = "Tap to edit list";
+"Option2" = "Duplicate List";
+"Option2Hint" = "Tap to duplicate list";
+"Option3" = "Add collaborator";
+"Option3Hint" = "Tap to add collaborator";
+"Option4" = "Share list";
+"Option4Hint" = "Tap to share list";
+"Option5" = "Delete list";
+"Option5Hint" = "Tap to delete list";
+
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Add a comment";
 "ItemCommentViewButtonLabel"= "OK";

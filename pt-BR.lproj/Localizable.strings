@@ -84,8 +84,6 @@
 "AddListMainButton" = "Criar nova lista";
 "AddListMainButtonHint" = "Clique para criar nova lista";
 
-
-
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Insira um comentário";
 "ItemCommentViewButtonLabel"= "OK";
