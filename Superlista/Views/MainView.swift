@@ -1,6 +1,7 @@
 import SwiftUI
 import UIKit
 import CloudKit
+import Lottie
 
 struct MainView: View {
     @EnvironmentObject var dataService: DataService
@@ -13,16 +14,16 @@ struct MainView: View {
     @State var createdBy = ""
     var appliedSection: [ListModel]{
         switch selectedSection{
-        case 0:
-            return dataService.lists
-        case 1:
-            guard let currentUser = dataService.user else { return [] }
-            return dataService.lists.filter{$0.owner.id == currentUser.id}
-        case 2:
-            guard let currentUser = dataService.user else { return [] }
-            return dataService.lists.filter{$0.owner.id != currentUser.id}
-        default:
-            return []
+            case 0:
+                return dataService.lists
+            case 1:
+                guard let currentUser = dataService.user else { return [] }
+                return dataService.lists.filter{$0.owner.id == currentUser.id}
+            case 2:
+                guard let currentUser = dataService.user else { return [] }
+                return dataService.lists.filter{$0.owner.id != currentUser.id}
+            default:
+                return []
         }
     }
     
@@ -33,8 +34,7 @@ struct MainView: View {
     
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                
+            VStack {
                 ZStack {
                     
                     NavigationLink(destination: ListView(listId: listId),
@@ -43,17 +43,15 @@ struct MainView: View {
                     )
                         .opacity(0.0)
                     
-                    Color("PrimaryBackground")
-                        .ignoresSafeArea()
-                    
                     if dataService.lists.isEmpty {
                         EmptyView()
-                        .onAppear {
-                            if dataService.lists.isEmpty {
-                                self.isEditing = false
+                            .onAppear {
+                                if dataService.lists.isEmpty {
+                                    self.isEditing = false
+                                }
                             }
-                        }
                     }
+                    
                     ScrollView(showsIndicators: false) {
                         Picker("Lists Sections", selection: $selectedSection) {
                             Text("TudoSegmentedPicker").tag(0)
@@ -212,12 +210,39 @@ struct MainView: View {
                                 .frame(width: 200, height: 200)
                         })
                     }
+                    
+                }
+                
+                Button(action: createNewListAction) {
+                    VStack(alignment: .trailing) {
+                        
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                                .font(.title2)
+
+                            Text("Criar nova lista")
+                                .fontWeight(.bold)
+                                .font(.title3)
+
+                            Spacer()
+                        }
+                        .foregroundColor(Color("Button"))
+                        .padding(.bottom, 34)
+                        .padding(.horizontal, 14)
+                        .padding(.top, 18)
+
+                    }
+                    .frame(width: UIScreen.main.bounds.width, height: 83)
+                    .background(Color("ButtonBG"))
+                    .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
+                    
                 }
             }
+            .edgesIgnoringSafeArea(.bottom)
         }
     }
-    
-#warning("quando criar uma lista sem estar na internet o newOwner deve ser o user do userdefaults")
+    //
+    //#warning("quando criar uma lista sem estar na internet o newOwner deve ser o user do userdefaults")
     func createNewListAction() {
         guard let user = dataService.user else { return }
         
