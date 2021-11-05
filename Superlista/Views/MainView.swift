@@ -185,14 +185,16 @@ struct MainView: View {
                             
                             // MARK: - edit button
                             ToolbarItem(placement: .navigationBarLeading){
-                                if !dataService.lists.isEmpty {
-                                    Button(action: {isEditing.toggle()}, label: {
-                                        Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
+                                NavigationLink(destination: SettingsView()) {
+                                    Image(systemName: "gearshape.fill")
                                 }
                             }
                             // MARK: - new list button
                             ToolbarItem(placement: .navigationBarTrailing){
-                                Button(action: createNewListAction, label: { Text("NovaLista") })
+                                if !dataService.lists.isEmpty {
+                                    Button(action: {isEditing.toggle()}, label: {
+                                        Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
+                                }
                             }
                             // MARK: - title
                             ToolbarItem(placement: .principal){
