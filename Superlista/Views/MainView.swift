@@ -41,10 +41,7 @@ struct MainView: View {
                                isActive: $isCreatingList,
                                label: { EmptyView() }
                 )
-                    .opacity(0.0)
-                
-                Color("PrimaryBackground")
-                    .ignoresSafeArea()
+                .opacity(0.0)
                 
                 if dataService.lists.isEmpty {
                     EmptyView()
@@ -54,6 +51,7 @@ struct MainView: View {
                             }
                         }
                 }
+                
                 ScrollView(showsIndicators: false) {
                     Picker("Lists Sections", selection: $selectedSection) {
                         Text("TudoSegmentedPicker").tag(0)
