@@ -87,7 +87,7 @@ struct MainView: View {
                                             
                                             //MARK: - List Owner
                                             if let listOwner = list.owner.name{
-                                                Text(listOwner == CKService.currentModel.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
+                                                Text(listOwner == dataService.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
                                                     .font(.footnote)
                                                     .foregroundColor(Color.white)
                                                     .lineLimit(1)
