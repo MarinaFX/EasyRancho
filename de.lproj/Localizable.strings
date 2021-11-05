@@ -64,14 +64,25 @@
 
 // MARK: - MainView
 "EmptyListText" = "Du hast keine Liste!\nWie wäre es, eine neue Liste hinzuzufügen?";
-"MainViewTrailingNavigationLabelA" = "Fertig";
-"MainViewTrailingNavigationLabelB" = "Bearbeiten";
+"MainViewLeadingNavigationLabelA" = "Fertig";
+//"MainViewLeadingNavigationLabelAHint" = "Clique para concluir";
+"MainViewLeadingNavigationLabelB" = "Bearbeiten";
+//"MainViewLeadingNavigationLabelBHint" = "Clique para editar";
 "MainViewTitle" = "Listen";
-"MainViewLeadingNavigationLabel" = "Neue Liste";
+//"MainViewTrailingNavigationLabel" = "Configurações";
+//"MainViewTrailingNavigationLabelHint" = "Clique aqui para ir as configurações";
+//"TudoSegmentedPicker" = "Tudo";
+//"MinhasListasSegmentedPicker" = "Minhas listas";
+//"ColaborativasSegmentedPicker" = "Colaborativas";
+//"CriadaPorMim" = "Criada por **mim**";
+//"CriadaPor %@" = "Criada por **%@**";
 
 "Remover %@" = "Möchtest du %@ entfernen?";
 "DeleteListAlertText"= "Die Liste kann nicht wiederhergestellt werden, wenn sie einmal gelöscht wurde.";
 "DeleteListAlertButton"= "Entfernen";
+
+//"AddListMainButton" = "Criar nova lista";
+//"AddListMainButtonHint" = "Clique para criar nova lista";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Kommentar hinzufügen";

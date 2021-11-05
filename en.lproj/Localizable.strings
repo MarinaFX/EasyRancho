@@ -64,10 +64,18 @@
 
 // MARK: - MainView
 "EmptyListText" = "You do not have any lists!\nHow about adding a new one?";
-"MainViewTrailingNavigationLabelA" = "Done";
-"MainViewTrailingNavigationLabelB" = "Edit";
+"MainViewLeadingNavigationLabelA" = "Done";
+//"MainViewLeadingNavigationLabelAHint" = "Clique para concluir";
+"MainViewLeadingNavigationLabelB" = "Edit";
+//"MainViewLeadingNavigationLabelBHint" = "Clique para editar";
 "MainViewTitle" = "Lists";
-"MainViewLeadingNavigationLabel" = "New List";
+//"MainViewTrailingNavigationLabel" = "Configurações";
+//"MainViewTrailingNavigationLabelHint" = "Clique aqui para ir as configurações";
+//"TudoSegmentedPicker" = "Tudo";
+//"MinhasListasSegmentedPicker" = "Minhas listas";
+//"ColaborativasSegmentedPicker" = "Colaborativas";
+//"CriadaPorMim" = "Criada por **mim**";
+//"CriadaPor %@" = "Criada por **%@**";
 
 "Remover %@" = "Do you want to delete %@?";
 "DeleteListAlertText"= "The deleted list cannot be recovered after its deletion.";
