@@ -1,10 +1,9 @@
-/* 
-  Localizable.strings
-  Superlista
+// MARK: - Global
+"NovaLista" = "New List";
 
-  Created by Luiz Eduardo Mello dos Reis on 18/10/21.
-  
-*/
+// MARK: - CustomSource
+"Lista: %@" = "List: %@";
+"Criada por: %@" = "Created by: %@";
 
 //MARK: - Toolbar/navigationbar items
 "leadingCancel" = "Cancel";
@@ -30,21 +29,21 @@
 "ACpickerFieldLabel" = "Category";
 "ACpickerFieldValue" = "Wheel picker";
 
-//MARK: - AddCollaborator screen
-"addCollabTitle" = "Add Collaborators";
-"addCollabTextTip" = "Add collaborators to your list so they can make changes in real time";
-"addCollabButton" = "Add Collaborator";
-"noCollaboratorsText" = "You haven't added any collaborators yet";
-"shareListText" = "Or just share your list with your contacts";
-"shareListButton" = "Share list";
-"shareListWarning" = "Sharing your list with another person will only send a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator";
+// MARK: - SearchBar
+"SearchBarPlaceholder" = "Search Items";
 
+// MARK: - FakeSearchBar
+"FakeSearchBarPlaceholder" = "Add new items";
 
-//MARK: - AddCollaborator screen | Alert
-"DeleteCollabAlertTitle %@" = "Are you sure you want to remove %@ from your list?";
-"DeleteCollabAlertMessage" = "This person will no longer be able to collaborate in your list";
-"DeleteCollabAlertPrimaryButton" = "Remove";
-"DeleteCollabAlertSecondaryButton" = "Cancel";
+// MARK: - OnboardingView
+"OnboardingViewButtonLabel" = "Get Started";
+
+// MARK: - OnboardingFieldsView
+"OnboardingFieldsTitle" = "Personalize your profile";
+"OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
+"OnboardingFieldPlaceholder" = "Name";
+"OnboardingBottomButtonLabel" = "Save";
+"OnboardingTrailingNavigationLabel" = "Skip";
 
 "Listas" = "Listas";
 "listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
@@ -70,25 +69,133 @@
 "TituloDaNovaLista" = "Nova Lista";
 
 // MARK: - OnboardingA
+// MARK: - OnboardingPageModel
 "OnboardingA" = "OnboardingA";
 "OnboardingATitle" = "Welcome";
-"OnboardingAText" = "Create grocery lists easily categorized!";
+"OnboardingAText" = "Create categorized grocery lists in a easy and simple way!";
 
-// MARK: - OnboardingB
 "OnboardingB" = "OnboardingB";
-"OnboardingBTitle" = "Colaborative Lists";
-"OnboardingBText" = "Create shared lists and add colaborators to edit lists in real time.";
+"OnboardingBTitle" = "Collaborative Lists";
+"OnboardingBText" = "Create shared lists and add collaborators to edit lists in real time.";
 
-// MARK: - OnboardingC
 "OnboardingC" = "OnboardingC";
 "OnboardingCTitle" = "Personalize Items";
 "OnboardingCText" = "Add new products, quantities and comments to your lists.";
 
-// MARK: - Onboarding Labels
-"Começar" = "Get Started";
+// MARK: - SettingLabel
+"SettingLabelA" = "Edit profile";
+"SettingLabelB" = "Contact";
+"SettingLabelC" = "Invite a Friend";
+"InviteMessage" = "Take a look at the app I'm using to create my groceries lists. Download now =)";
 
-// MARK: - Onboarding Fields
-"OnboardingFieldsTitle" = "Personalize your profile";
-"OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
-"Salvar" = "Save";
-"Pular" = "Skip";
+// MARK: - EditProfileView
+"EditProfileTitle" = "Edit Profile";
+"EditProfileFieldPlaceholder" = "Name";
+"EditProfileText" = "Add a name and a profile picture for you to be easily identified when sharing a list or being added to one.";
+"EditProfileLeadingNavigationLabel" = "Cancel";
+"EditProfileTrailingNavigationLabel" = "Save";
+
+// MARK: - ListView
+"ListViewLabelA" = "Save";
+"ListViewLabelB" = "Edit";
+
+// MARK: - AddNewItemView
+"AddNewItemViewBottomButtonLabel" = "Done";
+
+// MARK: - AddNewItemView VoiceOver
+ "Adicione %@" = "Tap to add %@";
+ "Add" = "Add";
+ "Remove" = "Remove";
+ "RemoveOneItem" = "Tap to remove one item";
+ "AddOneItem" = "Tap to add one item";
+ "%@ items" = "%@ items";
+
+// MARK: - MainView
+"EmptyListText" = "You do not have any lists!\nHow about adding a new one?";
+"MainViewTrailingNavigationLabelA" = "Done";
+"MainViewTrailingNavigationLabelB" = "Edit";
+"MainViewTitle" = "Lists";
+"MainViewLeadingNavigationLabel" = "New List";
+
+"Remover %@" = "Do you want to delete %@?";
+"DeleteListAlertText"= "The deleted list cannot be recovered after its deletion.";
+"DeleteListAlertButton"= "Delete";
+
+"ContextMenu1" = "Edit";
+"ContextMenu2" = "Duplicate List";
+"ContextMenu3" = "Add Collaborator";
+"ContextMenu4" = "Share List";
+"ContextMenu5" = "Delete List";
+"DuplicateListAlertText" = "Are you sure you want to duplicate this list?";
+"DuplicateListAlertButton" = "Duplicate";
+"Duplicar %@" = "Do you want to %@?";
+
+// MARK: - MainView VoiceOver
+"Options" = "More options";
+"MoreOptions" = "Tap to show more options";
+"Option1" = "Edit";
+"Option1Hint" = "Tap to edit list";
+"Option2" = "Duplicate List";
+"Option2Hint" = "Tap to duplicate list";
+"Option3" = "Add collaborator";
+"Option3Hint" = "Tap to add collaborator";
+"Option4" = "Share list";
+"Option4Hint" = "Tap to share list";
+"Option5" = "Delete list";
+"Option5Hint" = "Tap to delete list";
+
+// MARK: - ItemCommentView
+"ItemCommentViewPlaceholder"= "Add a comment";
+"ItemCommentViewButtonLabel"= "OK";
+
+//MARK: - AddCollaboratorSheetView
+"AddCollabTitle" = "Add Collaborators";
+"AddCollabTextTip" = "Add collaborators to your list so they can make changes in real time";
+"AddCollabButton" = "Add Collaborator";
+"NoCollaboratorsText" = "You haven't added any collaborators yet";
+"ShareListText" = "Or just share your list with your contacts";
+"ShareListButton" = "Share list";
+"ShareListWarning" = "Sharing your list with another person will only send them a copy of your list. Your shared list will not be affected and this person **will not** be added as a collaborator.";
+
+"DeleteCollabAlertTitle %@" = "Are you sure you want to remove %@ from your list?";
+"DeleteCollabAlertMessage" = "This person will no longer be a collaborator to your list";
+"DeleteCollabAlertPrimaryButton" = "Remove";
+"DeleteCollabAlertSecondaryButton" = "Cancel";
+
+"AddCollaboratorLeadingNavigationLabel" = "Cancel";
+"AddCollaboratorTrailingNavigationLabel" = "Done";
+
+// MARK: - SuperlistaApp Alerts
+"CollabAlertText" = "You have been invited to collaborate on a list. Do you want to become a contributor to this list?";
+
+"AlertPrimaryButtonLabel" = "Cancel";
+"AlertSecondaryButtonLabel" = "Accept";
+
+"SharedAlertText" = "This list has been shared with you. Want to add a copy of this list to your lists?";
+
+// MARK: - Assets
+"DefaultLS" = "DefaultLS";
+"ProductList" = "productList_en.json";
+
+// MARK: - Products
+"Bazar" = "Home";
+"Bebidas" = "Drinks";
+"Bomboniere" = "Bomboniere";
+"Carnes" = "Meats";
+"Compotasedoces" = "Jams and sweets";
+"Congelados" = "Frozen";
+"Enlatadosconservaseoleos" = "Canned, pickled and oils";
+"Especiais" = "Specials";
+"Fiambreriaelaticinios" = "Hams and dairy products";
+"Graosefarinhas" = "Grains and flours";
+"Higieneebeleza" = "Beauty and hygiene";
+"Hortifruti" = "Vegetables";
+"Limpeza" = "Cleaning";
+"Massasebiscoitos" = "Pasta and cookies";
+"Matinais" = "Breakfast";
+"Molhos" = "Sauces";
+"Padaria" = "Bakery";
+"PetShop" = "PetShop";
+"Sobremesas" = "Desserts";
+"Temperos" = "Seasonings";
+"Outros" = "Others";

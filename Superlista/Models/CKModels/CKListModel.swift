@@ -14,15 +14,13 @@ class CKListModel {
     var sharedWith: [CKOwnerModel] = []
     
     let itemConverter: ItemModelConverter = ItemModelConverter()
-    
-    #warning("Localizar o nome da lista")
-    
+        
     init(completion: ((CKListModel) -> Void)? = nil) {
         
         let group = DispatchGroup()
         
         id = CKRecord.ID()
-        name = "Nova Lista"
+        name = NSLocalizedString("NovaLista", comment: "Nova Lista")
         
         group.enter()
         

@@ -1,10 +1,9 @@
-/* 
-  Localizable.strings
-  Superlista
+// MARK: - Global
+"NovaLista" = "Nova Lista";
 
-  Created by Luiz Eduardo Mello dos Reis on 18/10/21.
-  
-*/
+// MARK: - CustomSource
+"Lista: %@" = "Lista: %@";
+"Criada por: %@" = "Criada por: %@";
 
 //MARK: - Toolbar/navigationbar items
 "leadingCancel" = "Cancelar";
@@ -29,6 +28,14 @@
 "ACpickerFieldLabel" = "Categoria";
 "ACpickerFieldValue" = "Seletor estilo roda";
 
+// MARK: - SearchBar
+"SearchBarPlaceholder" = "Procurar Itens";
+
+// MARK: - FakeSearchBar
+"FakeSearchBarPlaceholder" = "Adicionar novos itens";
+
+// MARK: - OnboardingView
+"OnboardingViewButtonLabel" = "Começar";
 
 //MARK: - AddCollaborator screen
 "addCollabTitle" = "Adicionar Colaborador";
@@ -69,26 +76,155 @@
 "TituloDaNovaLista" = "Nova Lista";
 
 // MARK: - OnboardingA
+// MARK: - OnboardingFieldsView
+"OnboardingFieldsTitle" = "Personalize seu perfil";
+"OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
+"OnboardingFieldPlaceholder" = "Nome";
+"OnboardingBottomButtonLabel" = "Salvar";
+"OnboardingTrailingNavigationLabel" = "Pular";
+
+// MARK: - OnboardingPageModel
 "OnboardingA" = "OnboardingA";
 "OnboardingATitle" = "Bem-vindo";
 "OnboardingAText" = "Crie listas de supermercado categorizadas de maneira fácil e simples!";
 
-// MARK: - OnboardingB
 "OnboardingB" = "OnboardingB";
 "OnboardingBTitle" = "Listas Colaborativas";
 "OnboardingBText" = "Crie listas compartilhadas e adicione colaboradores para que possam editar em tempo real.";
 
-// MARK: - OnboardingC
 "OnboardingC" = "OnboardingC";
 "OnboardingCTitle" = "Personalize Itens";
 "OnboardingCText" = "Adicione novos produtos, quantidades e comentários a sua lista.";
 
-// MARK: - Onboarding Labels
-"Começar" = "Começar";
+// MARK: - SettingLabel
+"SettingLabelA" = "Editar perfil";
+"SettingLabelB" = "Contato";
+"SettingLabelC" = "Convide um amigo";
+"InviteMessage" = "Veja o App que estou usando para fazer minhas listas de compras. Baixa você também! =)";
 
+// MARK: - EditProfileView
+"EditProfileTitle" = "Editar Perfil";
+"EditProfileFieldPlaceholder" = "Nome";
+"EditProfileText" = "Adicione um nome e uma foto ao seu perfil para que você possa se identificado mais facilmente quando compartilhar ou for adicionado à uma lista.";
+"EditProfileLeadingNavigationLabel" = "Cancelar";
+"EditProfileTrailingNavigationLabel" = "Salvar";
+
+// MARK: - ListView
+"ListViewLabelA" = "Salvar";
+"ListViewLabelB" = "Editar";
+
+// MARK: - AddNewItemView
+"AddNewItemViewBottomButtonLabel" = "Pronto";
+
+// MARK: - AddNewItemView VoiceOver
+ "Adicione %@" = "Aperte para adicionar %@";
+ "Add" = "Adicione";
+ "Remove" = "Remova";
+ "RemoveOneItem" = "Aperte para remover um ítem";
+ "AddOneItem" = "Aperte para adicionar um ítem";
+ "%@ items" = "%@ ítens";
+
+// MARK: - MainView
+"EmptyListText" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
+"MainViewTrailingNavigationLabelA" = "Concluir";
+"MainViewTrailingNavigationLabelB" = "Editar";
+"MainViewTitle" = "Listas";
+"MainViewLeadingNavigationLabel" = "Nova Lista";
+"TudoSegmentedPicker" = "Tudo";
+"MinhasListasSegmentedPicker" = "Minhas listas";
+"ColaborativasSegmentedPicker" = "Colaborativas";
+"CriadaPorMim" = "Criada por **mim**";
+"CriadaPor %@" = "Criada por **%@**";
+
+"Remover %@" = "Deseja remover %@?";
+"DeleteListAlertText"= "A lista removida não poderá ser recuperada após sua exclusão";
+"DeleteListAlertButton"= "Apagar";
+
+"ContextMenu1" = "Editar";
+"ContextMenu2" = "Duplicar Lista";
+"ContextMenu3" = "Adicionar Colaborador";
+"ContextMenu4" = "Compartilhar Lista";
+"ContextMenu5" = "Apagar Lista";
+"DuplicateListAlertText" = "Tem certeza que deseja duplicar esta lista?";
+"DuplicateListAlertButton" = "Duplicar";
+"Duplicar %@" = "Deseja duplicar %@?";
+
+// MARK: - MainView VoiceOver
+"Options" = "Mais opções";
+"MoreOptions" = "Toque para mostrar mais opções";
+"Option1" = "Editar";
+"Option1Hint" = "Toque para editar";
+"Option2" = "Duplicar lista";
+"Option2Hint" = "Toque para duplicar lista";
+"Option3" = "Adicionar colaborador";
+"Option3Hint" = "Toque para adicionar colaborador";
+"Option4" = "Compartilhar lista";
+"Option4Hint" = "Toque para compartilhar lista";
+"Option5" = "Deletar lista";
+"Option5Hint" = "Toque para deletar lista";
+
+// MARK: - ItemCommentView
+"ItemCommentViewPlaceholder"= "Insira um comentário";
+"ItemCommentViewButtonLabel"= "OK";
+
+//MARK: - AddCollaboratorSheetView
+"AddCollabTitle" = "Adicionar Colaborador";
+"AddCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";
+"AddCollabButton" = "Adicionar Colaborador";
+"NoCollaboratorsText" = "Você ainda não adicionou nenhum colaborador";
+"ShareListText" = "Ou apenas compartilhe sua lista com seus contatos";
+"ShareListButton" = "Compartilhar lista";
+"ShareListWarning" = "Ao compartilhar uma lista com uma pessoa você enviará somente uma cópia da sua lista, isso não afetará a sua lista atual e a pessoa **não** será adicionada como colaborador.";
+
+"DeleteCollabAlertTitle %@" = "Você tem certeza que deseja excluir %@ de sua lista?";
+"DeleteCollabAlertMessage" = "Esta pessoa deixará de ser um colaborador na sua lista.";
+"DeleteCollabAlertPrimaryButton" = "Excluir";
+"DeleteCollabAlertSecondaryButton" = "Cancelar";
+
+"AddCollaboratorLeadingNavigationLabel" = "Cancelar";
+"AddCollaboratorTrailingNavigationLabel" = "Salvar";
+
+// MARK: - SuperlistaApp Alerts
+"CollabAlertText" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
+
+"AlertPrimaryButtonLabel" = "Cancelar";
+"AlertSecondaryButtonLabel" = "Aceitar";
+
+"SharedAlertText" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
+
+// MARK: - Assets
+"DefaultLS" = "DefaultLS";
+"ProductList" = "productList.json";
+
+// MARK: - Products
+"Bazar" = "Bazar";
+"Bebidas" = "Bebidas";
+"Bomboniere" = "Bomboniere";
+"Carnes" = "Carnes";
+"Compotasedoces" = "Compotas e doces";
+"Congelados" = "Congelados";
+"Enlatadosconservaseoleos" = "Enlatados, conservas e óleos";
+"Especiais" = "Especiais";
+"Fiambreriaelaticinios" = "Fiambreria e laticínios";
+"Graosefarinhas" = "Grãos e farinhas";
+"Higieneebeleza" = "Higiene e beleza";
+"Hortifruti" = "Hortifruti";
+"Limpeza" = "Limpeza";
+"Massasebiscoitos" = "Massas e biscoitos";
+"Matinais" = "Matinais";
+"Molhos" = "Molhos";
+"Padaria" = "Padaria";
+"PetShop" = "PetShop";
+"Sobremesas" = "Sobremesas";
+"Temperos" = "Temperos";
+"Outros" = "Outros";
 // MARK: - Onboarding Fields
 "OnboardingFieldsTitle" = "Personalize seu perfil";
 "OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
 "Nome" = "Nome";
 "Salvar" = "Salvar";
 "Pular" = "Pular";
+
+// MARK: - Tab Bar
+"ListasMenu" = "Minhas listas";
+"ConfigsMenu" = "Configurações";

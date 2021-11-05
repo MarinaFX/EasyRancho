@@ -1,0 +1,1538 @@
+[
+  {
+    "id": 1,
+    "name": "Kitchen utensils",
+    "category": "Home"
+  },
+  {
+    "id": 2,
+    "name": "School supplies",
+    "category": "Home"
+  },
+  {
+    "id": 3,
+    "name": "Tobacconist",
+    "category": "Home"
+  },
+  {
+    "id": 4,
+    "name": "Hardware",
+    "category": "Home"
+  },
+  {
+    "id": 5,
+    "name": "Automotive",
+    "category": "Home"
+  },
+  {
+    "id": 6,
+    "name": "Laundry",
+    "category": "Home"
+  },
+  {
+    "id": 7,
+    "name": "Camping",
+    "category": "Home"
+  },
+  {
+    "id": 8,
+    "name": "Pool",
+    "category": "Home"
+  },
+  {
+    "id": 9,
+    "name": "Bed, table and bath",
+    "category": "Home"
+  },
+  {
+    "id": 10,
+    "name": "Beer",
+    "category": "Drinks"
+  },
+  {
+    "id": 11,
+    "name": "Aperol",
+    "category": "Drinks"
+  },
+  {
+    "id": 12,
+    "name": "Sparkling wine",
+    "category": "Drinks"
+  },
+  {
+    "id": 13,
+    "name": "Wine",
+    "category": "Drinks"
+  },
+  {
+    "id": 14,
+    "name": "Water",
+    "category": "Drinks"
+  },
+  {
+    "id": 15,
+    "name": "Soda",
+    "category": "Drinks"
+  },
+  {
+    "id": 16,
+    "name": "Energy drink",
+    "category": "Drinks"
+  },
+  {
+    "id": 17,
+    "name": "Coconut Water",
+    "category": "Drinks"
+  },
+  {
+    "id": 18,
+    "name": "Powder refreshment",
+    "category": "Drinks"
+  },
+  {
+    "id": 19,
+    "name": "Tonic",
+    "category": "Drinks"
+  },
+  {
+    "id": 20,
+    "name": "Isotonic",
+    "category": "Drinks"
+  },
+  {
+    "id": 21,
+    "name": "Whisky",
+    "category": "Drinks"
+  },
+  {
+    "id": 22,
+    "name": "Sake",
+    "category": "Drinks"
+  },
+  {
+    "id": 23,
+    "name": "Rum",
+    "category": "Drinks"
+  },
+  {
+    "id": 24,
+    "name": "Cane liquor",
+    "category": "Drinks"
+  },
+  {
+    "id": 25,
+    "name": "Gin",
+    "category": "Drinks"
+  },
+  {
+    "id": 26,
+    "name": "Vodka",
+    "category": "Drinks"
+  },
+  {
+    "id": 27,
+    "name": "Juice",
+    "category": "Drinks"
+  },
+  {
+    "id": 28,
+    "name": "Iced tea",
+    "category": "Drinks"
+  },
+  {
+    "id": 29,
+    "name": "Soy drink",
+    "category": "Drinks"
+  },
+  {
+    "id": 30,
+    "name": "Tequila",
+    "category": "Drinks"
+  },
+  {
+    "id": 31,
+    "name": "Liqueur",
+    "category": "Drinks"
+  },
+  {
+    "id": 32,
+    "name": "Chocolate",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 33,
+    "name": "Candy",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 34,
+    "name": "Chewing gum",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 35,
+    "name": "Brown sugar candy",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 37,
+    "name": "Snacks",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 39,
+    "name": "Peanut butter",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 40,
+    "name": "Peanut",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 41,
+    "name": "Straw potato",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 42,
+    "name": "Marshmallow",
+    "category": "Bomboniere"
+  },
+  {
+    "id": 43,
+    "name": "Beef",
+    "category": "Meats"
+  },
+  {
+    "id": 44,
+    "name": "Chicken",
+    "category": "Meats"
+  },
+  {
+    "id": 45,
+    "name": "Ground beef",
+    "category": "Meats"
+  },
+  {
+    "id": 46,
+    "name": "Sausage",
+    "category": "Meats"
+  },
+  {
+    "id": 47,
+    "name": "Bacon",
+    "category": "Meats"
+  },
+  {
+    "id": 48,
+    "name": "Fish",
+    "category": "Meats"
+  },
+  {
+    "id": 49,
+    "name": "Shrimp",
+    "category": "Meats"
+  },
+  {
+    "id": 50,
+    "name": "Pork",
+    "category": "Meats"
+  },
+  {
+    "id": 51,
+    "name": "Sheep",
+    "category": "Meats"
+  },
+  {
+    "id": 53,
+    "name": "Raisins",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 54,
+    "name": "Dried fruits",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 55,
+    "name": "Syrup",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 56,
+    "name": "Hazelnut cream",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 58,
+    "name": "Jam",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 60,
+    "name": "Chicken breaded",
+    "category": "Frozen"
+  },
+  {
+    "id": 61,
+    "name": "Pizza",
+    "category": "Frozen"
+  },
+  {
+    "id": 62,
+    "name": "Lasagna",
+    "category": "Frozen"
+  },
+  {
+    "id": 63,
+    "name": "Frozen food",
+    "category": "Frozen"
+  },
+  {
+    "id": 64,
+    "name": "Ice cream",
+    "category": "Frozen"
+  },
+  {
+    "id": 65,
+    "name": "Acai",
+    "category": "Frozen"
+  },
+  {
+    "id": 66,
+    "name": "Frozen vegetables",
+    "category": "Frozen"
+  },
+  {
+    "id": 67,
+    "name": "Meatballs",
+    "category": "Frozen"
+  },
+  {
+    "id": 68,
+    "name": "Hamburger",
+    "category": "Frozen"
+  },
+  {
+    "id": 69,
+    "name": "Cheese bread",
+    "category": "Frozen"
+  },
+  {
+    "id": 70,
+    "name": "French fries",
+    "category": "Frozen"
+  },
+  {
+    "id": 71,
+    "name": "Oil",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 72,
+    "name": "Funghi",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 73,
+    "name": "Sardine",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 74,
+    "name": "Pickled cucumbers",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 75,
+    "name": "Tuna",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 76,
+    "name": "Quail eggs",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 77,
+    "name": "Pickled onions",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 78,
+    "name": "Canned pâté",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 79,
+    "name": "Olives",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 80,
+    "name": "Capers",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 81,
+    "name": "Pickled pepper",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 82,
+    "name": "Pickled peas",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 83,
+    "name": "Pickled corn",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 84,
+    "name": "Pickled vegetables",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 85,
+    "name": "Peeled tomatoes",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 86,
+    "name": "Olive oil",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 87,
+    "name": "Pickled mushrooms",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 88,
+    "name": "Palm heart",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 89,
+    "name": "Dried tomatoes",
+    "category": "Canned, pickled and oils"
+  },
+  {
+    "id": 90,
+    "name": "Brown sugar",
+    "category": "Specials"
+  },
+  {
+    "id": 91,
+    "name": "Cereal bar",
+    "category": "Specials"
+  },
+  {
+    "id": 92,
+    "name": "Sweetner",
+    "category": "Specials"
+  },
+  {
+    "id": 93,
+    "name": "Gluten free",
+    "category": "Specials"
+  },
+  {
+    "id": 94,
+    "name": "Sugar free",
+    "category": "Specials"
+  },
+  {
+    "id": 95,
+    "name": "Eggs",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 96,
+    "name": "Pâté",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 97,
+    "name": "Curd cheese",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 98,
+    "name": "Cheese",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 99,
+    "name": "Ham",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 100,
+    "name": "Grated cheese",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 101,
+    "name": "Cream cheese",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 102,
+    "name": "Yogurt",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 103,
+    "name": "Butter",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 104,
+    "name": "Margarine",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 105,
+    "name": "Chocolate milk",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 106,
+    "name": "Milk",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 107,
+    "name": "Fermented milk",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 108,
+    "name": "Mortadella",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 109,
+    "name": "Salami",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 110,
+    "name": "Sausage",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 111,
+    "name": "Fresh pasta",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 113,
+    "name": "Gnocchi",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 114,
+    "name": "Veneered dough",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 115,
+    "name": "Pizza dough",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 116,
+    "name": "Heavy cream",
+    "category": "Hams and dairy products"
+  },
+  {
+    "id": 117,
+    "name": "Beans",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 118,
+    "name": "Rice",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 120,
+    "name": "Polenta",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 121,
+    "name": "Tapioca",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 122,
+    "name": "Popcorn corn",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 123,
+    "name": "Peas",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 124,
+    "name": "Lentil",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 125,
+    "name": "Wheat flour",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 126,
+    "name": "Corn flour",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 127,
+    "name": "Flour",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 128,
+    "name": "Canjica corn",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 129,
+    "name": "Chickpeas",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 130,
+    "name": "Condom",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 131,
+    "name": "Toilet paper",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 132,
+    "name": "Tissue paper",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 133,
+    "name": "Toothpaste",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 134,
+    "name": "Toothbrush",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 135,
+    "name": "Razor",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 136,
+    "name": "Hairbrush",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 137,
+    "name": "Sanitary napkin",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 138,
+    "name": "Diapers",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 139,
+    "name": "Cotton",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 140,
+    "name": "Nail polish",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 141,
+    "name": "Shampoo",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 142,
+    "name": "Conditioner",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 143,
+    "name": "Moisturizing cream",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 144,
+    "name": "Brushing cream",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 145,
+    "name": "Dental floss",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 146,
+    "name": "Rinsing mouthwash",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 147,
+    "name": "Deodorant",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 148,
+    "name": "Soap",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 149,
+    "name": "Wet wipes",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 150,
+    "name": "Liquid soap",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 151,
+    "name": "Hair comb",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 152,
+    "name": "Nail polish remover",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 153,
+    "name": "Hair dye",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 154,
+    "name": "Shaving foam",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 155,
+    "name": "Hair gel",
+    "category": "Beauty and hygiene"
+  },
+  {
+    "id": 156,
+    "name": "Mushrooms",
+    "category": "Vegetables"
+  },
+  {
+    "id": 157,
+    "name": "Oregano",
+    "category": "Vegetables"
+  },
+  {
+    "id": 158,
+    "name": "Basil",
+    "category": "Vegetables"
+  },
+  {
+    "id": 159,
+    "name": "Marjoram",
+    "category": "Vegetables"
+  },
+  {
+    "id": 160,
+    "name": "Rosemary",
+    "category": "Vegetables"
+  },
+  {
+    "id": 161,
+    "name": "Bay leaves",
+    "category": "Vegetables"
+  },
+  {
+    "id": 162,
+    "name": "Green onions",
+    "category": "Vegetables"
+  },
+  {
+    "id": 163,
+    "name": "Garlic",
+    "category": "Vegetables"
+  },
+  {
+    "id": 164,
+    "name": "Parsley",
+    "category": "Vegetables"
+  },
+  {
+    "id": 165,
+    "name": "Green seasoning",
+    "category": "Vegetables"
+  },
+  {
+    "id": 166,
+    "name": "Pepper",
+    "category": "Vegetables"
+  },
+  {
+    "id": 167,
+    "name": "Potato",
+    "category": "Vegetables"
+  },
+  {
+    "id": 168,
+    "name": "Tomato",
+    "category": "Vegetables"
+  },
+  {
+    "id": 169,
+    "name": "Beet",
+    "category": "Vegetables"
+  },
+  {
+    "id": 170,
+    "name": "Turnip",
+    "category": "Vegetables"
+  },
+  {
+    "id": 171,
+    "name": "Carrot",
+    "category": "Vegetables"
+  },
+  {
+    "id": 172,
+    "name": "Pear squash",
+    "category": "Vegetables"
+  },
+  {
+    "id": 173,
+    "name": "Onion",
+    "category": "Vegetables"
+  },
+  {
+    "id": 174,
+    "name": "Cucumber",
+    "category": "Vegetables"
+  },
+  {
+    "id": 175,
+    "name": "Japanese cucumber",
+    "category": "Vegetables"
+  },
+  {
+    "id": 177,
+    "name": "Sweet potato",
+    "category": "Vegetables"
+  },
+  {
+    "id": 178,
+    "name": "Squash",
+    "category": "Vegetables"
+  },
+  {
+    "id": 179,
+    "name": "Pumpkin",
+    "category": "Vegetables"
+  },
+  {
+    "id": 180,
+    "name": "Pod",
+    "category": "Vegetables"
+  },
+  {
+    "id": 181,
+    "name": "Eggplant",
+    "category": "Vegetables"
+  },
+  {
+    "id": 182,
+    "name": "Corn",
+    "category": "Vegetables"
+  },
+  {
+    "id": 183,
+    "name": "Lettuce",
+    "category": "Vegetables"
+  },
+  {
+    "id": 184,
+    "name": "Rocket",
+    "category": "Vegetables"
+  },
+  {
+    "id": 185,
+    "name": "Broccoli",
+    "category": "Vegetables"
+  },
+  {
+    "id": 186,
+    "name": "Cauliflower",
+    "category": "Vegetables"
+  },
+  {
+    "id": 187,
+    "name": "Watercress",
+    "category": "Vegetables"
+  },
+  {
+    "id": 188,
+    "name": "Spinach",
+    "category": "Vegetables"
+  },
+  {
+    "id": 189,
+    "name": "Cabbage",
+    "category": "Vegetables"
+  },
+  {
+    "id": 191,
+    "name": "Celery",
+    "category": "Vegetables"
+  },
+  {
+    "id": 193,
+    "name": "Banana",
+    "category": "Vegetables"
+  },
+  {
+    "id": 194,
+    "name": "Orange",
+    "category": "Vegetables"
+  },
+  {
+    "id": 195,
+    "name": "Grape",
+    "category": "Vegetables"
+  },
+  {
+    "id": 196,
+    "name": "Pineaple",
+    "category": "Vegetables"
+  },
+  {
+    "id": 197,
+    "name": "Blueberry",
+    "category": "Vegetables"
+  },
+  {
+    "id": 198,
+    "name": "Strawberry",
+    "category": "Vegetables"
+  },
+  {
+    "id": 199,
+    "name": "Coconut",
+    "category": "Vegetables"
+  },
+  {
+    "id": 200,
+    "name": "Lime",
+    "category": "Vegetables"
+  },
+  {
+    "id": 201,
+    "name": "Apple",
+    "category": "Vegetables"
+  },
+  {
+    "id": 202,
+    "name": "Pawpaw",
+    "category": "Vegetables"
+  },
+  {
+    "id": 203,
+    "name": "Mango",
+    "category": "Vegetables"
+  },
+  {
+    "id": 204,
+    "name": "Passion fruit",
+    "category": "Vegetables"
+  },
+  {
+    "id": 205,
+    "name": "Watermelon",
+    "category": "Vegetables"
+  },
+  {
+    "id": 206,
+    "name": "Melon",
+    "category": "Vegetables"
+  },
+  {
+    "id": 207,
+    "name": "Avocado",
+    "category": "Vegetables"
+  },
+  {
+    "id": 208,
+    "name": "Tangerine",
+    "category": "Vegetables"
+  },
+  {
+    "id": 209,
+    "name": "Kiwi",
+    "category": "Vegetables"
+  },
+  {
+    "id": 210,
+    "name": "Nectarine",
+    "category": "Vegetables"
+  },
+  {
+    "id": 211,
+    "name": "Plum",
+    "category": "Vegetables"
+  },
+  {
+    "id": 212,
+    "name": "Pear",
+    "category": "Vegetables"
+  },
+  {
+    "id": 213,
+    "name": "Lemon",
+    "category": "Vegetables"
+  },
+  {
+    "id": 214,
+    "name": "Peach",
+    "category": "Vegetables"
+  },
+  {
+    "id": 215,
+    "name": "Pitaya",
+    "category": "Vegetables"
+  },
+  {
+    "id": 216,
+    "name": "Sponge",
+    "category": "Cleaning"
+  },
+  {
+    "id": 217,
+    "name": "Brush",
+    "category": "Cleaning"
+  },
+  {
+    "id": 218,
+    "name": "Brum",
+    "category": "Cleaning"
+  },
+  {
+    "id": 219,
+    "name": "Squeegee",
+    "category": "Cleaning"
+  },
+  {
+    "id": 220,
+    "name": "Sanitary water",
+    "category": "Cleaning"
+  },
+  {
+    "id": 221,
+    "name": "Ambient purifier",
+    "category": "Cleaning"
+  },
+  {
+    "id": 222,
+    "name": "Bar soap",
+    "category": "Cleaning"
+  },
+  {
+    "id": 223,
+    "name": "Liquid soap",
+    "category": "Cleaning"
+  },
+  {
+    "id": 224,
+    "name": "Liquid detergent",
+    "category": "Cleaning"
+  },
+  {
+    "id": 225,
+    "name": "Powder detergent",
+    "category": "Cleaning"
+  },
+  {
+    "id": 226,
+    "name": "Bleach",
+    "category": "Cleaning"
+  },
+  {
+    "id": 227,
+    "name": "Cloathing softener",
+    "category": "Cleaning"
+  },
+  {
+    "id": 228,
+    "name": "Dishwasher",
+    "category": "Cleaning"
+  },
+  {
+    "id": 229,
+    "name": "Cleanser",
+    "category": "Cleaning"
+  },
+  {
+    "id": 230,
+    "name": "Insecticide",
+    "category": "Cleaning"
+  },
+  {
+    "id": 231,
+    "name": "Disinfectant",
+    "category": "Cleaning"
+  },
+  {
+    "id": 232,
+    "name": "Shovel",
+    "category": "Cleaning"
+  },
+  {
+    "id": 233,
+    "name": "Unblocker",
+    "category": "Cleaning"
+  },
+  {
+    "id": 234,
+    "name": "Cloth",
+    "category": "Cleaning"
+  },
+  {
+    "id": 235,
+    "name": "Clothesline rope",
+    "category": "Cleaning"
+  },
+  {
+    "id": 236,
+    "name": "Mop",
+    "category": "Cleaning"
+  },
+  {
+    "id": 237,
+    "name": "Solvent",
+    "category": "Cleaning"
+  },
+  {
+    "id": 238,
+    "name": "Peroba oil",
+    "category": "Cleaning"
+  },
+  {
+    "id": 239,
+    "name": "Anti-mildew",
+    "category": "Cleaning"
+  },
+  {
+    "id": 240,
+    "name": "Incense",
+    "category": "Cleaning"
+  },
+  {
+    "id": 241,
+    "name": "Garbage bag",
+    "category": "Cleaning"
+  },
+  {
+    "id": 242,
+    "name": "Alcohol",
+    "category": "Cleaning"
+  },
+  {
+    "id": 243,
+    "name": "Shoe polisher",
+    "category": "Cleaning"
+  },
+  {
+    "id": 244,
+    "name": "Furniture polisher",
+    "category": "Cleaning"
+  },
+  {
+    "id": 245,
+    "name": "Wax",
+    "category": "Cleaning"
+  },
+  {
+    "id": 246,
+    "name": "Repelent",
+    "category": "Cleaning"
+  },
+  {
+    "id": 247,
+    "name": "Saponaceous",
+    "category": "Cleaning"
+  },
+  {
+    "id": 248,
+    "name": "Napkin",
+    "category": "Cleaning"
+  },
+  {
+    "id": 249,
+    "name": "Pasta",
+    "category": "Pastas and cookies"
+  },
+  {
+    "id": 250,
+    "name": "Noodles",
+    "category": "Pastas and cookies"
+  },
+  {
+    "id": 251,
+    "name": "Cookies",
+    "category": "Pastas and cookies"
+  },
+  {
+    "id": 252,
+    "name": "Stuffed biscuit",
+    "category": "Pastas and cookies"
+  },
+  {
+    "id": 253,
+    "name": "Granola",
+    "category": "Breakfast"
+  },
+  {
+    "id": 254,
+    "name": "Paper filter",
+    "category": "Breakfast"
+  },
+  {
+    "id": 255,
+    "name": "Coffee",
+    "category": "Breakfast"
+  },
+  {
+    "id": 256,
+    "name": "Tea",
+    "category": "Breakfast"
+  },
+  {
+    "id": 257,
+    "name": "Oatmeal",
+    "category": "Breakfast"
+  },
+  {
+    "id": 258,
+    "name": "Sugar",
+    "category": "Breakfast"
+  },
+  {
+    "id": 259,
+    "name": "Chocolate powder",
+    "category": "Breakfast"
+  },
+  {
+    "id": 260,
+    "name": "Milk powder",
+    "category": "Breakfast"
+  },
+  {
+    "id": 261,
+    "name": "Cereal",
+    "category": "Breakfast"
+  },
+  {
+    "id": 262,
+    "name": "Filter holder",
+    "category": "Breakfast"
+  },
+  {
+    "id": 264,
+    "name": "Flaxseed",
+    "category": "Breakfast"
+  },
+  {
+    "id": 265,
+    "name": "Tomato sauce",
+    "category": "Sauces"
+  },
+  {
+    "id": 266,
+    "name": "Shoyo",
+    "category": "Sauces"
+  },
+  {
+    "id": 267,
+    "name": "Ketchup",
+    "category": "Sauces"
+  },
+  {
+    "id": 268,
+    "name": "Mayonnaise",
+    "category": "Sauces"
+  },
+  {
+    "id": 269,
+    "name": "Mustard",
+    "category": "Sauces"
+  },
+  {
+    "id": 270,
+    "name": "Salad sauce",
+    "category": "Sauces"
+  },
+  {
+    "id": 271,
+    "name": "Pepper sauce",
+    "category": "Sauces"
+  },
+  {
+    "id": 272,
+    "name": "White sauce",
+    "category": "Sauces"
+  },
+  {
+    "id": 273,
+    "name": "Gravy sauce",
+    "category": "Sauces"
+  },
+  {
+    "id": 274,
+    "name": "Pesto",
+    "category": "Sauces"
+  },
+  {
+    "id": 275,
+    "name": "Garlic bread",
+    "category": "Bakery"
+  },
+  {
+    "id": 276,
+    "name": "Loaf bread",
+    "category": "Bakery"
+  },
+  {
+    "id": 277,
+    "name": "Bread",
+    "category": "Bakery"
+  },
+  {
+    "id": 278,
+    "name": "Tortilla",
+    "category": "Bakery"
+  },
+  {
+    "id": 279,
+    "name": "Cake",
+    "category": "Bakery"
+  },
+  {
+    "id": 280,
+    "name": "Bicuit",
+    "category": "Bakery"
+  },
+  {
+    "id": 281,
+    "name": "Pie",
+    "category": "Bakery"
+  },
+  {
+    "id": 282,
+    "name": "Peeta bread",
+    "category": "Bakery"
+  },
+  {
+    "id": 283,
+    "name": "Hygienic mat",
+    "category": "PetShop"
+  },
+  {
+    "id": 284,
+    "name": "Pet sachet",
+    "category": "PetShop"
+  },
+  {
+    "id": 285,
+    "name": "Pet snack food",
+    "category": "PetShop"
+  },
+  {
+    "id": 286,
+    "name": "Pet feed",
+    "category": "PetShop"
+  },
+  {
+    "id": 287,
+    "name": "Sanitary granulated",
+    "category": "PetShop"
+  },
+  {
+    "id": 288,
+    "name": "Anti-fleas",
+    "category": "PetShop"
+  },
+  {
+    "id": 289,
+    "name": "Grated coconut",
+    "category": "Desserts"
+  },
+  {
+    "id": 290,
+    "name": "Powdered chocolate",
+    "category": "Desserts"
+  },
+  {
+    "id": 291,
+    "name": "Cake mix",
+    "category": "Desserts"
+  },
+  {
+    "id": 292,
+    "name": "Yeast",
+    "category": "Desserts"
+  },
+  {
+    "id": 293,
+    "name": "Pudding",
+    "category": "Desserts"
+  },
+  {
+    "id": 294,
+    "name": "Gelatin",
+    "category": "Desserts"
+  },
+  {
+    "id": 295,
+    "name": "Flan",
+    "category": "Desserts"
+  },
+  {
+    "id": 296,
+    "name": "Chantilly",
+    "category": "Desserts"
+  },
+  {
+    "id": 297,
+    "name": "Condensed milk",
+    "category": "Desserts"
+  },
+  {
+    "id": 298,
+    "name": "Sour cream",
+    "category": "Desserts"
+  },
+  {
+    "id": 299,
+    "name": "Cinnamon",
+    "category": "Desserts"
+  },
+  {
+    "id": 300,
+    "name": "Cassava starch",
+    "category": "Desserts"
+  },
+  {
+    "id": 301,
+    "name": "Sago palm",
+    "category": "Desserts"
+  },
+  {
+    "id": 302,
+    "name": "Coconut milk",
+    "category": "Desserts"
+  },
+  {
+    "id": 303,
+    "name": "Salt",
+    "category": "Seasonings"
+  },
+  {
+    "id": 304,
+    "name": "Chicken stock",
+    "category": "Seasonings"
+  },
+  {
+    "id": 305,
+    "name": "Beef stock",
+    "category": "Seasonings"
+  },
+  {
+    "id": 306,
+    "name": "Vegetables stock",
+    "category": "Seasonings"
+  },
+  {
+    "id": 307,
+    "name": "Vinegar",
+    "category": "Seasonings"
+  },
+  {
+    "id": 308,
+    "name": "Pepper flakes",
+    "category": "Seasonings"
+  },
+  {
+    "id": 309,
+    "name": "Seasoning",
+    "category": "Seasonings"
+  },
+  {
+    "id": 310,
+    "name": "Balsamic aceto",
+    "category": "Seasonings"
+  },
+  {
+    "id": 311,
+    "name": "Other",
+    "category": "Others"
+  },
+  {
+    "id": 312,
+    "name": "Cilantro",
+    "category": "Vegetables"
+  },
+  {
+    "id": 313,
+    "name": "Chia",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 314,
+    "name": "Sesame seeds",
+    "category": "Grains and flours"
+  },
+  {
+    "id": 315,
+    "name": "Honey",
+    "category": "Jams and sweets"
+  },
+  {
+    "id": 317,
+    "name": "Nuggets",
+    "category": "Frozen"
+  },
+  {
+    "id": 318,
+    "name": "Cheese sauce",
+    "category": "Sauces"
+  },
+  {
+    "id": 319,
+    "name": "Lasagna pasta",
+    "category": "Hams and dairy products"
+  }
+]
+

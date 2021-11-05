@@ -35,23 +35,37 @@ class DataService: ObservableObject {
         
         //if online
         self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
-                var localLists = UDService().getUDLists()
-                                    
-                ckUserModel.myLists?.forEach { list in
-                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                    
-                    let ids = localLists.map(\.id)
-                    
-                    if let index = ids.firstIndex(of: list.id.recordName) {
-                        localLists[index] = localList
-                    }
-                    else {
-                        localLists.append(localList)
-                    }
-                }
+            var localLists = UDService().getUDLists()
+            
+            ckUserModel.sharedWithMe?.forEach { list in
+                let localList = ListModelConverter().convertCloudListToLocal(withList: list)
                 
+                let ids = localLists.map(\.id)
+                
+                if let index = ids.firstIndex(of: list.id.recordName) {
+                    localLists[index] = localList
+                }
+                else {
+                    localLists.append(localList)
+                }
+            }
+            
+            
+            ckUserModel.myLists?.forEach { list in
+                let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                
+                let ids = localLists.map(\.id)
+                
+                if let index = ids.firstIndex(of: list.id.recordName) {
+                    localLists[index] = localList
+                }
+                else {
+                    localLists.append(localList)
+                }
+            }
+            
             self.lists = localLists
-        
+            
             self.user = UserModelConverter().convertCloudUserToLocal(withUser: ckUserModel)
         }
     }
@@ -188,7 +202,34 @@ class DataService: ObservableObject {
             }
         }
     }
+
+    func removeQuantity(of item: ItemModel, from listModel: ListModel) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            let listWithNewItemQuantity = listModel.removeQuantity(of: item)
+            
+            lists[index] = listWithNewItemQuantity
+            
+            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+        }
+    }
     
+    func addQuantity(of item: ItemModel, from listModel: ListModel) {
+        if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
+            let listWithNewItemQuantity = listModel.addQuantity(of: item)
+            
+            lists[index] = listWithNewItemQuantity
+            
+            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+        }
+    }
+    
+    func duplicateList(of list: ListModel) {
+        guard let user = user, let name = user.name else { return }
+        let owner = OwnerModel(id: user.id, name: name)
+        let newList = ListModel(title: list.title, items: list.items, owner: owner, sharedWith: list.sharedWith ?? [])
+        addList(newList)
+    }
+
     func updateCustomProducts(withName productName: String, for category: String) -> Bool {
         if let user = user,
            let userCustomProducts = user.customProducts {

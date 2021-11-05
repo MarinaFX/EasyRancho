@@ -12,7 +12,7 @@ struct ListView: View {
         return myList
     }
     
-    
+        
     @State var listTitle: String = ""
     
     var body: some View {
@@ -23,9 +23,8 @@ struct ListView: View {
                         .ignoresSafeArea()
                     
                     VStack (spacing: 20) {
-                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list!.sharedWith ?? [], listOwner: list!.owner, list: self.list, listId: $listId)
-                        
                         if let list = self.list {
+                            ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
                             
                             NavigationLink(destination: AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "")){
                                 FakeSearchBar()
@@ -47,7 +46,7 @@ struct ListView: View {
                         Button {
                             editTitle()
                         } label: {
-                            Text(canEditTitle ? "SalvarNovaLista" : "EditarNovaLista")
+                            Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
                         }
                     }
                 }

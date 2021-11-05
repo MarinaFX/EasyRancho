@@ -30,21 +30,52 @@ struct ItemCommentView: View {
                     Text(item.product.name)
                         .strikethrough(item.isCompleted)
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
+                        .font(.body)
+                        .fontWeight(.bold)
                     
-                    
-                    Spacer()
                     
                     if !isCommenting{
                         Image(systemName: "text.bubble")
                             .resizable()
-                            .frame(width: 22, height: 22)
+                            .frame(width: 18, height: 18)
                             .foregroundColor(Color("Comment"))
                             .onTapGesture {
                                 isCommenting = true
                             }
                     }
+                    
+                    Spacer()
+                    
+                    ZStack {
+                        Image(systemName: "minus")
+                            .resizable()
+                            .frame(width: 17, height: ((item.quantity ?? 1) > 1) ? 2 : 1.5)
+                            .foregroundColor(((item.quantity ?? 1) > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
+                    }
+                    .frame(width: 17, height: 17)
+                    .onTapGesture {
+                        listsViewModel.removeQuantity(of: item, from: list)
+                    }
+                    .accessibilityLabel(Text("Remove"))
+                    .accessibility(hint: Text("RemoveOneItem"))
+
+                    
+                    Text("\(item.quantity ?? 1)")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.primary)
+                        .accessibilityLabel(Text("\(item.quantity ?? 1) items"))
+                    
+                    
+                    Image(systemName: "plus")
+                        .resizable()
+                        .frame(width: 17, height: 17)
+                        .foregroundColor(Color("Comment"))
+                        .onTapGesture {
+                            listsViewModel.addQuantity(of: item, from: list)
+                        }
+                        .accessibilityLabel(Text("Add"))
+                        .accessibility(hint: Text("AddOneItem"))
                     
                 }
                 
@@ -52,7 +83,7 @@ struct ItemCommentView: View {
                     HStack {
                         ZStack(alignment: .leading){
                             if (comment == "") {
-                                Text("Insira um comentário")
+                                Text("ItemCommentViewPlaceholder")
                                     .foregroundColor(Color(UIColor.secondaryLabel))
                                     .font(.system(size: 13))
                                     .padding(.leading, 30)
@@ -66,7 +97,7 @@ struct ItemCommentView: View {
                         
                         Spacer()
                         
-                        Text("OK")
+                        Text("ItemCommentViewButtonLabel")
                             .foregroundColor(Color.primary)
                             .font(.subheadline)
                             .onTapGesture {

@@ -3,9 +3,7 @@ import Foundation
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
-    
-    @EnvironmentObject var listsViewModel: DataService
-    
+        
     var list: ListModel
     
     @Binding var hasChangedItems: Bool
@@ -21,7 +19,7 @@ struct AddNewItemView: View {
                     ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
                     
                     Button(action: prontoButtonPressed, label: {
-                        Text("ProntoNovosItens")
+                        Text("AddNewItemViewBottomButtonLabel")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .frame(height: geometry.size.height * 0.06)
