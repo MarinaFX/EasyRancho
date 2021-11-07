@@ -73,6 +73,21 @@ class CloudIntegration: ObservableObject {
         }
     }
     
+    func removeCollab(of list: ListModel, owner: OwnerModel) {
+        CKService.currentModel.deleteListCollab(collabID: CKRecord.ID(recordName: owner.id), listID: CKRecord.ID(recordName: list.id)) { result in }
+
+        guard let index = list.sharedWith?.firstIndex(where: { owner.id == $0.id }) else { return }
+        guard var sharedWith = list.sharedWith else { return }
+        sharedWith.remove(at: index)
+        
+        var newCkCollabList: [CKOwnerModel] = []
+        for shared in sharedWith {
+            newCkCollabList.append(OwnerModelConverter().convertLocalToCKOwner(withUser: shared))
+        }
+        
+        CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list.id), sharedWith: newCkCollabList) { result in }
+    }
+    
     func updateListTitle(_ list: ListModel, _ newTitle: String) {
         let ckList = listModelConverter.convertLocalListToCloud(withList: list)
                 
