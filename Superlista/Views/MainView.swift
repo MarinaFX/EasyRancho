@@ -260,9 +260,13 @@ struct MainView: View {
         
         let newOwner: OwnerModel = OwnerModel(id: user.id, name: user.name!)
         
-        alertMessage(title: "Criar nova lista", message: "Dê um nome para sua nova lista", placeholder: "Nova Lista") { text in
+        let title = NSLocalizedString("CreateListAlertTitle", comment: "")
+        let msg = NSLocalizedString("CreateListAlertText", comment: "")
+        let placeholder = NSLocalizedString("NovaLista", comment: "")
+        
+        alertMessage(title: title, message: msg, placeholder: placeholder) { text in
             if let title = text {
-                let listTitle = title != "" ? title : NSLocalizedString("NovaLista", comment: "List title")
+                let listTitle = title != "" ? title : placeholder
                 
                 let newList: ListModel = ListModel(title: listTitle, owner: newOwner)
                 
@@ -320,13 +324,14 @@ struct FooterButton: View {
 func alertMessage(title: String, message: String, placeholder: String, actionHandler: @escaping (String?) -> Void) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertCancelButton", comment: ""), style: .cancel, handler: nil))
     
     alert.addTextField { textField in
         textField.placeholder = placeholder
     }
     
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in actionHandler(alert.textFields?.first?.text)
+    alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertMainButton", comment: ""), style: .default, handler: { action in
+        actionHandler(alert.textFields?.first?.text)
     }))
     
     let viewController = UIApplication.shared.windows.first!.rootViewController!

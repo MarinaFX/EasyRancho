@@ -67,25 +67,37 @@
 "MainViewTrailingNavigationLabelA" = "Concluir";
 "MainViewTrailingNavigationLabelB" = "Editar";
 "MainViewTitle" = "Listas";
-"MainViewLeadingNavigationLabel" = "Nova Lista";
-"TudoSegmentedPicker" = "Tudo";
-"MinhasListasSegmentedPicker" = "Minhas listas";
-"ColaborativasSegmentedPicker" = "Colaborativas";
+"AddListMainButton" = "Criar nova lista";
 "CriadaPorMim" = "Criada por **mim**";
 "CriadaPor %@" = "Criada por **%@**";
 
+// MARK: - MainView Segmented Picker
+"TudoSegmentedPicker" = "Tudo";
+"MinhasListasSegmentedPicker" = "Minhas listas";
+"ColaborativasSegmentedPicker" = "Colaborativas";
+
+// MARK: - MainView Deletion Alert
 "Remover %@" = "Deseja remover %@?";
 "DeleteListAlertText"= "A lista removida não poderá ser recuperada após sua exclusão";
 "DeleteListAlertButton"= "Apagar";
 
+// MARK: - MainView ContextMenu
 "ContextMenu1" = "Editar";
 "ContextMenu2" = "Duplicar Lista";
 "ContextMenu3" = "Adicionar Colaborador";
 "ContextMenu4" = "Compartilhar Lista";
 "ContextMenu5" = "Apagar Lista";
+
+// MARK: - MainView Duplication Alert
 "DuplicateListAlertText" = "Tem certeza que deseja duplicar esta lista?";
 "DuplicateListAlertButton" = "Duplicar";
 "Duplicar %@" = "Deseja duplicar %@?";
+
+// MARK: - MainView Creation Alert
+"CreateListAlertCancelButton" = "Cancelar";
+"CreateListAlertMainButton" = "Criar";
+"CreateListAlertTitle" = "Criar nova lista";
+"CreateListAlertText" = "Dê um nome para sua nova lista";
 
 // MARK: - MainView VoiceOver
 "Options" = "Mais opções";
