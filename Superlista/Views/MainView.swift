@@ -11,39 +11,44 @@ struct MainView: View {
     @State var isLoading: Bool = false
     @State var selectedSection = 0
     @State var createdBy = ""
+    
     var appliedSection: [ListModel]{
         switch selectedSection{
-        case 0:
-            return dataService.lists
-        case 1:
-            guard let currentUser = dataService.user else { return [] }
-            return dataService.lists.filter{$0.owner.id == currentUser.id}
-        case 2:
-            guard let currentUser = dataService.user else { return [] }
-            return dataService.lists.filter{$0.owner.id != currentUser.id}
-        default:
-            return []
+            case 0:
+                return dataService.lists
+            case 1:
+                guard let currentUser = dataService.user else { return [] }
+                return dataService.lists.filter{$0.owner.id == currentUser.id}
+            case 2:
+                guard let currentUser = dataService.user else { return [] }
+                return dataService.lists.filter{$0.owner.id != currentUser.id}
+            default:
+                return []
         }
     }
     
     @State var showAlertDelete = false
+    @State var showDialog = false
+    @State var listTitle = ""
     @State var showAlertDuplicate = false
     @State var editNavigation = false
+    @State var hasClickedSettings = false
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
-    
-    @State var shouldChangeView = false
     
     var body: some View {
         NavigationView {
-            GeometryReader { geometry in
-                
+            VStack {
                 ZStack {
                     
                     NavigationLink(destination: ListView(listId: listId),
                                    isActive: $isCreatingList,
                                    label: { EmptyView() }
-                    )
-                        .opacity(0.0)
+                    ).opacity(0.0)
+                    
+//                    NavigationLink(destination: SettingsView(),
+//                                   isActive: $hasClickedSettings,
+//                                   label: { EmptyView() }
+//                    ).opacity(0.0)
                     
                     Color("PrimaryBackground")
                         .ignoresSafeArea()
@@ -208,17 +213,24 @@ struct MainView: View {
                     // MARK: - toolbar
                         .toolbar{
                             
-                            // MARK: - edit button
-                            ToolbarItem(placement: .navigationBarLeading){
+//                            ToolbarItem(placement: .navigationBarLeading){
+//                                //                                NavigationLink(destination: SettingsView(), label: {
+//                                //                                    Image(systemName: "gearshape.fill")
+//                                //                                })
+//                                Button(action: {
+//                                    self.hasClickedSettings = true
+//                                }, label : {
+//                                    Image(systemName: "gearshape.fill")
+//                                })
+//                            }
+                            
+                            ToolbarItem(placement: .navigationBarTrailing){
                                 if !dataService.lists.isEmpty {
                                     Button(action: {isEditing.toggle()}, label: {
                                         Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
                                 }
                             }
-                            // MARK: - new list button
-                            ToolbarItem(placement: .navigationBarTrailing){
-                                Button(action: createNewListAction, label: { Text("NovaLista") })
-                            }
+                            
                             // MARK: - title
                             ToolbarItem(placement: .principal){
                                 Text("MainViewTitle")
@@ -236,7 +248,9 @@ struct MainView: View {
                         })
                     }
                 }
-            }
+                
+                FooterButton(action: createNewListAction)
+            }.edgesIgnoringSafeArea(.bottom)
         }
     }
     
@@ -245,12 +259,19 @@ struct MainView: View {
         guard let user = dataService.user else { return }
         
         let newOwner: OwnerModel = OwnerModel(id: user.id, name: user.name!)
-        let newList: ListModel = ListModel(title: "Nova Lista", owner: newOwner)
         
-        dataService.addList(newList)
-        
-        self.listId = newList.id
-        self.isCreatingList = true
+        alertMessage(title: "Criar nova lista", message: "Dê um nome para sua nova lista", placeholder: "Nova Lista") { text in
+            if let title = text {
+                let listTitle = title != "" ? title : NSLocalizedString("NovaLista", comment: "List title")
+                
+                let newList: ListModel = ListModel(title: listTitle, owner: newOwner)
+                
+                dataService.addList(newList)
+                
+                self.listId = newList.id
+                self.isCreatingList = true
+            }
+        }
     }
 }
 
@@ -265,4 +286,50 @@ struct EmptyState: View {
                 .frame(width: 400, height: 400)
         }
     }
+}
+
+struct FooterButton: View {
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .trailing) {
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title2)
+                    
+                    Text("AddListMainButton")
+                        .fontWeight(.bold)
+                        .font(.title3)
+                    
+                    Spacer()
+                }
+                .foregroundColor(Color("Button"))
+                .padding(.bottom, 34)
+                .padding(.horizontal, 14)
+                .padding(.top, 18)
+                
+            }
+            .frame(width: UIScreen.main.bounds.width, height: 83)
+            .background(Color("ButtonBG"))
+            .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
+        }
+    }
+}
+
+func alertMessage(title: String, message: String, placeholder: String, actionHandler: @escaping (String?) -> Void) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    
+    alert.addTextField { textField in
+        textField.placeholder = placeholder
+    }
+    
+    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in actionHandler(alert.textFields?.first?.text)
+    }))
+    
+    let viewController = UIApplication.shared.windows.first!.rootViewController!
+    
+    viewController.present(alert, animated: true)
 }
