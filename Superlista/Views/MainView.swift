@@ -11,20 +11,24 @@ struct MainView: View {
     @State var isLoading: Bool = false
     @State var selectedSection = 0
     @State var createdBy = ""
+    @State var counter = 0
     
     var appliedSection: [ListModel]{
+        let section: [ListModel]
+        
         switch selectedSection{
-            case 0:
-                return dataService.lists
-            case 1:
-                guard let currentUser = dataService.user else { return [] }
-                return dataService.lists.filter{$0.owner.id == currentUser.id}
-            case 2:
-                guard let currentUser = dataService.user else { return [] }
-                return dataService.lists.filter{$0.owner.id != currentUser.id}
-            default:
-                return []
+        case 0:
+            section =  dataService.lists
+        case 1:
+            guard let currentUser = dataService.user else { return [] }
+            section = dataService.lists.filter{$0.owner.id == currentUser.id}
+        case 2:
+            guard let currentUser = dataService.user else { return [] }
+            section =  dataService.lists.filter{$0.owner.id != currentUser.id}
+        default:
+            section =  []
         }
+        return section
     }
     
     @State var showDialog = false
@@ -126,6 +130,9 @@ struct MainView: View {
                     .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
                 }
             }.edgesIgnoringSafeArea(.bottom)
+        }
+        .onReceive(dataService.objectWillChange) { _ in
+            counter += 1
         }
     }
     

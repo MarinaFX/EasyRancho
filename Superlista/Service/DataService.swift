@@ -30,7 +30,9 @@ class DataService: ObservableObject {
     }
     
     func getDataIntegration() {
-        self.lists = UDService().getUDLists()
+        let listas = UDService().getUDLists()
+        self.lists = listas
+        
         self.user = UDService().getUDUser()
         
         //if online

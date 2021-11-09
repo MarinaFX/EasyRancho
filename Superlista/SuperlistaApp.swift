@@ -59,6 +59,13 @@ struct SuperlistaApp: App {
                                     }
                                     sharedWith.append(user)
                                     CKService.currentModel.updateListCollab(listID: list!.id, sharedWith: sharedWith) { result in }
+                                    
+                                    //Início da gambiarra
+                                    list?.sharedWith = sharedWith
+                                    let localList = ListModelConverter().convertCloudListToLocal(withList: list!)
+                                    self.dataService.lists.append(localList)
+                                    //Fim da gambiarra
+                                    
                                     presentCollabAlert = false
                                 }
                             )
