@@ -28,7 +28,6 @@ struct MainView: View {
         default:
             section =  []
         }
-//        print(section.map({$0.id}), "-------")
         return section
     }
     
