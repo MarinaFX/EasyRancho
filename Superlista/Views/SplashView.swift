@@ -14,28 +14,9 @@ struct SplashView: View {
     var body: some View {
         VStack {
             if self.isActive && self.isLogged {
-                TabView{
-                    MainView()
-                        .tabItem {
-                            Label("ListasMenu", systemImage: "rectangle.grid.2x2.fill")
-                        }
-                        .navigationBarHidden(true)
-                        .navigationBarBackButtonHidden(true)
-                        .navigationBarTitleDisplayMode(.inline)
-//                    ListView()
-//                        .tabItem {
-//                            Label("Nova Lista", systemImage: "plus.circle.fill")
-//                        }
-                    SettingsView()
-                        .tabItem {
-                            Label("ConfigsMenu", systemImage: "person.crop.circle.fill")
-                        }
-                }
-                
-            } else if !self.isLogged {
-                OnboardingView()
-                
-            } else {
+                MainView()
+
+            } else if !self.isActive {
                 VStack {
                     Spacer()
                     
@@ -46,6 +27,8 @@ struct SplashView: View {
                     
                     Spacer()
                 }
+            } else {
+                OnboardingView()
             }
         }
     }
