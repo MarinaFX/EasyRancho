@@ -64,15 +64,14 @@ struct MainView: View {
                     }
                     
                     ScrollView(showsIndicators: false) {
-                        Picker("Lists Sections", selection: $selectedSection) {
-                            Text("TudoSegmentedPicker").tag(0)
-                                .accessibility(hint: Text("HintTudoSegmentedPicker"))
-                            Text("MinhasListasSegmentedPicker").tag(1)
-                                .accessibility(hint: Text("HintMinhasListasSegmentedPicker"))
-                            Text("ColaborativasSegmentedPicker").tag(2)
-                                .accessibility(hint: Text("HintColaborativasSegmentedPicker"))
+                        if !dataService.lists.isEmpty {
+                            Picker("Lists Sections", selection: $selectedSection) {
+                                Text("TudoSegmentedPicker").tag(0)
+                                Text("MinhasListasSegmentedPicker").tag(1)
+                                Text("ColaborativasSegmentedPicker").tag(2)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
                         }
-                        .pickerStyle(SegmentedPickerStyle())
                         
                         LazyVGrid(columns: columns, spacing: 20, content: {
                             ForEach(appliedSection) { list in
@@ -82,10 +81,13 @@ struct MainView: View {
                     }
                     .padding(.horizontal)
                     .toolbar{
-//                        ToolbarItem(placement: .navigationBarLeading) {
-//                            NavigationLink(destination: SettingsView(), label: { Image(systemName: "gearshape.fill")
-//                            })
-//                        }
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button(action: {
+                                self.hasClickedSettings = true
+                            }, label: {
+                                Image(systemName: "gearshape.fill")
+                            })
+                        }
                         
                         ToolbarItem(placement: .navigationBarTrailing){
                             if !dataService.lists.isEmpty {
@@ -134,8 +136,12 @@ struct MainView: View {
                     .background(Color("ButtonBG"))
                     .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
                 }
-                .accessibility(hint: Text("HintAddListMainButton"))
-            }.edgesIgnoringSafeArea(.bottom)
+                    .accessibility(hint: Text("HintAddListMainButton"))
+                
+            }
+            .edgesIgnoringSafeArea(.bottom)
+        }.sheet(isPresented: $hasClickedSettings) {
+            SettingsView()
         }
         .onReceive(dataService.objectWillChange) { _ in
             counter += 1

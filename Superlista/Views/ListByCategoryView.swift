@@ -1,16 +1,16 @@
 import SwiftUI
 
 struct ListByCategoryView: View {
-    @EnvironmentObject var listsViewModel: DataService
+    @EnvironmentObject var dataService: DataService
     
     var categoryName: CategoryModel
     
     var list: ListModel
     
-    func rows() -> [ItemModel] { listsViewModel.lists.first(where: { $0.id == list.id })!.items[categoryName]! }
+    func rows() -> [ItemModel] { dataService.lists.first(where: { $0.id == list.id })!.items[categoryName]! }
     
     var body: some View {
-        MainScreen(customView: AnyView(
+        MainScreen(customView:
             VStack (alignment: .leading) {
                 
                 VStack(alignment: .leading) {
@@ -30,12 +30,12 @@ struct ListByCategoryView: View {
                         ItemCommentView(item: item, list: list)
                     }
                     .onDelete { row in
-                        listsViewModel.removeItem(from: row, of: categoryName, of: list)
+                        dataService.removeItem(from: row, of: categoryName, of: list)
                     }
                     .listRowBackground(Color("PrimaryBackground"))
                     
                 }
             }
-        ))
+        )
     }
 }

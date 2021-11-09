@@ -126,7 +126,7 @@
 "ItemCommentViewButtonLabel"= "OK";
 
 //MARK: - AddCollaboratorSheetView
-"AddCollabTitle" = "Adicionar Colaborador";
+"AddCollabTitle" = "Colaboradores";
 "AddCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";
 "AddCollabButton" = "Adicionar Colaborador";
 "NoCollaboratorsText" = "Você ainda não adicionou nenhum colaborador";
@@ -141,6 +141,8 @@
 
 "AddCollaboratorLeadingNavigationLabel" = "Cancelar";
 "AddCollaboratorTrailingNavigationLabel" = "Salvar";
+
+"ExitCollabTextTip" = "Se você não quer mais ser colaborador desta lista, você pode simplesmente deletá-la de suas listas.";
 
 // MARK: - SuperlistaApp Alerts
 "CollabAlertText" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";

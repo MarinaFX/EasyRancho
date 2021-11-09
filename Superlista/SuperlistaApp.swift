@@ -51,20 +51,9 @@ struct SuperlistaApp: App {
                             secondaryButton: .default(
                                 Text("AlertSecondaryButtonLabel"),
                                 action: {
-                                    CKService.currentModel.saveListUsersList(listID: list!.id, key: .SharedWithMe) { result in }
-                                    let user = CKOwnerModel(id: CKService.currentModel.user!.id, name: CKService.currentModel.user!.name!)
-                                    var sharedWith = list!.sharedWith
-                                    for user in sharedWith {
-                                        print(user.id.recordName, "shared with")
-                                    }
-                                    sharedWith.append(user)
-                                    CKService.currentModel.updateListCollab(listID: list!.id, sharedWith: sharedWith) { result in }
-                                    
-                                    //Início da gambiarra
-                                    list?.sharedWith = sharedWith
-                                    let localList = ListModelConverter().convertCloudListToLocal(withList: list!)
-                                    self.dataService.lists.append(localList)
-                                    //Fim da gambiarra
+#warning("Pensar em como bloquear o usuário de receber uma lista compartilhada caso ele esteja offline")
+                                    guard let list = list else { return }
+                                    dataService.addCollabList(of: list)
                                     
                                     presentCollabAlert = false
                                 }
@@ -84,8 +73,9 @@ struct SuperlistaApp: App {
                                      secondaryButton: .default(
                                         Text(NSLocalizedString("AlertSecondaryButtonLabel", comment: "")),
                                         action: {
-                                            let ckList = ListModelConverter().convertCloudListToLocal(withList: list!)
-                                            dataService.duplicateList(of: ckList)
+                                            guard let list = list else { return }
+                                            let newList = ListModelConverter().convertCloudListToLocal(withList: list)
+                                            dataService.duplicateList(of: newList)
                                             presentSharedAlert = false
                                         }
                                      )
