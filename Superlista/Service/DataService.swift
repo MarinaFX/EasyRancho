@@ -8,7 +8,6 @@ class DataService: ObservableObject {
     @Published var user: UserModel? {
         didSet {
             UDService().saveUserOnUD(user: user)
-            print(user)
         }
     }
     
@@ -41,7 +40,6 @@ class DataService: ObservableObject {
             var localLists = UDService().getUDLists()
             
             ckUserModel.sharedWithMe?.forEach { list in
-                print(list.name)
                 let localList = ListModelConverter().convertCloudListToLocal(withList: list)
                 
                 let ids = localLists.map(\.id)

@@ -91,7 +91,6 @@ struct MainView: View {
                             if !dataService.lists.isEmpty {
                                 Button(action: { isEditing.toggle() }, label: {
                                     Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
-                                    .accessibility(addTraits: .isButton)
                                     .accessibility(hint: Text(isEditing ? "HintMainViewTrailingNavigationLabelA": "HintMainViewTrailingNavigationLabelB"))
                             }
                         }
@@ -135,7 +134,6 @@ struct MainView: View {
                     .background(Color("ButtonBG"))
                     .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
                 }
-                .accessibility(addTraits: .isButton)
                 .accessibility(hint: Text("HintAddListMainButton"))
             }.edgesIgnoringSafeArea(.bottom)
         }
