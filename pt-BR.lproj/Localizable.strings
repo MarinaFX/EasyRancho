@@ -129,25 +129,37 @@
 "MainViewTrailingNavigationLabelA" = "Concluir";
 "MainViewTrailingNavigationLabelB" = "Editar";
 "MainViewTitle" = "Listas";
-"MainViewLeadingNavigationLabel" = "Nova Lista";
-"TudoSegmentedPicker" = "Tudo";
-"MinhasListasSegmentedPicker" = "Minhas listas";
-"ColaborativasSegmentedPicker" = "Colaborativas";
+"AddListMainButton" = "Criar nova lista";
 "CriadaPorMim" = "Criada por **mim**";
 "CriadaPor %@" = "Criada por **%@**";
 
+// MARK: - MainView Segmented Picker
+"TudoSegmentedPicker" = "Tudo";
+"MinhasListasSegmentedPicker" = "Minhas listas";
+"ColaborativasSegmentedPicker" = "Colaborativas";
+
+// MARK: - MainView Deletion Alert
 "Remover %@" = "Deseja remover %@?";
 "DeleteListAlertText"= "A lista removida não poderá ser recuperada após sua exclusão";
 "DeleteListAlertButton"= "Apagar";
 
+// MARK: - MainView ContextMenu
 "ContextMenu1" = "Editar";
 "ContextMenu2" = "Duplicar Lista";
 "ContextMenu3" = "Adicionar Colaborador";
 "ContextMenu4" = "Compartilhar Lista";
 "ContextMenu5" = "Apagar Lista";
+
+// MARK: - MainView Duplication Alert
 "DuplicateListAlertText" = "Tem certeza que deseja duplicar esta lista?";
 "DuplicateListAlertButton" = "Duplicar";
 "Duplicar %@" = "Deseja duplicar %@?";
+
+// MARK: - MainView Creation Alert
+"CreateListAlertCancelButton" = "Cancelar";
+"CreateListAlertMainButton" = "Criar";
+"CreateListAlertTitle" = "Criar nova lista";
+"CreateListAlertText" = "Dê um nome para sua nova lista";
 
 // MARK: - MainView VoiceOver
 "Options" = "Mais opções";
@@ -168,7 +180,7 @@
 "ItemCommentViewButtonLabel"= "OK";
 
 //MARK: - AddCollaboratorSheetView
-"AddCollabTitle" = "Adicionar Colaborador";
+"AddCollabTitle" = "Colaboradores";
 "AddCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";
 "AddCollabButton" = "Adicionar Colaborador";
 "NoCollaboratorsText" = "Você ainda não adicionou nenhum colaborador";
@@ -183,6 +195,8 @@
 
 "AddCollaboratorLeadingNavigationLabel" = "Cancelar";
 "AddCollaboratorTrailingNavigationLabel" = "Salvar";
+
+"ExitCollabTextTip" = "Se você não quer mais ser colaborador desta lista, você pode simplesmente deletá-la de suas listas.";
 
 // MARK: - SuperlistaApp Alerts
 "CollabAlertText" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";

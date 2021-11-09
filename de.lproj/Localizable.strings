@@ -67,20 +67,37 @@
 "MainViewTrailingNavigationLabelA" = "Fertig";
 "MainViewTrailingNavigationLabelB" = "Bearbeiten";
 "MainViewTitle" = "Listen";
-"MainViewLeadingNavigationLabel" = "Neue Liste";
+"AddListMainButton" = "Criar nova lista";
+"CriadaPorMim" = "Criada por **mim**";
+"CriadaPor %@" = "Criada por **%@**";
 
+// MARK: - MainView Segmented Picker
+"TudoSegmentedPicker" = "Tudo";
+"MinhasListasSegmentedPicker" = "Minhas listas";
+"ColaborativasSegmentedPicker" = "Colaborativas";
+
+// MARK: - MainView Deletion Alert
 "Remover %@" = "Möchtest du %@ entfernen?";
 "DeleteListAlertText"= "Die Liste kann nicht wiederhergestellt werden, wenn sie einmal gelöscht wurde.";
 "DeleteListAlertButton"= "Entfernen";
 
+// MARK: - MainView ContextMenu
 "ContextMenu1" = "Edit";
 "ContextMenu2" = "Duplicate List";
 "ContextMenu3" = "Add Collaborator";
 "ContextMenu4" = "Share List";
 "ContextMenu5" = "Delete List";
+
+// MARK: - MainView Duplication Alert
 "DuplicateListAlertText" = "Are you sure you want to duplicate this list?";
 "DuplicateListAlertButton" = "Duplicate";
 "Duplicar %@" = "Do you want to %@?";
+
+// MARK: - MainView Creation Alert
+"CreateListAlertCancelButton" = "Cancelar";
+"CreateListAlertMainButton" = "Criar";
+"CreateListAlertTitle" = "Criar nova lista";
+"CreateListAlertText" = "Dê um nome para sua nova lista";
 
 // MARK: - MainView VoiceOver
 "Options" = "More options";
@@ -116,6 +133,8 @@
 
 "AddCollaboratorLeadingNavigationLabel" = "Abbrechen";
 "AddCollaboratorTrailingNavigationLabel" = "Done";
+
+"ExitCollabTextTip" = "If you don't want to be a collaborator on this list, you can simply delete it from your lists.";
 
 // MARK: - SuperlistaApp Alerts
 "CollabAlertText" = "Du bist eingeladen worden, an einer Liste mitzuwirken. Möchtest du einen Beitrag zu dieser Liste leisten?";

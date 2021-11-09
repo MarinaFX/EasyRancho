@@ -32,17 +32,29 @@ class CloudIntegration: ObservableObject {
         }
     }
     
-    func deleteList(_ list: ListModel) {
-                
-        deleteListFromMyLists(list: list)
-        
-        deleteListFromAll(list: list)
-        
-        deleteListCollab(list: list)
+    func deleteList(list: ListModel, userID: String) {
+        if isOwner(of: list, userID: userID) {
+            deleteListFromMyLists(list: list)
+            deleteListFromAll(list: list)
+            deleteListCollab(list: list)
+        } else {
+            deleteListFromSharedWithMe(list: list)
+            removeCollab(of: list, ownerID: userID)
+        }
     }
     
     func deleteListFromMyLists(list: ListModel) {
         CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .MyLists) { result in
+            switch result {
+                case .success: print("delete from myList foi")
+
+                case .failure(let error): print("delete from myList error \(error)")
+            }
+        }
+    }
+    
+    func deleteListFromSharedWithMe(list: ListModel) {
+        CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .SharedWithMe) { result in
             switch result {
                 case .success: print("delete from myList foi")
 
@@ -71,6 +83,21 @@ class CloudIntegration: ObservableObject {
                 }
             }
         }
+    }
+    
+    func removeCollab(of list: ListModel, ownerID: String) {
+        CKService.currentModel.deleteListCollab(collabID: CKRecord.ID(recordName: ownerID), listID: CKRecord.ID(recordName: list.id)) { result in }
+
+        guard let index = list.sharedWith?.firstIndex(where: { ownerID == $0.id }) else { return }
+        guard var sharedWith = list.sharedWith else { return }
+        sharedWith.remove(at: index)
+        
+        var newCkCollabList: [CKOwnerModel] = []
+        for shared in sharedWith {
+            newCkCollabList.append(OwnerModelConverter().convertLocalToCKOwner(withUser: shared))
+        }
+        
+        CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list.id), sharedWith: newCkCollabList) { result in }
     }
     
     func updateListTitle(_ list: ListModel, _ newTitle: String) {
@@ -112,6 +139,23 @@ class CloudIntegration: ObservableObject {
             case .failure(let error):
                 print("Error while trying to update custom products. Error: \(error)")
             }
+        }
+    }
+    
+    func addCollabList(of list: CKListModel) {
+        CKService.currentModel.saveListUsersList(listID: list.id, key: .SharedWithMe) { result in }
+        guard let ckUser = CKService.currentModel.user, let ckUserName = ckUser.name else { return }
+        let user = CKOwnerModel(id: ckUser.id, name: ckUserName)
+        var sharedWith = list.sharedWith
+        sharedWith.append(user)
+        CKService.currentModel.updateListCollab(listID: list.id, sharedWith: sharedWith) { result in }
+    }
+    
+    func isOwner(of list: ListModel, userID: String) -> Bool {
+        if userID == list.owner.id {
+            return true
+        } else {
+            return false
         }
     }
 }

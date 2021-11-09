@@ -1,23 +1,22 @@
 import SwiftUI
 
 struct ListView: View {
-    @EnvironmentObject var listsViewModel: DataService
-
+    @EnvironmentObject var dataService: DataService
+    
     @State var hasChangedItems = false
     @State var listId: String
     @State var canEditTitle: Bool = false
-    
+        
     var list: ListModel? {
         let myList = getList()
         return myList
     }
     
-        
     @State var listTitle: String = ""
     
     var body: some View {
         GeometryReader { geometry in
-            MainScreen(customView: AnyView(
+            MainScreen(customView:
                 ZStack {
                     Color("PrimaryBackground")
                         .ignoresSafeArea()
@@ -40,7 +39,7 @@ struct ListView: View {
                         }
                     }
                 }
-            ), topPadding: -30)
+            , topPadding: -30)
                 .toolbar{
                     ToolbarItem {
                         Button {
@@ -52,8 +51,7 @@ struct ListView: View {
                 }
                 .onAppear {
                     if hasChangedItems, let list = self.list {
-                        CloudIntegration.actions.updateCkListItems(updatedList: list)
-                        
+                        dataService.updateCKListItems(of: list)
                         self.hasChangedItems = false
                     }
                 }
@@ -62,17 +60,17 @@ struct ListView: View {
     
     // MARK: - getList()
     func getList() -> ListModel? {
-        if let list = listsViewModel.lists.first(where: { $0.id == listId }) {
+        if let list = dataService.lists.first(where: { $0.id == listId }) {
             return list
         }
         return nil
     }
-        
+    
     // MARK: - editList()
     func editTitle() {
         if let unwrappedList = self.list {
             if canEditTitle && !listTitle.isEmpty {
-                listsViewModel.editListTitle(of: unwrappedList, newTitle: listTitle)
+                dataService.editListTitle(of: unwrappedList, newTitle: listTitle)
                 canEditTitle = false
             } else {
                 canEditTitle = true
@@ -80,5 +78,5 @@ struct ListView: View {
         }
     }
 }
-    
+
 

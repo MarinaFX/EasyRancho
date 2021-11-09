@@ -11,13 +11,15 @@ import CloudKit
 //MARK: - AddCollaboratorSheetView Struct
 
 struct AddCollaboratorSheetView: View {
+    @EnvironmentObject var dataService: DataService
+    
     @Binding var showCollabSheetView: Bool
     @Binding var collaborators: [OwnerModel]
     @Binding var listOwner: OwnerModel
-
+    
     @State var showShareActionSheet: Bool = false
     @State var showDeleteCollabAlert: Bool = false
-        
+    
     let list: ListModel?
     
     var ckList: CKListModel? {
@@ -34,34 +36,38 @@ struct AddCollaboratorSheetView: View {
                 ScrollView(showsIndicators: false) {
                     VStack {
                         //MARK: AddCollaboratorSheetView Collab section
-                        Text("AddCollabTextTip")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
-                        
-                        Button(action: {
-                            guard let list = list else {
-                                return
-                            }
-
-                            self.showShareActionSheet.toggle()
-                            shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name!)
-                        }, label: {
-                            HStack(alignment: .center) {
-                                Image(systemName: "plus.circle.fill")
-                                    .foregroundColor(Color("Button"))
+                        if let list = list, let user = dataService.user {
+                            if dataService.isOwner(of: list, userID: user.id) {
+                                Text("AddCollabTextTip")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
                                 
-                                Text("AddCollabButton")
-                                    .foregroundColor(Color("Button"))
-                                    .bold()
-                                    
-                                Spacer()
+                                Button(action: {
+                                    self.showShareActionSheet.toggle()
+                                    shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name!)
+                                }, label: {
+                                    HStack(alignment: .center) {
+                                        Image(systemName: "plus.circle.fill")
+                                            .foregroundColor(Color("Button"))
+                                        
+                                        Text("AddCollabButton")
+                                            .foregroundColor(Color("Button"))
+                                            .bold()
+                                        
+                                        Spacer()
+                                    }
+                                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                                })
+                                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
+                                    .background(Color("InsetGroupedBackground"))
+                                    .cornerRadius(12)
+                                    .padding(.horizontal, 16)
+                            } else {
+                                Text("ExitCollabTextTip")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
                             }
-                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
-                        })
-                        .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
-                        .background(Color("InsetGroupedBackground"))
-                        .cornerRadius(12)
-                        .padding(.horizontal, 16)
+                        }
                         
                         //MARK: AddCollaboratorSheetView List view
                         if let collaborators = collaborators {
@@ -108,19 +114,19 @@ struct AddCollaboratorSheetView: View {
                             HStack(alignment: .center) {
                                 Text("ShareListButton")
                                     .foregroundColor(.black)
-                                    
+                                
                                 Spacer()
-
+                                
                                 Image(systemName: "square.and.arrow.up")
                                     .foregroundColor(.black)
                                     .padding(8)
                             }
                             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
                         })
-                        .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
-                        .background(Color("InsetGroupedBackground"))
-                        .cornerRadius(12)
-                        .padding(.horizontal, 16)
+                            .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
+                            .background(Color("InsetGroupedBackground"))
+                            .cornerRadius(12)
+                            .padding(.horizontal, 16)
                         
                         Text("ShareListWarning")
                             .font(.system(size: 13))
@@ -129,45 +135,45 @@ struct AddCollaboratorSheetView: View {
                     }
                     
                     //MARK: AddCollaboratorSheetView Navbar config
-                        .toolbar {
-                            //MARK: AddCollaboratorSheetView Cancel button
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Button {
-                                    self.showCollabSheetView = false
-                                } label: {
-                                    Text("AddCollaboratorLeadingNavigationLabel")
-                                        .font(.system(size: 17))
-                                        .foregroundColor(.blue)
-                                }
-                            }
-                            
-                            //MARK: AddCollaboratorSheetView Done button
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button {
-                                    self.showCollabSheetView = false
-                                } label: {
-                                    Text("AddCollaboratorTrailingNavigationLabel")
-                                        .font(.system(size: 17))
-                                        .bold()
-                                        .foregroundColor(.blue)
-                                }
+                    .toolbar {
+                        //MARK: AddCollaboratorSheetView Cancel button
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button {
+                                self.showCollabSheetView = false
+                            } label: {
+                                Text("AddCollaboratorLeadingNavigationLabel")
+                                    .font(.system(size: 17))
+                                    .foregroundColor(.blue)
                             }
                         }
-                        .navigationTitle("AddCollabTitle")
-                        .navigationBarTitleDisplayMode(.large)
+                        
+                        //MARK: AddCollaboratorSheetView Done button
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button {
+                                self.showCollabSheetView = false
+                            } label: {
+                                Text("AddCollaboratorTrailingNavigationLabel")
+                                    .font(.system(size: 17))
+                                    .bold()
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                    }
+                    .navigationTitle("AddCollabTitle")
+                    .navigationBarTitleDisplayMode(.large)
                 }
             }
         }
         .onAppear {
-            CKService.currentModel.refresh { result in
-                DataService().getDataIntegration()
-            }
+            CKService.currentModel.refresh { result in }
         }
     }
 }
 
 
 struct CollaboratorListView: View {
+    @EnvironmentObject var dataService: DataService
+    
     @Binding var collaborators: [OwnerModel]
     @State var showDeleteCollabAlert: Bool = false
     
@@ -175,7 +181,7 @@ struct CollaboratorListView: View {
     let name: String
     var collabImage: UIImage?
     var index: Int
-
+    
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
             //TODO: user picture
@@ -193,39 +199,33 @@ struct CollaboratorListView: View {
                 .bold()
             
             Spacer()
-            
-            Button {
-                showDeleteCollabAlert = true
-            }
-            label: {
-                Image(systemName: "xmark.circle.fill")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    .foregroundColor(.black)
-            }
-            .alert(isPresented: self.$showDeleteCollabAlert) {
-                Alert(
-                    title: Text("DeleteCollabAlertTitle \(collaborators[index].name!)"),
-                    message: Text("DeleteCollabAlertMessage"),
-                    primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
-                        guard let list = list else { return }
-                        
-                        CKService.currentModel.deleteListCollab(collabID: CKRecord.ID(recordName: collaborators[index].id), listID: CKRecord.ID(recordName: list.id)) { result in }
-                        
-                        var newCollabList: [OwnerModel] = collaborators
-                        newCollabList.remove(at: index)
-
-                        var newCkCollabList: [CKOwnerModel] = []
-                        for owner in newCollabList {
-                            newCkCollabList.append(OwnerModelConverter().convertLocalToCKOwner(withUser: owner))
-                        }
-                        
-                        CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list.id), sharedWith: newCkCollabList) { result in }
-                        
-                        self.collaborators = newCollabList
-                    }),
-                    secondaryButton: .cancel(Text("DeleteCollabAlertSecondaryButton"), action: {})
-                )
+            if let list = list, let user = dataService.user {
+                if dataService.isOwner(of: list, userID: user.id) {
+                    Button {
+                        showDeleteCollabAlert = true
+                    }
+                label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.black)
+                }
+                .alert(isPresented: self.$showDeleteCollabAlert) {
+                    Alert(
+                        title: Text("DeleteCollabAlertTitle \(collaborators[index].name!)"),
+                        message: Text("DeleteCollabAlertMessage"),
+                        primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
+                            dataService.removeCollab(of: list, owner: collaborators[index])
+                            
+                            var newCollabList: [OwnerModel] = collaborators
+                            newCollabList.remove(at: index)
+                            
+                            self.collaborators = newCollabList
+                        }),
+                        secondaryButton: .cancel(Text("DeleteCollabAlertSecondaryButton"), action: {})
+                    )
+                }
+                }
             }
         }
     }

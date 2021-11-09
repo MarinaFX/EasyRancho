@@ -14,7 +14,7 @@ struct AddNewItemView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            MainScreen(customView: AnyView(
+            MainScreen(customView:
                 VStack {
                     ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
                     
@@ -31,8 +31,7 @@ struct AddNewItemView: View {
                     .padding(.top, geometry.size.height * (0.01))
                     
                 }
-                
-            ))
+            )
             .toolbar {
                 ToolbarItem(placement: .principal){
                     SearchBar(text: $searchText)

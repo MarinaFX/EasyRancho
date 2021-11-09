@@ -30,7 +30,9 @@ class DataService: ObservableObject {
     }
     
     func getDataIntegration() {
-        self.lists = UDService().getUDLists()
+        let listas = UDService().getUDLists()
+        self.lists = listas
+        
         self.user = UDService().getUDUser()
         
         //if online
@@ -103,7 +105,8 @@ class DataService: ObservableObject {
             
             networkMonitor.startMonitoring { path in
                 if path.status == .satisfied {
-                    CloudIntegration.actions.deleteList(listModel)
+                    guard let user = self.user else { return }
+                    CloudIntegration.actions.deleteList(list: listModel, userID: user.id)
                 }
             }
         }
@@ -127,6 +130,22 @@ class DataService: ObservableObject {
         networkMonitor.startMonitoring { path in
             if path.status == .satisfied {
                 CloudIntegration.actions.createList(newList)
+            }
+        }
+    }
+    
+    func removeCollab(of list: ListModel, owner: OwnerModel) {
+        guard let index = list.sharedWith?.firstIndex(where: { owner.id == $0.id }) else { return }
+        guard var sharedWith = list.sharedWith else { return }
+        sharedWith.remove(at: index)
+        
+        if let index = lists.firstIndex(where: { $0.id == list.id }) {
+            lists[index].sharedWith = sharedWith
+        }
+        
+        networkMonitor.startMonitoring { path in
+            if path.status == .satisfied {
+                CloudIntegration.actions.removeCollab(of: list, ownerID: owner.id) 
             }
         }
     }
@@ -223,6 +242,7 @@ class DataService: ObservableObject {
         }
     }
     
+    // MARK: - Duplicate Shared List
     func duplicateList(of list: ListModel) {
         guard let user = user, let name = user.name else { return }
         let owner = OwnerModel(id: user.id, name: name)
@@ -250,5 +270,33 @@ class DataService: ObservableObject {
             }
         }
         return false
+    }
+    
+    // MARK: - Add Collab Shared List
+    func addCollabList(of list: CKListModel) {
+        var sharedWith = list.sharedWith
+        
+        guard let ckUser = CKService.currentModel.user, let ckUserName = ckUser.name else { return }
+        let user = CKOwnerModel(id: ckUser.id, name: ckUserName)
+        
+        sharedWith.append(user)
+        
+        CloudIntegration.actions.addCollabList(of: list)
+        
+        //Início da gambiarra
+        list.sharedWith = sharedWith
+        let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+        lists.append(localList)
+        //Fim da gambiarra
+    }
+    
+    func updateCKListItems(of list: ListModel) {
+        CloudIntegration.actions.updateCkListItems(updatedList: list)
+    }
+    
+    
+    // MARK: - Check if user is Owner
+    func isOwner(of list: ListModel, userID: String) -> Bool {
+        return userID == list.owner.id
     }
 }
