@@ -32,7 +32,9 @@ struct MainView: View {
         return section
     }
     
-    @State var showAlert = false
+    @State var showAlertDelete = false
+    @State var showAlertDuplicate = false
+    @State var editNavigation = false
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     @State var shouldChangeView = false
@@ -70,12 +72,11 @@ struct MainView: View {
                         
                         LazyVGrid(columns: columns, spacing: 20, content: {
                             ForEach(appliedSection) { list in
-//                                if !(selectedSection == 1 && list.owner.id == dataService.user) {
-//                                    EmptyView()
-//                                }
                                 
-                                if isEditing {
+                                NavigationLink(destination: ListView(listId: list.id), label: {
                                     ZStack(alignment: .leading) {
+                                        
+                                        // MARK: - list card
                                         Rectangle()
                                             .fill(Color("Background"))
                                             .frame(width: 171, height: 117)
@@ -83,12 +84,14 @@ struct MainView: View {
                                             .shadow(color: Color("Shadow"), radius: 12)
                                         
                                         VStack(alignment: .leading){
+                                            // MARK: - list title
                                             Text(list.title)
                                                 .font(.callout)
                                                 .fontWeight(.semibold)
                                                 .foregroundColor(Color.white)
                                                 .lineLimit(1)
                                             
+                                            //MARK: - List Owner
                                             if let listOwner = list.owner.name{
                                                 Text(listOwner == dataService.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
                                                     .font(.footnote)
@@ -97,95 +100,113 @@ struct MainView: View {
                                                     .truncationMode(.tail)
                                                     .padding(.bottom, 25)
                                             }
-                                            HStack{
-                                                if let sharedList = list.sharedWith{
-                                                    Text(sharedList.isEmpty ? "0" : (String(describing: sharedList.count)))
-                                                        .font(.footnote)
-                                                        .foregroundColor(Color.white)
-                                                        .lineLimit(1)
-                                                        .padding(.trailing, -3)
+                                            HStack {
+                                                HStack (alignment: .bottom) {
+                                                    if let sharedList = list.sharedWith {
+                                                        if !sharedList.isEmpty {
+                                                            Image(systemName: "person.2.fill")
+                                                                .font(.body)
+                                                                .foregroundColor(Color.white)
+                                                            
+                                                            Text(sharedList.isEmpty ? "0" : (String(describing: sharedList.count)))
+                                                                .font(.footnote)
+                                                                .foregroundColor(Color.white)
+                                                                .lineLimit(1)
+                                                                .padding(.trailing)
+                                                        }
+                                                    }
                                                 }
                                                 
-                                                Image(systemName: "person.2.fill")
-                                                    .font(.caption)
+                                                Spacer()
+                                                
+                                                Image(systemName: "ellipsis.circle.fill")
+                                                    .font(.body)
                                                     .foregroundColor(Color.white)
+                                                    .contextMenu {
+                                                        Button {
+                                                            dataService.currentList = list
+                                                            editNavigation = true
+                                                        } label: {
+                                                            Label("ContextMenu1", systemImage: "pencil")
+                                                        }
+                                                        .accessibilityLabel(Text("Option1"))
+                                                        .accessibility(hint: Text("Option1Hint"))
+                                                        
+                                                        Button {
+                                                            dataService.currentList = list
+                                                            showAlertDuplicate = true
+                                                        } label: {
+                                                            Label("ContextMenu2", systemImage: "doc.on.doc")
+                                                        }
+                                                        .accessibilityLabel(Text("Option2"))
+                                                        .accessibility(hint: Text("Option2Hint"))
+                                                        
+                                                        Button {
+                                                            guard let ownerName = list.owner.name else { return }
+                                                            shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
+                                                        } label: {
+                                                            Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                                                        }
+                                                        .accessibilityLabel(Text("Option3"))
+                                                        .accessibility(hint: Text("Option3Hint"))
+                                                        
+                                                        Button {
+                                                            guard let ownerName = list.owner.name else { return }
+                                                            shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
+                                                        } label: {
+                                                            Label("ContextMenu4", systemImage: "square.and.arrow.up")
+                                                        }
+                                                        .accessibilityLabel(Text("Option4"))
+                                                        .accessibility(hint: Text("Option4Hint"))
+                                                        
+                                                        Button {
+                                                            dataService.currentList = list
+                                                            showAlertDelete = true
+                                                        } label: {
+                                                            Label("ContextMenu5", systemImage: "trash")
+                                                        }
+                                                        .accessibilityLabel(Text("Option5"))
+                                                        .accessibility(hint: Text("Option5Hint"))
+                                                    }
+                                                    .accessibilityLabel(Text("Options"))
+                                                    .accessibility(hint: Text("MoreOptions"))
+                                                
                                             }
                                         }
                                         .padding(.horizontal, 20)
-                                        
-                                        Image(systemName: "minus.circle.fill")
-                                            .font(.title2)
-                                            .foregroundColor(Color(.systemGray))
-                                            .offset(x: 150, y: -45)
-                                            .onTapGesture {
-                                                dataService.currentList = list
-                                                showAlert = true
+                                        ZStack {
+                                            NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
+                                                EmptyView()
                                             }
-                                        
-                                    }
-                                    .alert(isPresented: $showAlert){
-                                        Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
-                                            dataService.removeList(dataService.currentList!)
-                                            showAlert = false
-                                        }))
-                                    }
-                                    // MARK: - list cards drag and drop
-                                    .onDrag({
-                                        dataService.currentList = list
-                                        return NSItemProvider(contentsOf: URL(string: "\(list.id)")!)!
-                                    })
-                                    .onDrop(of: [.url], delegate: ListDropViewDelegate(dataService: dataService, list: list))
-                                    
-                                }
-                                // MARK: - normal state
-                                else {
-                                    // MARK: - list card
-                                    NavigationLink(destination: ListView(listId: list.id), label: {
-                                        ZStack(alignment: .leading) {
-                                            
-                                            // MARK: - list card
-                                            Rectangle()
-                                                .fill(Color("Background"))
-                                                .frame(width: 171, height: 117)
-                                                .cornerRadius(30)
-                                                .shadow(color: Color("Shadow"), radius: 12)
-                                            
-                                            VStack(alignment: .leading){
-                                                // MARK: - list title
-                                                Text(list.title)
-                                                    .font(.callout)
-                                                    .fontWeight(.semibold)
-                                                    .foregroundColor(Color.white)
-                                                    .lineLimit(1)
-                                                
-                                                //MARK: - List Owner
-                                                if let listOwner = list.owner.name{
-                                                    Text(listOwner == dataService.user?.name ? "CriadaPorMim" : "CriadaPor \(String(describing: listOwner))")
-                                                        .font(.footnote)
-                                                        .foregroundColor(Color.white)
-                                                        .lineLimit(1)
-                                                        .truncationMode(.tail)
-                                                        .padding(.bottom, 25)
-                                                }
-                                                HStack{
-                                                    if let sharedList = list.sharedWith{
-                                                        Text(sharedList.isEmpty ? "0" : (String(describing: sharedList.count)))
-                                                            .font(.footnote)
-                                                            .foregroundColor(Color.white)
-                                                            .lineLimit(1)
-                                                            .padding(.trailing, -3)
-                                                    }
-                                                    
-                                                    Image(systemName: "person.2.fill")
-                                                        .font(.caption)
-                                                        .foregroundColor(Color.white)
-                                                }
-                                            }
-                                            .padding(.horizontal, 20)
+                                        }
+                                        .alert(isPresented: $showAlertDelete){
+                                            Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
+                                                dataService.removeList(dataService.currentList!)
+                                                showAlertDelete = false
+                                            }))
+                                        }
+                                        ZStack {
                                             
                                         }
-                                    })
-                                }
+                                        .alert(isPresented: $showAlertDuplicate){
+                                            Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
+                                                dataService.duplicateList(of: dataService.currentList!)
+                                                showAlertDuplicate = false
+                                            }))
+                                        }
+                                        
+                                        if isEditing {
+                                            Image(systemName: "minus.circle.fill")
+                                                .font(.title2)
+                                                .foregroundColor(Color(.systemGray))
+                                                .offset(x: 150, y: -45)
+                                                .onTapGesture {
+                                                    dataService.currentList = list
+                                                    showAlertDelete = true
+                                                }
+                                        }
+                                    }
+                                })
                             }
                         }).padding(.top)
                     }.padding(.horizontal)

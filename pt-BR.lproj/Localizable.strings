@@ -78,6 +78,29 @@
 "DeleteListAlertText"= "A lista removida não poderá ser recuperada após sua exclusão";
 "DeleteListAlertButton"= "Apagar";
 
+"ContextMenu1" = "Editar";
+"ContextMenu2" = "Duplicar Lista";
+"ContextMenu3" = "Adicionar Colaborador";
+"ContextMenu4" = "Compartilhar Lista";
+"ContextMenu5" = "Apagar Lista";
+"DuplicateListAlertText" = "Tem certeza que deseja duplicar esta lista?";
+"DuplicateListAlertButton" = "Duplicar";
+"Duplicar %@" = "Deseja duplicar %@?";
+
+// MARK: - MainView VoiceOver
+"Options" = "Mais opções";
+"MoreOptions" = "Toque para mostrar mais opções";
+"Option1" = "Editar";
+"Option1Hint" = "Toque para editar";
+"Option2" = "Duplicar lista";
+"Option2Hint" = "Toque para duplicar lista";
+"Option3" = "Adicionar colaborador";
+"Option3Hint" = "Toque para adicionar colaborador";
+"Option4" = "Compartilhar lista";
+"Option4Hint" = "Toque para compartilhar lista";
+"Option5" = "Deletar lista";
+"Option5Hint" = "Toque para deletar lista";
+
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Insira um comentário";
 "ItemCommentViewButtonLabel"= "OK";

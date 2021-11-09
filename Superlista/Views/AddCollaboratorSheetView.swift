@@ -159,15 +159,15 @@ struct AddCollaboratorSheetView: View {
             }
         }
         .onAppear {
-            CKService.currentModel.refresh { result in
-                DataService().getDataIntegration()
-            }
+            CKService.currentModel.refresh { result in }
         }
     }
 }
 
 
 struct CollaboratorListView: View {
+    @EnvironmentObject var dataService: DataService
+
     @Binding var collaborators: [OwnerModel]
     @State var showDeleteCollabAlert: Bool = false
     
@@ -208,16 +208,12 @@ struct CollaboratorListView: View {
                     title: Text("DeleteCollabAlertTitle \(collaborators[index].name!)"),
                     message: Text("DeleteCollabAlertMessage"),
                     primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
-                        //TODO: Delete Collab
+                        guard let list = list else { return }
+                        
+                        dataService.removeCollab(of: list, owner: collaborators[index])
+                    
                         var newCollabList: [OwnerModel] = collaborators
                         newCollabList.remove(at: index)
-
-                        var newCkCollabList: [CKOwnerModel] = []
-                        for owner in newCollabList {
-                            newCkCollabList.append(OwnerModelConverter().convertLocalToCKOwner(withUser: owner))
-                        }
-                        
-                        CKService.currentModel.updateListCollab(listID: CKRecord.ID(recordName: list!.id), sharedWith: newCkCollabList) { result in }
                         
                         self.collaborators = newCollabList
                     }),

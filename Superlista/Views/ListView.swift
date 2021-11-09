@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ListView: View {
-    @EnvironmentObject var listsViewModel: DataService
+    @EnvironmentObject var dataService: DataService
 
     @State var hasChangedItems = false
     @State var listId: String
@@ -62,7 +62,7 @@ struct ListView: View {
     
     // MARK: - getList()
     func getList() -> ListModel? {
-        if let list = listsViewModel.lists.first(where: { $0.id == listId }) {
+        if let list = dataService.lists.first(where: { $0.id == listId }) {
             return list
         }
         return nil
@@ -72,7 +72,7 @@ struct ListView: View {
     func editTitle() {
         if let unwrappedList = self.list {
             if canEditTitle && !listTitle.isEmpty {
-                listsViewModel.editListTitle(of: unwrappedList, newTitle: listTitle)
+                dataService.editListTitle(of: unwrappedList, newTitle: listTitle)
                 canEditTitle = false
             } else {
                 canEditTitle = true

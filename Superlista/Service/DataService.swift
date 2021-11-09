@@ -140,6 +140,22 @@ class DataService: ObservableObject {
         }
     }
     
+    func removeCollab(of list: ListModel, owner: OwnerModel) {
+        guard let index = list.sharedWith?.firstIndex(where: { owner.id == $0.id }) else { return }
+        guard var sharedWith = list.sharedWith else { return }
+        sharedWith.remove(at: index)
+        
+        if let index = lists.firstIndex(where: { $0.id == list.id }) {
+            lists[index].sharedWith = sharedWith
+        }
+        
+        networkMonitor.startMonitoring { path in
+            if path.status == .satisfied {
+                CloudIntegration.actions.removeCollab(of: list, owner: owner)
+            }
+        }
+    }
+    
     // MARK: - CRUD List Items
     func addItem(_ item: ItemModel, to listModel: ListModel) {
         if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
@@ -237,5 +253,13 @@ class DataService: ObservableObject {
         let owner = OwnerModel(id: user.id, name: name)
         let newList = ListModel(title: list.title, items: list.items, owner: owner, sharedWith: list.sharedWith ?? [])
         addList(newList)
+    }
+    
+    func isOwner(of list: ListModel, user userID: String) -> Bool {
+        if userID == list.owner.id {
+            return true
+        } else {
+            return false
+        }
     }
 }
