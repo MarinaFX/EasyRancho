@@ -242,6 +242,7 @@ class DataService: ObservableObject {
         }
     }
     
+    // MARK: - Duplicate Shared List
     func duplicateList(of list: ListModel) {
         guard let user = user, let name = user.name else { return }
         let owner = OwnerModel(id: user.id, name: name)
@@ -249,11 +250,31 @@ class DataService: ObservableObject {
         addList(newList)
     }
     
+    // MARK: - Add Collab Shared List
+    func addCollabList(of list: CKListModel) {
+        var sharedWith = list.sharedWith
+        
+        guard let ckUser = CKService.currentModel.user, let ckUserName = ckUser.name else { return }
+        let user = CKOwnerModel(id: ckUser.id, name: ckUserName)
+        
+        sharedWith.append(user)
+        
+        CloudIntegration.actions.addCollabList(of: list)
+        
+        //Início da gambiarra
+        list.sharedWith = sharedWith
+        let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+        lists.append(localList)
+        //Fim da gambiarra
+    }
+    
+    func updateCKListItems(of list: ListModel) {
+        CloudIntegration.actions.updateCkListItems(updatedList: list)
+    }
+    
+    
+    // MARK: - Check if user is Owner
     func isOwner(of list: ListModel, userID: String) -> Bool {
-        if userID == list.owner.id {
-            return true
-        } else {
-            return false
-        }
+        return userID == list.owner.id
     }
 }

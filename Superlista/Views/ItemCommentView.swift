@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ItemCommentView: View {
-    @EnvironmentObject var listsViewModel: DataService
+    @EnvironmentObject var dataService: DataService
     
     @State var isCommenting: Bool = false
     @State var comment: String = ""
@@ -24,7 +24,7 @@ struct ItemCommentView: View {
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
                         .font(.system(size: 18, weight: .light))
                         .onTapGesture {
-                            listsViewModel.toggleCompletion(of: item, from: list)
+                            dataService.toggleCompletion(of: item, from: list)
                         }
                     
                     Text(item.product.name)
@@ -54,7 +54,7 @@ struct ItemCommentView: View {
                     }
                     .frame(width: 17, height: 17)
                     .onTapGesture {
-                        listsViewModel.removeQuantity(of: item, from: list)
+                        dataService.removeQuantity(of: item, from: list)
                     }
                     .accessibilityLabel(Text("Remove"))
                     .accessibility(hint: Text("RemoveOneItem"))
@@ -72,7 +72,7 @@ struct ItemCommentView: View {
                         .frame(width: 17, height: 17)
                         .foregroundColor(Color("Comment"))
                         .onTapGesture {
-                            listsViewModel.addQuantity(of: item, from: list)
+                            dataService.addQuantity(of: item, from: list)
                         }
                         .accessibilityLabel(Text("Add"))
                         .accessibility(hint: Text("AddOneItem"))
@@ -101,7 +101,7 @@ struct ItemCommentView: View {
                             .foregroundColor(Color.primary)
                             .font(.subheadline)
                             .onTapGesture {
-                                listsViewModel.addComment(comment, to: item, from: list)
+                                dataService.addComment(comment, to: item, from: list)
                                 isCommenting = false
                             }
                     }

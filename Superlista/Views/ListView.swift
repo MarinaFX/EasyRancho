@@ -51,8 +51,7 @@ struct ListView: View {
                 }
                 .onAppear {
                     if hasChangedItems, let list = self.list {
-                        CloudIntegration.actions.updateCkListItems(updatedList: list)
-                        
+                        dataService.updateCKListItems(of: list)
                         self.hasChangedItems = false
                     }
                 }
