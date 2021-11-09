@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProductListView: View {
-    @EnvironmentObject var listsViewModel: DataService
+    @EnvironmentObject var dataService: DataService
     
     let products = ProductListViewModel().productsOrdered
     
@@ -60,7 +60,7 @@ struct ProductListView: View {
                         .frame(width: 17, height: 17)
                         .onTapGesture {
                             let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-                            listsViewModel.removeQuantity(of: selectedItems[index], from: list)
+                            dataService.removeQuantity(of: selectedItems[index], from: list)
                             if selectedItems[index].quantity! > 1 {
                                 selectedItems[index].quantity = selectedItems[index].quantity! - 1
                             }
@@ -81,7 +81,7 @@ struct ProductListView: View {
                             .foregroundColor(Color("Button"))
                             .onTapGesture {
                                 let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-                                listsViewModel.addQuantity(of: selectedItems[index], from: list)
+                                dataService.addQuantity(of: selectedItems[index], from: list)
                                 selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
                             }
                             .accessibilityLabel(Text("add"))
@@ -92,11 +92,11 @@ struct ProductListView: View {
                 .onTapGesture {
                     let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                     if isSelected(item: item){
-                        listsViewModel.removeItem(selectedItems[index], from: list)
+                        dataService.removeItem(selectedItems[index], from: list)
                         selectedItems.remove(at: index)
                     } else {
                         let newItem = ItemModel(product: item)
-                        listsViewModel.addItem(newItem, to: list)
+                        dataService.addItem(newItem, to: list)
                         selectedItems.append(newItem)
                     }
                     

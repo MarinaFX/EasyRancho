@@ -268,11 +268,13 @@ class DataService: ObservableObject {
         //Fim da gambiarra
     }
     
+    func updateCKListItems(of list: ListModel) {
+        CloudIntegration.actions.updateCkListItems(updatedList: list)
+    }
+    
+    
+    // MARK: - Check if user is Owner
     func isOwner(of list: ListModel, userID: String) -> Bool {
-        if userID == list.owner.id {
-            return true
-        } else {
-            return false
-        }
+        return userID == list.owner.id
     }
 }

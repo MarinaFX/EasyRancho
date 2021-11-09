@@ -2,15 +2,15 @@ import SwiftUI
 
 struct ListPerItemsView: View {
     
-    @EnvironmentObject var listsViewModel: DataService
+    @EnvironmentObject var dataService: DataService
     
     var list: ListModel
     
     let background = Color("PrimaryBackground")
     
-    var categories: [CategoryModel] { listsViewModel.lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
+    var categories: [CategoryModel] { dataService.lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
-    func rows(from category: Int) -> [ItemModel] { listsViewModel.lists.first(where: { $0.id == list.id })!.items[categories[category]]! }
+    func rows(from category: Int) -> [ItemModel] { dataService.lists.first(where: { $0.id == list.id })!.items[categories[category]]! }
     
     func isLast(_ item: ItemModel, from category: CategoryModel) -> Bool {
         return getRows(from: category).last?.id == item.id
@@ -53,7 +53,7 @@ struct ListPerItemsView: View {
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
                     .onDelete { row in
-                        listsViewModel.removeItem(from: row, of: category, of: list)
+                        dataService.removeItem(from: row, of: category, of: list)
                     }
                     .listRowBackground(Color("PrimaryBackground"))
                 }

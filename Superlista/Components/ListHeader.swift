@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ListHeader: View {
-    @EnvironmentObject var listsViewModel: DataService
+    @EnvironmentObject var dataServive: DataService
     
     @Binding var listaTitulo: String
     @State var canComment: Bool = false
