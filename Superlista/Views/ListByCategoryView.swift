@@ -10,7 +10,7 @@ struct ListByCategoryView: View {
     func rows() -> [ItemModel] { listsViewModel.lists.first(where: { $0.id == list.id })!.items[categoryName]! }
     
     var body: some View {
-        MainScreen(customView: AnyView(
+        MainScreen(customView:
             VStack (alignment: .leading) {
                 
                 VStack(alignment: .leading) {
@@ -36,6 +36,6 @@ struct ListByCategoryView: View {
                     
                 }
             }
-        ))
+        )
     }
 }
