@@ -2,22 +2,21 @@ import SwiftUI
 
 struct ListView: View {
     @EnvironmentObject var dataService: DataService
-
+    
     @State var hasChangedItems = false
     @State var listId: String
     @State var canEditTitle: Bool = false
-    
+        
     var list: ListModel? {
         let myList = getList()
         return myList
     }
     
-        
     @State var listTitle: String = ""
     
     var body: some View {
         GeometryReader { geometry in
-            MainScreen(customView: AnyView(
+            MainScreen(customView:
                 ZStack {
                     Color("PrimaryBackground")
                         .ignoresSafeArea()
@@ -40,7 +39,7 @@ struct ListView: View {
                         }
                     }
                 }
-            ), topPadding: -30)
+            , topPadding: -30)
                 .toolbar{
                     ToolbarItem {
                         Button {
@@ -67,7 +66,7 @@ struct ListView: View {
         }
         return nil
     }
-        
+    
     // MARK: - editList()
     func editTitle() {
         if let unwrappedList = self.list {
@@ -80,5 +79,5 @@ struct ListView: View {
         }
     }
 }
-    
+
 
