@@ -124,6 +124,15 @@ class CloudIntegration: ObservableObject {
         }
     }
     
+    func addCollabList(of list: CKListModel) {
+        CKService.currentModel.saveListUsersList(listID: list.id, key: .SharedWithMe) { result in }
+        guard let ckUser = CKService.currentModel.user, let ckUserName = ckUser.name else { return }
+        let user = CKOwnerModel(id: ckUser.id, name: ckUserName)
+        var sharedWith = list.sharedWith
+        sharedWith.append(user)
+        CKService.currentModel.updateListCollab(listID: list.id, sharedWith: sharedWith) { result in }
+    }
+    
     func isOwner(of list: ListModel, userID: String) -> Bool {
         if userID == list.owner.id {
             return true
