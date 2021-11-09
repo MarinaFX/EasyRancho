@@ -67,20 +67,37 @@
 "MainViewTrailingNavigationLabelA" = "Done";
 "MainViewTrailingNavigationLabelB" = "Edit";
 "MainViewTitle" = "Lists";
-"MainViewLeadingNavigationLabel" = "New List";
+"AddListMainButton" = "Add new List";
+"CriadaPorMim" = "Created by **me**";
+"CriadaPor %@" = "Created by **%@**";
 
+// MARK: - MainView Segmented Picker
+"TudoSegmentedPicker" = "All";
+"MinhasListasSegmentedPicker" = "My lists";
+"ColaborativasSegmentedPicker" = "Collaborative";
+
+// MARK: - MainView Deletion Alert
 "Remover %@" = "Do you want to delete %@?";
 "DeleteListAlertText"= "The deleted list cannot be recovered after its deletion.";
 "DeleteListAlertButton"= "Delete";
 
+// MARK: - MainView ContextMenu
 "ContextMenu1" = "Edit";
 "ContextMenu2" = "Duplicate List";
 "ContextMenu3" = "Add Collaborator";
 "ContextMenu4" = "Share List";
 "ContextMenu5" = "Delete List";
+
+// MARK: - MainView Duplication Alert
 "DuplicateListAlertText" = "Are you sure you want to duplicate this list?";
 "DuplicateListAlertButton" = "Duplicate";
 "Duplicar %@" = "Do you want to %@?";
+
+// MARK: - MainView Creation Alert
+"CreateListAlertCancelButton" = "Cancel";
+"CreateListAlertMainButton" = "Add";
+"CreateListAlertTitle" = "Add new list";
+"CreateListAlertText" = "Name your new list";
 
 // MARK: - MainView VoiceOver
 "Options" = "More options";
