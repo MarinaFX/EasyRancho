@@ -145,7 +145,7 @@ class DataService: ObservableObject {
         
         networkMonitor.startMonitoring { path in
             if path.status == .satisfied {
-                CloudIntegration.actions.removeCollab(of: list, ownerID: owner.id)
+                CloudIntegration.actions.removeCollab(of: list, ownerID: owner.id) 
             }
         }
     }

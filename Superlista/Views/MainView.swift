@@ -63,12 +63,14 @@ struct MainView: View {
                     }
                     
                     ScrollView(showsIndicators: false) {
-                        Picker("Lists Sections", selection: $selectedSection) {
-                            Text("TudoSegmentedPicker").tag(0)
-                            Text("MinhasListasSegmentedPicker").tag(1)
-                            Text("ColaborativasSegmentedPicker").tag(2)
+                        if !dataService.lists.isEmpty {
+                            Picker("Lists Sections", selection: $selectedSection) {
+                                Text("TudoSegmentedPicker").tag(0)
+                                Text("MinhasListasSegmentedPicker").tag(1)
+                                Text("ColaborativasSegmentedPicker").tag(2)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
                         }
-                        .pickerStyle(SegmentedPickerStyle())
                         
                         LazyVGrid(columns: columns, spacing: 20, content: {
                             ForEach(appliedSection) { list in
