@@ -1,7 +1,7 @@
 import SwiftUI
 
-struct MainScreen: View {
-    var customView: AnyView?
+struct MainScreen<Content: View>: View {
+    var customView: Content?
     
     var height: CGFloat = .infinity
     var bottomPadding: CGFloat = -35

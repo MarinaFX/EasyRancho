@@ -78,10 +78,13 @@ struct MainView: View {
                     }
                     .padding(.horizontal)
                     .toolbar{
-//                        ToolbarItem(placement: .navigationBarLeading) {
-//                            NavigationLink(destination: SettingsView(), label: { Image(systemName: "gearshape.fill")
-//                            })
-//                        }
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            Button(action: {
+                                self.hasClickedSettings = true
+                            }, label: {
+                                Image(systemName: "gearshape.fill")
+                            })
+                        }
                         
                         ToolbarItem(placement: .navigationBarTrailing){
                             if !dataService.lists.isEmpty {
@@ -129,7 +132,11 @@ struct MainView: View {
                     .background(Color("ButtonBG"))
                     .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
                 }
-            }.edgesIgnoringSafeArea(.bottom)
+                
+            }
+            .edgesIgnoringSafeArea(.bottom)
+        }.sheet(isPresented: $hasClickedSettings) {
+            SettingsView()
         }
         .onReceive(dataService.objectWillChange) { _ in
             counter += 1
