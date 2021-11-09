@@ -56,6 +56,9 @@
 "ListHeaderCollabButton1" = "Add collaborators";
 "ListHeaderCollabButton2" = "Manage collaborators";
 
+// MARK: - ListPerItemsView VoiceOver
+"CategoryTitleHint" = "Category Title";
+
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Done";
 

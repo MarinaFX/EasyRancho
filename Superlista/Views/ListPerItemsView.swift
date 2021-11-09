@@ -33,6 +33,8 @@ struct ListPerItemsView: View {
                         .font(.headline)
                         .foregroundColor(getColor(category: category.title))
                         .padding()
+                        .accessibility(hint: Text("CategoryTitleHint"))
+                        .accessibilityRemoveTraits(AccessibilityTraits.isHeader)
                     
                     Spacer()
                 }
@@ -46,9 +48,7 @@ struct ListPerItemsView: View {
                     trailing: 0))
                         
                 ) {
-                    
                     ForEach(getRows(from: category)) { item in
-                        
                         ItemCommentView(item: item, list: list)
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
@@ -57,10 +57,8 @@ struct ListPerItemsView: View {
                     }
                     .listRowBackground(Color("PrimaryBackground"))
                 }
-                
             }
             .listRowBackground(Color("PrimaryBackground"))
-            
         }
         .listStyle(PlainListStyle())
         .onAppear {
