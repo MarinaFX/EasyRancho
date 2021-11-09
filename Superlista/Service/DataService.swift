@@ -105,7 +105,8 @@ class DataService: ObservableObject {
             
             networkMonitor.startMonitoring { path in
                 if path.status == .satisfied {
-                    CloudIntegration.actions.deleteList(listModel)
+                    guard let user = self.user else { return }
+                    CloudIntegration.actions.deleteList(list: listModel, userID: user.id)
                 }
             }
         }
@@ -144,7 +145,7 @@ class DataService: ObservableObject {
         
         networkMonitor.startMonitoring { path in
             if path.status == .satisfied {
-                CloudIntegration.actions.removeCollab(of: list, owner: owner)
+                CloudIntegration.actions.removeCollab(of: list, ownerID: owner.id) 
             }
         }
     }
@@ -248,7 +249,7 @@ class DataService: ObservableObject {
         addList(newList)
     }
     
-    func isOwner(of list: ListModel, user userID: String) -> Bool {
+    func isOwner(of list: ListModel, userID: String) -> Bool {
         if userID == list.owner.id {
             return true
         } else {

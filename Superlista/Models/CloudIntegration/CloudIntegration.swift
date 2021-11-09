@@ -32,17 +32,29 @@ class CloudIntegration: ObservableObject {
         }
     }
     
-    func deleteList(_ list: ListModel) {
-                
-        deleteListFromMyLists(list: list)
-        
-        deleteListFromAll(list: list)
-        
-        deleteListCollab(list: list)
+    func deleteList(list: ListModel, userID: String) {
+        if isOwner(of: list, userID: userID) {
+            deleteListFromMyLists(list: list)
+            deleteListFromAll(list: list)
+            deleteListCollab(list: list)
+        } else {
+            deleteListFromSharedWithMe(list: list)
+            removeCollab(of: list, ownerID: userID)
+        }
     }
     
     func deleteListFromMyLists(list: ListModel) {
         CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .MyLists) { result in
+            switch result {
+                case .success: print("delete from myList foi")
+
+                case .failure(let error): print("delete from myList error \(error)")
+            }
+        }
+    }
+    
+    func deleteListFromSharedWithMe(list: ListModel) {
+        CKService.currentModel.deleteUsersList(listId: CKRecord.ID(recordName: list.id), key: .SharedWithMe) { result in
             switch result {
                 case .success: print("delete from myList foi")
 
@@ -73,10 +85,10 @@ class CloudIntegration: ObservableObject {
         }
     }
     
-    func removeCollab(of list: ListModel, owner: OwnerModel) {
-        CKService.currentModel.deleteListCollab(collabID: CKRecord.ID(recordName: owner.id), listID: CKRecord.ID(recordName: list.id)) { result in }
+    func removeCollab(of list: ListModel, ownerID: String) {
+        CKService.currentModel.deleteListCollab(collabID: CKRecord.ID(recordName: ownerID), listID: CKRecord.ID(recordName: list.id)) { result in }
 
-        guard let index = list.sharedWith?.firstIndex(where: { owner.id == $0.id }) else { return }
+        guard let index = list.sharedWith?.firstIndex(where: { ownerID == $0.id }) else { return }
         guard var sharedWith = list.sharedWith else { return }
         sharedWith.remove(at: index)
         
@@ -109,6 +121,14 @@ class CloudIntegration: ObservableObject {
                 case .success(let result): print("updateListItems() success \(result)")
                 case .failure(let error): print("updateListItems() error \(error)")
             }
+        }
+    }
+    
+    func isOwner(of list: ListModel, userID: String) -> Bool {
+        if userID == list.owner.id {
+            return true
+        } else {
+            return false
         }
     }
 }
