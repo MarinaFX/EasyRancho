@@ -1,20 +1,19 @@
 import SwiftUI
 
 struct ProductListView: View {
-    @EnvironmentObject var listsViewModel: DataService
+    @EnvironmentObject var dataService: DataService
     
     @Binding var filter: String
     @Binding var hasChangedItems: Bool
 
     @State var selectedItems: [ItemModel] = []
     @State var showCreateNewCustomProductView: Bool = false
+    @State var products = ProductListViewModel().productsOrdered
     
-    let products = ProductListViewModel().productsOrdered
     var list: ListModel
 
-    var filteredProducts: [ProductModel] {
-        return products.filter({ $0.name.localizedCaseInsensitiveContains(filter) })
-    }
+    @State var filteredProducts: [ProductModel] = []
+    @State var receivedNewProduct: Bool = false
     
     func isSelected(item: ProductModel) -> Bool {
         return selectedItems.contains(where: { $0.product.name == item.name })
@@ -57,7 +56,7 @@ struct ProductListView: View {
                         .frame(width: 17, height: 17)
                         .onTapGesture {
                             let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-                            listsViewModel.removeQuantity(of: selectedItems[index], from: list)
+                            dataService.removeQuantity(of: selectedItems[index], from: list)
                             if selectedItems[index].quantity! > 1 {
                                 selectedItems[index].quantity = selectedItems[index].quantity! - 1
                             }
@@ -78,7 +77,7 @@ struct ProductListView: View {
                             .foregroundColor(Color("Button"))
                             .onTapGesture {
                                 let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-                                listsViewModel.addQuantity(of: selectedItems[index], from: list)
+                                dataService.addQuantity(of: selectedItems[index], from: list)
                                 selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
                             }
                             .accessibilityLabel(Text("add"))
@@ -89,11 +88,11 @@ struct ProductListView: View {
                 .onTapGesture {
                     let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                     if isSelected(item: item){
-                        listsViewModel.removeItem(selectedItems[index], from: list)
+                        dataService.removeItem(selectedItems[index], from: list)
                         selectedItems.remove(at: index)
                     } else {
                         let newItem = ItemModel(product: item)
-                        listsViewModel.addItem(newItem, to: list)
+                        dataService.addItem(newItem, to: list)
                         selectedItems.append(newItem)
                     }
                     
@@ -103,19 +102,43 @@ struct ProductListView: View {
             .listRowBackground(Color("PrimaryBackground"))
             
             if filteredProducts.isEmpty {
-                ProductNotFoundView(showCreateNewCustomProductView: self.$showCreateNewCustomProductView)
+                ProductNotFoundView(showCreateNewCustomProductView: self.$showCreateNewCustomProductView, receivedNewProduct: $receivedNewProduct)
             }
 
         }
+        .onAppear(perform: {
+            if let customProducts = dataService.user?.customProducts {
+                let allProducts = products + customProducts
+                
+                DispatchQueue.main.async {
+                    products = allProducts.sorted(by: { $0.name < $1.name } )
+                }
+            }
+            
+        })
+        .onChange(of: receivedNewProduct, perform: { newProduct in
+            if let customProducts = dataService.user?.customProducts {
+                let allProducts = products + customProducts
+                
+                DispatchQueue.main.async {
+                    products = allProducts.sorted(by: { $0.name < $1.name } )
+                    
+                    self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(filter) } )
+                }
+            }
+        })
+        .onChange(of: filter, perform: { newFilter in
+            self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(newFilter) } )
+        })
         .listSeparatorStyle(style: filteredProducts.isEmpty ? .none : .singleLine)
         .listStyle(PlainListStyle())
 
     }
-
 }
  
 struct ProductNotFoundView: View {
     @Binding var showCreateNewCustomProductView: Bool
+    @Binding var receivedNewProduct: Bool
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -140,7 +163,7 @@ struct ProductNotFoundView: View {
             .sheet(isPresented: $showCreateNewCustomProductView)
             { }
             content: {
-                CreateNewCustomProductView(showCreateNewProductView: self.$showCreateNewCustomProductView)
+                CreateNewCustomProductView(showCreateNewProductView: self.$showCreateNewCustomProductView, didCreateNewProduct: $receivedNewProduct)
             }
         }
         .accessibilityElement(children: .combine)

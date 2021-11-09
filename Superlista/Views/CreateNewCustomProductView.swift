@@ -10,9 +10,12 @@ import SwiftUI
 struct CreateNewCustomProductView: View {
     @Environment(\.sizeCategory) var sizeCategory
     
+    @EnvironmentObject var dataService: DataService
+    
     @ScaledMetric var buttonHeight: CGFloat = UIScreen.main.bounds.width * 0.15
     
     @Binding var showCreateNewProductView: Bool
+    @Binding var didCreateNewProduct: Bool
     
     @State var productName: String = ""
     @State private var lastSelectedItem: Int?
@@ -97,6 +100,13 @@ struct CreateNewCustomProductView: View {
                         })
                     }
                 }
+//                .onAppear(perform: {
+//                    let dataService = DataService()
+//                    guard let customProducts = dataService.user?.customProducts
+//                    else { return }
+//                    
+//                    print("custom products \(customProducts)")
+//                })
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
@@ -107,8 +117,6 @@ struct CreateNewCustomProductView: View {
         guard let lastSelectedItem = lastSelectedItem else {
             return
         }
-        let dataService = DataService()
-
         if !productName.isEmpty {
             didAddProductSuccessfully = dataService.updateCustomProducts(withName: productName, for: categories[lastSelectedItem])
             
@@ -116,6 +124,7 @@ struct CreateNewCustomProductView: View {
             
             if didAddProductSuccessfully {
                 self.showCreateNewProductView = false
+                self.didCreateNewProduct.toggle()
             }
             
             duplicatedName = productName
@@ -125,7 +134,7 @@ struct CreateNewCustomProductView: View {
 
 struct CreateNewCustomProductView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateNewCustomProductView(showCreateNewProductView: .constant(false))
+        CreateNewCustomProductView(showCreateNewProductView: .constant(false), didCreateNewProduct: .constant(false))
     }
 }
 

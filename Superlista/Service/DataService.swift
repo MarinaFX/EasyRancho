@@ -235,9 +235,10 @@ class DataService: ObservableObject {
            let userCustomProducts = user.customProducts {
             let id: Int = getRandomUniqueID(blacklist: userCustomProducts.map({ $0.id }))
             let userNewProduct: ProductModel = ProductModel(id: id, name: productName, category: category)
-
+            
             if !userCustomProducts.map({ $0.name.lowercased() }).contains(userNewProduct.name.lowercased()) &&
                 !products.map({ $0.name.lowercased() }).contains(userNewProduct.name.lowercased()) {
+                
                 user.customProducts?.append(userNewProduct)
                 
                 networkMonitor.startMonitoring { path in
@@ -249,19 +250,5 @@ class DataService: ObservableObject {
             }
         }
         return false
-    }
-    
-    private func getRandomUniqueID(blacklist existingIds: [Int]) -> Int {
-        var random: Int = random()
-
-        while existingIds.contains(random) {
-            random = self.random()
-        }
-        
-        return random
-    }
-    
-    private func random() -> Int{
-        return Int.random(in: 1000..<9999)
     }
 }

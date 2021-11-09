@@ -125,3 +125,17 @@ func getNickname() -> String{
     }
     return "User"
 }
+
+func getRandomUniqueID(blacklist existingIds: [Int]) -> Int {
+    var newRandom: Int = random()
+
+    while existingIds.contains(newRandom) {
+        newRandom = random()
+    }
+    
+    return newRandom
+}
+
+func random() -> Int {
+    return Int.random(in: 1000..<9999)
+}
