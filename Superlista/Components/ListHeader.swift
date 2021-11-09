@@ -19,20 +19,22 @@ struct ListHeader: View {
     
     var body: some View {
         HStack (spacing: 5){
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 
                 ZStack(alignment: .leading) {
                     if canEditTitle {
                         if listaTitulo.isEmpty {
                             Text("NovaLista")
                                 .foregroundColor(secondary)
-                                .font(.system(size: 24, weight: .bold))
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .accessibility(hint: Text("ListHeaderTitle"))
                             
                         }
                         
                         TextField("", text: $listaTitulo)
                             .foregroundColor(canEditTitle ? Color("PrimaryBackground") : .black)
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.largeTitle)
                             .background(Color("editTitleBackground"))
                             .onTapGesture {
                                 if listaTitulo == NSLocalizedString("NovaLista", comment: "NovaLista") {
@@ -43,9 +45,12 @@ struct ListHeader: View {
                     
                     if !canEditTitle, let list = list {
                         HStack {
-                            Text(list.title).font(.system(size: 24, weight: .bold))
+                            Text(list.title)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
                                 .lineLimit(2)
                                 .foregroundColor(Color.primary)
+                                .accessibility(hint: Text("ListHeaderTitle"))
                             Spacer()
                         }
                         
@@ -64,8 +69,8 @@ struct ListHeader: View {
                     .frame(width: 28, height: 24)
                     .foregroundColor(.black)
             }
-            .sheet(isPresented: $showCollabSheetView)
-            { }
+            .accessibility(label: Text(self.collaborators.isEmpty ? "ListHeaderCollabButton1" : "ListHeaderCollabButton2"))
+            .sheet(isPresented: $showCollabSheetView) { }
             content: {
                 AddCollaboratorSheetView(showCollabSheetView: self.$showCollabSheetView, collaborators: self.$collaborators, listOwner: self.$listOwner, list: self.list)
             }

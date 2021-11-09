@@ -51,6 +51,11 @@
 "ListViewLabelA" = "Salvar";
 "ListViewLabelB" = "Editar";
 
+// MARK: - ListHeader VoiceOver
+"ListHeaderTitle" = "Título da Lista";
+"ListHeaderCollabButton1" = "Adicionar colaboradores";
+"ListHeaderCollabButton2" = "Gerenciar colaboradores";
+
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Pronto";
 
@@ -168,6 +173,7 @@
 "Sobremesas" = "Sobremesas";
 "Temperos" = "Temperos";
 "Outros" = "Outros";
+
 // MARK: - Onboarding Fields
 "OnboardingFieldsTitle" = "Personalize seu perfil";
 "OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";

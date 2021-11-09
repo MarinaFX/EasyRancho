@@ -51,6 +51,11 @@
 "ListViewLabelA" = "Speichern";
 "ListViewLabelB" = "Bearbeiten";
 
+// MARK: - ListHeader VoiceOver
+"ListHeaderTitle" = "List title";
+"ListHeaderCollabButton1" = "Add collaborators";
+"ListHeaderCollabButton2" = "Manage collaborators";
+
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Fertig";
 
