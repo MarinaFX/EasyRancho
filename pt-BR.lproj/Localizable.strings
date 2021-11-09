@@ -122,6 +122,23 @@
 "ItemCommentViewPlaceholder"= "Insira um comentário";
 "ItemCommentViewButtonLabel"= "OK";
 
+// MARK: - ItemCommentView VoiceOver
+"CheckedItemIconLabel1" = "Item checado";
+"CheckedItemIconLabel2" = "Item não checado";
+"CheckedItemIconHint1" = "Deschecar item";
+"CheckedItemIconHint2" = "Checar item";
+"CheckedItemLabelHint %@" = "Item %@ riscado";
+"CommentIconLabel" = "Comentário";
+"CommentIconHint1" = "Editar comentário";
+"CommentIconHint2" = "Adicionar comentário";
+"ItemQuantityLabel1" = "1 item";
+"ItemQuantityLabel2 %@" = "%@ itens";
+"ItemQuantityHint" = "Número de itens";
+"CommentTextFieldLabel" = "Comentário";
+"CommentTextFieldHint" = "Campo de comentário";
+"CommentConfirmationButtonHint" = "Confirmar";
+"CommentTextHint %@" = "Comentário em %@";
+
 //MARK: - AddCollaboratorSheetView
 "AddCollabTitle" = "Adicionar Colaborador";
 "AddCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";

@@ -7,7 +7,7 @@ struct ItemCommentView: View {
     @State var comment: String = ""
     
     let purpleColor = Color("Background")
-
+    
     var item: ItemModel
     var list: ListModel
     
@@ -26,15 +26,19 @@ struct ItemCommentView: View {
                         .onTapGesture {
                             listsViewModel.toggleCompletion(of: item, from: list)
                         }
+                        .accessibilityAddTraits(AccessibilityTraits.isButton)
+                        .accessibilityRemoveTraits(AccessibilityTraits.isImage)
+                        .accessibilityLabel(Text(item.isCompleted ? "CheckedItemIconLabel1" : "CheckedItemIconLabel2"))
+                        .accessibility(hint: Text(item.isCompleted ? "CheckedItemIconHint1" : "CheckedItemIconHint2"))
                     
                     Text(item.product.name)
                         .strikethrough(item.isCompleted)
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
                         .font(.body)
                         .fontWeight(.bold)
+                        .accessibility(hint: Text(item.isCompleted ? "CheckedItemLabelHint \(item.product.name)" : ""))
                     
-                    
-                    if !isCommenting{
+                    if !isCommenting {
                         Image(systemName: "text.bubble")
                             .resizable()
                             .frame(width: 18, height: 18)
@@ -42,6 +46,10 @@ struct ItemCommentView: View {
                             .onTapGesture {
                                 isCommenting = true
                             }
+                            .accessibilityAddTraits(AccessibilityTraits.isButton)
+                            .accessibilityRemoveTraits(AccessibilityTraits.isImage)
+                            .accessibilityLabel(Text("CommentIconLabel"))
+                            .accessibility(hint: Text(comment != "" ? "CommentIconHint1" : "CommentIconHint2"))
                     }
                     
                     Spacer()
@@ -56,17 +64,19 @@ struct ItemCommentView: View {
                     .onTapGesture {
                         listsViewModel.removeQuantity(of: item, from: list)
                     }
+                    .accessibilityAddTraits(AccessibilityTraits.isButton)
+                    .accessibilityRemoveTraits(AccessibilityTraits.isImage)
                     .accessibilityLabel(Text("Remove"))
                     .accessibility(hint: Text("RemoveOneItem"))
-
+                    
                     
                     Text("\(item.quantity ?? 1)")
                         .font(.body)
                         .fontWeight(.bold)
                         .foregroundColor(Color.primary)
-                        .accessibilityLabel(Text("\(item.quantity ?? 1) items"))
-                    
-                    
+                        .accessibilityLabel(Text((item.quantity ?? 1) == 1 ? "ItemQuantityLabel1" : "ItemQuantityLabel2 \(item.quantity ?? 1)"))
+                        .accessibility(hint: Text("ItemQuantityHint"))
+
                     Image(systemName: "plus")
                         .resizable()
                         .frame(width: 17, height: 17)
@@ -74,6 +84,8 @@ struct ItemCommentView: View {
                         .onTapGesture {
                             listsViewModel.addQuantity(of: item, from: list)
                         }
+                        .accessibilityAddTraits(AccessibilityTraits.isButton)
+                        .accessibilityRemoveTraits(AccessibilityTraits.isImage)
                         .accessibilityLabel(Text("Add"))
                         .accessibility(hint: Text("AddOneItem"))
                     
@@ -85,14 +97,17 @@ struct ItemCommentView: View {
                             if (comment == "") {
                                 Text("ItemCommentViewPlaceholder")
                                     .foregroundColor(Color(UIColor.secondaryLabel))
-                                    .font(.system(size: 13))
+                                    .font(.footnote)
                                     .padding(.leading, 30)
+                                    .accessibility(hidden: true)
                             }
                             
                             TextField(comment , text: $comment)
-                                .font(.system(size: 13))
+                                .font(.footnote)
                                 .foregroundColor(Color(UIColor.secondaryLabel))
                                 .padding(.leading, 28)
+                                .accessibilityLabel(Text("CommentTextFieldLabel"))
+                                .accessibility(hint: Text("CommentTextFieldHint"))
                         }
                         
                         Spacer()
@@ -104,12 +119,19 @@ struct ItemCommentView: View {
                                 listsViewModel.addComment(comment, to: item, from: list)
                                 isCommenting = false
                             }
+                            .accessibilityAddTraits(AccessibilityTraits.isButton)
+                            .accessibilityRemoveTraits(AccessibilityTraits.isImage)
+                            .accessibility(hint: Text("CommentConfirmationButtonHint"))
+
                     }
                 } else if item.comment != "" {
                     Text(item.comment ?? "")
                         .font(.footnote)
                         .foregroundColor(Color(UIColor.secondaryLabel))
                         .padding(.leading, 30)
+                        .accessibility(hidden: item.comment == "")
+                        .accessibility(hint: Text("CommentTextHint \(item.product.name)"))
+
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
