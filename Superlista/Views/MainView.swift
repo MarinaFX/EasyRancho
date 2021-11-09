@@ -51,6 +51,7 @@ struct MainView: View {
                             Text("EmptyListText")
                                 .multilineTextAlignment(.center)
                                 .font(.headline)
+                                .accessibility(hint: Text("HintEmptyListText"))
                             
                             NoItemsView()
                                 .frame(width: 400, height: 400)
@@ -65,8 +66,11 @@ struct MainView: View {
                     ScrollView(showsIndicators: false) {
                         Picker("Lists Sections", selection: $selectedSection) {
                             Text("TudoSegmentedPicker").tag(0)
+                                .accessibility(hint: Text("HintTudoSegmentedPicker"))
                             Text("MinhasListasSegmentedPicker").tag(1)
+                                .accessibility(hint: Text("HintMinhasListasSegmentedPicker"))
                             Text("ColaborativasSegmentedPicker").tag(2)
+                                .accessibility(hint: Text("HintColaborativasSegmentedPicker"))
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         
@@ -87,6 +91,8 @@ struct MainView: View {
                             if !dataService.lists.isEmpty {
                                 Button(action: { isEditing.toggle() }, label: {
                                     Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
+                                    .accessibility(addTraits: .isButton)
+                                    .accessibility(hint: Text(isEditing ? "HintMainViewTrailingNavigationLabelA": "HintMainViewTrailingNavigationLabelB"))
                             }
                         }
                         
@@ -129,6 +135,8 @@ struct MainView: View {
                     .background(Color("ButtonBG"))
                     .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
                 }
+                .accessibility(addTraits: .isButton)
+                .accessibility(hint: Text("HintAddListMainButton"))
             }.edgesIgnoringSafeArea(.bottom)
         }
         .onReceive(dataService.objectWillChange) { _ in

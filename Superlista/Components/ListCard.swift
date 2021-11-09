@@ -27,6 +27,7 @@ struct ListCard: View {
                     .frame(width: 171, height: 117)
                     .cornerRadius(30)
                     .shadow(color: Color("Shadow"), radius: 12)
+                    .accessibility(hint: Text("HintListCard"))
                 
                 VStack(alignment: .leading){
                     // MARK: - list title
@@ -149,6 +150,9 @@ struct ListCard: View {
                             dataService.currentList = list
                             showAlertDelete = true
                         }
+                        .accessibility(label: Text("Remover lista selecionada"))
+                        .accessibility(hint: Text("Removerá a lista selecionada"))
+                        .accessibility(addTraits: .isButton)
                 }
             }
         })
