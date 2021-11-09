@@ -60,11 +60,11 @@
 "AddNewItemViewBottomButtonLabel" = "Pronto";
 
 // MARK: - AddNewItemView VoiceOver
- "Adicione %@" = "Aperte para adicionar %@";
- "Add" = "Adicione";
- "Remove" = "Remova";
- "RemoveOneItem" = "Aperte para remover um ítem";
- "AddOneItem" = "Aperte para adicionar um ítem";
+ "Adicione %@" = "Adicionar %@";
+ "Add" = "Adicionar";
+ "Remove" = "Remover";
+ "RemoveOneItem" = "Remover um ítem";
+ "AddOneItem" = "Adicionar um ítem";
  "%@ items" = "%@ ítens";
 
 // MARK: - MainView
