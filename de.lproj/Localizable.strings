@@ -51,6 +51,14 @@
 "ListViewLabelA" = "Speichern";
 "ListViewLabelB" = "Bearbeiten";
 
+// MARK: - ListHeader VoiceOver
+"ListHeaderTitle" = "List title";
+"ListHeaderCollabButton1" = "Add collaborators";
+"ListHeaderCollabButton2" = "Manage collaborators";
+
+// MARK: - ListPerItemsView VoiceOver
+"CategoryTitleHint" = "Título da Categoria";
+
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Fertig";
 
@@ -116,6 +124,23 @@
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Kommentar hinzufügen";
 "ItemCommentViewButtonLabel"= "OK";
+
+// MARK: - ItemCommentView VoiceOver
+"CheckedItemIconLabel1" = "Checked Item";
+"CheckedItemIconLabel2" = "Item not checked";
+"CheckedItemIconHint1" = "Uncheck item";
+"CheckedItemIconHint2" = "Check item";
+"CheckedItemLabelHint %@" = "Item %@ crossed-out";
+"CommentIconLabel" = "Comment";
+"CommentIconHint1" = "Edit comment";
+"CommentIconHint2" = "Add comment";
+"ItemQuantityLabel1" = "1 item";
+"ItemQuantityLabel2 %@" = "%@ items";
+"ItemQuantityHint" = "Number of items";
+"CommentTextFieldLabel" = "Comment";
+"CommentTextFieldHint" = "Comment field";
+"CommentConfirmationButtonHint" = "Confirm";
+"CommentTextHint %@" = "Comment in %@";
 
 //MARK: - AddCollaboratorSheetView
 "AddCollabTitle" = "Mitwirkende hinzufügen";
