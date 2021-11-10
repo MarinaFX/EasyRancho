@@ -266,7 +266,6 @@ class DataService: ObservableObject {
     // MARK: - Get Shared Lists from CK
     func getSharedLists() {
         CKService.currentModel.refreshUser { result in
-            
             switch result {
             case .success(let ckUser):
                 let localUser = UserModelConverter().convertCloudUserToLocal(withUser: ckUser)
