@@ -81,7 +81,7 @@ struct CreateNewCustomProductView: View {
                             self.showCreateNewProductView = false
                         } label: {
                             Text("leadingCancel")
-                                .font(.system(size: 17))
+                                .font(.body)
                                 .foregroundColor(.blue)
                                 .accessibilityHint("ACCancelButtonHint")
                         }
@@ -93,20 +93,13 @@ struct CreateNewCustomProductView: View {
                         action: saveProduct,
                         label: {
                             Text("trailingDone")
-                                .font(.system(size: 17))
+                                .font(.body)
                                 .bold()
                                 .foregroundColor(.blue)
                                 .accessibilityHint("ACDoneButtonHint")
                         })
                     }
                 }
-//                .onAppear(perform: {
-//                    let dataService = DataService()
-//                    guard let customProducts = dataService.user?.customProducts
-//                    else { return }
-//                    
-//                    print("custom products \(customProducts)")
-//                })
                 .navigationBarTitleDisplayMode(.inline)
             }
         }

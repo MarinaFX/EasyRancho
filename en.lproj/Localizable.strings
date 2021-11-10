@@ -15,7 +15,6 @@
 "itemNotFoundButton" = "Create a New Product";
 "ACItemNotFoundButtonHint" = "Tap twice to go to product creation screen";
 
-
 //MARK: - CreateNewCustomProductView screen
 "createProductScreenTitle" = "Create Product";
 "createProductDescription" = "Create a new product to add it to your list. Pick up a name and a category.";
