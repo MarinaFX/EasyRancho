@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ListPerItemsView: View {
-    
+    @Environment(\.sizeCategory) var sizeCategory
     @EnvironmentObject var dataService: DataService
     
     var list: ListModel

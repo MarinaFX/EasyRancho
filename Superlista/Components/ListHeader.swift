@@ -3,6 +3,9 @@ import SwiftUI
 struct ListHeader: View {
     @EnvironmentObject var dataServive: DataService
     
+    @ScaledMetric var collabIconWidth: CGFloat = 28
+    @ScaledMetric var collabIconHeight: CGFloat = 24
+    
     @Binding var listaTitulo: String
     @State var canComment: Bool = false
     @State var comentario: String = ""
