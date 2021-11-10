@@ -19,7 +19,7 @@ struct AddNewItemView: View {
                     
                     ProductListView(list: list, filter: $searchText, hasChangedItems: $hasChangedItems)
                     
-                    Button(action: prontoButtonPressed, label: {
+                    Button(action: readyButtonPressed, label: {
                         Text("AddNewItemViewBottomButtonLabel")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -42,7 +42,7 @@ struct AddNewItemView: View {
         }
     }
     
-    func prontoButtonPressed() {
+    func readyButtonPressed() {
         presentationMode.wrappedValue.dismiss()
     }
 }

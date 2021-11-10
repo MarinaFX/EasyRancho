@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct BottomBarButton: View {
+    @ScaledMetric var buttonHeight: CGFloat = 83
+    
     public var action: (() -> Void)?
     
     var body: some View {
@@ -21,7 +23,7 @@ struct BottomBarButton: View {
                     Text("AddItemsButton")
                         .fontWeight(.bold)
                         .font(.title3)
-                    
+
                     Spacer()
                 }
                 .foregroundColor(Color("Button"))
@@ -30,7 +32,7 @@ struct BottomBarButton: View {
                 .padding(.top, 18)
                 
             }
-            .frame(width: UIScreen.main.bounds.width, height: 83)
+            .frame(width: UIScreen.main.bounds.width, height: buttonHeight)
             .background(Color("ButtonBG"))
             .overlay(
                 Rectangle()

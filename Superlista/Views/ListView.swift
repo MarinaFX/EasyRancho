@@ -15,48 +15,46 @@ struct ListView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            MainScreen(customView:
-                ZStack {
-                if let list = list {
-                    NavigationLink("", isActive: $isPresentedAddNewItems, destination: { AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "") })
-                }
+        MainScreen(customView:
+            ZStack {
+            if let list = list {
+                NavigationLink("", isActive: $isPresentedAddNewItems, destination: { AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "") })
+            }
+            
+                Color("PrimaryBackground")
+                    .ignoresSafeArea()
                 
-                    Color("PrimaryBackground")
-                        .ignoresSafeArea()
-                    
-                    VStack (spacing: 20) {
-                        if let list = self.list {
-                            ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
-                            
-                            ListPerItemsView(list: list)
-                                .padding(.horizontal)
-                                .padding(.bottom, -20)
-                            
-                            BottomBarButton(action: addNewItemAction)
-                            
-                        } else {
-                            Spacer()
-                        }
+                VStack (spacing: 0) {
+                    if let list = self.list {
+                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
+                        
+                        ListPerItemsView(list: list)
+                            .padding(.horizontal)
+                            .padding(.bottom, -20)
+                        
+                        BottomBarButton(action: addNewItemAction)
+                        
+                    } else {
+                        Spacer()
                     }
                 }
-            , topPadding: -30)
-                .toolbar{
-                    ToolbarItem {
-                        Button {
-                            editTitle()
-                        } label: {
-                            Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
-                        }
+            }
+        , topPadding: -30)
+            .toolbar{
+                ToolbarItem {
+                    Button {
+                        editTitle()
+                    } label: {
+                        Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
                     }
                 }
-                .onAppear {
-                    if hasChangedItems, let list = self.list {
-                        dataService.updateCKListItems(of: list)
-                        self.hasChangedItems = false
-                    }
+            }
+            .onAppear {
+                if hasChangedItems, let list = self.list {
+                    dataService.updateCKListItems(of: list)
+                    self.hasChangedItems = false
                 }
-        }
+            }
     }
     
     // MARK: - getList()
@@ -80,10 +78,7 @@ struct ListView: View {
     }
     
     func addNewItemAction() {
-        if let list = list {
-            
-            self.isPresentedAddNewItems = true
-        }
+        self.isPresentedAddNewItems = true
     }
 }
 
