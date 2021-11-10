@@ -262,4 +262,45 @@ class DataService: ObservableObject {
     func isOwner(of list: ListModel, userID: String) -> Bool {
         return userID == list.owner.id
     }
+    
+    // MARK: - Get Shared Lists from CK
+    func getSharedLists() {
+        self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
+            var localLists = UDService().getUDLists()
+            
+            ckUserModel.sharedWithMe?.forEach { list in
+                if !list.sharedWith.isEmpty {
+                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                    
+                    let ids = localLists.map(\.id)
+                    
+                    if let index = ids.firstIndex(of: list.id.recordName) {
+                        localLists[index] = localList
+                    }
+                    else {
+                        localLists.append(localList)
+                    }
+                }
+            }
+            
+            ckUserModel.myLists?.forEach { list in
+                if !list.sharedWith.isEmpty {
+                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
+                    
+                    let ids = localLists.map(\.id)
+                    
+                    if let index = ids.firstIndex(of: list.id.recordName) {
+                        localLists[index] = localList
+                    }
+                    else {
+                        localLists.append(localList)
+                    }
+                }
+            }
+            
+            self.lists = localLists
+            
+            self.user = UserModelConverter().convertCloudUserToLocal(withUser: ckUserModel)
+        }
+    }
 }

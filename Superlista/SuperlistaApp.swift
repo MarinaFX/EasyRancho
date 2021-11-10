@@ -88,6 +88,9 @@ struct SuperlistaApp: App {
             .onAppear {
                 NetworkMonitor.shared.startMonitoring { path in
                     print(path.status, "status on appear")
+                    if path.status == .satisfied {
+                        dataService.getSharedLists()
+                    }
                 }
                 loadData()
             }
