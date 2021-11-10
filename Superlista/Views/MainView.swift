@@ -112,28 +112,7 @@ struct MainView: View {
                     }
                 }
                 
-                Button(action: createNewListAction) {
-                    VStack(alignment: .trailing) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.title2)
-                            
-                            Text("AddListMainButton")
-                                .fontWeight(.bold)
-                                .font(.title3)
-                            
-                            Spacer()
-                        }
-                        .foregroundColor(Color("Button"))
-                        .padding(.bottom, 34)
-                        .padding(.horizontal, 14)
-                        .padding(.top, 18)
-                        
-                    }
-                    .frame(width: UIScreen.main.bounds.width, height: 83)
-                    .background(Color("ButtonBG"))
-                    .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
-                }
+                BottomBarButton(action: createNewListAction)
                 
             }
             .edgesIgnoringSafeArea(.bottom)

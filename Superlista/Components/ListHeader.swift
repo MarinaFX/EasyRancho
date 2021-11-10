@@ -69,7 +69,7 @@ struct ListHeader: View {
             } label: {
                 Image(systemName: self.collaborators.isEmpty ? "person.crop.circle.badge.plus" : "person.crop.circle.badge.checkmark")
                     .resizable()
-                    .frame(width: 28, height: 24)
+                    .frame(width: collabIconWidth, height: collabIconHeight)
                     .foregroundColor(.black)
             }
             .accessibility(label: Text(self.collaborators.isEmpty ? "ListHeaderCollabButton1" : "ListHeaderCollabButton2"))

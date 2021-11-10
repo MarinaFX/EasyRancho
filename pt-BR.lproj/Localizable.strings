@@ -50,6 +50,7 @@
 // MARK: - ListView
 "ListViewLabelA" = "Salvar";
 "ListViewLabelB" = "Editar";
+"AddItemsButton" = "Adicionar Itens";
 
 // MARK: - ListHeader VoiceOver
 "ListHeaderTitle" = "Título da Lista";

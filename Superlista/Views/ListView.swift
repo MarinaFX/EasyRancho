@@ -6,18 +6,22 @@ struct ListView: View {
     @State var hasChangedItems = false
     @State var listId: String
     @State var canEditTitle: Bool = false
-        
+    @State var listTitle: String = ""
+    @State var isPresentedAddNewItems: Bool = false
+    
     var list: ListModel? {
         let myList = getList()
         return myList
     }
     
-    @State var listTitle: String = ""
-    
     var body: some View {
         GeometryReader { geometry in
             MainScreen(customView:
                 ZStack {
+                if let list = list {
+                    NavigationLink("", isActive: $isPresentedAddNewItems, destination: { AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "") })
+                }
+                
                     Color("PrimaryBackground")
                         .ignoresSafeArea()
                     
@@ -25,14 +29,11 @@ struct ListView: View {
                         if let list = self.list {
                             ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
                             
-                            NavigationLink(destination: AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "")){
-                                FakeSearchBar()
-                                    .padding(.horizontal, 20)
-                            }
-                            
                             ListPerItemsView(list: list)
                                 .padding(.horizontal)
-                                .padding(.bottom, 30)
+                                .padding(.bottom, -20)
+                            
+                            BottomBarButton(action: addNewItemAction)
                             
                         } else {
                             Spacer()
@@ -77,6 +78,12 @@ struct ListView: View {
             }
         }
     }
+    
+    func addNewItemAction() {
+        if let list = list {
+            
+            self.isPresentedAddNewItems = true
+        }
+    }
 }
-
 
