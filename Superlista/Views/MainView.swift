@@ -13,7 +13,9 @@ struct MainView: View {
     @State var counter = 0
     @State var listTitle = ""
     @State var hasClickedSettings = false
-        
+    
+    let columns = Array(repeating: GridItem(.flexible()), count: 2)
+    
     var appliedSection: [ListModel]{
         let section: [ListModel]
         
@@ -32,8 +34,6 @@ struct MainView: View {
         return section
     }
     
-    let columns = Array(repeating: GridItem(.flexible()), count: 2)
-
     var body: some View {
         NavigationView {
             VStack {
@@ -152,35 +152,17 @@ struct MainView: View {
         let msg = NSLocalizedString("CreateListAlertText", comment: "")
         let placeholder = NSLocalizedString("NovaLista", comment: "")
         
-        alertMessage(title: title, message: msg, placeholder: placeholder) { text in
+        textFieldAlert(title: title, message: msg, placeholder: placeholder) { text in
             if let title = text {
                 let listTitle = title != "" ? title : placeholder
-                
+
                 let newList: ListModel = ListModel(title: listTitle, owner: newOwner)
-                
+
                 dataService.addList(newList)
-                
+
                 self.listId = newList.id
                 self.isCreatingList = true
             }
         }
     }
-}
-
-func alertMessage(title: String, message: String, placeholder: String, actionHandler: @escaping (String?) -> Void) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    
-    alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertCancelButton", comment: ""), style: .cancel, handler: nil))
-    
-    alert.addTextField { textField in
-        textField.placeholder = placeholder
-    }
-    
-    alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertMainButton", comment: ""), style: .default, handler: { action in
-        actionHandler(alert.textFields?.first?.text)
-    }))
-    
-    let viewController = UIApplication.shared.windows.first!.rootViewController!
-    
-    viewController.present(alert, animated: true)
 }
