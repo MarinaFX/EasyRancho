@@ -13,27 +13,27 @@ struct MainView: View {
     @State var counter = 0
     @State var listTitle = ""
     @State var hasClickedSettings = false
-    
+        
     var appliedSection: [ListModel]{
         let section: [ListModel]
         
         switch selectedSection{
-        case 0:
-            section =  dataService.lists
-        case 1:
-            guard let currentUser = dataService.user else { return [] }
-            section = dataService.lists.filter{$0.owner.id == currentUser.id}
-        case 2:
-            guard let currentUser = dataService.user else { return [] }
-            section =  dataService.lists.filter{$0.owner.id != currentUser.id}
-        default:
-            section =  []
+            case 0:
+                section =  dataService.lists
+            case 1:
+                guard let currentUser = dataService.user else { return [] }
+                section = dataService.lists.filter{$0.owner.id == currentUser.id}
+            case 2:
+                guard let currentUser = dataService.user else { return [] }
+                section =  dataService.lists.filter{$0.owner.id != currentUser.id}
+            default:
+                section =  []
         }
         return section
     }
-
-    let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
+    let columns = Array(repeating: GridItem(.flexible()), count: 2)
+
     var body: some View {
         NavigationView {
             VStack {
@@ -135,7 +135,7 @@ struct MainView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }.sheet(isPresented: $hasClickedSettings) {
-            SettingsView()
+            SettingsView(isOpened: $hasClickedSettings)
         }
         .onReceive(dataService.objectWillChange) { _ in
             counter += 1
