@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingLabel: View {
+struct SettingLabel: View {    
     @Binding var username: String
     @State var showingSheet = false
     @Binding var picture: UIImage?
@@ -92,6 +92,23 @@ struct SettingLabel: View {
                     .background(Color("ButtonBG"))
                     .cornerRadius(13)
                 }
+            HStack {
+                Button {
+                    LanguageSettings.currentLanguage.selectedLanguage = .en
+                } label: {
+                    Text("English")
+                }
+                Button {
+                    LanguageSettings.currentLanguage.selectedLanguage = .ptBR
+                } label: {
+                    Text("Portuguese")
+                }
+                Button {
+                    LanguageSettings.currentLanguage.selectedLanguage = .de
+                } label: {
+                    Text("Deutsch")
+                }
+            }
         }
     }
 }
