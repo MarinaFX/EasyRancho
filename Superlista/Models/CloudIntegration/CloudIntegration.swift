@@ -141,5 +141,4 @@ class CloudIntegration: ObservableObject {
             return false
         }
     }
-    
 }

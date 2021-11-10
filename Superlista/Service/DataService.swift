@@ -265,42 +265,44 @@ class DataService: ObservableObject {
     
     // MARK: - Get Shared Lists from CK
     func getSharedLists() {
-        self.userSubscription = CKService.currentModel.userSubject.compactMap({ $0 }).receive(on: DispatchQueue.main).sink { ckUserModel in
-            var localLists = UDService().getUDLists()
+        CKService.currentModel.refreshUser { result in
             
-            ckUserModel.sharedWithMe?.forEach { list in
-                if !list.sharedWith.isEmpty {
-                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                    
-                    let ids = localLists.map(\.id)
-                    
-                    if let index = ids.firstIndex(of: list.id.recordName) {
-                        localLists[index] = localList
-                    }
-                    else {
-                        localLists.append(localList)
+            switch result {
+            case .success(let ckUser):
+                let localUser = UserModelConverter().convertCloudUserToLocal(withUser: ckUser)
+                
+                var localSharedWithMe: [ListModel] = []
+                
+                localUser.sharedWithMe?.forEach { list in
+                    localSharedWithMe.append(list)
+                }
+                
+                var localMyLists: [ListModel] = []
+                
+                localUser.myLists?.forEach { list in
+                    if let sharedWith = list.sharedWith, !sharedWith.isEmpty {
+                        localMyLists.append(list)
                     }
                 }
-            }
-            
-            ckUserModel.myLists?.forEach { list in
-                if !list.sharedWith.isEmpty {
-                    let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                    
-                    let ids = localLists.map(\.id)
-                    
-                    if let index = ids.firstIndex(of: list.id.recordName) {
-                        localLists[index] = localList
-                    }
-                    else {
-                        localLists.append(localList)
+                
+                let localLists = UDService().getUDLists()
+                
+                localLists.forEach { list in
+                    if let sharedWith = list.sharedWith, sharedWith.isEmpty {
+                        localMyLists.append(list)
                     }
                 }
+                
+                var newLists: [ListModel] = localSharedWithMe
+                newLists.append(contentsOf: localMyLists)
+                
+                self.lists = newLists
+                self.user?.myLists = localMyLists
+                self.user?.sharedWithMe = localSharedWithMe
+                
+            case .failure:
+                return
             }
-            
-            self.lists = localLists
-            
-            self.user = UserModelConverter().convertCloudUserToLocal(withUser: ckUserModel)
         }
     }
 }
