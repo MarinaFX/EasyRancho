@@ -152,7 +152,7 @@ struct MainView: View {
         let msg = NSLocalizedString("CreateListAlertText", comment: "")
         let placeholder = NSLocalizedString("NovaLista", comment: "")
         
-        alertMessage(title: title, message: msg, placeholder: placeholder) { text in
+        textFieldAlert(title: title, message: msg, placeholder: placeholder) { text in
             if let title = text {
                 let listTitle = title != "" ? title : placeholder
                 
@@ -167,20 +167,3 @@ struct MainView: View {
     }
 }
 
-func alertMessage(title: String, message: String, placeholder: String, actionHandler: @escaping (String?) -> Void) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    
-    alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertCancelButton", comment: ""), style: .cancel, handler: nil))
-    
-    alert.addTextField { textField in
-        textField.placeholder = placeholder
-    }
-    
-    alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertMainButton", comment: ""), style: .default, handler: { action in
-        actionHandler(alert.textFields?.first?.text)
-    }))
-    
-    let viewController = UIApplication.shared.windows.first!.rootViewController!
-    
-    viewController.present(alert, animated: true)
-}
