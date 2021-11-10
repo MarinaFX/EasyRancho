@@ -296,9 +296,11 @@ class DataService: ObservableObject {
                 var newLists: [ListModel] = localSharedWithMe
                 newLists.append(contentsOf: localMyLists)
                 
-                self.lists = newLists
-                self.user?.myLists = localMyLists
-                self.user?.sharedWithMe = localSharedWithMe
+                DispatchQueue.main.async {
+                    self.lists = newLists
+                    self.user?.myLists = localMyLists
+                    self.user?.sharedWithMe = localSharedWithMe
+                }
                 
             case .failure:
                 return
