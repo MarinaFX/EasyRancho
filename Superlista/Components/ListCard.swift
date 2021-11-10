@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ListCard: View {
     @EnvironmentObject var dataService: DataService
-
+    
     let list: ListModel
     let isEditing: Bool
     
     @State var showAlertDelete = false
     @State var editNavigation = false
     @State var showAlertDuplicate = false
-
+    
     var body: some View {
         NavigationLink(destination: ListView(listId: list.id), label: {
             ZStack(alignment: .leading) {
@@ -86,72 +86,76 @@ struct ListCard: View {
                                 .accessibilityLabel(Text("Option2"))
                                 .accessibility(hint: Text("Option2Hint"))
                                 
-                                Button {
-                                    guard let ownerName = list.owner.name else { return }
-                                    shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
-                                } label: {
-                                    Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                                if let user = dataService.user {
+                                    if dataService.isOwner(of: list, userID: user.id) {
+                                    Button {
+                                        guard let ownerName = list.owner.name else { return }
+                                        shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
+                                    } label: {
+                                        Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                                    }
+                                    .accessibilityLabel(Text("Option3"))
+                                    .accessibility(hint: Text("Option3Hint"))
+                                    }
                                 }
-                                .accessibilityLabel(Text("Option3"))
-                                .accessibility(hint: Text("Option3Hint"))
-                                
-                                Button {
-                                    guard let ownerName = list.owner.name else { return }
-                                    shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
-                                } label: {
-                                    Label("ContextMenu4", systemImage: "square.and.arrow.up")
-                                }
-                                .accessibilityLabel(Text("Option4"))
-                                .accessibility(hint: Text("Option4Hint"))
-                                
-                                Button {
-                                    dataService.currentList = list
-                                    showAlertDelete = true
-                                } label: {
-                                    Label("ContextMenu5", systemImage: "trash")
-                                }
-                                .accessibilityLabel(Text("Option5"))
-                                .accessibility(hint: Text("Option5Hint"))
-                            }
-                            .accessibilityLabel(Text("Options"))
-                            .accessibility(hint: Text("MoreOptions"))
                         
-                    }
-                }
-                .padding(.horizontal, 20)
-                
-                ZStack {
-                    NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
-                        EmptyView()
-                    }
-                }
-                .alert(isPresented: $showAlertDelete){
-                    Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
-                        dataService.removeList(dataService.currentList!)
-                        showAlertDelete = false
-                    }))
-                }
-                
-                ZStack {}
-                .alert(isPresented: $showAlertDuplicate){
-                    Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
-                        dataService.duplicateList(of: dataService.currentList!)
-                        showAlertDuplicate = false
-                    }))
-                }
-                
-                if isEditing {
-                    Image(systemName: "minus.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(Color(.systemGray))
-                        .offset(x: 150, y: -45)
-                        .onTapGesture {
+                        Button {
+                            guard let ownerName = list.owner.name else { return }
+                            shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
+                        } label: {
+                            Label("ContextMenu4", systemImage: "square.and.arrow.up")
+                        }
+                        .accessibilityLabel(Text("Option4"))
+                        .accessibility(hint: Text("Option4Hint"))
+                        
+                        Button {
                             dataService.currentList = list
                             showAlertDelete = true
+                        } label: {
+                            Label("ContextMenu5", systemImage: "trash")
                         }
+                        .accessibilityLabel(Text("Option5"))
+                        .accessibility(hint: Text("Option5Hint"))
+                    }
+                    .accessibilityLabel(Text("Options"))
+                    .accessibility(hint: Text("MoreOptions"))
+                    
                 }
             }
-        })
+            .padding(.horizontal, 20)
+            
+            ZStack {
+                NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
+                    EmptyView()
+                }
+            }
+            .alert(isPresented: $showAlertDelete){
+                Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
+                    dataService.removeList(dataService.currentList!)
+                    showAlertDelete = false
+                }))
+            }
+            
+            ZStack {}
+            .alert(isPresented: $showAlertDuplicate){
+                Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
+                    dataService.duplicateList(of: dataService.currentList!)
+                    showAlertDuplicate = false
+                }))
+            }
+            
+            if isEditing {
+                Image(systemName: "minus.circle.fill")
+                    .font(.title2)
+                    .foregroundColor(Color(.systemGray))
+                    .offset(x: 150, y: -45)
+                    .onTapGesture {
+                        dataService.currentList = list
+                        showAlertDelete = true
+                    }
+            }
+        }
+                       })
     }
 }
 
