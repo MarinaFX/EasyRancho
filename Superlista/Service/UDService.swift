@@ -20,10 +20,6 @@ class UDService {
         }
     }
     
-    func getUDListsNotShared() -> [ListModel] {
-        return getUDLists().filter({ $0.sharedWith?.isEmpty ?? true })
-    }
-    
     // MARK: - Users
     private let UDUserKey: String = "users"
     

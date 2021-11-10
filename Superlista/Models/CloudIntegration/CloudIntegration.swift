@@ -133,7 +133,6 @@ class CloudIntegration: ObservableObject {
         CKService.currentModel.updateListCollab(listID: list.id, sharedWith: sharedWith) { result in }
     }
     
-    // MARK: - Check if user is Owner
     func isOwner(of list: ListModel, userID: String) -> Bool {
         if userID == list.owner.id {
             return true

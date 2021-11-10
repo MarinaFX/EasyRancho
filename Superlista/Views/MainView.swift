@@ -20,20 +20,20 @@ struct MainView: View {
         let section: [ListModel]
         
         switch selectedSection{
-        case 0:
-            section =  dataService.lists
-        case 1:
-            guard let currentUser = dataService.user else { return [] }
-            section = dataService.lists.filter{$0.owner.id == currentUser.id}
-        case 2:
-            guard let currentUser = dataService.user else { return [] }
-            section =  dataService.lists.filter{$0.owner.id != currentUser.id}
-        default:
-            section =  []
+            case 0:
+                section =  dataService.lists
+            case 1:
+                guard let currentUser = dataService.user else { return [] }
+                section = dataService.lists.filter{$0.owner.id == currentUser.id}
+            case 2:
+                guard let currentUser = dataService.user else { return [] }
+                section =  dataService.lists.filter{$0.owner.id != currentUser.id}
+            default:
+                section =  []
         }
         return section
     }
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -155,11 +155,11 @@ struct MainView: View {
         textFieldAlert(title: title, message: msg, placeholder: placeholder) { text in
             if let title = text {
                 let listTitle = title != "" ? title : placeholder
-                
+
                 let newList: ListModel = ListModel(title: listTitle, owner: newOwner)
-                
+
                 dataService.addList(newList)
-                
+
                 self.listId = newList.id
                 self.isCreatingList = true
             }

@@ -24,3 +24,29 @@ func textFieldAlert(title: String, message: String, placeholder: String, actionH
     
     viewController.present(alert, animated: true)
 }
+
+func alertMessage(title: String, message: String, actions: [UIAlertAction]) {
+    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    
+    actions.forEach { action in
+        alert.addAction(action)
+    }
+    
+    let viewController = UIApplication.shared.windows.first!.rootViewController!
+    
+    viewController.present(alert, animated: true)
+}
+
+/*
+ usage example:
+
+ alertMessage(title: "Teste", message: "teste 2", actions: [
+     UIAlertAction(title: "cancel", style: .default) { _ in
+         print("cancelar")
+     },
+     
+     UIAlertAction(title: "ok", style: .default) { _ in
+         print("ok")
+     }
+ ])
+ */
