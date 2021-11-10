@@ -78,11 +78,10 @@ class DataService: ObservableObject {
             self.user = UserModel(id: currentUser.id, name: newUsername, customProducts: currentUser.customProducts, myLists: currentUser.myLists, sharedWithMe: currentUser.sharedWithMe)
         }
         
-        networkMonitor.startMonitoring { path in
-            if path.status == .satisfied {
+            if networkMonitor.status == .satisfied {
                 CKService.currentModel.updateUserImageAndName(image: picture, name: newUsername) { result in }
             }
-        }
+        
     }
     
     func updateUserName(newUsername: String) {
@@ -90,11 +89,11 @@ class DataService: ObservableObject {
             self.user = UserModel(id: currentUser.id, name: newUsername, customProducts: currentUser.customProducts, myLists: currentUser.myLists, sharedWithMe: currentUser.sharedWithMe)
         }
         
-        networkMonitor.startMonitoring { path in
-            if path.status == .satisfied {
+
+        if networkMonitor.status == .satisfied {
                 CKService.currentModel.updateUserName(name: newUsername) { result in }
             }
-        }
+        
     }
     
     // MARK: - CRUD lists
@@ -103,12 +102,11 @@ class DataService: ObservableObject {
             
             lists.remove(at: index)
             
-            networkMonitor.startMonitoring { path in
-                if path.status == .satisfied {
+            if networkMonitor.status == .satisfied {
                     guard let user = self.user else { return }
                     CloudIntegration.actions.deleteList(list: listModel, userID: user.id)
                 }
-            }
+            
         }
     }
     
@@ -116,10 +114,9 @@ class DataService: ObservableObject {
         if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             lists[index] = listModel.editTitle(newTitle: newTitle)
             
-            networkMonitor.startMonitoring { path in
-                if path.status == .satisfied {
+            if networkMonitor.status == .satisfied {
                     CloudIntegration.actions.updateListTitle(listModel, newTitle)
-                }
+                
             }
         }
     }
@@ -127,10 +124,9 @@ class DataService: ObservableObject {
     func addList(_ newList: ListModel) {
         lists.append(newList)
         
-        networkMonitor.startMonitoring { path in
-            if path.status == .satisfied {
+        if networkMonitor.status == .satisfied {
                 CloudIntegration.actions.createList(newList)
-            }
+            
         }
     }
     
@@ -143,10 +139,9 @@ class DataService: ObservableObject {
             lists[index].sharedWith = sharedWith
         }
         
-        networkMonitor.startMonitoring { path in
-            if path.status == .satisfied {
+        if networkMonitor.status == .satisfied {
                 CloudIntegration.actions.removeCollab(of: list, ownerID: owner.id) 
-            }
+            
         }
     }
     
@@ -158,10 +153,8 @@ class DataService: ObservableObject {
             
             lists[index] = listWithNewItem
             
-            networkMonitor.startMonitoring { path in
-                if path.status == .satisfied {
+            if networkMonitor.status == .satisfied {
                     CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItem)
-                }
             }
         }
     }
@@ -172,10 +165,8 @@ class DataService: ObservableObject {
             
             lists[index] = listWithoutItem
             
-            networkMonitor.startMonitoring { path in
-                if path.status == .satisfied {
+            if networkMonitor.status == .satisfied {
                     CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
-                }
             }
         }
     }
@@ -186,10 +177,8 @@ class DataService: ObservableObject {
             
             lists[index] = listWithoutItem
             
-            networkMonitor.startMonitoring { path in
-                if path.status == .satisfied {
+            if networkMonitor.status == .satisfied {
                     CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
-                }
             }
         }
     }
@@ -200,10 +189,8 @@ class DataService: ObservableObject {
             
             lists[index] = listWithNewItemComment
             
-            networkMonitor.startMonitoring { path in
-                if path.status == .satisfied {
+            if networkMonitor.status == .satisfied {
                     CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemComment)
-                }
             }
         }
     }
@@ -214,10 +201,8 @@ class DataService: ObservableObject {
             
             lists[index] = listWithItemNewState
             
-            networkMonitor.startMonitoring { path in
-                if path.status == .satisfied {
+            if networkMonitor.status == .satisfied {
                     CloudIntegration.actions.updateCkListItems(updatedList: listWithItemNewState)
-                }
             }
         }
     }
