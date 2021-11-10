@@ -8,10 +8,13 @@ struct MainView: View {
     @State var isEditing : Bool = false
     @State var listId: String = ""
     @State var isCreatingList: Bool = false
-    @State var isLoading: Bool = false
     @State var selectedSection = 0
     @State var createdBy = ""
     @State var counter = 0
+    @State var listTitle = ""
+    @State var hasClickedSettings = false
+    
+    let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var appliedSection: [ListModel]{
         let section: [ListModel]
@@ -30,13 +33,7 @@ struct MainView: View {
         }
         return section
     }
-    
-    @State var showDialog = false
-    @State var listTitle = ""
-    @State var hasClickedSettings = false
-    
-    let columns = Array(repeating: GridItem(.flexible()), count: 2)
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -138,7 +135,7 @@ struct MainView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }.sheet(isPresented: $hasClickedSettings) {
-            SettingsView()
+            SettingsView(isOpened: $hasClickedSettings)
         }
         .onReceive(dataService.objectWillChange) { _ in
             counter += 1
