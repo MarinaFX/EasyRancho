@@ -299,11 +299,21 @@ class DataService: ObservableObject {
                     self.lists = newLists
                     self.user?.myLists = localMyLists
                     self.user?.sharedWithMe = localSharedWithMe
+                    if let user = self.user {
+                        CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user) 
+                    }
                 }
                 
             case .failure:
                 return
             }
+        }
+    }
+    
+    // MARK: - Upload Lists do UD para o CK
+    func uploadUsersLists() {
+        CKService.currentModel.uploadUsersLists { result in
+            print(result, "result")
         }
     }
 }

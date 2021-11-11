@@ -15,9 +15,9 @@ class CKService: ObservableObject {
     let privateDB: CKDatabase // Users
     
     // MARK: - Properties
-    private(set) var user: CKUserModel? {
+    var user: CKUserModel? {
         didSet {
-            userSubject.value = user
+            userSubject.value = user 
         }
     }
     
@@ -207,7 +207,6 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Update User Image
-    #warning("Verificar se está sendo usado em algum lugar")
     func updateUserImage(image: UIImage, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         guard let user = user else {
             return
@@ -320,6 +319,36 @@ class CKService: ObservableObject {
         publicDB.fetch(withRecordID: userID) { record, error in
             if error == nil {
                 record!.setValue(usersLists, forKey: key.rawValue)
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
+    // MARK: - Update User's Lists
+    func uploadUsersLists(completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        guard let userID = user?.id else {
+            completion(.failure(CKError.init(CKError.operationCancelled)))
+            return
+        }
+        
+        let sharedWithMe = user?.sharedWithMeRef ?? []
+        let myLists = user?.myListsRef ?? []
+        
+        publicDB.fetch(withRecordID: userID) { record, error in
+            if error == nil {
+                record!.setValue(sharedWithMe, forKey: UsersList.SharedWithMe.rawValue)
+                record!.setValue(myLists, forKey: UsersList.MyLists.rawValue)
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
