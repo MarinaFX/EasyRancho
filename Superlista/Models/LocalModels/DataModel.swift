@@ -21,3 +21,13 @@ func load<T: Decodable>(_ filename: String) -> T {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
 }
+
+func loadCategoryKeys() -> [String] {
+    return ProductListViewModel().products.map { $0.category }.unique.sorted()
+}
+
+func saveUserData<T: Encodable>(data: [T], to key: String) {
+    if let encodedData = try? JSONEncoder().encode(data) {
+        UserDefaults.standard.set(encodedData, forKey: key)
+    }
+}

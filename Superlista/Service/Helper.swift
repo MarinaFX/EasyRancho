@@ -2,6 +2,13 @@ import Foundation
 import CloudKit
 import SwiftUI
 
+//MARK: - Enums
+// MARK: - UsersList Enum
+enum UsersList: String {
+    case MyLists, SharedWithMe
+}
+
+//MARK: - Functions
 // MARK: - ImageToCKAsset
 func ImageToCKAsset(uiImage: UIImage?) -> CKAsset? {
     if uiImage == nil { return nil }
@@ -113,15 +120,36 @@ func getColor(category: String) -> Color {
     }
 }
 
-// MARK: - UsersList Enum
-enum UsersList: String {
-    case MyLists, SharedWithMe
-}
-
 // MARK: - Curtom usernames
 func getNickname() -> String{
     if let colors = UserArrays().colorsArray.randomElement(), let animals = UserArrays().animalsArray.randomElement() {
         return "\(colors) \(animals)"
     }
     return "User"
+}
+
+func getRandomUniqueID(blacklist existingIds: [Int]) -> Int {
+    var newRandom: Int = random()
+
+    while existingIds.contains(newRandom) {
+        newRandom = random()
+    }
+    
+    return newRandom
+}
+
+func random() -> Int {
+    return Int.random(in: 1000..<9999)
+}
+
+//MARK: - Extensions
+extension Array where Element: Equatable {
+    var unique: [Element] {
+        var uniqueValues: [Element] = []
+        forEach { item in
+            guard !uniqueValues.contains(item) else { return }
+            uniqueValues.append(item)
+        }
+        return uniqueValues
+    }
 }

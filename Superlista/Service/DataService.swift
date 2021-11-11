@@ -206,7 +206,7 @@ class DataService: ObservableObject {
             }
         }
     }
-    
+
     func removeQuantity(of item: ItemModel, from listModel: ListModel) {
         if let index = lists.firstIndex(where: { $0.id == listModel.id }) {
             let listWithNewItemQuantity = listModel.removeQuantity(of: item)
@@ -233,6 +233,28 @@ class DataService: ObservableObject {
         let owner = OwnerModel(id: user.id, name: name)
         let newList = ListModel(title: list.title, items: list.items, owner: owner, sharedWith: list.sharedWith ?? [])
         addList(newList)
+    }
+
+    func updateCustomProducts(withName productName: String, for category: String) -> Bool {
+        if let user = user,
+           let userCustomProducts = user.customProducts {
+            let id: Int = getRandomUniqueID(blacklist: userCustomProducts.map({ $0.id }))
+            let userNewProduct: ProductModel = ProductModel(id: id, name: productName, category: category)
+            
+            if !userCustomProducts.map({ $0.name.lowercased() }).contains(userNewProduct.name.lowercased()) &&
+                !products.map({ $0.name.lowercased() }).contains(userNewProduct.name.lowercased()) {
+                
+                user.customProducts?.append(userNewProduct)
+                
+                networkMonitor.startMonitoring { path in
+                    if path.status == .satisfied {
+                        CloudIntegration.actions.updateUserCustomProducts(withProduct: userNewProduct)
+                    }
+                }
+                return true
+            }
+        }
+        return false
     }
     
     // MARK: - Add Collab Shared List
