@@ -308,7 +308,6 @@ class DataService: ObservableObject {
                             localMyLists.append(list)
                         }
                     }
-                }
                 
                 var newLists: [ListModel] = localSharedWithMe
                 newLists.append(contentsOf: localMyLists)
