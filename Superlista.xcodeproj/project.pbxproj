@@ -203,6 +203,7 @@
 		0914B97A270B6B6F008E297F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				382E7F5527189A9500EE4E5D /* NetworkMonitor.swift */,
 				890913812649BC8100C619A3 /* DataService.swift */,
 				892774002729ECDC00C19B70 /* UDService.swift */,
 				0914B985270CC7D2008E297F /* Helper.swift */,
@@ -384,7 +385,6 @@
 				09BE3B9D265C228900F5E7C5 /* SplashView.swift */,
 				1B32EF0E26600AA1006AE70B /* NoItemsView.swift */,
 				1B32EF1826600B78006AE70B /* CestinhaView.swift */,
-				382E7F5527189A9500EE4E5D /* NetworkMonitor.swift */,
 				1B60EC8F271DE7D000046FE9 /* AddCollaboratorSheetView.swift */,
 			);
 			path = Views;

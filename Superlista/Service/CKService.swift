@@ -62,6 +62,37 @@ class CKService: ObservableObject {
         
     }
     
+    // MARK: - Refresh Return User
+    func refreshUser(_ completion: @escaping (Result<CKUserModel,CKError>) -> Void) {
+        var userStatus: UserStatus = .none
+        
+        let dispatchSemaphore = DispatchSemaphore(value: 1)
+        dispatchSemaphore.wait()
+        
+        self.verifyAccount { status in
+            userStatus = status
+            dispatchSemaphore.signal()
+        }
+        
+        dispatchSemaphore.wait()
+        
+        if userStatus == .available {
+            getUser { result in
+                switch result {
+                case .success(let user):
+                    completion(.success(user))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+                dispatchSemaphore.signal()
+            }
+        }
+        else {
+            dispatchSemaphore.signal()
+        }
+        
+    }
+    
     // MARK: - Verify Account
     private func verifyAccount(completion: @escaping (UserStatus) -> Void) {
         container.accountStatus { status, error in
