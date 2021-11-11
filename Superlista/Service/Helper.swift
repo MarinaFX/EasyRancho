@@ -109,7 +109,7 @@ func getColor(category: String) -> Color {
     case "Outros", "Others", "Andere":
         return Color("Outros")
     default:
-        return Color.black
+        return Color("Outros")
     }
 }
 
