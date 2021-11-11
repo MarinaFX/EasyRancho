@@ -28,6 +28,7 @@
 		09A7D0A6273C626400732649 /* LanguageUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A7D0A5273C626400732649 /* LanguageUD.swift */; };
 		09A7D0A8273C627300732649 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A7D0A7273C627300732649 /* Languages.swift */; };
 		09A7D0AA273C629700732649 /* LanguageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A7D0A9273C629700732649 /* LanguageSettings.swift */; };
+		09A7D0AC273C637100732649 /* LanguageMangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A7D0AB273C637100732649 /* LanguageMangerView.swift */; };
 		09BE3B9E265C228900F5E7C5 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE3B9D265C228900F5E7C5 /* SplashView.swift */; };
 		1B325E2126545176001A0F28 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B325E2026545176001A0F28 /* LaunchScreen.storyboard */; };
 		1B32EF0A26600A41006AE70B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1B32EF0926600A41006AE70B /* Lottie */; };
@@ -121,6 +122,7 @@
 		09A7D0A5273C626400732649 /* LanguageUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageUD.swift; sourceTree = "<group>"; };
 		09A7D0A7273C627300732649 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		09A7D0A9273C629700732649 /* LanguageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSettings.swift; sourceTree = "<group>"; };
+		09A7D0AB273C637100732649 /* LanguageMangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageMangerView.swift; sourceTree = "<group>"; };
 		09BE3B9D265C228900F5E7C5 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		1B325E2026545176001A0F28 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B32EF0E26600AA1006AE70B /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				09A7D0A5273C626400732649 /* LanguageUD.swift */,
 				09A7D0A7273C627300732649 /* Languages.swift */,
 				09A7D0A9273C629700732649 /* LanguageSettings.swift */,
+				09A7D0AB273C637100732649 /* LanguageMangerView.swift */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				389B80D3271F7C5700ADCBE1 /* ProfilePicture.swift in Sources */,
 				8980E9CA2644AF91002A5073 /* ListView.swift in Sources */,
 				89C5B6D72726287200129A94 /* TextFieldStyle.swift in Sources */,
+				09A7D0AC273C637100732649 /* LanguageMangerView.swift in Sources */,
 				0977040E2728C62500232F9D /* CKOwnerModel.swift in Sources */,
 				892774012729ECDC00C19B70 /* UDService.swift in Sources */,
 				1B93E8F1270F901500AA89B6 /* ItemModelConverter.swift in Sources */,

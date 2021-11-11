@@ -12,8 +12,6 @@ public class LanguageSettings: ObservableObject {
     
     // MARK: - Properties
     
-    static var currentLanguage = LanguageSettings(defaultLanguage: .ptBR)
-    
     public var local: Locale {
         Locale(identifier: selectedLanguage.rawValue)
     }

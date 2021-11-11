@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct SettingLabel: View {    
+struct SettingLabel: View {
+    @EnvironmentObject var languageSettings: LanguageSettings
     @Binding var username: String
     @State var showingSheet = false
     @Binding var picture: UIImage?
@@ -94,17 +95,17 @@ struct SettingLabel: View {
                 }
             HStack {
                 Button {
-                    LanguageSettings.currentLanguage.selectedLanguage = .en
+                    languageSettings.selectedLanguage = .en
                 } label: {
                     Text("English")
                 }
                 Button {
-                    LanguageSettings.currentLanguage.selectedLanguage = .ptBR
+                    languageSettings.selectedLanguage = .ptBR
                 } label: {
                     Text("Portuguese")
                 }
                 Button {
-                    LanguageSettings.currentLanguage.selectedLanguage = .de
+                    languageSettings.selectedLanguage = .de
                 } label: {
                     Text("Deutsch")
                 }

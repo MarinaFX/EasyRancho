@@ -21,78 +21,80 @@ struct SuperlistaApp: App {
     
     var body: some Scene {
         WindowGroup {
-            VStack {
-                ZStack {
-                    SplashView()
-                        .onOpenURL(perform: { url in
-                            guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
-                                  let host = components.host else {
-                                      print("Invalid URL")
-                                      return
-                                  }
-                            
-                            let deepLink = DeepLink(id: host)
-                            
-                            handleDeepLink(deepLink)
-                            
-                        })
+            LanguageManagerView(.deviceLanguage) {
+                VStack {
                     ZStack {
-                        
-                    }
-                    .alert(isPresented: $presentCollabAlert) {
-                        return Alert(
-                            title: Text(list?.name ?? newListLocalizedLabel),
-                            message: Text("CollabAlertText"),
-                            primaryButton:  .default(
-                                Text("AlertPrimaryButtonLabel"),
-                                action: {
-                                    presentCollabAlert = false
-                                }),
-                            secondaryButton: .default(
-                                Text("AlertSecondaryButtonLabel"),
-                                action: {
+                        SplashView()
+                            .onOpenURL(perform: { url in
+                                guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),
+                                      let host = components.host else {
+                                          print("Invalid URL")
+                                          return
+                                      }
+                                
+                                let deepLink = DeepLink(id: host)
+                                
+                                handleDeepLink(deepLink)
+                                
+                            })
+                        ZStack {
+                            
+                        }
+                        .alert(isPresented: $presentCollabAlert) {
+                            return Alert(
+                                title: Text(list?.name ?? newListLocalizedLabel),
+                                message: Text("CollabAlertText"),
+                                primaryButton:  .default(
+                                    Text("AlertPrimaryButtonLabel"),
+                                    action: {
+                                        presentCollabAlert = false
+                                    }),
+                                secondaryButton: .default(
+                                    Text("AlertSecondaryButtonLabel"),
+                                    action: {
 #warning("Pensar em como bloquear o usuário de receber uma lista compartilhada caso ele esteja offline")
-                                    guard let list = list else { return }
-                                    dataService.addCollabList(of: list)
-                                    
-                                    presentCollabAlert = false
-                                }
+                                        guard let list = list else { return }
+                                        dataService.addCollabList(of: list)
+                                        
+                                        presentCollabAlert = false
+                                    }
+                                )
                             )
-                        )
-                    }
-                    ZStack {
-                        
-                    }
-                    .alert(isPresented: $presentSharedAlert) {
-                        return Alert(title: Text(list?.name ?? newListLocalizedLabel),
-                                     message: Text("SharedAlertText"),
-                                     primaryButton: .default(
-                                        Text("AlertPrimaryButtonLabel"), action: {
-                                            presentSharedAlert = false
-                                        }),
-                                     secondaryButton: .default(
-                                        Text(NSLocalizedString("AlertSecondaryButtonLabel", comment: "")),
-                                        action: {
-                                            guard let list = list else { return }
-                                            let newList = ListModelConverter().convertCloudListToLocal(withList: list)
-                                            dataService.duplicateList(of: newList)
-                                            presentSharedAlert = false
-                                        }
-                                     )
-                        )
-                    }
-                }
-            }
-            .accentColor(Color("Link"))
-            .environmentObject(dataService)
-            .onAppear {
-                NetworkMonitor.shared.startMonitoring { path in
-                    print(path.status, "status on appear")
-                    if path.status == .satisfied {
-                        dataService.getSharedLists()
+                        }
+                        ZStack {
+                            
+                        }
+                        .alert(isPresented: $presentSharedAlert) {
+                            return Alert(title: Text(list?.name ?? newListLocalizedLabel),
+                                         message: Text("SharedAlertText"),
+                                         primaryButton: .default(
+                                            Text("AlertPrimaryButtonLabel"), action: {
+                                                presentSharedAlert = false
+                                            }),
+                                         secondaryButton: .default(
+                                            Text(NSLocalizedString("AlertSecondaryButtonLabel", comment: "")),
+                                            action: {
+                                                guard let list = list else { return }
+                                                let newList = ListModelConverter().convertCloudListToLocal(withList: list)
+                                                dataService.duplicateList(of: newList)
+                                                presentSharedAlert = false
+                                            }
+                                         )
+                            )
+                        }
                     }
                 }
-                loadData()
+                .accentColor(Color("Link"))
+                .environmentObject(dataService)
+                .onAppear {
+                    NetworkMonitor.shared.startMonitoring { path in
+                        print(path.status, "status on appear")
+                        if path.status == .satisfied {
+                            dataService.getSharedLists()
+                        }
+                    }
+                    loadData()
+                }
             }
             
         }
