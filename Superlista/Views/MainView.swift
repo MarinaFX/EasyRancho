@@ -13,7 +13,8 @@ struct MainView: View {
     @State var createdBy = ""
     @State var counter = 0
     @Environment(\.sizeCategory) var sizeCategory
-
+    
+    @ScaledMetric var scaledHeightNewList: CGFloat = 83
     
     var appliedSection: [ListModel]{
         let section: [ListModel]
@@ -38,7 +39,7 @@ struct MainView: View {
     @State var hasClickedSettings = false
     
     var columns: Array<GridItem>{
-        Array(repeating: GridItem(.flexible()), count: sizeCategory.isAccessibilityCategory ? 1 : 2)
+        Array(repeating: GridItem(.flexible()), count: sizeCategory >= ContentSizeCategory.extraExtraLarge ? 1 : 2)
     }
     
     var body: some View {
@@ -133,7 +134,7 @@ struct MainView: View {
                         .padding(.top, 18)
                         
                     }
-                    .frame(width: UIScreen.main.bounds.width, height: 83)
+                    .frame(width: UIScreen.main.bounds.width, height: scaledHeightNewList)
                     .background(Color("ButtonBG"))
                     .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
                 }

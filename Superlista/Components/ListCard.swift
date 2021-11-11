@@ -9,23 +9,28 @@ import SwiftUI
 
 struct ListCard: View {
     @EnvironmentObject var dataService: DataService
+    @Environment(\.sizeCategory) var sizeCategory
     
     let list: ListModel
     let isEditing: Bool
+    var alignmentCard: Alignment = .leading
     
     @State var showAlertDelete = false
     @State var editNavigation = false
     @State var showAlertDuplicate = false
-
+    
+    @ScaledMetric var scaledWidthtRect: CGFloat = 171
+    @ScaledMetric var scaledHeightRect: CGFloat = 117
+    
+    @ScaledMetric(relativeTo: .callout) var scaledTitle: CGFloat = 10
     
     var body: some View {
         NavigationLink(destination: ListView(listId: list.id), label: {
-            ZStack(alignment: .center) {
-                
+            ZStack(alignment: .leading) {
                 // MARK: - list card
                 Rectangle()
                     .fill(Color("Background"))
-                    .frame(width: 171, height: 117)
+                    .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
                     .cornerRadius(30)
                     .shadow(color: Color("Shadow"), radius: 12)
                 
@@ -36,6 +41,7 @@ struct ListCard: View {
                         .fontWeight(.semibold)
                         .foregroundColor(Color.white)
                         .lineLimit(1)
+                        .padding(.horizontal, 20)
                     
                     //MARK: - List Owner
                     if let listOwner = list.owner.name{
@@ -45,8 +51,9 @@ struct ListCard: View {
                             .lineLimit(1)
                             .truncationMode(.tail)
                             .padding(.bottom, 25)
+                            .padding(.horizontal, 20)
                     }
-                    HStack {
+                    HStack{
                         HStack (alignment: .bottom) {
                             if let sharedList = list.sharedWith {
                                 if !sharedList.isEmpty {
@@ -64,7 +71,7 @@ struct ListCard: View {
                         }
                         
                         Spacer()
-                        
+                                                
                         Image(systemName: "ellipsis.circle.fill")
                             .font(.body)
                             .foregroundColor(Color.white)
@@ -89,74 +96,77 @@ struct ListCard: View {
                                 
                                 if let user = dataService.user {
                                     if dataService.isOwner(of: list, userID: user.id) {
-                                    Button {
-                                        guard let ownerName = list.owner.name else { return }
-                                        shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
-                                    } label: {
-                                        Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
-                                    }
-                                    .accessibilityLabel(Text("Option3"))
-                                    .accessibility(hint: Text("Option3Hint"))
+                                        Button {
+                                            guard let ownerName = list.owner.name else { return }
+                                            shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
+                                        } label: {
+                                            Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                                        }
+                                        .accessibilityLabel(Text("Option3"))
+                                        .accessibility(hint: Text("Option3Hint"))
                                     }
                                 }
-                        
-                        Button {
-                            guard let ownerName = list.owner.name else { return }
-                            shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
-                        } label: {
-                            Label("ContextMenu4", systemImage: "square.and.arrow.up")
-                        }
-                        .accessibilityLabel(Text("Option4"))
-                        .accessibility(hint: Text("Option4Hint"))
-                        
-                        Button {
+                                
+                                Button {
+                                    guard let ownerName = list.owner.name else { return }
+                                    shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
+                                } label: {
+                                    Label("ContextMenu4", systemImage: "square.and.arrow.up")
+                                }
+                                .accessibilityLabel(Text("Option4"))
+                                .accessibility(hint: Text("Option4Hint"))
+                                
+                                Button {
+                                    dataService.currentList = list
+                                    showAlertDelete = true
+                                } label: {
+                                    Label("ContextMenu5", systemImage: "trash")
+                                }
+                                .accessibilityLabel(Text("Option5"))
+                                .accessibility(hint: Text("Option5Hint"))
+                            }
+                            .accessibilityLabel(Text("Options"))
+                            .accessibility(hint: Text("MoreOptions"))
+                    }
+                    .padding(.horizontal, 20)
+
+                }
+                
+                ZStack {
+                    NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
+                        EmptyView()
+                    }
+                }
+                .alert(isPresented: $showAlertDelete){
+                    Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
+                        dataService.removeList(dataService.currentList!)
+                        showAlertDelete = false
+                    }))
+                }
+                
+                ZStack {}
+                .alert(isPresented: $showAlertDuplicate){
+                    Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
+                        dataService.duplicateList(of: dataService.currentList!)
+                        showAlertDuplicate = false
+                    }))
+                }
+                
+                if isEditing {
+                    Image(systemName: "minus.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(Color(.systemGray))
+                        .offset(x: 150, y: -45)
+                        .onTapGesture {
                             dataService.currentList = list
                             showAlertDelete = true
-                        } label: {
-                            Label("ContextMenu5", systemImage: "trash")
                         }
-                        .accessibilityLabel(Text("Option5"))
-                        .accessibility(hint: Text("Option5Hint"))
-                    }
-                    .accessibilityLabel(Text("Options"))
-                    .accessibility(hint: Text("MoreOptions"))
-                    
                 }
             }
-            .padding(.horizontal, 20)
+            .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
             
-            ZStack {
-                NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
-                    EmptyView()
-                }
-            }
-            .alert(isPresented: $showAlertDelete){
-                Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
-                    dataService.removeList(dataService.currentList!)
-                    showAlertDelete = false
-                }))
-            }
-            
-            ZStack {}
-            .alert(isPresented: $showAlertDuplicate){
-                Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
-                    dataService.duplicateList(of: dataService.currentList!)
-                    showAlertDuplicate = false
-                }))
-            }
-            
-            if isEditing {
-                Image(systemName: "minus.circle.fill")
-                    .font(.title2)
-                    .foregroundColor(Color(.systemGray))
-                    .offset(x: 150, y: -45)
-                    .onTapGesture {
-                        dataService.currentList = list
-                        showAlertDelete = true
-                    }
-            }
         }
-                       })
+        )
     }
 }
 
