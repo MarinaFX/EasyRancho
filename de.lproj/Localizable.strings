@@ -5,6 +5,29 @@
 "Lista: %@" = "Liste: %@";
 "Criada por: %@" = "Erstellt von: %@";
 
+//MARK: - Toolbar/navigationbar items
+"leadingCancel" = "Cancel";
+"trailingDone" = "Done";
+"ACSearchBarXHint" = "Tap twice to erase search";
+
+//MARK: - ProductListView - ProductNotFoundView subview
+"itemNotFoundMessage" = "Product not found";
+"itemNotFoundButton" = "Create a New Product";
+"ACItemNotFoundButtonHint" = "Tap twice to go to product creation screen";
+
+//MARK: - CreateNewCustomProductView screen
+"createProductScreenTitle" = "Create Product";
+"createProductDescription" = "Create a new product to add it to your list. Pick up a name and a category.";
+"productNameTextField" = "Name of the product";
+"productCategoryTextField" = "Category";
+"textFieldRequired" = "Required field";
+"duplicateProductWarning %@" = "There was a problem while adding this product. A product named \"%@\" already exists";
+"ACCancelButtonHint" = "Tap twice to back to product search screen";
+"ACDoneButtonHint" = "Tap twice to save this product to the product list. The product will only be saved if both name and category fields are complete";
+"ACtextFieldRequiredHint" = "Text field is required";
+"ACpickerFieldLabel" = "Category";
+"ACpickerFieldValue" = "Wheel picker";
+
 // MARK: - SearchBar
 "SearchBarPlaceholder" = "Suche Posten";
 
@@ -50,6 +73,14 @@
 // MARK: - ListView
 "ListViewLabelA" = "Speichern";
 "ListViewLabelB" = "Bearbeiten";
+
+// MARK: - ListHeader VoiceOver
+"ListHeaderTitle" = "List title";
+"ListHeaderCollabButton1" = "Add collaborators";
+"ListHeaderCollabButton2" = "Manage collaborators";
+
+// MARK: - ListPerItemsView VoiceOver
+"CategoryTitleHint" = "Título da Categoria";
 
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Fertig";
@@ -100,6 +131,13 @@
 "CreateListAlertText" = "Dê um nome para sua nova lista";
 
 // MARK: - MainView VoiceOver
+"HintAddListMainButton" = "Criar uma nova lista";
+"HintMainViewTrailingNavigationLabelA" = "Concluir a edição das listas";
+"HintMainViewTrailingNavigationLabelB" = "Editar as listas";
+"HintEmptyListText" = "Toque para adicionar uma nova lista";
+"HintTudoSegmentedPicker" = "Todas as listas";
+"HintMinhasListasSegmentedPicker" = "Minhas listas";
+"HintColaborativasSegmentedPicker" = "Listas colaborativa";
 "Options" = "More options";
 "MoreOptions" = "Tap to show more options";
 "Option1" = "Edit";
@@ -112,10 +150,30 @@
 "Option4Hint" = "Tap to share list";
 "Option5" = "Delete list";
 "Option5Hint" = "Tap to delete list";
+"HintListCard" = "Abrir lista";
+"LabelMinusCircle" = "Remover lista selecionada";
+"HintMinusCircle" = "Removerá a lista selecionada";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Kommentar hinzufügen";
 "ItemCommentViewButtonLabel"= "OK";
+
+// MARK: - ItemCommentView VoiceOver
+"CheckedItemIconLabel1" = "Checked Item";
+"CheckedItemIconLabel2" = "Item not checked";
+"CheckedItemIconHint1" = "Uncheck item";
+"CheckedItemIconHint2" = "Check item";
+"CheckedItemLabelHint %@" = "Item %@ crossed-out";
+"CommentIconLabel" = "Comment";
+"CommentIconHint1" = "Edit comment";
+"CommentIconHint2" = "Add comment";
+"ItemQuantityLabel1" = "1 item";
+"ItemQuantityLabel2 %@" = "%@ items";
+"ItemQuantityHint" = "Number of items";
+"CommentTextFieldLabel" = "Comment";
+"CommentTextFieldHint" = "Comment field";
+"CommentConfirmationButtonHint" = "Confirm";
+"CommentTextHint %@" = "Comment in %@";
 
 //MARK: - AddCollaboratorSheetView
 "AddCollabTitle" = "Mitwirkende hinzufügen";

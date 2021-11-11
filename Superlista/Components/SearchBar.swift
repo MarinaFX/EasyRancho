@@ -10,7 +10,7 @@ struct SearchBar: View {
                 .foregroundColor(Color(UIColor.secondaryLabel))
                 .padding(10)
                 .padding(.leading, 30)
-                .background(Color("SearchColor"))
+                .background(Color("searchColor"))
                 .cornerRadius(50)
                 .overlay(
                     HStack {
@@ -18,6 +18,7 @@ struct SearchBar: View {
                             .foregroundColor(Color(UIColor.secondaryLabel))
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                             .padding(.leading, 15)
+                            .accessibility(hidden: true)
                         
                         if isEditing {
                             Button(action: {
@@ -25,6 +26,7 @@ struct SearchBar: View {
                             }) {
                                 Image(systemName: "multiply.circle.fill")
                                     .padding(.trailing, 8)
+                                    .accessibilityHint("ACSearchBarXHint")
                             }
                         }
                     }

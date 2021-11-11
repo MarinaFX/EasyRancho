@@ -13,3 +13,4 @@ struct CategoryModel: Decodable, Hashable, Encodable {
         return CategoryModel(id: id, title: title)
     }
 }
+
