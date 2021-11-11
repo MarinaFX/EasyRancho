@@ -120,6 +120,9 @@
 "Option5" = "Deletar lista";
 "Option5Hint" = "Toque para deletar lista";
 "HintListCard" = "Abrir lista";
+"LabelMinusCircle" = "Remover lista selecionada";
+"HintMinusCircle" = "Removerá a lista selecionada";
+
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Insira um comentário";

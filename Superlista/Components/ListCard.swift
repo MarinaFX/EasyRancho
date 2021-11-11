@@ -150,8 +150,8 @@ struct ListCard: View {
                             dataService.currentList = list
                             showAlertDelete = true
                         }
-                        .accessibility(label: Text("Remover lista selecionada"))
-                        .accessibility(hint: Text("Removerá a lista selecionada"))
+                        .accessibility(label: Text("LabelMinusCircle"))
+                        .accessibility(hint: Text("HintMinusCircle"))
                         .accessibility(addTraits: .isButton)
                 }
             }
