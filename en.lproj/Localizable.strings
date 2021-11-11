@@ -31,9 +31,6 @@
 // MARK: - SearchBar
 "SearchBarPlaceholder" = "Search Items";
 
-// MARK: - FakeSearchBar
-"FakeSearchBarPlaceholder" = "Add new items";
-
 // MARK: - OnboardingView
 "OnboardingViewButtonLabel" = "Get Started";
 
