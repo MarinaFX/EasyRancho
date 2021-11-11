@@ -342,8 +342,6 @@ class CKService: ObservableObject {
             return
         }
         
-        print("upload users list")
-        
         let sharedWithMe = user?.sharedWithMeRef ?? []
         let myLists = user?.myListsRef ?? []
         
