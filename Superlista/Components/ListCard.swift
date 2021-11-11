@@ -27,6 +27,7 @@ struct ListCard: View {
                     .frame(width: 171, height: 117)
                     .cornerRadius(30)
                     .shadow(color: Color("Shadow"), radius: 12)
+                    .accessibility(hint: Text("HintListCard"))
                 
                 VStack(alignment: .leading){
                     // MARK: - list title
@@ -74,6 +75,7 @@ struct ListCard: View {
                                 } label: {
                                     Label("ContextMenu1", systemImage: "pencil")
                                 }
+                                .accessibility(hidden: false)
                                 .accessibilityLabel(Text("Option1"))
                                 .accessibility(hint: Text("Option1Hint"))
                                 
@@ -88,74 +90,80 @@ struct ListCard: View {
                                 
                                 if let user = dataService.user {
                                     if dataService.isOwner(of: list, userID: user.id) {
-                                    Button {
-                                        guard let ownerName = list.owner.name else { return }
-                                        shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
-                                    } label: {
-                                        Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
-                                    }
-                                    .accessibilityLabel(Text("Option3"))
-                                    .accessibility(hint: Text("Option3Hint"))
+                                        Button {
+                                            guard let ownerName = list.owner.name else { return }
+                                            shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
+                                        } label: {
+                                            Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                                        }
+                                        .accessibilityLabel(Text("Option3"))
+                                        .accessibility(hint: Text("Option3Hint"))
                                     }
                                 }
+                                
+                                Button {
+                                    guard let ownerName = list.owner.name else { return }
+                                    shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
+                                } label: {
+                                    Label("ContextMenu4", systemImage: "square.and.arrow.up")
+                                }
+                                .accessibilityLabel(Text("Option4"))
+                                .accessibility(hint: Text("Option4Hint"))
+                                
+                                Button {
+                                    dataService.currentList = list
+                                    showAlertDelete = true
+                                } label: {
+                                    Label("ContextMenu5", systemImage: "trash")
+                                }
+                                .accessibilityLabel(Text("Option5"))
+                                .accessibility(hint: Text("Option5Hint"))
+                            }
+                            .accessibilityLabel(Text("Options"))
+                            .accessibility(hint: Text("MoreOptions"))
                         
-                        Button {
-                            guard let ownerName = list.owner.name else { return }
-                            shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
-                        } label: {
-                            Label("ContextMenu4", systemImage: "square.and.arrow.up")
-                        }
-                        .accessibilityLabel(Text("Option4"))
-                        .accessibility(hint: Text("Option4Hint"))
-                        
-                        Button {
+                    }
+                }
+                .padding(.horizontal, 20)
+                
+                ZStack {
+                    NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
+                        EmptyView()
+                    }
+                }
+                .alert(isPresented: $showAlertDelete){
+                    Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
+                        dataService.removeList(dataService.currentList!)
+                        showAlertDelete = false
+                    }))
+                }
+                
+                ZStack {}
+                .alert(isPresented: $showAlertDuplicate){
+                    Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
+                        dataService.duplicateList(of: dataService.currentList!)
+                        showAlertDuplicate = false
+                    }))
+                }
+                
+                if isEditing {
+                    Image(systemName: "minus.circle.fill")
+                        .font(.title2)
+                        .foregroundColor(Color(.systemGray))
+                        .offset(x: 150, y: -45)
+                        .onTapGesture {
                             dataService.currentList = list
                             showAlertDelete = true
-                        } label: {
-                            Label("ContextMenu5", systemImage: "trash")
                         }
-                        .accessibilityLabel(Text("Option5"))
-                        .accessibility(hint: Text("Option5Hint"))
-                    }
-                    .accessibilityLabel(Text("Options"))
-                    .accessibility(hint: Text("MoreOptions"))
-                    
+                        .accessibility(label: Text("LabelMinusCircle"))
+                        .accessibility(hint: Text("HintMinusCircle"))
+                        .accessibility(addTraits: .isButton)
+                        .accessibility(removeTraits: .isImage)
+
                 }
+                
             }
-            .padding(.horizontal, 20)
-            
-            ZStack {
-                NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
-                    EmptyView()
-                }
-            }
-            .alert(isPresented: $showAlertDelete){
-                Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
-                    dataService.removeList(dataService.currentList!)
-                    showAlertDelete = false
-                }))
-            }
-            
-            ZStack {}
-            .alert(isPresented: $showAlertDuplicate){
-                Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
-                    dataService.duplicateList(of: dataService.currentList!)
-                    showAlertDuplicate = false
-                }))
-            }
-            
-            if isEditing {
-                Image(systemName: "minus.circle.fill")
-                    .font(.title2)
-                    .foregroundColor(Color(.systemGray))
-                    .offset(x: 150, y: -45)
-                    .onTapGesture {
-                        dataService.currentList = list
-                        showAlertDelete = true
-                    }
-            }
-        }
-                       })
+        })
     }
 }
 

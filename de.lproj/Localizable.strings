@@ -131,6 +131,13 @@
 "CreateListAlertText" = "Dê um nome para sua nova lista";
 
 // MARK: - MainView VoiceOver
+"HintAddListMainButton" = "Criar uma nova lista";
+"HintMainViewTrailingNavigationLabelA" = "Concluir a edição das listas";
+"HintMainViewTrailingNavigationLabelB" = "Editar as listas";
+"HintEmptyListText" = "Toque para adicionar uma nova lista";
+"HintTudoSegmentedPicker" = "Todas as listas";
+"HintMinhasListasSegmentedPicker" = "Minhas listas";
+"HintColaborativasSegmentedPicker" = "Listas colaborativa";
 "Options" = "More options";
 "MoreOptions" = "Tap to show more options";
 "Option1" = "Edit";
@@ -143,6 +150,9 @@
 "Option4Hint" = "Tap to share list";
 "Option5" = "Delete list";
 "Option5Hint" = "Tap to delete list";
+"HintListCard" = "Abrir lista";
+"LabelMinusCircle" = "Remover lista selecionada";
+"HintMinusCircle" = "Removerá a lista selecionada";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Kommentar hinzufügen";
