@@ -16,10 +16,11 @@ struct ListCard: View {
     @State var showAlertDelete = false
     @State var editNavigation = false
     @State var showAlertDuplicate = false
+
     
     var body: some View {
         NavigationLink(destination: ListView(listId: list.id), label: {
-            ZStack(alignment: .leading) {
+            ZStack(alignment: .center) {
                 
                 // MARK: - list card
                 Rectangle()
