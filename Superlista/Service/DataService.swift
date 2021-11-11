@@ -24,7 +24,7 @@ class DataService: ObservableObject {
     let networkMonitor = NetworkMonitor.shared
     
     var userSubscription: AnyCancellable?
-    
+        
     init() {
         getDataIntegration()
     }
@@ -300,7 +300,9 @@ class DataService: ObservableObject {
                     self.user?.myLists = localMyLists
                     self.user?.sharedWithMe = localSharedWithMe
                     if let user = self.user {
-                        CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user) 
+                        self.createNewLists(localMyLists: localMyLists)
+                        CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user)
+                        self.uploadUsersLists()
                     }
                 }
                 
@@ -314,6 +316,28 @@ class DataService: ObservableObject {
     func uploadUsersLists() {
         CKService.currentModel.uploadUsersLists { result in
             print(result, "result")
+        }
+    }
+    
+    // MARK: - Create UD Lists on CK
+    func createNewLists(localMyLists: [ListModel]) {
+        var oldLists: [ListModel] = []
+        for ckList in CKService.currentModel.user?.myLists ?? [] {
+            oldLists.append(ListModelConverter().convertCloudListToLocal(withList: ckList))
+        }
+        
+        let indexes = zip(oldLists, localMyLists).enumerated().filter() {
+            $1.1.id == $1.1.id
+        }.map{$0.0}
+        
+        var newLists: [ListModel] = []
+        
+        for index in indexes {
+            newLists.append(localMyLists[index])
+        }
+        
+        for list in newLists {
+            CKService.currentModel.createList(listModel: ListModelConverter().convertLocalListToCloud(withList: list)) { result in }
         }
     }
 }

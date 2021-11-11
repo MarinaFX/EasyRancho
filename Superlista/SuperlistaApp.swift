@@ -91,7 +91,6 @@ struct SuperlistaApp: App {
                     if path.status == .satisfied {
                         if CKService.currentModel.user != nil {
                             dataService.getSharedLists()
-                            dataService.uploadUsersLists()
                         }
                     }
                 }

@@ -335,12 +335,14 @@ class CKService: ObservableObject {
         }
     }
     
-    // MARK: - Update User's Lists
+    // MARK: - Upload User's Lists
     func uploadUsersLists(completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         guard let userID = user?.id else {
             completion(.failure(CKError.init(CKError.operationCancelled)))
             return
         }
+        
+        print("upload users list")
         
         let sharedWithMe = user?.sharedWithMeRef ?? []
         let myLists = user?.myListsRef ?? []
