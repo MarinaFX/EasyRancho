@@ -263,8 +263,8 @@ class DataService: ObservableObject {
         return userID == list.owner.id
     }
     
-    // MARK: - Get Shared Lists from CK
-    func getSharedLists() {
+    // MARK: - Refresh User, Get Shared Lists from CK
+    func refreshUser() {
         CKService.currentModel.refreshUser { result in
             switch result {
             case .success(let ckUser):
@@ -301,6 +301,7 @@ class DataService: ObservableObject {
                     self.user?.sharedWithMe = localSharedWithMe
                     if let user = self.user {
                         self.createNewLists(localMyLists: localMyLists)
+                        self.updateUsersLists(localMyLists: localMyLists)
                         CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user)
                         self.uploadUsersLists()
                     }
@@ -338,6 +339,14 @@ class DataService: ObservableObject {
         
         for list in newLists {
             CKService.currentModel.createList(listModel: ListModelConverter().convertLocalListToCloud(withList: list)) { result in }
+        }
+    }
+    
+    // MARK: - Update Users Lists from UD to CK
+    func updateUsersLists(localMyLists: [ListModel]) {
+        for list in localMyLists {
+            let ckList = ListModelConverter().convertLocalListToCloud(withList: list)
+            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID: ckList.id) { result in }
         }
     }
 }

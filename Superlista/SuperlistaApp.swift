@@ -90,7 +90,7 @@ struct SuperlistaApp: App {
                     print(path.status, "status on appear")
                     if path.status == .satisfied {
                         if CKService.currentModel.user != nil {
-                            dataService.getSharedLists()
+                            dataService.refreshUser()
                         }
                     }
                 }

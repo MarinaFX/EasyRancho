@@ -538,6 +538,27 @@ class CKService: ObservableObject {
         }
     }
     
+    func updateList(listItems: [String], listName: String, listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+        publicDB.fetch(withRecordID: listID) { record, error in
+            if error == nil {
+                record!.setValue(listName, forKey: "ListName")
+                record!.setValue(listItems, forKey: "Items")
+                
+                self.publicDB.save(record!) { savedUserList, error in
+                    if error == nil {
+                        self.refresh { error in
+                            completion(.success(record!.recordID))
+                        }
+                    } else {
+                        completion(.failure(error as! CKError))
+                    }
+                }
+            } else {
+                completion(.failure(error as! CKError))
+            }
+        }
+    }
+    
     // MARK: - Delete List
     func deleteList(listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.delete(withRecordID: listID) { deleteRecordID, error in
