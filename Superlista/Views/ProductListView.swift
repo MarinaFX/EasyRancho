@@ -130,7 +130,6 @@ struct ProductListView: View {
         .onChange(of: filter, perform: { newFilter in
             self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(newFilter) } )
         })
-        .listSeparatorStyle(style: filteredProducts.isEmpty ? .none : .singleLine)
         .listStyle(PlainListStyle())
 
     }
