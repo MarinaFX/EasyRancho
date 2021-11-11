@@ -24,13 +24,13 @@ struct ListView: View {
                 Color("PrimaryBackground")
                     .ignoresSafeArea()
                 
-                VStack (spacing: 0) {
+                VStack (spacing: 10) {
                     if let list = self.list {
                         ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
                         
                         ListPerItemsView(list: list)
                             .padding(.horizontal)
-                            .padding(.bottom, -20)
+                            .padding(.bottom, -10)
                                                 
                         BottomBarButton(action: addNewItemAction, text: "AddItemsButton")
                         
@@ -38,6 +38,7 @@ struct ListView: View {
                         Spacer()
                     }
                 }
+                .edgesIgnoringSafeArea(.bottom)
             }
         , topPadding: -30)
             .toolbar{

@@ -14,6 +14,12 @@ struct BottomBarButton: View {
     public var action: (() -> Void)?
     var text: String
     
+    init(action: @escaping(() -> Void), text: String, buttonHeight: CGFloat = 83) {
+        self.action = action
+        self.text = text
+        self._buttonHeight = ScaledMetric.init(wrappedValue: buttonHeight)
+    }
+    
     var body: some View {
         Button(action: buttonAction) {
             VStack(alignment: .trailing) {
