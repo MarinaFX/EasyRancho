@@ -111,7 +111,7 @@ struct MainView: View {
                     }
                 }
                 
-                BottomBarButton(action: createNewListAction)
+                BottomBarButton(action: createNewListAction, text: "HintAddListMainButton")
                 
             }
             .edgesIgnoringSafeArea(.bottom)

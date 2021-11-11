@@ -31,8 +31,8 @@ struct ListView: View {
                         ListPerItemsView(list: list)
                             .padding(.horizontal)
                             .padding(.bottom, -20)
-                        
-                        BottomBarButton(action: addNewItemAction)
+                                                
+                        BottomBarButton(action: addNewItemAction, text: "AddItemsButton")
                         
                     } else {
                         Spacer()
@@ -48,19 +48,19 @@ struct ListView: View {
                         Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
                     }
                 }
-                .onAppear {
-                    NetworkMonitor.shared.startMonitoring { path in
-                        if let sharedWith = list?.sharedWith {
-                            if path.status == .satisfied && !sharedWith.isEmpty {
-                                dataService.getSharedLists()
-                            }
+            }
+            .onAppear {
+                NetworkMonitor.shared.startMonitoring { path in
+                    if let sharedWith = list?.sharedWith {
+                        if path.status == .satisfied && !sharedWith.isEmpty {
+                            dataService.getSharedLists()
                         }
                     }
-                
-                    if hasChangedItems, let list = self.list {
-                        dataService.updateCKListItems(of: list)
-                        self.hasChangedItems = false
-                    }
+                }
+            
+                if hasChangedItems, let list = self.list {
+                    dataService.updateCKListItems(of: list)
+                    self.hasChangedItems = false
                 }
             }
     }

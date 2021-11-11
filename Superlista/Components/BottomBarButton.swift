@@ -12,6 +12,7 @@ struct BottomBarButton: View {
     @ScaledMetric var buttonHeight: CGFloat = 83
     
     public var action: (() -> Void)?
+    var text: String
     
     var body: some View {
         Button(action: buttonAction) {
@@ -20,7 +21,7 @@ struct BottomBarButton: View {
                     Image(systemName: "plus.circle.fill")
                         .font(.title2)
                     
-                    Text("AddItemsButton")
+                    Text(NSLocalizedString(text, comment: ""))
                         .fontWeight(.bold)
                         .font(.title3)
 
