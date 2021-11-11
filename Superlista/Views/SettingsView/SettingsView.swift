@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var dataService: DataService
-
+    
+    @Binding var isOpened: Bool
     @State var username = getNickname()
     @State var picture: UIImage? = CKService.currentModel.user?.image
     
@@ -21,39 +22,50 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        VStack {
-            ProfileHeader(username: username, picture: picture)
-                .padding(.top, -30)
+        NavigationView {
+            VStack {
+                ProfileHeader(username: username, picture: picture)
+                    .padding(.top, -30)
+                
+                Text(username)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 10)
+                
+                // Premium desativado temporariamente
+                //            HStack {
+                //                Image(systemName: "crown.fill")
+                //                    .foregroundColor(Color("Button"))
+                //                Text("Premium")
+                //                    .foregroundColor(.primary)
+                //            }
+                //            .padding(.bottom, 35)
+                
+                SettingLabel(username: $username, picture: $picture)
+                    .padding(.horizontal, 15)
+                
+                Spacer()
+            }
+            .ignoresSafeArea()
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        self.isOpened = false
+                    } label: {
+                        Text("Ok")
+                            .font(.body)
+                            .fontWeight(.medium)
+                            .foregroundColor(Color.primary)
+                    }
+                    
+                }
+            }
             
-            Text(username)
-                .font(.title)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .padding(.top, 10)
-
-// Premium desativado temporariamente
-//            HStack {
-//                Image(systemName: "crown.fill")
-//                    .foregroundColor(Color("Button"))
-//                Text("Premium")
-//                    .foregroundColor(.primary)
-//            }
-//            .padding(.bottom, 35)
-        
-            SettingLabel(username: $username, picture: $picture)
-                .padding(.horizontal, 15)
-            
-            Spacer()
         }
-        .ignoresSafeArea()
         .onAppear {
             getUsername()
         }
-    }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
+        
     }
 }
