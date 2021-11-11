@@ -5,19 +5,35 @@ class NetworkMonitor {
     static let shared = NetworkMonitor()
     
     let monitor = NWPathMonitor()
-    private var status: NWPath.Status = .requiresConnection
+    var status: NWPath.Status {
+        path?.status ?? .requiresConnection
+    }
+    var path: NWPath?
     var isReachable: Bool { status == .satisfied }
     var isReachableOnCellular: Bool = true
     
+    var completions: [(NWPath) -> Void] = []
+    
+    private init() {
+        
+    }
+    
     func startMonitoring(_ completion: @escaping (NWPath) -> Void) {
+        if !completions.isEmpty {
+            completions.append(completion)
+            if let path = path {
+                completion(path)
+            }
+            return
+        }
+        
+        completions.append(completion)
+        
         monitor.pathUpdateHandler = { [weak self] path in
-            self?.status = path.status
+            self?.path = path
             self?.isReachableOnCellular = path.isExpensive
             
-            
-            if path.status == .satisfied {
-                completion(path)
-            } else {
+            for completion in self?.completions ?? [] {
                 completion(path)
             }
         }

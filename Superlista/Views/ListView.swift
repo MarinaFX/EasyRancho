@@ -48,11 +48,19 @@ struct ListView: View {
                         Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
                     }
                 }
-            }
-            .onAppear {
-                if hasChangedItems, let list = self.list {
-                    dataService.updateCKListItems(of: list)
-                    self.hasChangedItems = false
+                .onAppear {
+                    NetworkMonitor.shared.startMonitoring { path in
+                        if let sharedWith = list?.sharedWith {
+                            if path.status == .satisfied && !sharedWith.isEmpty {
+                                dataService.getSharedLists()
+                            }
+                        }
+                    }
+                
+                    if hasChangedItems, let list = self.list {
+                        dataService.updateCKListItems(of: list)
+                        self.hasChangedItems = false
+                    }
                 }
             }
     }

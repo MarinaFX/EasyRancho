@@ -3,29 +3,25 @@ import SwiftUI
 struct ProductListView: View {
     @EnvironmentObject var dataService: DataService
     
-    let products = ProductListViewModel().productsOrdered
+    @Binding var filter: String
+    @Binding var hasChangedItems: Bool
+
+    @State var selectedItems: [ItemModel] = []
+    @State var showCreateNewCustomProductView: Bool = false
+    @State var products = ProductListViewModel().productsOrdered
     
     var list: ListModel
 
-    @State var selectedItems: [ItemModel] = []
-        
-    @Binding var filter: String
-    
-    @Binding var hasChangedItems: Bool
-    
-    var filteredProducts: [ProductModel] {
-        return products.filter({ $0.name.localizedCaseInsensitiveContains(filter) })
-    }
+    @State var filteredProducts: [ProductModel] = []
+    @State var receivedNewProduct: Bool = false
     
     func isSelected(item: ProductModel) -> Bool {
         return selectedItems.contains(where: { $0.product.name == item.name })
     }
     
     var body: some View {
-        
         List {
             ForEach(filter.isEmpty ? products : filteredProducts) { item in
-                
                 HStack {
                     if isSelected(item: item) {
                         Image(systemName: "checkmark")
@@ -104,8 +100,72 @@ struct ProductListView: View {
                 }
             }
             .listRowBackground(Color("PrimaryBackground"))
+            
+            if filteredProducts.isEmpty {
+                ProductNotFoundView(showCreateNewCustomProductView: self.$showCreateNewCustomProductView, receivedNewProduct: $receivedNewProduct)
+            }
+
         }
+        .onAppear(perform: {
+            if let customProducts = dataService.user?.customProducts {
+                let allProducts = products + customProducts
+                
+                DispatchQueue.main.async {
+                    products = allProducts.sorted(by: { $0.name < $1.name } )
+                }
+            }
+            
+        })
+        .onChange(of: receivedNewProduct, perform: { newProduct in
+            if let customProducts = dataService.user?.customProducts {
+                let allProducts = products + customProducts
+                
+                DispatchQueue.main.async {
+                    products = allProducts.sorted(by: { $0.name < $1.name } )
+                    
+                    self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(filter) } )
+                }
+            }
+        })
+        .onChange(of: filter, perform: { newFilter in
+            self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(newFilter) } )
+        })
         .listStyle(PlainListStyle())
+
     }
 }
  
+struct ProductNotFoundView: View {
+    @Binding var showCreateNewCustomProductView: Bool
+    @Binding var receivedNewProduct: Bool
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text("itemNotFoundMessage")
+                .foregroundColor(Color("Secondary"))
+                .padding(.bottom, 12)
+            Button {
+                self.showCreateNewCustomProductView.toggle()
+            } label: {
+                HStack(alignment: .center) {
+                    Image(systemName: "plus.circle.fill")
+                        .foregroundColor(Color("Button"))
+                    
+                    Text("itemNotFoundButton")
+                        .foregroundColor(Color("Button"))
+                        .bold()
+                        
+                        
+                    Spacer()
+                }
+            }
+            .sheet(isPresented: $showCreateNewCustomProductView)
+            { }
+            content: {
+                CreateNewCustomProductView(showCreateNewProductView: self.$showCreateNewCustomProductView, didCreateNewProduct: $receivedNewProduct)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityHint("ACItemNotFoundButtonHint")
+    }
+}

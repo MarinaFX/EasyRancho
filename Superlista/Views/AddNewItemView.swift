@@ -16,8 +16,7 @@ struct AddNewItemView: View {
         GeometryReader { geometry in
             MainScreen(customView:
                 VStack {
-                    
-                    ProductListView(list: list, filter: $searchText, hasChangedItems: $hasChangedItems)
+                    ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
                     
                     Button(action: readyButtonPressed, label: {
                         Text("AddNewItemViewBottomButtonLabel")
