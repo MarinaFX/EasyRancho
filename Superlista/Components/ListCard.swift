@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ListCard: View {
     @EnvironmentObject var dataService: DataService
-
+    
     let list: ListModel
     let isEditing: Bool
     
     @State var showAlertDelete = false
     @State var editNavigation = false
     @State var showAlertDuplicate = false
-
+    
     var body: some View {
         NavigationLink(destination: ListView(listId: list.id), label: {
             ZStack(alignment: .leading) {
@@ -75,6 +75,7 @@ struct ListCard: View {
                                 } label: {
                                     Label("ContextMenu1", systemImage: "pencil")
                                 }
+                                .accessibility(hidden: false)
                                 .accessibilityLabel(Text("Option1"))
                                 .accessibility(hint: Text("Option1Hint"))
                                 
@@ -87,14 +88,18 @@ struct ListCard: View {
                                 .accessibilityLabel(Text("Option2"))
                                 .accessibility(hint: Text("Option2Hint"))
                                 
-                                Button {
-                                    guard let ownerName = list.owner.name else { return }
-                                    shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
-                                } label: {
-                                    Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                                if let user = dataService.user {
+                                    if dataService.isOwner(of: list, userID: user.id) {
+                                        Button {
+                                            guard let ownerName = list.owner.name else { return }
+                                            shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
+                                        } label: {
+                                            Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                                        }
+                                        .accessibilityLabel(Text("Option3"))
+                                        .accessibility(hint: Text("Option3Hint"))
+                                    }
                                 }
-                                .accessibilityLabel(Text("Option3"))
-                                .accessibility(hint: Text("Option3Hint"))
                                 
                                 Button {
                                     guard let ownerName = list.owner.name else { return }
@@ -153,7 +158,10 @@ struct ListCard: View {
                         .accessibility(label: Text("LabelMinusCircle"))
                         .accessibility(hint: Text("HintMinusCircle"))
                         .accessibility(addTraits: .isButton)
+                        .accessibility(removeTraits: .isImage)
+
                 }
+                
             }
         })
     }

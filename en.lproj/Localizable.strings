@@ -5,6 +5,29 @@
 "Lista: %@" = "List: %@";
 "Criada por: %@" = "Created by: %@";
 
+//MARK: - Toolbar/navigationbar items
+"leadingCancel" = "Cancel";
+"trailingDone" = "Done";
+"ACSearchBarXHint" = "Tap twice to erase search";
+
+//MARK: - ProductListView - ProductNotFoundView subview
+"itemNotFoundMessage" = "Product not found";
+"itemNotFoundButton" = "Create a New Product";
+"ACItemNotFoundButtonHint" = "Tap twice to go to product creation screen";
+
+//MARK: - CreateNewCustomProductView screen
+"createProductScreenTitle" = "Create Product";
+"createProductDescription" = "Create a new product to add it to your list. Pick up a name and a category.";
+"productNameTextField" = "Name of the product";
+"productCategoryTextField" = "Category";
+"textFieldRequired" = "Required field";
+"duplicateProductWarning %@" = "There was a problem while adding this product. A product named \"%@\" already exists";
+"ACCancelButtonHint" = "Tap twice to back to product search screen";
+"ACDoneButtonHint" = "Tap twice to save this product to the product list. The product will only be saved if both name and category fields are complete";
+"ACtextFieldRequiredHint" = "Text field is required";
+"ACpickerFieldLabel" = "Category";
+"ACpickerFieldValue" = "Wheel picker";
+
 // MARK: - SearchBar
 "SearchBarPlaceholder" = "Search Items";
 
@@ -21,6 +44,30 @@
 "OnboardingBottomButtonLabel" = "Save";
 "OnboardingTrailingNavigationLabel" = "Skip";
 
+"Listas" = "Listas";
+"listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
+"SalvarNovaLista" = "Save";
+"EditarNovaLista" = "Edit";
+"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
+"remover %@" = "Deseja remover %@?";
+"subtituloRemoverLista"= "A lista removida não poderá ser recuperada após sua exclusão";
+"ApagarLista"= "Delete";
+"ConcluirListas" = "Done";
+"EditarListas" = "Edit";
+"NovaLista" = "New list";
+"DefaultLS" = "DefaultLS";
+"CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
+"Cancelar" = "Cancel";
+"Aceitar" = "Accept";
+"SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
+
+//Not working 4now
+"ProcurarItens" = "Search products";
+"AdicionarItensFake" = "Adicionar novos itens";
+"TituloPaginaDeLista" = "Listasddddd";
+"TituloDaNovaLista" = "Nova Lista";
+
+// MARK: - OnboardingA
 // MARK: - OnboardingPageModel
 "OnboardingA" = "OnboardingA";
 "OnboardingATitle" = "Welcome";
@@ -50,6 +97,14 @@
 // MARK: - ListView
 "ListViewLabelA" = "Save";
 "ListViewLabelB" = "Edit";
+
+// MARK: - ListHeader VoiceOver
+"ListHeaderTitle" = "List title";
+"ListHeaderCollabButton1" = "Add collaborators";
+"ListHeaderCollabButton2" = "Manage collaborators";
+
+// MARK: - ListPerItemsView VoiceOver
+"CategoryTitleHint" = "Category Title";
 
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Done";
@@ -126,6 +181,23 @@
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Add a comment";
 "ItemCommentViewButtonLabel"= "OK";
+
+// MARK: - ItemCommentView VoiceOver
+"CheckedItemIconLabel1" = "Checked Item";
+"CheckedItemIconLabel2" = "Item not checked";
+"CheckedItemIconHint1" = "Uncheck item";
+"CheckedItemIconHint2" = "Check item";
+"CheckedItemLabelHint %@" = "Item %@ crossed-out";
+"CommentIconLabel" = "Comment";
+"CommentIconHint1" = "Edit comment";
+"CommentIconHint2" = "Add comment";
+"ItemQuantityLabel1" = "1 item";
+"ItemQuantityLabel2 %@" = "%@ items";
+"ItemQuantityHint" = "Number of items";
+"CommentTextFieldLabel" = "Comment";
+"CommentTextFieldHint" = "Comment field";
+"CommentConfirmationButtonHint" = "Confirm";
+"CommentTextHint %@" = "Comment in %@";
 
 //MARK: - AddCollaboratorSheetView
 "AddCollabTitle" = "Collaborators";

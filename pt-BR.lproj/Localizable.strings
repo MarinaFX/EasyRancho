@@ -5,6 +5,29 @@
 "Lista: %@" = "Lista: %@";
 "Criada por: %@" = "Criada por: %@";
 
+//MARK: - Toolbar/navigationbar items
+"leadingCancel" = "Cancelar";
+"trailingDone" = "Salvar";
+"ACSearchBarXHint" = "Toque duas vezes para resetar a busca";
+
+//MARK: - ProductListView - ProductNotFoundView subview
+"itemNotFoundMessage" = "Item não encontrado";
+"itemNotFoundButton" = "Criar Novo Produto";
+"ACItemNotFoundButtonHint" = "Toque duas vezes para avançar para tela de criação de produto";
+
+//MARK: - CreateNewCustomProductView screen
+"createProductScreenTitle" = "Criar Produto";
+"createProductDescription" = "Crie um novo produto para adicioná-lo a sua lista. Escolha um nome e uma categoria.";
+"productNameTextField" = "Nome do produto";
+"productCategoryTextField" = "Categoria";
+"textFieldRequired" = "Campo obrigatorio";
+"duplicateProductWarning %@" = "Não foi possivel adicionar este produto. Um produto com o nome \"%@\" já existe";
+"ACCancelButtonHint" = "Toque duas vezes para retornar a tela de procura de produtos";
+"ACDoneButtonHint" = "Toque duas vezes para salvar o produto criado a lista de produtos. O produto somente será criado caso o campo de nome e categoria estejam preenchidos";
+"ACtextFieldRequiredHint" = "Campo de texto obrigatório";
+"ACpickerFieldLabel" = "Categoria";
+"ACpickerFieldValue" = "Seletor estilo roda";
+
 // MARK: - SearchBar
 "SearchBarPlaceholder" = "Procurar Itens";
 
@@ -14,6 +37,45 @@
 // MARK: - OnboardingView
 "OnboardingViewButtonLabel" = "Começar";
 
+//MARK: - AddCollaborator screen
+"addCollabTitle" = "Adicionar Colaborador";
+"addCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";
+"addCollabButton" = "Adicionar Colaborador";
+"noCollaboratorsText" = "Você ainda não adicionou nenhum colaborador";
+"shareListText" = "Ou apenas compartilhe sua lista com seus contatos";
+"shareListButton" = "Compartilhar lista";
+"shareListWarning" = "Ao compartilhar uma lista com uma pessoa você enviará somente uma cópia da sua lista, isso não afetará a sua lista atual e a pessoa **não** será adicionada como colaborador.";
+
+//MARK: - AddColaborator screen
+"DeleteCollabAlertTitle %@" = "Você tem certeza que deseja excluir %@ de sua lista?";
+"DeleteCollabAlertMessage" = "Esta pessoa deixará de ser um colaborador na sua lista.";
+"DeleteCollabAlertPrimaryButton" = "Excluir";
+"DeleteCollabAlertSecondaryButton" = "Cancelar";
+
+"Listas" = "Listas";
+"listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
+"SalvarNovaLista" = "Salvar";
+"EditarNovaLista" = "Editar";
+"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
+"remover %@" = "Deseja remover %@?";
+"subtituloRemoverLista"= "A lista removida não poderá ser recuperada após sua exclusão";
+"ApagarLista"= "Apagar";
+"ConcluirListas" = "Concluir";
+"EditarListas" = "Editar";
+"NovaLista" = "Nova Lista";
+"DefaultLS" = "DefaultLS";
+"CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
+"Cancelar" = "Cancelar";
+"Aceitar" = "Aceitar";
+"SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
+
+//Not working 4now
+"ProcurarItens" = "Procurar produtos";
+"AdicionarItensFake" = "Adicionar novos itens";
+"TituloPaginaDeLista" = "Listas";
+"TituloDaNovaLista" = "Nova Lista";
+
+// MARK: - OnboardingA
 // MARK: - OnboardingFieldsView
 "OnboardingFieldsTitle" = "Personalize seu perfil";
 "OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
@@ -51,15 +113,23 @@
 "ListViewLabelA" = "Salvar";
 "ListViewLabelB" = "Editar";
 
+// MARK: - ListHeader VoiceOver
+"ListHeaderTitle" = "Título da Lista";
+"ListHeaderCollabButton1" = "Adicionar colaboradores";
+"ListHeaderCollabButton2" = "Gerenciar colaboradores";
+
+// MARK: - ListPerItemsView VoiceOver
+"CategoryTitleHint" = "Título da Categoria";
+
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Pronto";
 
 // MARK: - AddNewItemView VoiceOver
- "Adicione %@" = "Aperte para adicionar %@";
- "Add" = "Adicione";
- "Remove" = "Remova";
- "RemoveOneItem" = "Aperte para remover um ítem";
- "AddOneItem" = "Aperte para adicionar um ítem";
+ "Adicione %@" = "Adicionar %@";
+ "Add" = "Adicionar";
+ "Remove" = "Remover";
+ "RemoveOneItem" = "Remover um ítem";
+ "AddOneItem" = "Adicionar um ítem";
  "%@ items" = "%@ ítens";
 
 // MARK: - MainView
@@ -128,6 +198,23 @@
 "ItemCommentViewPlaceholder"= "Insira um comentário";
 "ItemCommentViewButtonLabel"= "OK";
 
+// MARK: - ItemCommentView VoiceOver
+"CheckedItemIconLabel1" = "Item checado";
+"CheckedItemIconLabel2" = "Item não checado";
+"CheckedItemIconHint1" = "Deschecar item";
+"CheckedItemIconHint2" = "Checar item";
+"CheckedItemLabelHint %@" = "Item %@ riscado";
+"CommentIconLabel" = "Comentário";
+"CommentIconHint1" = "Editar comentário";
+"CommentIconHint2" = "Adicionar comentário";
+"ItemQuantityLabel1" = "1 item";
+"ItemQuantityLabel2 %@" = "%@ itens";
+"ItemQuantityHint" = "Número de itens";
+"CommentTextFieldLabel" = "Comentário";
+"CommentTextFieldHint" = "Campo de comentário";
+"CommentConfirmationButtonHint" = "Confirmar";
+"CommentTextHint %@" = "Comentário em %@";
+
 //MARK: - AddCollaboratorSheetView
 "AddCollabTitle" = "Colaboradores";
 "AddCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";
@@ -181,6 +268,7 @@
 "Sobremesas" = "Sobremesas";
 "Temperos" = "Temperos";
 "Outros" = "Outros";
+
 // MARK: - Onboarding Fields
 "OnboardingFieldsTitle" = "Personalize seu perfil";
 "OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
