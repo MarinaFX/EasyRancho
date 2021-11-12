@@ -1,21 +1,17 @@
 import SwiftUI
 
 struct ListHeader: View {
-    @EnvironmentObject var dataServive: DataService
-    
     @ScaledMetric var collabIconWidth: CGFloat = 28
     @ScaledMetric var collabIconHeight: CGFloat = 24
     
-    @Binding var listaTitulo: String
+    @Binding var listTitle: String
     @State var canComment: Bool = false
-    @State var comentario: String = ""
+    @State var comment: String = ""
     @Binding var canEditTitle: Bool
     @State var showCollabSheetView: Bool = false
     @State var collaborators: [OwnerModel]
     @State var listOwner: OwnerModel
     
-    let purpleColor = Color("Background")
-    let secondary = Color("Secondary")
     let list: ListModel?
     
     @Binding var listId: String
@@ -26,29 +22,29 @@ struct ListHeader: View {
                 
                 ZStack(alignment: .leading) {
                     if canEditTitle {
-                        if listaTitulo.isEmpty {
+                        if listTitle.isEmpty {
                             Text("NovaLista")
-                                .foregroundColor(secondary)
+                                .foregroundColor(Color("Secondary"))
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
                                 .accessibility(hint: Text("ListHeaderTitle"))
                             
                         }
                         
-                        TextField("", text: $listaTitulo)
+                        TextField("", text: $listTitle)
                             .foregroundColor(canEditTitle ? Color("PrimaryBackground") : .black)
                             .font(.largeTitle)
                             .background(Color("editTitleBackground"))
                             .onTapGesture {
-                                if listaTitulo == NSLocalizedString("NovaLista", comment: "NovaLista") {
-                                    listaTitulo = ""
+                                if listTitle == NSLocalizedString("NovaLista", comment: "NovaLista") {
+                                    listTitle = ""
                                 }
                             }
                     }
                     
-                    if !canEditTitle, let list = list {
+                    if !canEditTitle {
                         HStack {
-                            Text(list.title)
+                            Text(listTitle)
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
                                 .lineLimit(2)
@@ -81,7 +77,7 @@ struct ListHeader: View {
         .padding(.horizontal, 30)
         .onAppear {            
             if let list = list {
-                listaTitulo = list.title
+                listTitle = list.title
                 canEditTitle = false
                 collaborators = list.sharedWith ?? []
             }
