@@ -8,6 +8,8 @@ struct ListPerItemsView: View {
     var list: ListModel
     var categories: [CategoryModel] { dataService.lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var body: some View {
         List {
             ForEach(getCategories(), id: \.self) { category in

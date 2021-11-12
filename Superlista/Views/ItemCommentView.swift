@@ -74,9 +74,11 @@ struct ItemCommentView: View {
                             Image(systemName: "text.bubble")
                                 .resizable()
                                 .frame(width: textBubbleWidth, height: textBubbleHeight)
-                                .foregroundColor(Color("Comment"))
+                                .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
                                 .onTapGesture {
-                                    isCommenting = true
+                                    if (networkMonitor.status == .satisfied) {
+                                        isCommenting = true
+                                    }
                                 }
                                 .accessibilityAddTraits(AccessibilityTraits.isButton)
                                 .accessibilityRemoveTraits(AccessibilityTraits.isImage)
@@ -120,6 +122,8 @@ struct ItemCommentView: View {
 struct CheckmarkWithTextView: View {
     @EnvironmentObject var dataService: DataService
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var item: ItemModel
     var list: ListModel
     
@@ -128,7 +132,9 @@ struct CheckmarkWithTextView: View {
             .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
             .font(.body)
             .onTapGesture {
-                dataService.toggleCompletion(of: item, from: list)
+                if (networkMonitor.status == .satisfied) {
+                    dataService.toggleCompletion(of: item, from: list)
+                }
             }
             .accessibilityAddTraits(AccessibilityTraits.isButton)
             .accessibilityRemoveTraits(AccessibilityTraits.isImage)
@@ -154,6 +160,7 @@ struct ItemQuantityView: View {
     @ScaledMetric var minusSymbolWidth: CGFloat = 17
     @ScaledMetric var minusSymbolHeight: CGFloat = 1.5
 
+    let networkMonitor = NetworkMonitor.shared
     
     var item: ItemModel
     var list: ListModel
@@ -163,11 +170,13 @@ struct ItemQuantityView: View {
             Image(systemName: "minus")
                 .resizable()
                 .frame(width: minusSymbolWidth, height: minusSymbolHeight)
-                .foregroundColor(((item.quantity ?? 1) > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
+                .foregroundColor((((item.quantity ?? 1) <= 1) || !(networkMonitor.status == .satisfied)) ? Color(UIColor.secondaryLabel) : Color("Comment"))
         }
         .frame(width: minusSymbolWidth, height: minusSymbolWidth)
         .onTapGesture {
-            dataService.removeQuantity(of: item, from: list)
+            if (networkMonitor.status == .satisfied) {
+                dataService.removeQuantity(of: item, from: list)
+            }
         }
         .accessibilityAddTraits(AccessibilityTraits.isButton)
         .accessibilityRemoveTraits(AccessibilityTraits.isImage)
@@ -187,9 +196,11 @@ struct ItemQuantityView: View {
         Image(systemName: "plus")
             .resizable()
             .frame(width: plusSymbolWidth, height: plusSymbolHeight)
-            .foregroundColor(Color("Comment"))
+            .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
             .onTapGesture {
-                dataService.addQuantity(of: item, from: list)
+                if (networkMonitor.status == .satisfied) {
+                    dataService.addQuantity(of: item, from: list)
+                }
             }
             .accessibilityAddTraits(AccessibilityTraits.isButton)
             .accessibilityRemoveTraits(AccessibilityTraits.isImage)
