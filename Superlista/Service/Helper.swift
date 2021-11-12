@@ -128,6 +128,15 @@ func getNickname() -> String{
     return "User"
 }
 
+// MARK: - Difference between arrays
+extension Array where Element: Hashable {
+    func difference(from other: [Element]) -> [Element] {
+        let thisSet = Set(self)
+        let otherSet = Set(other)
+        return Array(thisSet.symmetricDifference(otherSet))
+    }
+}
+
 func getRandomUniqueID(blacklist existingIds: [Int]) -> Int {
     var newRandom: Int = random()
 
