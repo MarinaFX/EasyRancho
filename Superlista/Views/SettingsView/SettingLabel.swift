@@ -36,7 +36,7 @@ struct SettingLabel: View {
                 EditProfileView(showingSheet: $showingSheet, username: $username, picture: $picture)
             }
             
-// Premium desativado temporariamente
+            // Premium desativado temporariamente
             //            Button(action: {
             //                print("Button tapped!")
             //            }) {
@@ -70,28 +70,41 @@ struct SettingLabel: View {
                 .background(Color("ButtonBG"))
                 .cornerRadius(13)
             }
-            Button(action: {
-                //Tá dando varias mensagens de 'erro' mas nada que se preocupar por enquanto #pas
-                guard let urlShare = URL(string: "https://apps.apple.com/br/app/easyrancho-lista-de-compras/id1568546773") else { return }
-                let activityVC = UIActivityViewController(activityItems: [NSLocalizedString("InviteMessage", comment: "InviteMessage"), urlShare], applicationActivities: nil)
-                UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
-                
-            }) {
-                    HStack {
-                        Text("SettingLabelC")
-                            .foregroundColor(.primary)
-                        
-                        Spacer()
-                        
-                        Image(systemName: "bolt.heart.fill")
-                            .foregroundColor(.primary)
-                            .font(.system(size: 20.0, weight: .bold))
-                    }
-                    .padding(20)
-                    .foregroundColor(.white)
-                    .background(Color("ButtonBG"))
-                    .cornerRadius(13)
+            Button(action: SharedButton) {
+                HStack {
+                    Text("SettingLabelC")
+                        .foregroundColor(.primary)
+                    
+                    Spacer()
+                    
+                    Image(systemName: "bolt.heart.fill")
+                        .foregroundColor(.primary)
+                        .font(.system(size: 20.0, weight: .bold))
                 }
+                .padding(20)
+                .foregroundColor(.white)
+                .background(Color("ButtonBG"))
+                .cornerRadius(13)
+            }
         }
+    }
+    
+    func SharedButton(){
+        let urlShare = URL(string: "https://apps.apple.com/br/app/easyrancho-lista-de-compras/id1568546773")
+        
+        let activityVC = UIActivityViewController(activityItems: [NSLocalizedString("InviteMessage", comment: "InviteMessage"), urlShare], applicationActivities: nil)
+        
+        let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
+        
+        var topController = keyWindow?.rootViewController
+        
+        // get topmost view controller to present alert
+        while let presentedViewController = topController?.presentedViewController {
+            topController = presentedViewController
+        }
+        topController?.present(activityVC, animated: true, completion: nil)
+        
+        activityVC.isModalInPresentation = true
+
     }
 }
