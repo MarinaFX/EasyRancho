@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ProductListView: View {
+    @Environment(\.sizeCategory) var sizeCategory
     @EnvironmentObject var dataService: DataService
     
     @Binding var filter: String
@@ -9,15 +10,10 @@ struct ProductListView: View {
     @State var selectedItems: [ItemModel] = []
     @State var showCreateNewCustomProductView: Bool = false
     @State var products = ProductListViewModel().productsOrdered
-    
-    var list: ListModel
-
     @State var filteredProducts: [ProductModel] = []
     @State var receivedNewProduct: Bool = false
     
-    func isSelected(item: ProductModel) -> Bool {
-        return selectedItems.contains(where: { $0.product.name == item.name })
-    }
+    var list: ListModel
     
     var body: some View {
         List {
@@ -25,8 +21,9 @@ struct ProductListView: View {
                 HStack {
                     if isSelected(item: item) {
                         Image(systemName: "checkmark")
+                            .font(sizeCategory.isAccessibilityCategory ? .footnote : .body)
                             .foregroundColor(Color("Button"))
-                            .frame(width: 13, height: 13)
+                            //.frame(width: 20, height: 20)
                     } else {
                         ZStack {
                         }
@@ -34,16 +31,19 @@ struct ProductListView: View {
                     }
                         
                     Text(item.name)
+                        .font(.footnote)
+                        .fontWeight(isSelected(item: item) ? .bold : .regular)
                         .foregroundColor(isSelected(item: item) ? Color("Button") : Color.primary)
-                        .font(.system(size: 14, weight: isSelected(item: item) ? .bold : .regular))
                         .accessibilityLabel(Text("\(item.name)"))
+                        .padding(.trailing, 20)
                     
                     Spacer()
                     
                     if !isSelected(item: item) {
                         Image(systemName: "plus")
+                            .font(sizeCategory.isAccessibilityCategory ? .footnote : .body)
                             .foregroundColor(Color.primary)
-                            .frame(width: 13, height: 13)
+                            //.frame(width: 13, height: 13)
                             .accessibilityLabel(Text("add"))
                             .accessibility(hint: Text("Adicione \(item.name)"))
                     } else {
@@ -131,7 +131,11 @@ struct ProductListView: View {
             self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(newFilter) } )
         })
         .listStyle(PlainListStyle())
-
+        .listSeparatorStyle(color: filteredProducts.isEmpty ? UIColor.lightGray : UIColor.clear)
+    }
+    
+    func isSelected(item: ProductModel) -> Bool {
+        return selectedItems.contains(where: { $0.product.name == item.name })
     }
 }
  
@@ -142,21 +146,23 @@ struct ProductNotFoundView: View {
     var body: some View {
         VStack (alignment: .leading) {
             Text("itemNotFoundMessage")
+                .font(.body)
                 .foregroundColor(Color("Secondary"))
                 .padding(.bottom, 12)
+            
             Button {
                 self.showCreateNewCustomProductView.toggle()
             } label: {
                 HStack(alignment: .center) {
                     Image(systemName: "plus.circle.fill")
+                        .font(.body)
                         .foregroundColor(Color("Button"))
                     
                     Text("itemNotFoundButton")
-                        .foregroundColor(Color("Button"))
+                        .font(.body)
                         .bold()
+                        .foregroundColor(Color("Button"))
                         
-                        
-                    Spacer()
                 }
             }
             .sheet(isPresented: $showCreateNewCustomProductView)
@@ -167,5 +173,25 @@ struct ProductNotFoundView: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityHint("ACItemNotFoundButtonHint")
+    }
+}
+
+
+struct ListSeparatorStyle: ViewModifier {
+    
+    let color: UIColor
+    
+    func body(content: Content) -> some View {
+        content
+            .onAppear() {
+                UITableView.appearance().separatorColor = self.color
+            }
+    }
+}
+ 
+extension View {
+    
+    func listSeparatorStyle(color: UIColor) -> some View {
+        ModifiedContent(content: self, modifier: ListSeparatorStyle(color: color))
     }
 }

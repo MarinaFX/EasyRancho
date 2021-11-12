@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct SearchBar: View {
+    @Environment(\.sizeCategory) var sizeCategory
+    
     @Binding var text: String
     @State private var isEditing = false
     
@@ -9,7 +11,7 @@ struct SearchBar: View {
             TextField(NSLocalizedString("SearchBarPlaceholder", comment: "SearchBarPlaceholder"), text: $text)
                 .foregroundColor(Color(UIColor.secondaryLabel))
                 .padding(10)
-                .padding(.leading, 30)
+                .padding(.leading, sizeCategory > ContentSizeCategory.extraExtraExtraLarge ? 45 : 35)
                 .background(Color("searchColor"))
                 .cornerRadius(50)
                 .overlay(

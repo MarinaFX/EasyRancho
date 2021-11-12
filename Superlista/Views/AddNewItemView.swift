@@ -13,30 +13,27 @@ struct AddNewItemView: View {
     let products = ProductListViewModel().productsOrdered
     
     var body: some View {
-        GeometryReader { geometry in
-            MainScreen(customView:
-                VStack {
-                    ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
-                    
-                    Button(action: prontoButtonPressed, label: {
-                        Text("AddNewItemViewBottomButtonLabel")
-                            .fontWeight(.bold)
-                            .foregroundColor(.white)
-                            .frame(height: geometry.size.height * 0.06)
-                            .frame(width: geometry.size.height * 0.25)
-                            .background(Color("Button"))
-                            .cornerRadius(30)
-                    })
-                    .padding(.bottom, geometry.size.height * 0.12)
-                    .padding(.top, geometry.size.height * (0.01))
-                    
-                }
-            )
-            .toolbar {
-                ToolbarItem(placement: .principal){
-                    SearchBar(text: $searchText)
-                        .frame(width: geometry.size.width * 0.8, height: geometry.size.width * 0.3)
-                }
+        MainScreen(customView:
+            VStack {
+                ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
+            
+            Button(action: prontoButtonPressed, label: {
+                Text("AddNewItemViewBottomButtonLabel")
+                    .font(.body)
+                    .fontWeight(.bold)
+            })
+                .buttonStyle(MediumButtonStyle(background: Color("Button"), foreground: .white))
+                .padding(.top)
+                .padding(.bottom, 32)
+                
+            }
+            .edgesIgnoringSafeArea(.bottom)
+                   
+        , topPadding: -15)
+        .toolbar {
+            ToolbarItem(placement: .principal){
+                SearchBar(text: $searchText)
+                    .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.5)
             }
         }
     }
