@@ -105,7 +105,7 @@
 // MARK: - EditProfileView
 "EditProfileTitle" = "Editar Perfil";
 "EditProfileFieldPlaceholder" = "Nome";
-"EditProfileText" = "Adicione um nome e uma foto ao seu perfil para que você possa se identificado mais facilmente quando compartilhar ou for adicionado à uma lista.";
+"EditProfileText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente quando compartilhar ou for adicionado à uma lista.";
 "EditProfileLeadingNavigationLabel" = "Cancelar";
 "EditProfileTrailingNavigationLabel" = "Salvar";
 
