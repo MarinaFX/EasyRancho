@@ -18,40 +18,44 @@ struct ListView: View {
     
     var body: some View {
         MainScreen(customView:
-            ZStack {
+                    ZStack {
             if let list = list {
                 NavigationLink("", isActive: $isPresentedAddNewItems, destination: { AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "") })
             }
             
-                Color("PrimaryBackground")
-                    .ignoresSafeArea()
-                
-                VStack (spacing: 10) {
-                    if let list = self.list {
-                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
-                        
-                        ListPerItemsView(list: list)
-                            .padding(.horizontal)
-                            .padding(.bottom, -10)
-                                                
-                        BottomBarButton(action: addNewItemAction, text: "AddItemsButton")
-                        
-                    } else {
-                        Spacer()
+            Color("PrimaryBackground")
+                .ignoresSafeArea()
+            
+            VStack (spacing: 10) {
+                if let list = self.list {
+                    ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
+                    
+                    ListPerItemsView(list: list)
+                        .padding(.horizontal)
+                        .padding(.bottom, -10)
+                    
+                    if let sharedWith = list.sharedWith {
+                        if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
+                            BottomBarButton(action: addNewItemAction, text: "AddItemsButton")
+                        }
                     }
+                    
+                } else {
+                    Spacer()
                 }
-                .edgesIgnoringSafeArea(.bottom)
             }
-        , topPadding: -30)
+            .edgesIgnoringSafeArea(.bottom)
+        }
+                   , topPadding: -30)
             .toolbar{
                 ToolbarItem {
                     Button {
                         editTitle()
                     } label: {
                         Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
-                            .foregroundColor((networkMonitor.status == .satisfied) ? Color.primary : Color(UIColor.secondaryLabel))
+                            .foregroundColor(((networkMonitor.status == .satisfied) || (list!.sharedWith!.isEmpty)) ? Color.primary : Color(UIColor.secondaryLabel))
                     }
-                    .disabled(!(networkMonitor.status == .satisfied))
+                    .disabled(!(networkMonitor.status == .satisfied) && !(list!.sharedWith!.isEmpty))
                 }
             }
             .onAppear {
@@ -62,7 +66,7 @@ struct ListView: View {
                         }
                     }
                 }
-            
+                
                 if hasChangedItems, let list = self.list {
                     dataService.updateCKListItems(of: list)
                     self.hasChangedItems = false
