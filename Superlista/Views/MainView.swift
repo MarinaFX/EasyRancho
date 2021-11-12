@@ -136,7 +136,7 @@ struct MainView: View {
                     }
                     .frame(width: UIScreen.main.bounds.width, height: scaledHeightNewList)
                     .background(Color("ButtonBG"))
-                    .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top)
+                    .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: sizeCategory >= ContentSizeCategory.extraLarge ? 5 : 1), alignment: .top)
                 }
                 
             }
