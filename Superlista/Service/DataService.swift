@@ -24,7 +24,7 @@ class DataService: ObservableObject {
     let networkMonitor = NetworkMonitor.shared
     
     var userSubscription: AnyCancellable?
-    
+        
     init() {
         getDataIntegration()
     }
@@ -288,8 +288,8 @@ class DataService: ObservableObject {
         return userID == list.owner.id
     }
     
-    // MARK: - Get Shared Lists from CK
-    func getSharedLists() {
+    // MARK: - Refresh User, Get Shared Lists from CK
+    func refreshUser() {
         CKService.currentModel.refreshUser { result in
             switch result {
                 case .success(let ckUser):
@@ -308,27 +308,62 @@ class DataService: ObservableObject {
                             localMyLists.append(list)
                         }
                     }
-                    
-                    let localLists = UDService().getUDLists()
-                    
-                    localLists.forEach { list in
-                        if let sharedWith = list.sharedWith, sharedWith.isEmpty {
-                            localMyLists.append(list)
-                        }
+                
+                var newLists: [ListModel] = localSharedWithMe
+                newLists.append(contentsOf: localMyLists)
+                
+                DispatchQueue.main.async {
+                    self.lists = newLists
+                    self.user?.myLists = localMyLists
+                    self.user?.sharedWithMe = localSharedWithMe
+                    if let user = self.user {
+                        self.createNewLists(localMyLists: localMyLists)
+                        self.updateUsersLists(localMyLists: localMyLists)
+                        CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user)
+                        self.uploadUsersLists()
                     }
-                    
-                    var newLists: [ListModel] = localSharedWithMe
-                    newLists.append(contentsOf: localMyLists)
-                    
-                    DispatchQueue.main.async {
-                        self.lists = newLists
-                        self.user?.myLists = localMyLists
-                        self.user?.sharedWithMe = localSharedWithMe
-                    }
-                    
-                case .failure:
-                    return
+                }
+                
+            case .failure:
+                return
             }
+        }
+    }
+    
+    // MARK: - Upload Lists do UD para o CK
+    func uploadUsersLists() {
+        CKService.currentModel.uploadUsersLists { result in
+            print(result, "result")
+        }
+    }
+    
+    // MARK: - Create UD Lists on CK
+    func createNewLists(localMyLists: [ListModel]) {
+        var oldLists: [ListModel] = []
+        for ckList in CKService.currentModel.user?.myLists ?? [] {
+            oldLists.append(ListModelConverter().convertCloudListToLocal(withList: ckList))
+        }
+        
+        let indexes = zip(oldLists, localMyLists).enumerated().filter() {
+            $1.1.id == $1.1.id
+        }.map{$0.0}
+        
+        var newLists: [ListModel] = []
+        
+        for index in indexes {
+            newLists.append(localMyLists[index])
+        }
+        
+        for list in newLists {
+            CKService.currentModel.createList(listModel: ListModelConverter().convertLocalListToCloud(withList: list)) { result in }
+        }
+    }
+    
+    // MARK: - Update Users Lists from UD to CK
+    func updateUsersLists(localMyLists: [ListModel]) {
+        for list in localMyLists {
+            let ckList = ListModelConverter().convertLocalListToCloud(withList: list)
+            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID: ckList.id) { result in }
         }
     }
 }

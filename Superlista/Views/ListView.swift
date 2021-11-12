@@ -54,7 +54,7 @@ struct ListView: View {
                 NetworkMonitor.shared.startMonitoring { path in
                     if let sharedWith = list?.sharedWith {
                         if path.status == .satisfied && !sharedWith.isEmpty {
-                            dataService.getSharedLists()
+                            dataService.refreshUser()
                         }
                     }
                 }
