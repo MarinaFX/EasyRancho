@@ -16,6 +16,8 @@ struct MainView: View {
     
     let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var appliedSection: [ListModel]{
         let section: [ListModel]
         

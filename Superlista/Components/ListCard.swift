@@ -149,21 +149,23 @@ struct ListCard: View {
                 }
                 
                 if isEditing {
-                    Image(systemName: "minus.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(Color(.systemGray))
-                        .offset(x: 150, y: -45)
-                        .onTapGesture {
-                            dataService.currentList = list
-                            showAlertDelete = true
+                    if let sharedWith = list.sharedWith {
+                        if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(Color(.systemGray))
+                                .offset(x: 150, y: -45)
+                                .onTapGesture {
+                                    dataService.currentList = list
+                                    showAlertDelete = true
+                                }
+                                .accessibility(label: Text("LabelMinusCircle"))
+                                .accessibility(hint: Text("HintMinusCircle"))
+                                .accessibility(addTraits: .isButton)
+                                .accessibility(removeTraits: .isImage)
                         }
-                        .accessibility(label: Text("LabelMinusCircle"))
-                        .accessibility(hint: Text("HintMinusCircle"))
-                        .accessibility(addTraits: .isButton)
-                        .accessibility(removeTraits: .isImage)
-
+                    }
                 }
-                
             }
         })
     }

@@ -14,6 +14,8 @@ struct ListView: View {
         return myList
     }
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var body: some View {
         MainScreen(customView:
             ZStack {
@@ -47,7 +49,9 @@ struct ListView: View {
                         editTitle()
                     } label: {
                         Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
+                            .foregroundColor((networkMonitor.status == .satisfied) ? Color.primary : Color(UIColor.secondaryLabel))
                     }
+                    .disabled(!(networkMonitor.status == .satisfied))
                 }
             }
             .onAppear {
