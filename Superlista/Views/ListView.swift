@@ -3,15 +3,9 @@ import SwiftUI
 struct ListView: View {
     @EnvironmentObject var dataService: DataService
     
-    @State var hasChangedItems = false
     @State var listId: String
     @State var canEditTitle: Bool = false
-        
-    var list: ListModel? {
-        let myList = getList()
-        return myList
-    }
-    
+    @State var list: ListModel?
     @State var listTitle: String = ""
     
     var body: some View {
@@ -21,16 +15,16 @@ struct ListView: View {
                     Color("PrimaryBackground")
                         .ignoresSafeArea()
                     
-                    VStack (spacing: 20) {
+                    VStack(spacing: 20) {
                         if let list = self.list {
                             ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
                             
-                            NavigationLink(destination: AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "")){
+                            NavigationLink(destination: AddNewItemView(list: $list, searchText: "")) {
                                 FakeSearchBar()
                                     .padding(.horizontal, 20)
                             }
                             
-                            ListPerItemsView(list: list)
+                            ListPerItemsView(list: $list)
                                 .padding(.horizontal)
                                 .padding(.bottom, 30)
                             
@@ -40,7 +34,7 @@ struct ListView: View {
                     }
                 }
             , topPadding: -30)
-                .toolbar{
+                .toolbar {
                     ToolbarItem {
                         Button {
                             editTitle()
@@ -50,6 +44,10 @@ struct ListView: View {
                     }
                 }
                 .onAppear {
+                    if list == nil {
+                        self.list = getList()
+                    }
+                    
                     NetworkMonitor.shared.startMonitoring { path in
                         if let sharedWith = list?.sharedWith {
                             if path.status == .satisfied && !sharedWith.isEmpty {
@@ -57,10 +55,10 @@ struct ListView: View {
                             }
                         }
                     }
-                
-                    if hasChangedItems, let list = self.list {
-                        dataService.updateCKListItems(of: list)
-                        self.hasChangedItems = false
+                }
+                .onChange(of: list) { updatedList in
+                    if let updatedList = updatedList {
+                        dataService.updateCKListItems(of: updatedList)
                     }
                 }
         }

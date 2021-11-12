@@ -4,10 +4,8 @@ import Foundation
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
         
-    var list: ListModel
-    
-    @Binding var hasChangedItems: Bool
-    
+    @Binding var list: ListModel?
+        
     @State var searchText: String
     
     let products = ProductListViewModel().productsOrdered
@@ -16,7 +14,7 @@ struct AddNewItemView: View {
         GeometryReader { geometry in
             MainScreen(customView:
                 VStack {
-                    ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
+                    ProductListView(filter: $searchText, list: $list)
                     
                     Button(action: prontoButtonPressed, label: {
                         Text("AddNewItemViewBottomButtonLabel")

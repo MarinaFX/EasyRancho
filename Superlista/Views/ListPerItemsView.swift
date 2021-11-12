@@ -1,27 +1,30 @@
 import SwiftUI
 
 struct ListPerItemsView: View {
+        
+    @Binding var list: ListModel?
+        
+    var categories: [CategoryModel] {
+        return list?.items.keys.map { $0 } ?? []
+    }
     
-    @EnvironmentObject var dataService: DataService
-    
-    var list: ListModel
-    
-    let background = Color("PrimaryBackground")
-    
-    var categories: [CategoryModel] { dataService.lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
-    
-    func rows(from category: Int) -> [ItemModel] { dataService.lists.first(where: { $0.id == list.id })!.items[categories[category]]! }
+    func rows(from category: Int) -> [ItemModel] {
+        return list?.items[categories[category]] ?? []
+    }
     
     func isLast(_ item: ItemModel, from category: CategoryModel) -> Bool {
         return getRows(from: category).last?.id == item.id
     }
     
     func getCategories() -> [CategoryModel] {
-        return Array(list.items.keys.map { $0 }).sorted(by: { $0.title < $1.title })
+        if let list = list {
+            return Array(list.items.keys.map { $0 }).sorted(by: { $0.title < $1.title })
+        }
+        return []
     }
     
     func getRows(from category: CategoryModel) -> [ItemModel] {
-        return list.items[category] ?? []
+        return list?.items[category] ?? []
     }
     
     var body: some View {
@@ -46,14 +49,16 @@ struct ListPerItemsView: View {
                     leading: 0,
                     bottom: -10,
                     trailing: 0))
-                        
                 ) {
                     ForEach(getRows(from: category)) { item in
-                        ItemCommentView(item: item, list: list)
+                        ItemCommentView(item: item, list: $list)
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
                     .onDelete { row in
-                        dataService.removeItem(from: row, of: category, of: list)
+                        if let list = list {
+                            let newList = list.removeItem(from: row, of: category)
+                            self.list = newList
+                        }
                     }
                     .listRowBackground(Color("PrimaryBackground"))
                 }

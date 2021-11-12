@@ -1,15 +1,12 @@
 import SwiftUI
 
 struct ItemCommentView: View {
-    @EnvironmentObject var dataService: DataService
-    
     @State var isCommenting: Bool = false
     @State var comment: String = ""
-    
-    let purpleColor = Color("Background")
-    
+        
     var item: ItemModel
-    var list: ListModel
+    
+    @Binding var list: ListModel?
     
     var body: some View {
         ZStack{
@@ -24,7 +21,10 @@ struct ItemCommentView: View {
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
                         .font(.system(size: 18, weight: .light))
                         .onTapGesture {
-                            dataService.toggleCompletion(of: item, from: list)
+                            if let list = list {
+                                let newList = list.toggleCompletion(of: item)
+                                self.list = newList
+                            }
                         }
                         .accessibilityAddTraits(AccessibilityTraits.isButton)
                         .accessibilityRemoveTraits(AccessibilityTraits.isImage)
@@ -35,7 +35,7 @@ struct ItemCommentView: View {
                         .strikethrough(item.isCompleted)
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
                         .font(.body)
-                        .fontWeight(.bold)
+                        .fontWeight(.medium)
                         .accessibility(hint: Text(item.isCompleted ? "CheckedItemLabelHint \(item.product.name)" : ""))
                     
                     if !isCommenting {
@@ -54,41 +54,7 @@ struct ItemCommentView: View {
                     
                     Spacer()
                     
-                    ZStack {
-                        Image(systemName: "minus")
-                            .resizable()
-                            .frame(width: 17, height: ((item.quantity ?? 1) > 1) ? 2 : 1.5)
-                            .foregroundColor(((item.quantity ?? 1) > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
-                    }
-                    .frame(width: 17, height: 17)
-                    .onTapGesture {
-                        dataService.removeQuantity(of: item, from: list)
-                    }
-                    .accessibilityAddTraits(AccessibilityTraits.isButton)
-                    .accessibilityRemoveTraits(AccessibilityTraits.isImage)
-                    .accessibilityLabel(Text("Remove"))
-                    .accessibility(hint: Text("RemoveOneItem"))
-                    
-                    
-                    Text("\(item.quantity ?? 1)")
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.primary)
-                        .accessibilityLabel(Text((item.quantity ?? 1) == 1 ? "ItemQuantityLabel1" : "ItemQuantityLabel2 \(item.quantity ?? 1)"))
-                        .accessibility(hint: Text("ItemQuantityHint"))
-
-                    Image(systemName: "plus")
-                        .resizable()
-                        .frame(width: 17, height: 17)
-                        .foregroundColor(Color("Comment"))
-                        .onTapGesture {
-                            dataService.addQuantity(of: item, from: list)
-                        }
-                        .accessibilityAddTraits(AccessibilityTraits.isButton)
-                        .accessibilityRemoveTraits(AccessibilityTraits.isImage)
-                        .accessibilityLabel(Text("Add"))
-                        .accessibility(hint: Text("AddOneItem"))
-                    
+                    QuantityCounter(item: item, list: $list)
                 }
                 
                 if isCommenting {
@@ -116,13 +82,16 @@ struct ItemCommentView: View {
                             .foregroundColor(Color.primary)
                             .font(.subheadline)
                             .onTapGesture {
-                                dataService.addComment(comment, to: item, from: list)
-                                isCommenting = false
+                                if let list = list {
+                                    isCommenting = false
+                                    let newList = list.addComment(comment, to: item)
+                                    self.list = newList
+                                }
                             }
                             .accessibilityAddTraits(AccessibilityTraits.isButton)
                             .accessibilityRemoveTraits(AccessibilityTraits.isImage)
                             .accessibility(hint: Text("CommentConfirmationButtonHint"))
-
+                        
                     }
                 } else if item.comment != "" {
                     Text(item.comment ?? "")
@@ -131,7 +100,7 @@ struct ItemCommentView: View {
                         .padding(.leading, 30)
                         .accessibility(hidden: item.comment == "")
                         .accessibility(hint: Text("CommentTextHint \(item.product.name)"))
-
+                    
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

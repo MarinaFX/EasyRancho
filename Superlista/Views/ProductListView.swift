@@ -4,13 +4,12 @@ struct ProductListView: View {
     @EnvironmentObject var dataService: DataService
     
     @Binding var filter: String
-    @Binding var hasChangedItems: Bool
 
     @State var selectedItems: [ItemModel] = []
     @State var showCreateNewCustomProductView: Bool = false
     @State var products = ProductListViewModel().productsOrdered
     
-    var list: ListModel
+    @Binding var list: ListModel?
 
     @State var filteredProducts: [ProductModel] = []
     @State var receivedNewProduct: Bool = false
@@ -56,20 +55,21 @@ struct ProductListView: View {
                         .frame(width: 17, height: 17)
                         .onTapGesture {
                             let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-                            dataService.removeQuantity(of: selectedItems[index], from: list)
+                            if let list = list {
+                                let newList = list.removeQuantity(of: selectedItems[index])
+                                self.list = newList
+                            }
                             if selectedItems[index].quantity! > 1 {
                                 selectedItems[index].quantity = selectedItems[index].quantity! - 1
                             }
                         }
                         .accessibilityLabel(Text("remove"))
                         .accessibility(hint: Text("removeOneItem"))
-
                         
                         Text("\(selectedItems[selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0].quantity ?? 1)")
                             .font(.system(size: 17, weight: .regular))
                             .foregroundColor(Color.primary)
                             .accessibilityLabel(Text("\(selectedItems[selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0].quantity ?? 1) items"))
-                        
                         
                         Image(systemName: "plus.square.fill")
                             .resizable()
@@ -77,7 +77,12 @@ struct ProductListView: View {
                             .foregroundColor(Color("Button"))
                             .onTapGesture {
                                 let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-                                dataService.addQuantity(of: selectedItems[index], from: list)
+                                
+                                if let list = list {
+                                    let newList = list.addQuantity(of: selectedItems[index])
+                                    self.list = newList
+                                }
+                                
                                 selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
                             }
                             .accessibilityLabel(Text("add"))
@@ -88,15 +93,19 @@ struct ProductListView: View {
                 .onTapGesture {
                     let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                     if isSelected(item: item){
-                        dataService.removeItem(selectedItems[index], from: list)
+                        if let list = list {
+                            let newList = self.list?.removeItem(selectedItems[index])
+                            self.list = newList
+                        }
                         selectedItems.remove(at: index)
                     } else {
                         let newItem = ItemModel(product: item)
-                        dataService.addItem(newItem, to: list)
+                        if let list = list {
+                            let newList = list.addItem(newItem)
+                            self.list = newList
+                        }
                         selectedItems.append(newItem)
                     }
-                    
-                    self.hasChangedItems = !selectedItems.isEmpty
                 }
             }
             .listRowBackground(Color("PrimaryBackground"))
