@@ -38,7 +38,7 @@ struct AddNewItemView: View {
         }
     }
     
-    func prontoButtonPressed() {
+    func readyButtonPressed() {
         presentationMode.wrappedValue.dismiss()
     }
 }
