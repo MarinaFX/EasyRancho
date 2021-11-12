@@ -18,7 +18,7 @@ struct AddNewItemView: View {
                 VStack {
                     ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
                     
-                    Button(action: prontoButtonPressed, label: {
+                    Button(action: readyButtonPressed, label: {
                         Text("AddNewItemViewBottomButtonLabel")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -41,7 +41,7 @@ struct AddNewItemView: View {
         }
     }
     
-    func prontoButtonPressed() {
+    func readyButtonPressed() {
         presentationMode.wrappedValue.dismiss()
     }
 }

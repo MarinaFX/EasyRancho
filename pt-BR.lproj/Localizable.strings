@@ -31,9 +31,6 @@
 // MARK: - SearchBar
 "SearchBarPlaceholder" = "Procurar Itens";
 
-// MARK: - FakeSearchBar
-"FakeSearchBarPlaceholder" = "Adicionar novos itens";
-
 // MARK: - OnboardingView
 "OnboardingViewButtonLabel" = "Começar";
 
@@ -112,6 +109,7 @@
 // MARK: - ListView
 "ListViewLabelA" = "Salvar";
 "ListViewLabelB" = "Editar";
+"AddItemsButton" = "Adicionar Itens";
 
 // MARK: - ListHeader VoiceOver
 "ListHeaderTitle" = "Título da Lista";

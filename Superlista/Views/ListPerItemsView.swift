@@ -1,30 +1,12 @@
 import SwiftUI
 
 struct ListPerItemsView: View {
-    
     @EnvironmentObject var dataService: DataService
-    
-    let networkMonitor = NetworkMonitor.shared
-    
-    var list: ListModel
     
     let background = Color("PrimaryBackground")
     
+    var list: ListModel
     var categories: [CategoryModel] { dataService.lists.first(where: { $0.id == list.id })!.items.keys.map { $0 } }
-    
-    func rows(from category: Int) -> [ItemModel] { dataService.lists.first(where: { $0.id == list.id })!.items[categories[category]]! }
-    
-    func isLast(_ item: ItemModel, from category: CategoryModel) -> Bool {
-        return getRows(from: category).last?.id == item.id
-    }
-    
-    func getCategories() -> [CategoryModel] {
-        return Array(list.items.keys.map { $0 }).sorted(by: { $0.title < $1.title })
-    }
-    
-    func getRows(from category: CategoryModel) -> [ItemModel] {
-        return list.items[category] ?? []
-    }
     
     var body: some View {
         List {
@@ -68,5 +50,19 @@ struct ListPerItemsView: View {
         .onAppear {
             UITableView.appearance().showsVerticalScrollIndicator = false
         }
+    }
+    
+    func rows(from category: Int) -> [ItemModel] { dataService.lists.first(where: { $0.id == list.id })!.items[categories[category]]! }
+    
+    func isLast(_ item: ItemModel, from category: CategoryModel) -> Bool {
+        return getRows(from: category).last?.id == item.id
+    }
+    
+    func getCategories() -> [CategoryModel] {
+        return Array(list.items.keys.map { $0 }).sorted(by: { $0.title < $1.title })
+    }
+    
+    func getRows(from category: CategoryModel) -> [ItemModel] {
+        return list.items[category] ?? []
     }
 }
