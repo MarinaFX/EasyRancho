@@ -33,6 +33,7 @@ struct ListCard: View {
                     .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
                     .cornerRadius(30)
                     .shadow(color: Color("Shadow"), radius: 12)
+                    .accessibility(hint: Text("HintListCard"))
                 
                 VStack(alignment: .leading){
                     // MARK: - list title
@@ -82,6 +83,7 @@ struct ListCard: View {
                                 } label: {
                                     Label("ContextMenu1", systemImage: "pencil")
                                 }
+                                .accessibility(hidden: false)
                                 .accessibilityLabel(Text("Option1"))
                                 .accessibility(hint: Text("Option1Hint"))
                                 
@@ -161,6 +163,10 @@ struct ListCard: View {
                             dataService.currentList = list
                             showAlertDelete = true
                         }
+                          .accessibility(label: Text("LabelMinusCircle"))
+                        .accessibility(hint: Text("HintMinusCircle"))
+                        .accessibility(addTraits: .isButton)
+                        .accessibility(removeTraits: .isImage)
                 }
             }
             .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)

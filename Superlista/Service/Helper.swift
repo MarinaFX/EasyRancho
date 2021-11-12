@@ -2,6 +2,13 @@ import Foundation
 import CloudKit
 import SwiftUI
 
+//MARK: - Enums
+// MARK: - UsersList Enum
+enum UsersList: String {
+    case MyLists, SharedWithMe
+}
+
+//MARK: - Functions
 // MARK: - ImageToCKAsset
 func ImageToCKAsset(uiImage: UIImage?) -> CKAsset? {
     if uiImage == nil { return nil }
@@ -65,57 +72,52 @@ func shareSheet(listID: String, option: String, listName: String, ownerName: Str
 
 // MARK: - Get Color Categories
 func getColor(category: String) -> Color {
-    switch category{
-    case NSLocalizedString("Bazar", comment: "Bazar"):
+    switch category {
+    case "Bazar", "Haushaltsartikel", "Home":
         return Color("Bazar")
-    case NSLocalizedString("Bebidas", comment: "Bebidas"):
+    case "Bebidas", "Getränke", "Drinks":
         return Color("Bebidas")
-    case NSLocalizedString("Bomboniere", comment: "Bomboniere"):
+        case "Bomboniere":
         return Color("Bomboniere")
-    case NSLocalizedString("Carnes", comment: "Carnes"):
+    case "Carnes", "Meats", "Fleisch":
         return Color("Carnes")
-    case NSLocalizedString("Compotasedoces", comment: "Compotas e doces"):
+    case "Compotas e doces", "Konfitüren und Gelees", "Jams and sweets":
         return Color("Compotasedoces")
-    case NSLocalizedString("Congelados", comment: "Congelados"):
+        case "Congelados", "Frozen", "Tiefkühlkost":
         return Color("Congelados")
-    case NSLocalizedString("Enlatadosconservaseoleos", comment: "Enlatados, conservas e oleos"):
+    case "Enlatados, conservas e óleos", "Lebensmittelkonserven und Öle", "Canned, pickled and oils":
         return Color("Enlatadosconservaseoleos")
-    case NSLocalizedString("Especiais", comment: "Especiais"):
+    case "Especiais", "Specials", "Sonderposten":
         return Color("Especiais")
-    case NSLocalizedString("Fiambreriaelaticinios", comment: "Fiambreria e laticinios"):
+    case "Fiambreria e laticínios", "Schinken und Molkereiprodukte", "Hams and dairy products":
         return Color("Fiambreriaelaticinios")
-    case NSLocalizedString("Graosefarinhas", comment: "Graos e farinhas"):
+    case "Grãos e farinhas", "Körner und Mehle", "Grains and flours":
         return Color("Graosefarinhas")
-    case NSLocalizedString("Higieneebeleza", comment: "Higiene e beleza"):
+    case "Higiene e beleza", "Hygiene und Schönheit", "Beauty and hygiene":
         return Color("Higieneebeleza")
-    case NSLocalizedString("Hortifruti", comment: "Hortifruti"):
+    case "Hortifruti", "Vegetables", "Obst und Gemüse":
         return Color("Hortifruti")
-    case NSLocalizedString("Limpeza", comment: "Limpeza"):
+    case "Limpeza", "Cleaning", "Reinigung":
         return Color("Limpeza")
-    case NSLocalizedString("Massasebiscoitos", comment: "Massas e biscoitos"):
+    case "Massas e biscoitos", "Nudeln und Kekse", "Pasta and cookies":
         return Color("Massasebiscoitos")
-    case NSLocalizedString("Matinais", comment: "Matinais"):
+    case "Matinais", "Breakfast", "Morgen":
         return Color("Matinais")
-    case NSLocalizedString("Molhos", comment: "Molhos"):
+    case "Molhos", "Sauces", "Saucen":
         return Color("Molhos")
-    case NSLocalizedString("Padaria", comment: "Padaria"):
+    case "Padaria", "Bäckerei", "Bakery":
         return Color("Padaria")
-    case NSLocalizedString("PetShop", comment: "PetShop"):
+    case "PetShop", "Zoohandlung":
         return Color("PetShop")
-    case NSLocalizedString("Sobremesas", comment: "Sobremesas"):
+    case "Sobremesas", "Desserts":
         return Color("Sobremesas")
-    case NSLocalizedString("Temperos", comment: "Temperos"):
+    case "Temperos", "Gewürze", "Seasonings":
         return Color("Temperos")
-    case NSLocalizedString("Outros", comment: "Outros"):
+    case "Outros", "Others", "Andere":
         return Color("Outros")
     default:
-        return Color.black
+        return Color("Outros")
     }
-}
-
-// MARK: - UsersList Enum
-enum UsersList: String {
-    case MyLists, SharedWithMe
 }
 
 // MARK: - Curtom usernames
@@ -124,4 +126,39 @@ func getNickname() -> String{
         return "\(colors) \(animals)"
     }
     return "User"
+}
+
+// MARK: - Difference between arrays
+extension Array where Element: Hashable {
+    func difference(from other: [Element]) -> [Element] {
+        let thisSet = Set(self)
+        let otherSet = Set(other)
+        return Array(thisSet.symmetricDifference(otherSet))
+    }
+}
+
+func getRandomUniqueID(blacklist existingIds: [Int]) -> Int {
+    var newRandom: Int = random()
+
+    while existingIds.contains(newRandom) {
+        newRandom = random()
+    }
+    
+    return newRandom
+}
+
+func random() -> Int {
+    return Int.random(in: 1000..<9999)
+}
+
+//MARK: - Extensions
+extension Array where Element: Equatable {
+    var unique: [Element] {
+        var uniqueValues: [Element] = []
+        forEach { item in
+            guard !uniqueValues.contains(item) else { return }
+            uniqueValues.append(item)
+        }
+        return uniqueValues
+    }
 }

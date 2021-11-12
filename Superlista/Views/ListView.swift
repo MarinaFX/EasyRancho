@@ -6,56 +6,64 @@ struct ListView: View {
     @State var hasChangedItems = false
     @State var listId: String
     @State var canEditTitle: Bool = false
-        
+    @State var listTitle: String = ""
+    @State var isPresentedAddNewItems: Bool = false
+    
     var list: ListModel? {
         let myList = getList()
         return myList
     }
     
-    @State var listTitle: String = ""
-    
     var body: some View {
-        GeometryReader { geometry in
-            MainScreen(customView:
-                ZStack {
-                    Color("PrimaryBackground")
-                        .ignoresSafeArea()
-                    
-                    VStack (spacing: 20) {
-                        if let list = self.list {
-                            ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
-                            
-                            NavigationLink(destination: AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "")){
-                                FakeSearchBar()
-                                    .padding(.horizontal, 20)
-                            }
-                            
-                            ListPerItemsView(list: list)
-                                .padding(.horizontal)
-                                .padding(.bottom, 30)
-                            
-                        } else {
-                            Spacer()
+        MainScreen(customView:
+            ZStack {
+            if let list = list {
+                NavigationLink("", isActive: $isPresentedAddNewItems, destination: { AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "") })
+            }
+            
+                Color("PrimaryBackground")
+                    .ignoresSafeArea()
+                
+                VStack (spacing: 10) {
+                    if let list = self.list {
+                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
+                        
+                        ListPerItemsView(list: list)
+                            .padding(.horizontal)
+                            .padding(.bottom, -10)
+                                                
+                        BottomBarButton(action: addNewItemAction, text: "AddItemsButton")
+                        
+                    } else {
+                        Spacer()
+                    }
+                }
+                .edgesIgnoringSafeArea(.bottom)
+            }
+        , topPadding: -30)
+            .toolbar{
+                ToolbarItem {
+                    Button {
+                        editTitle()
+                    } label: {
+                        Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
+                    }
+                }
+            }
+            .onAppear {
+                NetworkMonitor.shared.startMonitoring { path in
+                    if let sharedWith = list?.sharedWith {
+                        if path.status == .satisfied && !sharedWith.isEmpty {
+                            dataService.refreshUser()
                         }
                     }
                 }
-            , topPadding: -30)
-                .toolbar{
-                    ToolbarItem {
-                        Button {
-                            editTitle()
-                        } label: {
-                            Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
-                        }
-                    }
+            
+                if hasChangedItems, let list = self.list {
+                    dataService.updateCKListItems(of: list)
+                    self.hasChangedItems = false
                 }
-                .onAppear {
-                    if hasChangedItems, let list = self.list {
-                        dataService.updateCKListItems(of: list)
-                        self.hasChangedItems = false
-                    }
-                }
-        }
+            }
     }
     
     // MARK: - getList()
@@ -77,6 +85,9 @@ struct ListView: View {
             }
         }
     }
+    
+    func addNewItemAction() {
+        self.isPresentedAddNewItems = true
+    }
 }
-
 

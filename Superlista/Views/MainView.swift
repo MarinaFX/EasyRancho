@@ -8,28 +8,31 @@ struct MainView: View {
     @State var isEditing : Bool = false
     @State var listId: String = ""
     @State var isCreatingList: Bool = false
-    @State var isLoading: Bool = false
     @State var selectedSection = 0
     @State var createdBy = ""
     @State var counter = 0
     @Environment(\.sizeCategory) var sizeCategory
     
     @ScaledMetric var scaledHeightNewList: CGFloat = 83
+    @State var listTitle = ""
+    @State var hasClickedSettings = false
+    
+    let columns = Array(repeating: GridItem(.flexible()), count: 2)
     
     var appliedSection: [ListModel]{
         let section: [ListModel]
         
         switch selectedSection{
-        case 0:
-            section =  dataService.lists
-        case 1:
-            guard let currentUser = dataService.user else { return [] }
-            section = dataService.lists.filter{$0.owner.id == currentUser.id}
-        case 2:
-            guard let currentUser = dataService.user else { return [] }
-            section =  dataService.lists.filter{$0.owner.id != currentUser.id}
-        default:
-            section =  []
+            case 0:
+                section =  dataService.lists
+            case 1:
+                guard let currentUser = dataService.user else { return [] }
+                section = dataService.lists.filter{$0.owner.id == currentUser.id}
+            case 2:
+                guard let currentUser = dataService.user else { return [] }
+                section =  dataService.lists.filter{$0.owner.id != currentUser.id}
+            default:
+                section =  []
         }
         return section
     }
@@ -56,6 +59,7 @@ struct MainView: View {
                             Text("EmptyListText")
                                 .multilineTextAlignment(.center)
                                 .font(.headline)
+                                .accessibility(hint: Text("HintEmptyListText"))
                             
                             NoItemsView()
                                 .frame(width: 400, height: 400)
@@ -96,6 +100,7 @@ struct MainView: View {
                             if !dataService.lists.isEmpty {
                                 Button(action: { isEditing.toggle() }, label: {
                                     Text(isEditing ? "MainViewTrailingNavigationLabelA": "MainViewTrailingNavigationLabelB")})
+                                    .accessibility(hint: Text(isEditing ? "HintMainViewTrailingNavigationLabelA": "HintMainViewTrailingNavigationLabelB"))
                             }
                         }
                         
@@ -138,11 +143,12 @@ struct MainView: View {
                     .background(Color("ButtonBG"))
                     .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: sizeCategory >= ContentSizeCategory.extraLarge ? 5 : 1), alignment: .top)
                 }
+                BottomBarButton(action: createNewListAction, text: "AddListMainButton")
                 
             }
             .edgesIgnoringSafeArea(.bottom)
         }.sheet(isPresented: $hasClickedSettings) {
-            SettingsView()
+            SettingsView(isOpened: $hasClickedSettings)
         }
         .onReceive(dataService.objectWillChange) { _ in
             counter += 1
@@ -159,35 +165,17 @@ struct MainView: View {
         let msg = NSLocalizedString("CreateListAlertText", comment: "")
         let placeholder = NSLocalizedString("NovaLista", comment: "")
         
-        alertMessage(title: title, message: msg, placeholder: placeholder) { text in
+        textFieldAlert(title: title, message: msg, placeholder: placeholder) { text in
             if let title = text {
                 let listTitle = title != "" ? title : placeholder
-                
+
                 let newList: ListModel = ListModel(title: listTitle, owner: newOwner)
-                
+
                 dataService.addList(newList)
-                
+
                 self.listId = newList.id
                 self.isCreatingList = true
             }
         }
     }
-}
-
-func alertMessage(title: String, message: String, placeholder: String, actionHandler: @escaping (String?) -> Void) {
-    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    
-    alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertCancelButton", comment: ""), style: .cancel, handler: nil))
-    
-    alert.addTextField { textField in
-        textField.placeholder = placeholder
-    }
-    
-    alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertMainButton", comment: ""), style: .default, handler: { action in
-        actionHandler(alert.textFields?.first?.text)
-    }))
-    
-    let viewController = UIApplication.shared.windows.first!.rootViewController!
-    
-    viewController.present(alert, animated: true)
 }

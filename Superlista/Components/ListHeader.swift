@@ -3,6 +3,9 @@ import SwiftUI
 struct ListHeader: View {
     @EnvironmentObject var dataServive: DataService
     
+    @ScaledMetric var collabIconWidth: CGFloat = 28
+    @ScaledMetric var collabIconHeight: CGFloat = 24
+    
     @Binding var listaTitulo: String
     @State var canComment: Bool = false
     @State var comentario: String = ""
@@ -66,7 +69,7 @@ struct ListHeader: View {
             } label: {
                 Image(systemName: self.collaborators.isEmpty ? "person.crop.circle.badge.plus" : "person.crop.circle.badge.checkmark")
                     .resizable()
-                    .frame(width: 28, height: 24)
+                    .frame(width: collabIconWidth, height: collabIconHeight)
                     .foregroundColor(.primary)
             }
             .accessibility(label: Text(self.collaborators.isEmpty ? "ListHeaderCollabButton1" : "ListHeaderCollabButton2"))
