@@ -332,9 +332,7 @@ class DataService: ObservableObject {
     
     // MARK: - Upload Lists do UD para o CK
     func uploadUsersLists() {
-        CKService.currentModel.uploadUsersLists { result in
-            print(result, "result")
-        }
+        CKService.currentModel.uploadUsersLists { result in }
     }
     
     // MARK: - Create UD Lists on CK

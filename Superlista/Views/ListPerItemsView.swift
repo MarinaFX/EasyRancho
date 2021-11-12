@@ -55,7 +55,7 @@ struct ListPerItemsView: View {
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
                     .onDelete { row in
-                        if !(networkMonitor.status == .satisfied) {
+                        if (networkMonitor.status == .satisfied) {
                             dataService.removeItem(from: row, of: category, of: list)
                         }
                     }

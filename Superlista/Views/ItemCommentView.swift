@@ -26,7 +26,9 @@ struct ItemCommentView: View {
                         .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
                         .font(.system(size: 18, weight: .light))
                         .onTapGesture {
-                            dataService.toggleCompletion(of: item, from: list)
+                            if (networkMonitor.status == .satisfied) {
+                                dataService.toggleCompletion(of: item, from: list)
+                            }
                         }
                         .accessibilityAddTraits(AccessibilityTraits.isButton)
                         .accessibilityRemoveTraits(AccessibilityTraits.isImage)
@@ -44,9 +46,11 @@ struct ItemCommentView: View {
                         Image(systemName: "text.bubble")
                             .resizable()
                             .frame(width: 18, height: 18)
-                            .foregroundColor(Color("Comment"))
+                            .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
                             .onTapGesture {
-                                isCommenting = true
+                                if (networkMonitor.status == .satisfied) {
+                                    isCommenting = true
+                                }
                             }
                             .accessibilityAddTraits(AccessibilityTraits.isButton)
                             .accessibilityRemoveTraits(AccessibilityTraits.isImage)
@@ -60,11 +64,13 @@ struct ItemCommentView: View {
                         Image(systemName: "minus")
                             .resizable()
                             .frame(width: 17, height: ((item.quantity ?? 1) > 1) ? 2 : 1.5)
-                            .foregroundColor(((item.quantity ?? 1) > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
+                            .foregroundColor((((item.quantity ?? 1) <= 1) || !(networkMonitor.status == .satisfied)) ? Color(UIColor.secondaryLabel) : Color("Comment"))
                     }
                     .frame(width: 17, height: 17)
                     .onTapGesture {
-                        dataService.removeQuantity(of: item, from: list)
+                        if (networkMonitor.status == .satisfied) {
+                            dataService.removeQuantity(of: item, from: list)
+                        }
                     }
                     .accessibilityAddTraits(AccessibilityTraits.isButton)
                     .accessibilityRemoveTraits(AccessibilityTraits.isImage)
@@ -82,9 +88,11 @@ struct ItemCommentView: View {
                     Image(systemName: "plus")
                         .resizable()
                         .frame(width: 17, height: 17)
-                        .foregroundColor(Color("Comment"))
+                        .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
                         .onTapGesture {
-                            dataService.addQuantity(of: item, from: list)
+                            if (networkMonitor.status == .satisfied) {
+                                dataService.addQuantity(of: item, from: list)
+                            }
                         }
                         .accessibilityAddTraits(AccessibilityTraits.isButton)
                         .accessibilityRemoveTraits(AccessibilityTraits.isImage)
