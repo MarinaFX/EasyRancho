@@ -22,6 +22,8 @@ struct AddCollaboratorSheetView: View {
     
     let list: ListModel?
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var ckList: CKListModel? {
         if let list = list {
             return ListModelConverter().convertLocalListToCloud(withList: list)
@@ -48,10 +50,10 @@ struct AddCollaboratorSheetView: View {
                                 }, label: {
                                     HStack(alignment: .center) {
                                         Image(systemName: "plus.circle.fill")
-                                            .foregroundColor(Color("Button"))
+                                            .foregroundColor((networkMonitor.status == .satisfied) ? Color("Button") : Color(UIColor.secondaryLabel))
                                         
                                         Text("AddCollabButton")
-                                            .foregroundColor(Color("Button"))
+                                            .foregroundColor((networkMonitor.status == .satisfied) ? Color("Button") : Color(UIColor.secondaryLabel))
                                             .bold()
                                         
                                         Spacer()
@@ -62,6 +64,7 @@ struct AddCollaboratorSheetView: View {
                                     .background(Color("InsetGroupedBackground"))
                                     .cornerRadius(12)
                                     .padding(.horizontal, 16)
+                                    .disabled(!(networkMonitor.status == .satisfied))
                             } else {
                                 Text("ExitCollabTextTip")
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -182,6 +185,8 @@ struct CollaboratorListView: View {
     var collabImage: UIImage?
     var index: Int
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
             //TODO: user picture
@@ -208,7 +213,7 @@ struct CollaboratorListView: View {
                     Image(systemName: "xmark.circle.fill")
                         .resizable()
                         .frame(width: 20, height: 20)
-                        .foregroundColor(.black)
+                        .foregroundColor((networkMonitor.status == .satisfied) ? Color.primary : Color(UIColor.secondaryLabel))
                 }
                 .alert(isPresented: self.$showDeleteCollabAlert) {
                     Alert(
@@ -225,6 +230,7 @@ struct CollaboratorListView: View {
                         secondaryButton: .cancel(Text("DeleteCollabAlertSecondaryButton"), action: {})
                     )
                 }
+                .disabled(!(networkMonitor.status == .satisfied))
                 }
             }
         }
