@@ -161,7 +161,6 @@ struct ItemQuantityView: View {
             Image(systemName: "minus")
                 .resizable()
                 .frame(width: minusSymbolWidth, height: minusSymbolHeight)
-            //((item.quantity ?? 1) > 1) ? 2 : 1.5
                 .foregroundColor(((item.quantity ?? 1) > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
         }
         .frame(width: minusSymbolWidth, height: minusSymbolWidth)
