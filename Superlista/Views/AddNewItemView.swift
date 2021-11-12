@@ -3,10 +3,8 @@ import Foundation
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
-        
-    var list: ListModel
     
-    @Binding var hasChangedItems: Bool
+    @Binding var list: ListModel?
     
     @State var searchText: String
     
@@ -16,7 +14,7 @@ struct AddNewItemView: View {
         GeometryReader { geometry in
             MainScreen(customView:
                 VStack {
-                    ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
+                    ProductListView(filter: $searchText, list: self.$list)
                     
                     Button(action: readyButtonPressed, label: {
                         Text("AddNewItemViewBottomButtonLabel")
@@ -29,7 +27,7 @@ struct AddNewItemView: View {
                     })
                     .padding(.bottom, geometry.size.height * 0.12)
                     .padding(.top, geometry.size.height * (0.01))
-                    
+                
                 }
             )
             .toolbar {

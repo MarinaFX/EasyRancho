@@ -1,7 +1,7 @@
 import Foundation
 import CloudKit
 
-struct ListModel: Identifiable, Decodable, Encodable {
+struct ListModel: Identifiable, Decodable, Encodable, Equatable {
     var id: String
     var title: String
     var items: [CategoryModel: [ItemModel]]
@@ -122,5 +122,9 @@ struct ListModel: Identifiable, Decodable, Encodable {
         }
         
         return ListModel(id: id, title: title, items: newItemsList, owner: owner)
+    }
+    
+    static func == (lhs: ListModel, rhs: ListModel) -> Bool {
+        return lhs.id == rhs.id && lhs.items == rhs.items
     }
 }

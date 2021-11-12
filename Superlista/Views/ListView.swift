@@ -3,35 +3,28 @@ import SwiftUI
 struct ListView: View {
     @EnvironmentObject var dataService: DataService
     
-    @State var hasChangedItems = false
     @State var listId: String
     @State var canEditTitle: Bool = false
     @State var listTitle: String = ""
     @State var isPresentedAddNewItems: Bool = false
-    
-    var list: ListModel? {
-        let myList = getList()
-        return myList
-    }
+    @State var list: ListModel?
     
     var body: some View {
         MainScreen(customView:
             ZStack {
-            if let list = list {
-                NavigationLink("", isActive: $isPresentedAddNewItems, destination: { AddNewItemView(list: list, hasChangedItems: $hasChangedItems, searchText: "") })
-            }
-            
+                NavigationLink("", isActive: $isPresentedAddNewItems, destination: { AddNewItemView(list: self.$list, searchText: "") })
+                
                 Color("PrimaryBackground")
                     .ignoresSafeArea()
                 
                 VStack (spacing: 10) {
                     if let list = self.list {
-                        ListHeader(listaTitulo: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
+                        ListHeader(listTitle: $listTitle, canEditTitle: $canEditTitle, collaborators: list.sharedWith ?? [], listOwner: list.owner, list: self.list, listId: $listId)
                         
-                        ListPerItemsView(list: list)
+                        ListPerItemsView(list: $list)
                             .padding(.horizontal)
                             .padding(.bottom, -10)
-                                                
+                        
                         BottomBarButton(action: addNewItemAction, text: "AddItemsButton")
                         
                     } else {
@@ -39,8 +32,7 @@ struct ListView: View {
                     }
                 }
                 .edgesIgnoringSafeArea(.bottom)
-            }
-        , topPadding: -30)
+            }, topPadding: -30)
             .toolbar{
                 ToolbarItem {
                     Button {
@@ -51,6 +43,10 @@ struct ListView: View {
                 }
             }
             .onAppear {
+                if self.list == nil {
+                    self.list = getList()
+                }
+                
                 NetworkMonitor.shared.startMonitoring { path in
                     if let sharedWith = list?.sharedWith {
                         if path.status == .satisfied && !sharedWith.isEmpty {
@@ -58,10 +54,10 @@ struct ListView: View {
                         }
                     }
                 }
-            
-                if hasChangedItems, let list = self.list {
-                    dataService.updateCKListItems(of: list)
-                    self.hasChangedItems = false
+            }
+            .onChange(of: list) { newValue in
+                if let updatedList = newValue {
+                    dataService.updateCKListItems(of: updatedList)
                 }
             }
     }
