@@ -15,7 +15,7 @@ struct ItemCommentView: View {
     let purpleColor = Color("Background")
     
     var item: ItemModel
-    var list: ListModel
+    @Binding var list: ListModel?
     
     var body: some View {
         ZStack{
@@ -27,17 +27,17 @@ struct ItemCommentView: View {
             if sizeCategory.isAccessibilityCategory {
                 VStack(alignment: .leading) {
                     HStack {
-                        CheckmarkWithTextView(item: self.item, list: self.list)
+                        CheckmarkWithTextView(item: self.item, list: self.$list)
                     }
                     .padding(.top, 16)
                     
                     HStack {
-                        ItemQuantityView(item: self.item, list: self.list)
+                        ItemQuantityView(item: self.item, list: self.$list)
                     }
                     
                     HStack {
                         if isCommenting {
-                            SingleItemCommentView(isCommenting: self.$isCommenting, comment: self.$comment, item: self.item, list: self.list)
+                            SingleItemCommentView(isCommenting: self.$isCommenting, comment: self.$comment, item: self.item, list: self.$list)
                         } else if item.comment != "" {
                             Text(item.comment ?? "")
                                 .font(.footnote)
@@ -68,7 +68,7 @@ struct ItemCommentView: View {
                 //the original layout is rendered
                 VStack (alignment: .leading, spacing: 0) {
                     HStack {
-                        CheckmarkWithTextView(item: self.item, list: self.list)
+                        CheckmarkWithTextView(item: self.item, list: self.$list)
                         
                         if !isCommenting {
                             Image(systemName: "text.bubble")
@@ -88,13 +88,13 @@ struct ItemCommentView: View {
                         
                         Spacer()
                         
-                        ItemQuantityView(item: self.item, list: self.list)
+                        ItemQuantityView(item: self.item, list: self.$list)
                             .padding(.bottom, 16)
                     }
                     
                     if isCommenting {
                         HStack {
-                            SingleItemCommentView(isCommenting: self.$isCommenting, comment: self.$comment, item: self.item, list: self.list)
+                            SingleItemCommentView(isCommenting: self.$isCommenting, comment: self.$comment, item: self.item, list: self.$list)
                         }
                         .padding(.top, 10)
                     } else if item.comment != "" {
@@ -104,7 +104,7 @@ struct ItemCommentView: View {
                             .padding(.leading, 30)
                             .accessibility(hidden: item.comment == "")
                             .accessibility(hint: Text("CommentTextHint \(item.product.name)"))
-
+                        
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -125,15 +125,18 @@ struct CheckmarkWithTextView: View {
     let networkMonitor = NetworkMonitor.shared
     
     var item: ItemModel
-    var list: ListModel
+    @Binding var list: ListModel?
     
     var body: some View {
         Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
             .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
             .font(.body)
             .onTapGesture {
-                if (networkMonitor.status == .satisfied) {
-                    dataService.toggleCompletion(of: item, from: list)
+                if (networkMonitor.status == .satisfied) {      
+                    if let list = list {
+                        let newList = list.toggleCompletion(of: item)
+                        self.list = newList
+                    } 
                 }
             }
             .accessibilityAddTraits(AccessibilityTraits.isButton)
@@ -163,7 +166,7 @@ struct ItemQuantityView: View {
     let networkMonitor = NetworkMonitor.shared
     
     var item: ItemModel
-    var list: ListModel
+    @Binding var list: ListModel?
     
     var body: some View {
         ZStack {
@@ -175,7 +178,10 @@ struct ItemQuantityView: View {
         .frame(width: minusSymbolWidth, height: minusSymbolWidth)
         .onTapGesture {
             if (networkMonitor.status == .satisfied) {
-                dataService.removeQuantity(of: item, from: list)
+                if let list = list {
+                    let newList = list.removeQuantity(of: item)
+                    self.list = newList
+                }
             }
         }
         .accessibilityAddTraits(AccessibilityTraits.isButton)
@@ -191,15 +197,18 @@ struct ItemQuantityView: View {
             .accessibilityLabel(Text((item.quantity ?? 1) == 1 ? "ItemQuantityLabel1" : "ItemQuantityLabel2 \(item.quantity ?? 1)"))
             .accessibility(hint: Text("ItemQuantityHint"))
             .padding(.horizontal, sizeCategory.isAccessibilityCategory ? 12 : 0)
-
-
+        
+        
         Image(systemName: "plus")
             .resizable()
             .frame(width: plusSymbolWidth, height: plusSymbolHeight)
             .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
             .onTapGesture {
                 if (networkMonitor.status == .satisfied) {
-                    dataService.addQuantity(of: item, from: list)
+                    if let list = list {
+                        let newList = list.addQuantity(of: item)
+                        self.list = newList
+                    }
                 }
             }
             .accessibilityAddTraits(AccessibilityTraits.isButton)
@@ -218,7 +227,7 @@ struct SingleItemCommentView: View {
     @Binding var comment: String
     
     var item: ItemModel
-    var list: ListModel
+    @Binding var list: ListModel?
     
     var body: some View {
         ZStack(alignment: .leading){
@@ -244,8 +253,11 @@ struct SingleItemCommentView: View {
             .foregroundColor(Color.primary)
             .font(.subheadline)
             .onTapGesture {
-                dataService.addComment(comment, to: item, from: list)
-                isCommenting = false
+                if let list = list {
+                    isCommenting = false
+                    let newList = list.addComment(comment, to: item)
+                    self.list = newList
+                }
             }
             .accessibilityAddTraits(AccessibilityTraits.isButton)
             .accessibilityRemoveTraits(AccessibilityTraits.isImage)

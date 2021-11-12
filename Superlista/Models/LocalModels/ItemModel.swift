@@ -1,6 +1,6 @@
 import Foundation
 
-struct ItemModel: Identifiable, Codable {
+struct ItemModel: Identifiable, Codable, Equatable {
     let id: String
     let product: ProductModel
     let comment: String?
