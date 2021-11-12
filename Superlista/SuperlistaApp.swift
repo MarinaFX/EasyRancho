@@ -89,7 +89,9 @@ struct SuperlistaApp: App {
                 NetworkMonitor.shared.startMonitoring { path in
                     print(path.status, "status on appear")
                     if path.status == .satisfied {
-                        dataService.getSharedLists()
+                        if CKService.currentModel.user != nil {
+                            dataService.refreshUser()
+                        }
                     }
                 }
                 loadData()

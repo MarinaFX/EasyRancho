@@ -24,7 +24,10 @@ class CKListModel {
         
         group.enter()
         
-        ownerRef = CKRecord.Reference(recordID: CKService.currentModel.user!.id, action: .none)
+        let UDuser = UDService().getUDUser()
+        
+        #warning("gambiarra para nao crashar por enquanto")
+        ownerRef = CKRecord.Reference(recordID: CKRecord.ID(recordName: UDuser?.id ?? "gambiarra"), action: .none)
         OwnerModelConverter().convertReferenceToCK(withReference: ownerRef) { result in
             switch result {
             case .success(let user):
