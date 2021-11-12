@@ -3,6 +3,8 @@ import SwiftUI
 struct ItemCommentView: View {
     @EnvironmentObject var dataService: DataService
     
+    let networkMonitor = NetworkMonitor.shared
+    
     @State var isCommenting: Bool = false
     @State var comment: String = ""
     

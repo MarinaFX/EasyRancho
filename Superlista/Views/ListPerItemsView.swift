@@ -4,6 +4,8 @@ struct ListPerItemsView: View {
     
     @EnvironmentObject var dataService: DataService
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var list: ListModel
     
     let background = Color("PrimaryBackground")
@@ -53,7 +55,9 @@ struct ListPerItemsView: View {
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
                     .onDelete { row in
-                        dataService.removeItem(from: row, of: category, of: list)
+                        if !(networkMonitor.status == .satisfied) {
+                            dataService.removeItem(from: row, of: category, of: list)
+                        }
                     }
                     .listRowBackground(Color("PrimaryBackground"))
                 }

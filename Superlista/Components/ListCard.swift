@@ -17,6 +17,8 @@ struct ListCard: View {
     @State var editNavigation = false
     @State var showAlertDuplicate = false
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var body: some View {
         NavigationLink(destination: ListView(listId: list.id), label: {
             ZStack(alignment: .leading) {
