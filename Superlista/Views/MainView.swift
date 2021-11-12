@@ -11,13 +11,18 @@ struct MainView: View {
     @State var selectedSection = 0
     @State var createdBy = ""
     @State var counter = 0
-    @Environment(\.sizeCategory) var sizeCategory
-    
-    @ScaledMetric var scaledHeightNewList: CGFloat = 83
+    @State var showDialog = false
     @State var listTitle = ""
     @State var hasClickedSettings = false
     
-    let columns = Array(repeating: GridItem(.flexible()), count: 2)
+    @ScaledMetric var scaledHeightNewList: CGFloat = 83
+    
+    @Environment(\.sizeCategory) var sizeCategory
+
+    
+    var columns: Array<GridItem>{
+        Array(repeating: GridItem(.flexible()), count: sizeCategory >= ContentSizeCategory.extraExtraLarge ? 1 : 2)
+    }
     
     var appliedSection: [ListModel]{
         let section: [ListModel]
@@ -36,15 +41,6 @@ struct MainView: View {
         }
         return section
     }
-    
-    @State var showDialog = false
-    @State var listTitle = ""
-    @State var hasClickedSettings = false
-    
-    var columns: Array<GridItem>{
-        Array(repeating: GridItem(.flexible()), count: sizeCategory >= ContentSizeCategory.extraExtraLarge ? 1 : 2)
-    }
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -119,29 +115,6 @@ struct MainView: View {
                                 .frame(width: 200, height: 200)
                         })
                     }
-                }
-                
-                Button(action: createNewListAction) {
-                    VStack(alignment: .trailing) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.title2)
-                            
-                            Text("AddListMainButton")
-                                .fontWeight(.bold)
-                                .font(.title3)
-                            
-                            Spacer()
-                        }
-                        .foregroundColor(Color("Button"))
-                        .padding(.bottom, 34)
-                        .padding(.horizontal, 14)
-                        .padding(.top, 18)
-                        
-                    }
-                    .frame(width: UIScreen.main.bounds.width, height: scaledHeightNewList)
-                    .background(Color("ButtonBG"))
-                    .overlay(Rectangle().fill(Color(UIColor.systemGray5)).frame(width: UIScreen.main.bounds.width, height: sizeCategory >= ContentSizeCategory.extraLarge ? 5 : 1), alignment: .top)
                 }
                 BottomBarButton(action: createNewListAction, text: "AddListMainButton")
                 
