@@ -12,6 +12,8 @@ struct ProductListView: View {
     @State var products = ProductListViewModel().productsOrdered
     @State var filteredProducts: [ProductModel] = []
     @State var receivedNewProduct: Bool = false
+    @State var deletedCustomProduct: Bool = false
+
     
     var list: ListModel
     
@@ -23,7 +25,7 @@ struct ProductListView: View {
                 if sizeCategory.isAccessibilityCategory {
                     VStack {
                         HStack {
-                            ProductListRowView(selectedItems: self.$selectedItems, item: item)
+                            ProductListRowView(selectedItems: self.$selectedItems, didDeleteCustomProduct: self.$deletedCustomProduct, item: item)
                         }
                         .onTapGesture {
                             let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
@@ -50,7 +52,7 @@ struct ProductListView: View {
                 //renders the normal layout
                 else {
                     HStack {
-                        ProductListRowView(selectedItems: self.$selectedItems, item: item)
+                        ProductListRowView(selectedItems: self.$selectedItems, didDeleteCustomProduct: self.$deletedCustomProduct, item: item)
                         
                         if isSelected(item: item) {
                             ProductQuantityView(selectedItems: self.$selectedItems, list: list, item: item)
@@ -79,17 +81,19 @@ struct ProductListView: View {
             
         }
         .listStyle(.plain)
+        .onAppear(perform: { updateProductListAction() })
+        .onChange(of: receivedNewProduct, perform: { _ in
+            updateProductListAction()
+            
+            DispatchQueue.main.async {
+                self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(filter) } )
+            }
+        })
+        .onChange(of: deletedCustomProduct, perform: { _ in
+            updateProductListAction()
 
-        .onAppear(perform: updateProductListAction)
-        .onChange(of: receivedNewProduct, perform: { newProduct in
-            if let customProducts = dataService.user?.customProducts {
-                let allProducts = products + customProducts
-                
-                DispatchQueue.main.async {
-                    products = allProducts.sorted(by: { $0.name < $1.name } )
-                    
-                    self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(filter) } )
-                }
+            DispatchQueue.main.async {
+                self.filteredProducts = products.filter( { $0.name.localizedCaseInsensitiveContains(filter) } )
             }
         })
         .onChange(of: filter, perform: { newFilter in
@@ -99,6 +103,7 @@ struct ProductListView: View {
     
     func updateProductListAction() {
         if let customProducts = dataService.user?.customProducts {
+            self.products = ProductListViewModel().productsOrdered
             let allProducts = self.products + customProducts
             
             DispatchQueue.main.async {
@@ -118,6 +123,7 @@ struct ProductListRowView: View {
     @EnvironmentObject var dataService: DataService
 
     @Binding var selectedItems: [ItemModel]
+    @Binding var didDeleteCustomProduct: Bool
 
     var item: ProductModel
     
@@ -140,7 +146,7 @@ struct ProductListRowView: View {
         if let customProducts = dataService.user?.customProducts {
             if customProducts.map( { $0.name }).contains(item.name) {
                 Button {
-                    print("deletou o produto custom")
+                    deleteCustomProductAction(item)
                 } label: {
                     Image(systemName: "trash")
                         .font(.footnote)
@@ -162,6 +168,24 @@ struct ProductListRowView: View {
     
     func isSelected(item: ProductModel) -> Bool {
         return selectedItems.contains(where: { $0.product.name == item.name })
+    }
+    
+    func deleteCustomProductAction(_ item: ProductModel) {
+        alertMessage(title: NSLocalizedString("deletionAlertTitle", comment: ""),
+                     message: NSLocalizedString("deletionAlertMessage", comment: ""),
+                     actions: [
+            UIAlertAction(title: NSLocalizedString("deletionAlertDestructive", comment: ""),
+                          style: .destructive,
+                          handler: { _ in
+                let didDeleteProductSuccessfully = dataService.deleteCustomProduct(of: item)
+                if didDeleteProductSuccessfully {
+                    self.didDeleteCustomProduct.toggle()
+                }
+            }),
+            UIAlertAction(title: NSLocalizedString("deletionAlertCancel", comment: ""),
+                          style: .cancel,
+                          handler: { _ in })
+        ])
     }
 }
 
