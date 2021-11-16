@@ -66,7 +66,7 @@ struct ListHeader: View {
                 Image(systemName: self.collaborators.isEmpty ? "person.crop.circle.badge.plus" : "person.crop.circle.badge.checkmark")
                     .resizable()
                     .frame(width: collabIconWidth, height: collabIconHeight)
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
             }
             .accessibility(label: Text(self.collaborators.isEmpty ? "ListHeaderCollabButton1" : "ListHeaderCollabButton2"))
             .sheet(isPresented: $showCollabSheetView) { }
