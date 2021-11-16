@@ -281,6 +281,14 @@ class DataService: ObservableObject {
         //Fim da gambiarra
     }
     
+    func updateList(of list: ListModel) {
+        if let index = lists.firstIndex(where: { $0.id == list.id }) {
+            lists[index] = list
+        }
+        
+        updateCKListItems(of: list)
+    }
+    
     func updateCKListItems(of list: ListModel) {
         if networkMonitor.status == .satisfied {
             CloudIntegration.actions.updateCkListItems(updatedList: list)
@@ -314,6 +322,14 @@ class DataService: ObservableObject {
                         }
                     }
                     
+                    if let user = self.user {
+                        user.myLists?.forEach { list in
+                            if let sharedWith = list.sharedWith, sharedWith.isEmpty {
+                                localMyLists.append(list)
+                            }
+                        }
+                    }
+                    
                     var newLists: [ListModel] = localSharedWithMe
                     newLists.append(contentsOf: localMyLists)
                     
@@ -323,23 +339,22 @@ class DataService: ObservableObject {
                         self.user?.sharedWithMe = localSharedWithMe
                         if let user = self.user {
                             self.createNewLists(localMyLists: localMyLists)
+                            self.deleteOldLists(localMyLists: localMyLists)
                             self.updateUsersLists(localMyLists: localMyLists)
                             CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user)
                             self.uploadUsersLists()
                         }
                     }
-                    
-                case .failure:
-                    return
+                      
+                    case .failure:
+                        return
             }
         }
     }
     
     // MARK: - Upload Lists do UD para o CK
     func uploadUsersLists() {
-        CKService.currentModel.uploadUsersLists { result in
-            print(result, "result")
-        }
+        CKService.currentModel.uploadUsersLists { result in }
     }
     
     // MARK: - Create UD Lists on CK
@@ -351,14 +366,10 @@ class DataService: ObservableObject {
             }
         }
         
-        let indexes = zip(oldLists, localMyLists).enumerated().filter() {
-            $1.1.id == $1.1.id
-        }.map{$0.0}
+        let oldListsIDs = Set(oldLists.map(\.id))
         
-        var newLists: [ListModel] = []
-        
-        for index in indexes {
-            newLists.append(localMyLists[index])
+        let newLists: [ListModel] = localMyLists.filter { list in
+            !oldListsIDs.contains(list.id)
         }
         
         for list in newLists {
@@ -366,11 +377,33 @@ class DataService: ObservableObject {
         }
     }
     
+    // MARK: - Delete UD Lists on CK
+    func deleteOldLists(localMyLists: [ListModel]) {
+        var oldLists: [ListModel] = []
+        
+        for ckList in CKService.currentModel.user?.myLists ?? [] {
+            if let localList = ListModelConverter().convertCloudListToLocal(withList: ckList) {
+                oldLists.append(localList)
+            }
+        }
+        
+        let newListsIDs = Set(localMyLists.map(\.id))
+        
+        let deleteLists: [ListModel] = oldLists.filter { list in
+            !newListsIDs.contains(list.id)
+        }
+        
+        for list in deleteLists {
+            CKService.currentModel.deleteList(listID: CKRecord.ID(recordName: list.id), shouldRefresh: false) { result in
+            }
+        }
+    }
+    
     // MARK: - Update Users Lists from UD to CK
     func updateUsersLists(localMyLists: [ListModel]) {
         for list in localMyLists {
             let ckList = ListModelConverter().convertLocalListToCloud(withList: list)
-            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID: ckList.id) { result in }
+            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID: ckList.id, shouldRefresh: false) { result in }
         }
     }
 }

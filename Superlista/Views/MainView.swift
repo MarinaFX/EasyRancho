@@ -24,6 +24,8 @@ struct MainView: View {
         Array(repeating: GridItem(.flexible()), count: sizeCategory >= ContentSizeCategory.extraExtraLarge ? 1 : 2)
     }
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var appliedSection: [ListModel]{
         let section: [ListModel]
         

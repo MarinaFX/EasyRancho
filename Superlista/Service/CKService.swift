@@ -63,7 +63,9 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Refresh Return User
+    let ds = DispatchSemaphore(value: 1)
     func refreshUser(_ completion: @escaping (Result<CKUserModel,CKError>) -> Void) {
+        self.ds.wait()
         var userStatus: UserStatus = .none
         
         let dispatchSemaphore = DispatchSemaphore(value: 1)
@@ -80,8 +82,10 @@ class CKService: ObservableObject {
             getUser { result in
                 switch result {
                 case .success(let user):
+                    self.ds.signal()
                     completion(.success(user))
                 case .failure(let error):
+                    self.ds.signal()
                     completion(.failure(error))
                 }
                 dispatchSemaphore.signal()
@@ -345,9 +349,7 @@ class CKService: ObservableObject {
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
-                        self.refresh { error in
-                            completion(.success(record!.recordID))
-                        }
+                        completion(.success(record!.recordID))
                     } else {
                         completion(.failure(error as! CKError))
                     }
@@ -525,7 +527,7 @@ class CKService: ObservableObject {
         }
     }
     
-    func updateList(listItems: [String], listName: String, listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func updateList(listItems: [String], listName: String, listID: CKRecord.ID, shouldRefresh: Bool = true, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.fetch(withRecordID: listID) { record, error in
             if error == nil {
                 record!.setValue(listName, forKey: "ListName")
@@ -533,7 +535,11 @@ class CKService: ObservableObject {
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
-                        self.refresh { error in
+                        if shouldRefresh {
+                            self.refresh { error in
+                                completion(.success(record!.recordID))
+                            }
+                        } else {
                             completion(.success(record!.recordID))
                         }
                     } else {
@@ -547,11 +553,15 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Delete List
-    func deleteList(listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func deleteList(listID: CKRecord.ID, shouldRefresh: Bool = true, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.delete(withRecordID: listID) { deleteRecordID, error in
             if error == nil {
                 DispatchQueue.main.async {
-                    self.refresh { error in
+                    if shouldRefresh {
+                        self.refresh { error in
+                            completion(.success(deleteRecordID!))
+                        }
+                    } else {
                         completion(.success(deleteRecordID!))
                     }
                 }
