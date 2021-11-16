@@ -11,7 +11,10 @@ import CloudKit
 //MARK: - AddCollaboratorSheetView Struct
 
 struct AddCollaboratorSheetView: View {
+    @Environment(\.sizeCategory) var sizeCategory
     @EnvironmentObject var dataService: DataService
+    
+    @ScaledMetric var buttonHeight: CGFloat = UIScreen.main.bounds.height * 0.07
     
     @Binding var showCollabSheetView: Bool
     @Binding var collaborators: [OwnerModel]
@@ -33,138 +36,139 @@ struct AddCollaboratorSheetView: View {
     
     //MARK: AddCollaboratorSheetView View
     var body: some View {
-        GeometryReader { geometry in
-            NavigationView {
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        //MARK: AddCollaboratorSheetView Collab section
-                        if let list = list, let user = dataService.user {
-                            if dataService.isOwner(of: list, userID: user.id) {
-                                Text("AddCollabTextTip")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
-                                
-                                Button(action: {
-                                    self.showShareActionSheet.toggle()
-                                    shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name!)
-                                }, label: {
-                                    HStack(alignment: .center) {
-                                        Image(systemName: "plus.circle.fill")
-                                            .foregroundColor((networkMonitor.status == .satisfied) ? Color("Button") : Color(UIColor.secondaryLabel))
-                                        
-                                        Text("AddCollabButton")
-                                            .foregroundColor((networkMonitor.status == .satisfied) ? Color("Button") : Color(UIColor.secondaryLabel))
-                                            .bold()
-                                        
-                                        Spacer()
-                                    }
-                                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
-                                })
-                                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
-                                    .background(Color("InsetGroupedBackground"))
-                                    .cornerRadius(12)
-                                    .padding(.horizontal, 16)
-                                    .disabled(!(networkMonitor.status == .satisfied))
-                            } else {
-                                Text("ExitCollabTextTip")
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
-                            }
-                        }
-                        
-                        //MARK: AddCollaboratorSheetView List view
-                        if let collaborators = collaborators {
-                            if !collaborators.isEmpty {
-                                List {
-                                    ForEach(0..<self.collaborators.count, id: \.self) { index in
-                                        CollaboratorListView(collaborators: self.$collaborators, list: list, name: collaborators[index].name!, index: index)
-                                    }
-                                    .listRowBackground(Color("InsetGroupedBackground"))
-                                }
-                                .foregroundColor(.black)
-                                .padding(.vertical, 16)
-                                .frame(width: geometry.size.width, height: geometry.size.height * 0.45)
-                                .listStyle(.insetGrouped)
-                            }
-                            else {
-                                VStack {
-                                    Text("NoCollaboratorsText")
-                                        .foregroundColor(Color(UIColor.lightGray))
-                                }
-                                .frame(width: geometry.size.width - 32, height: geometry.size.height * 0.45)
-                                .background(Color("InsetGroupedBackground"))
-                                .cornerRadius(10)
-                                .padding(.vertical, 16)
-                            }
-                        }
-                        
-                        
-                        //MARK: AddCollaboratorSheetView Share section
-                        Text("ShareListText")
-                            .font(.system(size: 13))
-                            .bold()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 16)
-                        
-                        Button(action: {
-                            guard let list = list else {
-                                return
-                            }
+        NavigationView {
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    //MARK: AddCollaboratorSheetView Collab section
+                    if let list = list, let user = dataService.user {
+                        if dataService.isOwner(of: list, userID: user.id) {
+                            Text("AddCollabTextTip")
+                                .font(.body)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
                             
-                            self.showShareActionSheet.toggle()
-                            shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: listOwner.name!)
-                        }, label: {
-                            HStack(alignment: .center) {
-                                Text("ShareListButton")
-                                    .foregroundColor(.black)
-                                
-                                Spacer()
-                                
-                                Image(systemName: "square.and.arrow.up")
-                                    .foregroundColor(.black)
-                                    .padding(8)
-                            }
-                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
-                        })
-                            .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.07)
-                            .background(Color("InsetGroupedBackground"))
-                            .cornerRadius(12)
-                            .padding(.horizontal, 16)
-                        
-                        Text("ShareListWarning")
-                            .font(.system(size: 13))
-                            .foregroundColor(Color("Footnote"))
-                            .padding(.horizontal, 16)
+                            Button(action: {
+                                self.showShareActionSheet.toggle()
+                                shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name!)
+                            }, label: {
+                                HStack(alignment: .center) {
+                                    Image(systemName: "plus.circle.fill")
+                                        .foregroundColor((networkMonitor.status == .satisfied) ? Color("Button") : Color(UIColor.secondaryLabel))
+                                    
+                                    Text("AddCollabButton")
+                                        .font(.body)
+                                        .foregroundColor((networkMonitor.status == .satisfied) ? Color("Button") : Color(UIColor.secondaryLabel))
+                                        .bold()
+                                    
+                                    Spacer()
+                                }
+                                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                            })
+                                .frame(width: UIScreen.main.bounds.width * 0.9, height: sizeCategory < ContentSizeCategory.accessibilityExtraExtraExtraLarge ? buttonHeight : UIScreen.main.bounds.height * 0.5, alignment: .leading)
+                                .background(Color("InsetGroupedBackground"))
+                                .cornerRadius(12)
+                                .padding(.horizontal, 16)
+                                .disabled(!(networkMonitor.status == .satisfied))
+                        } else {
+                            Text("ExitCollabTextTip")
+                                .font(.body)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
+                        }
                     }
                     
-                    //MARK: AddCollaboratorSheetView Navbar config
-                    .toolbar {
-                        //MARK: AddCollaboratorSheetView Cancel button
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button {
-                                self.showCollabSheetView = false
-                            } label: {
-                                Text("AddCollaboratorLeadingNavigationLabel")
-                                    .font(.system(size: 17))
-                                    .foregroundColor(.blue)
+                    //MARK: AddCollaboratorSheetView List view
+                    if let collaborators = collaborators {
+                        if !collaborators.isEmpty {
+                            List {
+                                ForEach(0..<self.collaborators.count, id: \.self) { index in
+                                    CollaboratorListView(collaborators: self.$collaborators, list: list, name: collaborators[index].name!, index: index)
+                                }
+                                .listRowBackground(Color("InsetGroupedBackground"))
                             }
+                            .foregroundColor(.black)
+                            .padding(.vertical, 16)
+                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
+                            .listStyle(.insetGrouped)
                         }
-                        
-                        //MARK: AddCollaboratorSheetView Done button
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                self.showCollabSheetView = false
-                            } label: {
-                                Text("AddCollaboratorTrailingNavigationLabel")
-                                    .font(.system(size: 17))
-                                    .bold()
-                                    .foregroundColor(.blue)
+                        else {
+                            VStack {
+                                Text("NoCollaboratorsText")
+                                    .foregroundColor(Color(UIColor.lightGray))
                             }
+                            .frame(width: UIScreen.main.bounds.width - 40, height: sizeCategory < ContentSizeCategory.accessibilityExtraExtraExtraLarge ? UIScreen.main.bounds.height * 0.45 : UIScreen.main.bounds.height * 0.6)
+                            .background(Color("InsetGroupedBackground"))
+                            .cornerRadius(10)
+                            .padding(.vertical, 16)
                         }
                     }
-                    .navigationTitle("AddCollabTitle")
-                    .navigationBarTitleDisplayMode(.large)
+                    
+                    //MARK: AddCollaboratorSheetView Share section
+                    Text("ShareListText")
+                        .font(.footnote)
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 20)
+                    
+                    Button(action: {
+                        guard let list = list else {
+                            return
+                        }
+                        
+                        self.showShareActionSheet.toggle()
+                        shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: listOwner.name!)
+                    }, label: {
+                        HStack(alignment: .center) {
+                            Text("ShareListButton")
+                                .font(.body)
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                            
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.black)
+                                .padding(8)
+                        }
+                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
+                    })
+                        .frame(width: UIScreen.main.bounds.width * 0.9, height: sizeCategory < ContentSizeCategory.accessibilityExtraExtraExtraLarge ? buttonHeight : UIScreen.main.bounds.height * 0.5, alignment: .leading)
+                        .background(Color("InsetGroupedBackground"))
+                        .cornerRadius(12)
+                        .padding(.horizontal, 16)
+                    
+                    Text("ShareListWarning")
+                        .font(.footnote)
+                        .foregroundColor(Color("Footnote"))
+                        .padding(.horizontal, 16)
                 }
+                
+                //MARK: AddCollaboratorSheetView Navbar config
+                .toolbar {
+                    //MARK: AddCollaboratorSheetView Cancel button
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            self.showCollabSheetView = false
+                        } label: {
+                            Text("AddCollaboratorLeadingNavigationLabel")
+                                .font(.body)
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    
+                    //MARK: AddCollaboratorSheetView Done button
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            self.showCollabSheetView = false
+                        } label: {
+                            Text("AddCollaboratorTrailingNavigationLabel")
+                                .font(.body)
+                                .bold()
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
+                .navigationTitle("AddCollabTitle")
+                .navigationBarTitleDisplayMode(.large)
             }
         }
         .onAppear {
