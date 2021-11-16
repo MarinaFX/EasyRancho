@@ -14,6 +14,7 @@
 "itemNotFoundMessage" = "Item não encontrado";
 "itemNotFoundButton" = "Criar Novo Produto";
 "ACItemNotFoundButtonHint" = "Toque duas vezes para avançar para tela de criação de produto";
+"ACDeleteButtonHint" = "Toque duas vezes para deletar esse produto da sua lista de produtos customizados"
 "deletionAlertTitle" = "Você tem certeza que deseja apagar este item?";
 "deletionAlertMessage" = "O item personalizado será apagado permanentemente das suas listas.";
 "deletionAlertDestructive" = "Apagar";

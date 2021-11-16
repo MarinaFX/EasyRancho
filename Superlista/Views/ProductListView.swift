@@ -155,6 +155,8 @@ struct ProductListRowView: View {
                 } label: {
                     Image(systemName: "trash")
                         .font(.footnote)
+                        .accessibilityAddTraits(.isButton)
+                        .accessibilityHint("")
                 }
                 .buttonStyle(.borderless)
             }
