@@ -2,8 +2,8 @@
 "NovaLista" = "Neue Liste";
 
 // MARK: - CustomSource
-"Lista: %@" = "Liste: %@";
-"Criada por: %@" = "Erstellt von: %@";
+"Lista" = "Liste";
+"Criada por" = "Erstellt von";
 
 //MARK: - Toolbar/navigationbar items
 "leadingCancel" = "Abbrechen";
@@ -231,3 +231,9 @@
 "Sobremesas" = "Desserts";
 "Temperos" = "Gewürze";
 "Outros" = "Andere";
+
+// MARK: - Share Texts
+"shareListText" = "Sieh meine Liste";
+"addCollabListText" = "Werde Mitwirkende in meiner Liste";
+"easyRanchoText" = "in der App EasyRancho";
+"acesse" = "Besuche";
