@@ -2,8 +2,8 @@
 "NovaLista" = "Nova Lista";
 
 // MARK: - CustomSource
-"Lista: %@" = "Lista: %@";
-"Criada por: %@" = "Criada por: %@";
+"Lista" = "Lista";
+"Criada por" = "Criada por";
 
 //MARK: - Toolbar/navigationbar items
 "leadingCancel" = "Cancelar";
@@ -226,3 +226,9 @@
 "Sobremesas" = "Sobremesas";
 "Temperos" = "Temperos";
 "Outros" = "Outros";
+
+// MARK: - Share Texts
+"shareListText" = "Veja a minha lista";
+"addCollabListText" = "Seja colaborador da minha lista";
+"easyRanchoText" = "no aplicativo EasyRancho";
+"acesse" = "Acesse";

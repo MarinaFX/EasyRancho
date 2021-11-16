@@ -21,20 +21,26 @@ class CustomSource: NSObject, UIActivityItemSource {
     }
     
     func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
-        return url
+        let optionText = option == "1" ? NSLocalizedString("addCollabListText", comment: "addCollabListText") : NSLocalizedString("shareListText", comment: "shareListText");
+        
+        let text = "\(optionText) '\(listName)' \(NSLocalizedString("easyRanchoText", comment: "easyRanchoText"))\n\n\(NSLocalizedString("acesse", comment: "acesse"))"
+        
+        return "\(text): \(url)"
     }
     
     func activityViewControllerLinkMetadata(_ activityViewController: UIActivityViewController) -> LPLinkMetadata? {
         let metadata = LPLinkMetadata()
         let image = UIImage(named: "AppIcon")
         
-        let title1 = NSLocalizedString("Lista: \(listName)", comment: "List Name")
+        let list = NSLocalizedString("Lista", comment: "Lista: ")
+        let by = NSLocalizedString("Criada por", comment: "Criada por: ")
         
-        let title2 = NSLocalizedString("Criada por: \(ownerName)", comment: "Owner Name")
+        metadata.title = "\(list): \(listName)\n\(by): \(ownerName)"
         
-        metadata.title = "\(title1)\n\(title2)"
+        if let img = image {
+            metadata.imageProvider = NSItemProvider(object: img)
+        }
         
-        metadata.imageProvider = NSItemProvider(object: image!)
         return metadata
     }
 }
