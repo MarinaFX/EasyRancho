@@ -17,6 +17,8 @@ struct SuperlistaApp: App {
     @State var presentCollabAlert: Bool = false
     @State var presentSharedAlert: Bool = false
     
+    @State var isFirstAppear: Bool = true
+    
     let newListLocalizedLabel = NSLocalizedString("NovaLista", comment: "NovaLista")
     
     var body: some Scene {
@@ -86,15 +88,18 @@ struct SuperlistaApp: App {
             .accentColor(Color("Link"))
             .environmentObject(dataService)
             .onAppear {
+                guard isFirstAppear else { return }
+                isFirstAppear = false
                 NetworkMonitor.shared.startMonitoring { path in
                     print(path.status, "status on appear")
                     if path.status == .satisfied {
                         if CKService.currentModel.user != nil {
                             dataService.refreshUser()
+                        } else {
+                            loadData()
                         }
                     }
                 }
-                loadData()
             }
             
         }
