@@ -14,6 +14,8 @@ class DataService: ObservableObject {
     @Published var lists: [ListModel] = [] {
         didSet {
             UDService().saveListsOnUD(lists: lists)
+            
+            self.user = user?.updateLists(lists: lists)
         }
     }
     
