@@ -13,7 +13,7 @@ struct AddNewItemView: View {
     var body: some View {
         MainScreen(customView:
             VStack {
-                ProductListView(filter: $searchText, hasChangedItems: $hasChangedItems, list: list)
+            ProductListView(filter: $searchText, list: self.$list)
             
             Button(action: readyButtonPressed, label: {
                 Text("AddNewItemViewBottomButtonLabel")
