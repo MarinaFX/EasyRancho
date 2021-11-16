@@ -5,17 +5,14 @@ struct ProductListView: View {
     @EnvironmentObject var dataService: DataService
     
     @Binding var filter: String
-    @Binding var hasChangedItems: Bool
-    
+    @Binding var list: ListModel?
+
     @State var selectedItems: [ItemModel] = []
     @State var showCreateNewCustomProductView: Bool = false
     @State var products = ProductListViewModel().productsOrdered
     @State var filteredProducts: [ProductModel] = []
     @State var receivedNewProduct: Bool = false
     @State var deletedCustomProduct: Bool = false
-
-    
-    var list: ListModel
     
     var body: some View {
         List {
@@ -30,15 +27,19 @@ struct ProductListView: View {
                         .onTapGesture {
                             let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                             if isSelected(item: item){
-                                dataService.removeItem(selectedItems[index], from: list)
+                                if let list = list {
+                                    let newList = list.removeItem(selectedItems[index])
+                                    self.list = newList
+                                }
                                 selectedItems.remove(at: index)
                             } else {
                                 let newItem = ItemModel(product: item)
-                                dataService.addItem(newItem, to: list)
+                                if let list = list {
+                                    let newList = list.addItem(newItem)
+                                    self.list = newList
+                                }
                                 selectedItems.append(newItem)
                             }
-                            
-                            self.hasChangedItems = !selectedItems.isEmpty
                         }
                         
                         if isSelected(item: item) {
@@ -61,15 +62,18 @@ struct ProductListView: View {
                     .onTapGesture {
                         let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
                         if isSelected(item: item){
-                            dataService.removeItem(selectedItems[index], from: list)
+                            if let list = list {
+                                let newList = list.removeItem(selectedItems[index])
+                                self.list = newList
+                            }
                             selectedItems.remove(at: index)
                         } else {
                             let newItem = ItemModel(product: item)
-                            dataService.addItem(newItem, to: list)
+                            if let list = list {
+                                let newList = list.addItem(newItem)
+                                self.list = newList
+                            }
                             selectedItems.append(newItem)
-                        }
-                        
-                        self.hasChangedItems = !selectedItems.isEmpty
                     }
                 }
             }
@@ -218,11 +222,25 @@ struct ProductQuantityView: View {
         }
         .frame(width: symbolSize, height: symbolSize)
         .onTapGesture {
+            //master
             let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-            dataService.removeQuantity(of: selectedItems[index], from: list)
+            if let list = list {
+                let newList = list.removeQuantity(of: selectedItems[index])
+                self.list = newList
+            }
             if selectedItems[index].quantity! > 1 {
                 selectedItems[index].quantity = selectedItems[index].quantity! - 1
             }
+            //master
+
+            let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
+                if let list = list {
+                    let newList = list.removeQuantity(of: selectedItems[index])
+                    self.list = newList
+                }
+                if selectedItems[index].quantity! > 1 {
+                    selectedItems[index].quantity = selectedItems[index].quantity! - 1
+                }
         }
         .accessibilityLabel(Text("remove"))
         .accessibility(hint: Text("removeOneItem"))
@@ -239,6 +257,14 @@ struct ProductQuantityView: View {
             .frame(width: symbolSize, height: symbolSize)
             .foregroundColor(Color("Button"))
             .onTapGesture {
+                //master
+                let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
+                if let list = list {
+                    let newList = list.addQuantity(of: selectedItems[index])
+                    self.list = newList
+                }
+                selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
+                //master
                 if let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) {
                     dataService.addQuantity(of: selectedItems[index], from: list)
                     selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
@@ -274,7 +300,6 @@ struct ProductNotFoundView: View {
                         .font(.body)
                         .bold()
                         .foregroundColor(Color("Button"))
-                    
                 }
             }
             .sheet(isPresented: $showCreateNewCustomProductView)

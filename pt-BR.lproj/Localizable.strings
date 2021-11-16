@@ -38,45 +38,6 @@
 // MARK: - OnboardingView
 "OnboardingViewButtonLabel" = "Começar";
 
-//MARK: - AddCollaborator screen
-"addCollabTitle" = "Adicionar Colaborador";
-"addCollabTextTip" = "Adicione colaboradores a sua lista para que eles possam fazer alterações em tempo real.";
-"addCollabButton" = "Adicionar Colaborador";
-"noCollaboratorsText" = "Você ainda não adicionou nenhum colaborador";
-"shareListText" = "Ou apenas compartilhe sua lista com seus contatos";
-"shareListButton" = "Compartilhar lista";
-"shareListWarning" = "Ao compartilhar uma lista com uma pessoa você enviará somente uma cópia da sua lista, isso não afetará a sua lista atual e a pessoa **não** será adicionada como colaborador.";
-
-//MARK: - AddColaborator screen
-"DeleteCollabAlertTitle %@" = "Você tem certeza que deseja excluir %@ de sua lista?";
-"DeleteCollabAlertMessage" = "Esta pessoa deixará de ser um colaborador na sua lista.";
-"DeleteCollabAlertPrimaryButton" = "Excluir";
-"DeleteCollabAlertSecondaryButton" = "Cancelar";
-
-"Listas" = "Listas";
-"listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
-"SalvarNovaLista" = "Salvar";
-"EditarNovaLista" = "Editar";
-"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
-"remover %@" = "Deseja remover %@?";
-"subtituloRemoverLista"= "A lista removida não poderá ser recuperada após sua exclusão";
-"ApagarLista"= "Apagar";
-"ConcluirListas" = "Concluir";
-"EditarListas" = "Editar";
-"NovaLista" = "Nova Lista";
-"DefaultLS" = "DefaultLS";
-"CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
-"Cancelar" = "Cancelar";
-"Aceitar" = "Aceitar";
-"SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
-
-//Not working 4now
-"ProcurarItens" = "Procurar produtos";
-"AdicionarItensFake" = "Adicionar novos itens";
-"TituloPaginaDeLista" = "Listas";
-"TituloDaNovaLista" = "Nova Lista";
-
-// MARK: - OnboardingA
 // MARK: - OnboardingFieldsView
 "OnboardingFieldsTitle" = "Personalize seu perfil";
 "OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
@@ -101,7 +62,7 @@
 "SettingLabelA" = "Editar perfil";
 "SettingLabelB" = "Contato";
 "SettingLabelC" = "Convide um amigo";
-"InviteMessage" = "Veja o App que estou usando para fazer minhas listas de compras. Baixa você também! =)";
+"InviteMessage" = "Veja o App que estou usando para fazer minhas listas de compras. Baixe você também! =)";
 
 // MARK: - EditProfileView
 "EditProfileTitle" = "Editar Perfil";
@@ -195,7 +156,6 @@
 "LabelMinusCircle" = "Remover lista selecionada";
 "HintMinusCircle" = "Removerá a lista selecionada";
 
-
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Insira um comentário";
 "ItemCommentViewButtonLabel"= "OK";
@@ -270,14 +230,3 @@
 "Sobremesas" = "Sobremesas";
 "Temperos" = "Temperos";
 "Outros" = "Outros";
-
-// MARK: - Onboarding Fields
-"OnboardingFieldsTitle" = "Personalize seu perfil";
-"OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
-"Nome" = "Nome";
-"Salvar" = "Salvar";
-"Pular" = "Pular";
-
-// MARK: - Tab Bar
-"ListasMenu" = "Minhas listas";
-"ConfigsMenu" = "Configurações";

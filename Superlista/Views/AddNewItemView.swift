@@ -3,10 +3,8 @@ import Foundation
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
-        
-    var list: ListModel
     
-    @Binding var hasChangedItems: Bool
+    @Binding var list: ListModel?
     
     @State var searchText: String
     
@@ -31,7 +29,7 @@ struct AddNewItemView: View {
                    
         , topPadding: -15)
         .toolbar {
-            ToolbarItem(placement: .principal){
+            ToolbarItem(placement: .principal) {
                 SearchBar(text: $searchText)
                     .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.5)
             }

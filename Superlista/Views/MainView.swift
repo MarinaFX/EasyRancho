@@ -11,10 +11,18 @@ struct MainView: View {
     @State var selectedSection = 0
     @State var createdBy = ""
     @State var counter = 0
+    @State var showDialog = false
     @State var listTitle = ""
     @State var hasClickedSettings = false
     
-    let columns = Array(repeating: GridItem(.flexible()), count: 2)
+    @ScaledMetric var scaledHeightNewList: CGFloat = 83
+    
+    @Environment(\.sizeCategory) var sizeCategory
+
+    
+    var columns: Array<GridItem>{
+        Array(repeating: GridItem(.flexible()), count: sizeCategory >= ContentSizeCategory.extraExtraLarge ? 1 : 2)
+    }
     
     var appliedSection: [ListModel]{
         let section: [ListModel]
@@ -33,7 +41,6 @@ struct MainView: View {
         }
         return section
     }
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -69,8 +76,7 @@ struct MainView: View {
                             }
                             .pickerStyle(SegmentedPickerStyle())
                         }
-                        
-                        LazyVGrid(columns: columns, spacing: 20, content: {
+                        LazyVGrid(columns: columns, alignment: .center, spacing: 20, content: {
                             ForEach(appliedSection) { list in
                                 ListCard(list: list, isEditing: isEditing)
                             }
@@ -110,7 +116,6 @@ struct MainView: View {
                         })
                     }
                 }
-                
                 BottomBarButton(action: createNewListAction, text: "AddListMainButton")
                 
             }

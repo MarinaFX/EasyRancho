@@ -87,13 +87,7 @@ struct SettingLabel: View {
                     .cornerRadius(13)
                 }
                 
-                Button(action: {
-                    //Tá dando varias mensagens de 'erro' mas nada que se preocupar por enquanto #pas
-                    guard let urlShare = URL(string: "https://apps.apple.com/br/app/easyrancho-lista-de-compras/id1568546773") else { return }
-                    let activityVC = UIActivityViewController(activityItems: [NSLocalizedString("InviteMessage", comment: "InviteMessage"), urlShare], applicationActivities: nil)
-                    UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
-                    
-                }) {
+                Button(action: sharedButton) {
                     HStack {
                         Text("SettingLabelC")
                             .font(.body)
@@ -112,5 +106,23 @@ struct SettingLabel: View {
                 }
             }
         }
+    }
+    
+    func sharedButton(){
+        let urlShare = URL(string: "https://apps.apple.com/br/app/easyrancho-lista-de-compras/id1568546773")
+        
+        let activityVC = UIActivityViewController(activityItems: [NSLocalizedString("InviteMessage", comment: "InviteMessage"), urlShare], applicationActivities: nil)
+        
+        let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
+        
+        var topController = keyWindow?.rootViewController
+        
+        // get topmost view controller to present alert
+        while let presentedViewController = topController?.presentedViewController {
+            topController = presentedViewController
+        }
+        topController?.present(activityVC, animated: true, completion: nil)
+        
+        activityVC.isModalInPresentation = true
     }
 }

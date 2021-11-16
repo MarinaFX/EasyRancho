@@ -9,22 +9,28 @@ import SwiftUI
 
 struct ListCard: View {
     @EnvironmentObject var dataService: DataService
+    @Environment(\.sizeCategory) var sizeCategory
     
     let list: ListModel
     let isEditing: Bool
+    var alignmentCard: Alignment = .leading
     
     @State var showAlertDelete = false
     @State var editNavigation = false
     @State var showAlertDuplicate = false
     
+    @ScaledMetric var scaledWidthtRect: CGFloat = 171
+    @ScaledMetric var scaledHeightRect: CGFloat = 117
+    
+    @ScaledMetric(relativeTo: .callout) var scaledTitle: CGFloat = 10
+    
     var body: some View {
         NavigationLink(destination: ListView(listId: list.id), label: {
             ZStack(alignment: .leading) {
-                
                 // MARK: - list card
                 Rectangle()
                     .fill(Color("Background"))
-                    .frame(width: 171, height: 117)
+                    .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
                     .cornerRadius(30)
                     .shadow(color: Color("Shadow"), radius: 12)
                     .accessibility(hint: Text("HintListCard"))
@@ -36,6 +42,7 @@ struct ListCard: View {
                         .fontWeight(.semibold)
                         .foregroundColor(Color.white)
                         .lineLimit(1)
+                        .padding(.horizontal, 20)
                     
                     //MARK: - List Owner
                     if let listOwner = list.owner.name{
@@ -45,8 +52,9 @@ struct ListCard: View {
                             .lineLimit(1)
                             .truncationMode(.tail)
                             .padding(.bottom, 25)
+                            .padding(.horizontal, 20)
                     }
-                    HStack {
+                    HStack{
                         HStack (alignment: .bottom) {
                             if let sharedList = list.sharedWith {
                                 if !sharedList.isEmpty {
@@ -64,7 +72,7 @@ struct ListCard: View {
                         }
                         
                         Spacer()
-                        
+                                                
                         Image(systemName: "ellipsis.circle.fill")
                             .font(.body)
                             .foregroundColor(Color.white)
@@ -121,10 +129,10 @@ struct ListCard: View {
                             }
                             .accessibilityLabel(Text("Options"))
                             .accessibility(hint: Text("MoreOptions"))
-                        
                     }
+                    .padding(.horizontal, 20)
+
                 }
-                .padding(.horizontal, 20)
                 
                 ZStack {
                     NavigationLink(destination: ListView(listId: dataService.currentList?.id ?? "123"), isActive: $editNavigation) {
@@ -155,15 +163,16 @@ struct ListCard: View {
                             dataService.currentList = list
                             showAlertDelete = true
                         }
-                        .accessibility(label: Text("LabelMinusCircle"))
+                          .accessibility(label: Text("LabelMinusCircle"))
                         .accessibility(hint: Text("HintMinusCircle"))
                         .accessibility(addTraits: .isButton)
                         .accessibility(removeTraits: .isImage)
-
                 }
-                
             }
-        })
+            .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
+            
+        }
+        )
     }
 }
 

@@ -12,7 +12,7 @@ struct SearchBar: View {
                 .foregroundColor(Color(UIColor.secondaryLabel))
                 .padding(10)
                 .padding(.leading, sizeCategory > ContentSizeCategory.extraExtraExtraLarge ? 45 : 35)
-                .background(Color("searchColor"))
+                .background(Color("SearchColor"))
                 .cornerRadius(50)
                 .overlay(
                     HStack {
