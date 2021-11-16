@@ -12,6 +12,7 @@ struct SettingLabel: View {
     @Binding var username: String
     @State var showingSheet = false
     @Binding var picture: UIImage?
+    @State var choosingLanguage: Bool = false
     
     var body: some View {
         VStack(spacing: 10){
@@ -93,21 +94,45 @@ struct SettingLabel: View {
                     .background(Color("ButtonBG"))
                     .cornerRadius(13)
                 }
-            HStack {
-                Button {
-                    languageSettings.selectedLanguage = .en
-                } label: {
-                    Text("English")
+            Button(action: {
+               choosingLanguage = true
+            }) {
+                    HStack {
+                        Text("SettingLabelD")
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Text(convertLanguageLabel(currentLanguage: languageSettings.selectedLanguage))
+                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .font(.body)
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(Color(UIColor.secondaryLabel))
+                            .font(.body)
+                    }
+                    .padding(20)
+                    .foregroundColor(.white)
+                    .background(Color("ButtonBG"))
+                    .cornerRadius(13)
                 }
-                Button {
-                    languageSettings.selectedLanguage = .ptBR
-                } label: {
-                    Text("Portuguese")
-                }
-                Button {
-                    languageSettings.selectedLanguage = .de
-                } label: {
-                    Text("Deutsch")
+            if choosingLanguage {
+                HStack {
+                    Button {
+                        languageSettings.selectedLanguage = .en
+                    } label: {
+                        Text("English")
+                    }
+                    Button {
+                        languageSettings.selectedLanguage = .ptBR
+                    } label: {
+                        Text("Portuguese")
+                    }
+                    Button {
+                        languageSettings.selectedLanguage = .de
+                    } label: {
+                        Text("Deutsch")
+                    }
                 }
             }
         }

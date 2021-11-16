@@ -24,3 +24,16 @@ public enum Languages: String {
   case ptPT = "pt-PT"
   case deviceLanguage
 }
+
+func convertLanguageLabel(currentLanguage: Languages) -> String {
+    switch currentLanguage {
+    case .de:
+        return "Deutsch"
+    case .en:
+        return "English"
+    case .ptBR:
+        return "Portuguese"
+    default:
+        return "English"
+    }
+}
