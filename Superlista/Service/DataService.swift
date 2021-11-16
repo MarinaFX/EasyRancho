@@ -299,12 +299,8 @@ class DataService: ObservableObject {
     }
     
     // MARK: - Refresh User, Get Shared Lists from CK
-    var ds = DispatchSemaphore(value: 1)
-    
     func refreshUser() {
-       // self.ds.wait()
         CKService.currentModel.refreshUser { result in
-            print(result, "resfreshUser")
             switch result {
             case .success(let ckUser):
                 let localUser = UserModelConverter().convertCloudUserToLocal(withUser: ckUser)
@@ -350,7 +346,6 @@ class DataService: ObservableObject {
             case .failure:
                 return
             }
-          //  self.ds.signal()
         }
     }
     
@@ -400,9 +395,7 @@ class DataService: ObservableObject {
     func updateUsersLists(localMyLists: [ListModel]) {
         for list in localMyLists {
             let ckList = ListModelConverter().convertLocalListToCloud(withList: list)
-            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID: ckList.id, shouldRefresh: false) { result in
-                print(result, "updateUsersLists")
-            }
+            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID: ckList.id, shouldRefresh: false) { result in }
         }
     }
 }
