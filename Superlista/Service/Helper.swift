@@ -11,11 +11,14 @@ enum UsersList: String {
 //MARK: - Functions
 // MARK: - ImageToCKAsset
 func ImageToCKAsset(uiImage: UIImage?) -> CKAsset? {
-    if uiImage == nil { return nil }
-    let data = uiImage!.jpegData(compressionQuality: 0.5); // UIImage -> NSData, see also UIImageJPEGRepresentation
-    let url = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString+".dat")!
+    guard let uiImage = uiImage else { return nil }
+    
+    guard let data = uiImage.jpegData(compressionQuality: 0.5) else { return nil }
+    
+    guard let url = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(NSUUID().uuidString+".dat") else { return nil }
+    
     do {
-        try data?.write(to: url) //data!.writeToURL(url, options: [])
+        try data.write(to: url)
     } catch let e as NSError {
         print("Error! \(e)");
         return nil

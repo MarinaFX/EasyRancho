@@ -59,8 +59,9 @@ struct ProductListView: View {
                                 let newList = list.removeQuantity(of: selectedItems[index])
                                 self.list = newList
                             }
-                            if selectedItems[index].quantity! > 1 {
-                                selectedItems[index].quantity = selectedItems[index].quantity! - 1
+                            
+                            if let quantity = selectedItems[index].quantity, quantity > 1 {
+                                selectedItems[index].quantity = quantity - 1
                             }
                         }
                         .accessibilityLabel(Text("remove"))
