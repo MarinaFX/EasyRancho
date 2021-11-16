@@ -8,6 +8,7 @@ struct ListView: View {
     @State var listTitle: String = ""
     @State var isPresentedAddNewItems: Bool = false
     @State var list: ListModel?
+    @State var isFirstAppear: Bool = true
     
     var body: some View {
         MainScreen(customView:
@@ -47,10 +48,12 @@ struct ListView: View {
                     self.list = getList()
                 }
                 
+                guard isFirstAppear else { return }
+                isFirstAppear = false
+                
                 NetworkMonitor.shared.startMonitoring { path in
                     if let sharedWith = list?.sharedWith {
                         if path.status == .satisfied && !sharedWith.isEmpty {
-                            print("refresh collab")
                             dataService.refreshUser()
                         }
                     }

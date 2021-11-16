@@ -340,8 +340,8 @@ class DataService: ObservableObject {
                     self.user?.sharedWithMe = localSharedWithMe
                     if let user = self.user {
                         self.createNewLists(localMyLists: localMyLists)
+                        self.deleteOldLists(localMyLists: localMyLists)
                         self.updateUsersLists(localMyLists: localMyLists)
-                        print(user.myLists, "listas do usuario")
                         CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user)
                         self.uploadUsersLists()
                     }
@@ -370,16 +370,31 @@ class DataService: ObservableObject {
         
         let oldListsIDs = Set(oldLists.map(\.id))
         
-//        let indexes = zip(oldLists, localMyLists).enumerated().filter() {
-//            $1.1.id == $1.1.id
-//        }.map{$0.0}
-        
-        var newLists: [ListModel] = localMyLists.filter { list in
+        let newLists: [ListModel] = localMyLists.filter { list in
             !oldListsIDs.contains(list.id)
         }
         
         for list in newLists {
             CKService.currentModel.createList(listModel: ListModelConverter().convertLocalListToCloud(withList: list)) { result in }
+        }
+    }
+    
+    // MARK: - Delete UD Lists on CK
+    func deleteOldLists(localMyLists: [ListModel]) {
+        var oldLists: [ListModel] = []
+        for ckList in CKService.currentModel.user?.myLists ?? [] {
+            oldLists.append(ListModelConverter().convertCloudListToLocal(withList: ckList))
+        }
+        
+        let newListsIDs = Set(localMyLists.map(\.id))
+        
+        let deleteLists: [ListModel] = oldLists.filter { list in
+            !newListsIDs.contains(list.id)
+        }
+        
+        for list in deleteLists {
+            CKService.currentModel.deleteList(listID: CKRecord.ID(recordName: list.id), shouldRefresh: false) { result in
+            }
         }
     }
     

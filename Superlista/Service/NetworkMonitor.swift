@@ -30,6 +30,7 @@ class NetworkMonitor {
         completions.append(completion)
         
         monitor.pathUpdateHandler = { [weak self] path in
+            guard self?.path?.status != path.status else { return }
             self?.path = path
             self?.isReachableOnCellular = path.isExpensive
             

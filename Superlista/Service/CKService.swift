@@ -66,14 +66,12 @@ class CKService: ObservableObject {
     let ds = DispatchSemaphore(value: 1)
     func refreshUser(_ completion: @escaping (Result<CKUserModel,CKError>) -> Void) {
         self.ds.wait()
-        print("entrou refresh user")
         var userStatus: UserStatus = .none
         
         let dispatchSemaphore = DispatchSemaphore(value: 1)
         dispatchSemaphore.wait()
         
         self.verifyAccount { status in
-            print("entrou verify account")
             userStatus = status
             dispatchSemaphore.signal()
         }
@@ -82,7 +80,6 @@ class CKService: ObservableObject {
         
         if userStatus == .available {
             getUser { result in
-                print("entrou get user")
                 switch result {
                 case .success(let user):
                     self.ds.signal()
@@ -137,7 +134,6 @@ class CKService: ObservableObject {
         var recordID: CKRecord.ID?
         
         self.container.fetchUserRecordID { cloudRecordID, error in
-            print("entrou get user fetch user record id")
             guard let localRecordID = cloudRecordID else {
                 let ckError = error as? CKError
                 completion(.failure(ckError ?? CKError(.internalError)))
@@ -157,7 +153,6 @@ class CKService: ObservableObject {
         }
         
         self.publicDB.fetch(withRecordID: recordID) { record, error in
-            print("entrou get user fetch")
             guard let record = record, error == nil else {
                 let ckerror = error as? CKError
                 completion(.failure(ckerror ?? CKError(.internalError)))
@@ -166,7 +161,6 @@ class CKService: ObservableObject {
             }
             
             let _ = CKUserModel(record: record) { user in
-                print("entrou completion user")
                 completion(.success(user))
                 dispatchSemaphore.signal()
             }
@@ -570,11 +564,15 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Delete List
-    func deleteList(listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func deleteList(listID: CKRecord.ID, shouldRefresh: Bool = true, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.delete(withRecordID: listID) { deleteRecordID, error in
             if error == nil {
                 DispatchQueue.main.async {
-                    self.refresh { error in
+                    if shouldRefresh {
+                        self.refresh { error in
+                            completion(.success(deleteRecordID!))
+                        }
+                    } else {
                         completion(.success(deleteRecordID!))
                     }
                 }
