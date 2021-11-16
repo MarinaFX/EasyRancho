@@ -2,30 +2,30 @@
 "NovaLista" = "Neue Liste";
 
 // MARK: - CustomSource
-"Lista: %@" = "Liste: %@";
-"Criada por: %@" = "Erstellt von: %@";
+"Lista" = "Liste";
+"Criada por" = "Erstellt von";
 
 //MARK: - Toolbar/navigationbar items
-"leadingCancel" = "Cancel";
-"trailingDone" = "Done";
-"ACSearchBarXHint" = "Tap twice to erase search";
+"leadingCancel" = "Abbrechen";
+"trailingDone" = "Fertig";
+"ACSearchBarXHint" = "Doppeltippe, um die Suche zu löschen";
 
 //MARK: - ProductListView - ProductNotFoundView subview
-"itemNotFoundMessage" = "Product not found";
-"itemNotFoundButton" = "Create a New Product";
-"ACItemNotFoundButtonHint" = "Tap twice to go to product creation screen";
+"itemNotFoundMessage" = "Produkt nicht gefunden";
+"itemNotFoundButton" = "Erstelle neues Produkt";
+"ACItemNotFoundButtonHint" = "Doppeltippe, um zum Bildschirm 'Produkt erstellen' zu gelangen";
 
 //MARK: - CreateNewCustomProductView screen
-"createProductScreenTitle" = "Create Product";
-"createProductDescription" = "Create a new product to add it to your list. Pick up a name and a category.";
-"productNameTextField" = "Name of the product";
-"productCategoryTextField" = "Category";
-"textFieldRequired" = "Required field";
-"duplicateProductWarning %@" = "There was a problem while adding this product. A product named \"%@\" already exists";
-"ACCancelButtonHint" = "Tap twice to back to product search screen";
-"ACDoneButtonHint" = "Tap twice to save this product to the product list. The product will only be saved if both name and category fields are complete";
-"ACtextFieldRequiredHint" = "Text field is required";
-"ACpickerFieldLabel" = "Category";
+"createProductScreenTitle" = "Produkt erstellen";
+"createProductDescription" = "Erstelle ein neues Produkt, um es zu Ihrer Liste hinzuzufügen. Wähle einen Namen und eine Kategorie.";
+"productNameTextField" = "Name des Produkts";
+"productCategoryTextField" = "Kategorie";
+"textFieldRequired" = "Obligatorisches Feld";
+"duplicateProductWarning %@" = "Beim Hinzufügen dieses Produkts ist ein Problem aufgetreten. Ein Produkt mit dem Namen \"%@\" existiert bereits.";
+"ACCancelButtonHint" = "Doppeltippe, um zum Bildschirm für die Produktsuche zurückzukehren.";
+"ACDoneButtonHint" = "Doppeltippe, um dieses Produkt in der Produktliste zu speichern. Das Produkt wird nur gespeichert, wenn die Felder Name und Kategorie ausgefüllt sind.";
+"ACtextFieldRequiredHint" = "Textfeld ist obligatorisch";
+"ACpickerFieldLabel" = "Kategorie";
 "ACpickerFieldValue" = "Wheel picker";
 
 // MARK: - SearchBar
@@ -35,8 +35,8 @@
 "OnboardingViewButtonLabel" = "Los geht's";
 
 // MARK: - OnboardingFieldsView
-"OnboardingFieldsTitle" = "Personalisierung Ihres Profils";
-"OnboardingFieldsText" = "Fügst du einen Namen und ein Profilbild hinzu, damit du leicht zu identifizieren bist.";
+"OnboardingFieldsTitle" = "Personalisiere Ihr Profil";
+"OnboardingFieldsText" = "Füge einen Namen und ein Profilbild hinzu, damit du leicht zu identifizieren bist.";
 "OnboardingFieldPlaceholder" = "Name";
 "OnboardingBottomButtonLabel" = "Speichern";
 "OnboardingTrailingNavigationLabel" = "Überspringen";
@@ -44,66 +44,66 @@
 // MARK: - OnboardingPageModel
 "OnboardingA" = "OnboardingA";
 "OnboardingATitle" = "Willkommen";
-"OnboardingAText" = "Erstellst du kategorisierte Einkaufslisten auf einfache Weise!";
+"OnboardingAText" = "Erstelle Listen auf einfache Weise!";
 
 "OnboardingB" = "OnboardingB";
 "OnboardingBTitle" = "Kollaborativ Listen";
-"OnboardingBText" = "Du erstellst Kollaborativ Listen und fügst du Mitwirkende hinzu, damit diese in Echtzeit bearbeiten können.";
+"OnboardingBText" = "Erstelle Kollaborativ Listen und füge Mitwirkende hinzu, damit diese in Echtzeit bearbeiten können.";
 
 "OnboardingC" = "OnboardingC";
 "OnboardingCTitle" = "Posten Personalisieren";
-"OnboardingCText" = "Fügst du neue Produkte, Mengen und Kommentare zu Ihren Listen hinzu.";
+"OnboardingCText" = "Füge neue Produkte, Mengen und Kommentare zu Ihren Listen hinzu.";
 
 // MARK: - SettingLabel
 "SettingLabelA" = "Profil bearbeiten";
 "SettingLabelB" = "Kontakt";
 "SettingLabelC" = "Freund einladen";
-"InviteMessage" = "Siehst du sich die App an, mit der ich meine Einkaufslisten erstelle. Lädst du es auch herunter! =)";
+"InviteMessage" = "Sieh sich die App an, mit der ich meine Einkaufslisten erstelle. Lade es auch herunter! =)";
 
 // MARK: - EditProfileView
 "EditProfileTitle" = "Profil bearbeiten";
 "EditProfileFieldPlaceholder" = "Name";
-"EditProfileText" = "Fügst du einen Namen und ein Profilbild, damit du leicht identifiziert werden kannst, wenn du eine Liste teilst oder zu einer Liste hinzugefügt werden.";
+"EditProfileText" = "Füge einen Namen und ein Profilbild, damit du leicht identifiziert werden kannst, wenn du gibst eine Liste frei oder zu einer Liste hinzugefügt werden.";
 "EditProfileLeadingNavigationLabel" = "Abbrechen";
 "EditProfileTrailingNavigationLabel" = "Speichern";
 
 // MARK: - ListView
 "ListViewLabelA" = "Speichern";
 "ListViewLabelB" = "Bearbeiten";
-"AddItemsButton" = "Adicionar Itens";
+"AddItemsButton" = "Posten Hinzufügen";
 
 // MARK: - ListHeader VoiceOver
-"ListHeaderTitle" = "List title";
-"ListHeaderCollabButton1" = "Add collaborators";
-"ListHeaderCollabButton2" = "Manage collaborators";
+"ListHeaderTitle" = "Liste Titel";
+"ListHeaderCollabButton1" = "Mitwirkenden hinzufügen";
+"ListHeaderCollabButton2" = "Mitwirkenden verwalten";
 
 // MARK: - ListPerItemsView VoiceOver
-"CategoryTitleHint" = "Título da Categoria";
+"CategoryTitleHint" = "Kategorie Titel";
 
 // MARK: - AddNewItemView
 "AddNewItemViewBottomButtonLabel" = "Fertig";
 
 // MARK: - AddNewItemView VoiceOver
- "Adicione %@" = "Tap to add %@";
- "Add" = "Add";
- "Remove" = "Remove";
- "RemoveOneItem" = "Tap to remove one item";
- "AddOneItem" = "Tap to add one item";
- "%@ items" = "%@ items";
+ "Adicione %@" = "Tippe zum hinzufügen %@";
+ "Add" = "Hinzufügen";
+ "Remove" = "Entfernen";
+ "RemoveOneItem" = "Tippe, um ein Posten zu entfernen";
+ "AddOneItem" = "Tippe, um ein Posten hinzuzufügen";
+ "%@ items" = "%@ Posten";
 
 // MARK: - MainView
-"EmptyListText" = "Du hast keine Liste!\nWie wäre es, eine neue Liste hinzuzufügen?";
+"EmptyListText" = "Du hast gar keine Liste!\nWie wäre es, eine neue Liste hinzuzufügen?";
 "MainViewTrailingNavigationLabelA" = "Fertig";
 "MainViewTrailingNavigationLabelB" = "Bearbeiten";
 "MainViewTitle" = "Listen";
-"AddListMainButton" = "Criar nova lista";
-"CriadaPorMim" = "Criada por **mim**";
-"CriadaPor %@" = "Criada por **%@**";
+"AddListMainButton" = "Neue Liste erstellen";
+"CriadaPorMim" = "Erstellt von **mir**";
+"CriadaPor %@" = "Erstellt von **%@**";
 
 // MARK: - MainView Segmented Picker
-"TudoSegmentedPicker" = "Tudo";
-"MinhasListasSegmentedPicker" = "Minhas listas";
-"ColaborativasSegmentedPicker" = "Colaborativas";
+"TudoSegmentedPicker" = "Alle";
+"MinhasListasSegmentedPicker" = "Meine Listen";
+"ColaborativasSegmentedPicker" = "Kollaborativ";
 
 // MARK: - MainView Deletion Alert
 "Remover %@" = "Möchtest du %@ entfernen?";
@@ -111,74 +111,74 @@
 "DeleteListAlertButton"= "Entfernen";
 
 // MARK: - MainView ContextMenu
-"ContextMenu1" = "Edit";
-"ContextMenu2" = "Duplicate List";
-"ContextMenu3" = "Add Collaborator";
-"ContextMenu4" = "Share List";
-"ContextMenu5" = "Delete List";
+"ContextMenu1" = "Bearbeiten";
+"ContextMenu2" = "Liste duplizieren";
+"ContextMenu3" = "Mitwirkende hinzufügen";
+"ContextMenu4" = "Liste freigeben";
+"ContextMenu5" = "Liste entfernen";
 
 // MARK: - MainView Duplication Alert
-"DuplicateListAlertText" = "Are you sure you want to duplicate this list?";
-"DuplicateListAlertButton" = "Duplicate";
-"Duplicar %@" = "Do you want to %@?";
+"DuplicateListAlertText" = "Bist du sicher, dass du diese Liste duplizieren willst?";
+"DuplicateListAlertButton" = "Duplizieren";
+"Duplicar %@" = "Möchtest du %@ duplizieren?";
 
 // MARK: - MainView Creation Alert
-"CreateListAlertCancelButton" = "Cancelar";
-"CreateListAlertMainButton" = "Criar";
-"CreateListAlertTitle" = "Criar nova lista";
-"CreateListAlertText" = "Dê um nome para sua nova lista";
+"CreateListAlertCancelButton" = "Abbrechen";
+"CreateListAlertMainButton" = "Erstellen";
+"CreateListAlertTitle" = "Neue Liste erstellen";
+"CreateListAlertText" = "Nenne Ihre neue Liste";
 
 // MARK: - MainView VoiceOver
-"HintAddListMainButton" = "Criar uma nova lista";
-"HintMainViewTrailingNavigationLabelA" = "Concluir a edição das listas";
-"HintMainViewTrailingNavigationLabelB" = "Editar as listas";
-"HintEmptyListText" = "Toque para adicionar uma nova lista";
-"HintTudoSegmentedPicker" = "Todas as listas";
-"HintMinhasListasSegmentedPicker" = "Minhas listas";
-"HintColaborativasSegmentedPicker" = "Listas colaborativa";
-"Options" = "More options";
-"MoreOptions" = "Tap to show more options";
-"Option1" = "Edit";
-"Option1Hint" = "Tap to edit list";
-"Option2" = "Duplicate List";
-"Option2Hint" = "Tap to duplicate list";
-"Option3" = "Add collaborator";
-"Option3Hint" = "Tap to add collaborator";
-"Option4" = "Share list";
-"Option4Hint" = "Tap to share list";
-"Option5" = "Delete list";
-"Option5Hint" = "Tap to delete list";
-"HintListCard" = "Abrir lista";
-"LabelMinusCircle" = "Remover lista selecionada";
-"HintMinusCircle" = "Removerá a lista selecionada";
+"HintAddListMainButton" = "Neue Liste erstellen";
+"HintMainViewTrailingNavigationLabelA" = "Bearbeitung der Listen beenden";
+"HintMainViewTrailingNavigationLabelB" = "Bearbeiten Listen";
+"HintEmptyListText" = "Tippe, um eine neue Liste zu erstellen";
+"HintTudoSegmentedPicker" = "Alle Listen";
+"HintMinhasListasSegmentedPicker" = "Meine Listen";
+"HintColaborativasSegmentedPicker" = "Kollaborativ";
+"Options" = "Mehr Optionen";
+"MoreOptions" = "Tippe, um weitere Optionen anzuzeigen";
+"Option1" = "Bearbeiten";
+"Option1Hint" = "Tippe, um die Liste zu bearbeiten";
+"Option2" = "Liste duplizieren";
+"Option2Hint" = "Tippe, um die Liste zu duplizieren";
+"Option3" = "Mitwirkende hinzufügen";
+"Option3Hint" = "Tippe, um einen Mitwirkenden hinzuzufügen";
+"Option4" = "Liste freigeben";
+"Option4Hint" = "Tippe, um die Liste zu freigeben";
+"Option5" = "Liste entfernen";
+"Option5Hint" = "Tippe, um die Liste zu entfernen";
+"HintListCard" = "Öffne die Liste";
+"LabelMinusCircle" = "Ausgewählte Liste entfernen";
+"HintMinusCircle" = "Wird die ausgewählte Liste entfernt";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Kommentar hinzufügen";
 "ItemCommentViewButtonLabel"= "OK";
 
 // MARK: - ItemCommentView VoiceOver
-"CheckedItemIconLabel1" = "Checked Item";
-"CheckedItemIconLabel2" = "Item not checked";
-"CheckedItemIconHint1" = "Uncheck item";
-"CheckedItemIconHint2" = "Check item";
-"CheckedItemLabelHint %@" = "Item %@ crossed-out";
-"CommentIconLabel" = "Comment";
-"CommentIconHint1" = "Edit comment";
-"CommentIconHint2" = "Add comment";
-"ItemQuantityLabel1" = "1 item";
-"ItemQuantityLabel2 %@" = "%@ items";
-"ItemQuantityHint" = "Number of items";
-"CommentTextFieldLabel" = "Comment";
-"CommentTextFieldHint" = "Comment field";
-"CommentConfirmationButtonHint" = "Confirm";
-"CommentTextHint %@" = "Comment in %@";
+"CheckedItemIconLabel1" = "Geprüfter Posten";
+"CheckedItemIconLabel2" = "Posten nicht geprüft";
+"CheckedItemIconHint1" = "Posten abwählen";
+"CheckedItemIconHint2" = "Posten prüfen";
+"CheckedItemLabelHint %@" = "Posten %@ durchgestrichen";
+"CommentIconLabel" = "Kommentar";
+"CommentIconHint1" = "Kommentar bearbeiten";
+"CommentIconHint2" = "Kommentar hinzufügen";
+"ItemQuantityLabel1" = "1 Posten";
+"ItemQuantityLabel2 %@" = "%@ posten";
+"ItemQuantityHint" = "Anzahl der Posten";
+"CommentTextFieldLabel" = "Kommentar";
+"CommentTextFieldHint" = "Kommentarfeld";
+"CommentConfirmationButtonHint" = "Bestätigen";
+"CommentTextHint %@" = "Kommentar in %@";
 
 //MARK: - AddCollaboratorSheetView
 "AddCollabTitle" = "Mitwirkende hinzufügen";
 "AddCollabTextTip" = "Mitwirkende zu Ihrer Liste hinzufügen damit sie Änderungen in Echtzeit vornehmen können.";
 "AddCollabButton" = "Mitwirkende hinzufügen";
 "NoCollaboratorsText" = "Du hast noch keine Mitwirkende hinzugefügt";
-"ShareListText" = "Oder freigibst du Ihre Liste einfach mit Ihren Kontakten";
+"ShareListText" = "Oder gib Ihre Liste einfach mit Ihren Kontakten";
 "ShareListButton" = "Liste freigeben";
 "ShareListWarning" = "Wenn du eine Liste mit jemandem freigibst, sendest du ihm nur eine Kopie Ihrer Liste. Ihre aktuelle Liste bleibt davon unberührt und die Person wird nicht als Beitragszahler hinzugefügt.";
 
@@ -188,9 +188,9 @@
 "DeleteCollabAlertSecondaryButton" = "Abbrechen";
 
 "AddCollaboratorLeadingNavigationLabel" = "Abbrechen";
-"AddCollaboratorTrailingNavigationLabel" = "Done";
+"AddCollaboratorTrailingNavigationLabel" = "Fertig";
 
-"ExitCollabTextTip" = "If you don't want to be a collaborator on this list, you can simply delete it from your lists.";
+"ExitCollabTextTip" = "Wenn du nicht zu dieser Liste beitragen möchtest, kannst Sie sie einfach aus Ihren Listen entfernen.";
 
 // MARK: - SuperlistaApp Alerts
 "CollabAlertText" = "Du bist eingeladen worden, an einer Liste mitzuwirken. Möchtest du einen Beitrag zu dieser Liste leisten?";
@@ -226,3 +226,9 @@
 "Sobremesas" = "Desserts";
 "Temperos" = "Gewürze";
 "Outros" = "Andere";
+
+// MARK: - Share Texts
+"shareListText" = "Sieh meine Liste";
+"addCollabListText" = "Werde Mitwirkende in meiner Liste";
+"easyRanchoText" = "in der App EasyRancho";
+"acesse" = "Besuche";

@@ -2,8 +2,8 @@
 "NovaLista" = "New List";
 
 // MARK: - CustomSource
-"Lista: %@" = "List: %@";
-"Criada por: %@" = "Created by: %@";
+"Lista" = "List";
+"Criada por" = "Created by";
 
 //MARK: - Toolbar/navigationbar items
 "leadingCancel" = "Cancel";
@@ -22,8 +22,8 @@
 "productCategoryTextField" = "Category";
 "textFieldRequired" = "Required field";
 "duplicateProductWarning %@" = "There was a problem while adding this product. A product named \"%@\" already exists";
-"ACCancelButtonHint" = "Tap twice to back to product search screen";
-"ACDoneButtonHint" = "Tap twice to save this product to the product list. The product will only be saved if both name and category fields are complete";
+"ACCancelButtonHint" = "Tap twice to get back to product search screen";
+"ACDoneButtonHint" = "Tap twice to save this product to the product list. The product will only be saved if both name and category fields are filled";
 "ACtextFieldRequiredHint" = "Text field is required";
 "ACpickerFieldLabel" = "Category";
 "ACpickerFieldValue" = "Wheel picker";
@@ -41,30 +41,6 @@
 "OnboardingBottomButtonLabel" = "Save";
 "OnboardingTrailingNavigationLabel" = "Skip";
 
-"Listas" = "Listas";
-"listaVazia" = "Você não tem nenhuma lista!\nQue tal adicionar uma nova lista?";
-"SalvarNovaLista" = "Save";
-"EditarNovaLista" = "Edit";
-"ProntoNovosItens" = "Pronto"; //Será que n seria melhor um "Confirmar"?
-"remover %@" = "Deseja remover %@?";
-"subtituloRemoverLista"= "A lista removida não poderá ser recuperada após sua exclusão";
-"ApagarLista"= "Delete";
-"ConcluirListas" = "Done";
-"EditarListas" = "Edit";
-"NovaLista" = "New list";
-"DefaultLS" = "DefaultLS";
-"CollabAlerta" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
-"Cancelar" = "Cancel";
-"Aceitar" = "Accept";
-"SharedAlerta" = "Esta lista foi compartilhada com você. Deseja adicionar uma cópia desta lista?";
-
-//Not working 4now
-"ProcurarItens" = "Search products";
-"AdicionarItensFake" = "Adicionar novos itens";
-"TituloPaginaDeLista" = "Listasddddd";
-"TituloDaNovaLista" = "Nova Lista";
-
-// MARK: - OnboardingA
 // MARK: - OnboardingPageModel
 "OnboardingA" = "OnboardingA";
 "OnboardingATitle" = "Welcome";
@@ -153,13 +129,13 @@
 "CreateListAlertText" = "Name your new list";
 
 // MARK: - MainView VoiceOver
-"HintAddListMainButton" = "Criar uma nova lista";
-"HintMainViewTrailingNavigationLabelA" = "Concluir a edição das listas";
-"HintMainViewTrailingNavigationLabelB" = "Editar as listas";
-"HintEmptyListText" = "Toque para adicionar uma nova lista";
-"HintTudoSegmentedPicker" = "Todas as listas";
-"HintMinhasListasSegmentedPicker" = "Minhas listas";
-"HintColaborativasSegmentedPicker" = "Listas colaborativa";
+"HintAddListMainButton" = "Create new List";
+"HintMainViewTrailingNavigationLabelA" = "Finish editing lists";
+"HintMainViewTrailingNavigationLabelB" = "Edit lists";
+"HintEmptyListText" = "Touch to add a new list";
+"HintTudoSegmentedPicker" = "All lists";
+"HintMinhasListasSegmentedPicker" = "My lists";
+"HintColaborativasSegmentedPicker" = "Collaborative Lists";
 "Options" = "More options";
 "MoreOptions" = "Tap to show more options";
 "Option1" = "Edit";
@@ -173,8 +149,8 @@
 "Option5" = "Delete list";
 "Option5Hint" = "Tap to delete list";
 "HintListCard" = "Abrir lista";
-"LabelMinusCircle" = "Remover lista selecionada";
-"HintMinusCircle" = "Removerá a lista selecionada";
+"LabelMinusCircle" = "Remove selected list";
+"HintMinusCircle" = "The selected list will be removed";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Add a comment";
@@ -250,3 +226,9 @@
 "Sobremesas" = "Desserts";
 "Temperos" = "Seasonings";
 "Outros" = "Others";
+
+// MARK: - Share Texts
+"shareListText" = "Check out my list";
+"addCollabListText" = "Be a collaborator on my list";
+"easyRanchoText" = "on the app EasyRancho";
+"acesse" = "Access";
