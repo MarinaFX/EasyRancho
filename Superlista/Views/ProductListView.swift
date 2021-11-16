@@ -156,7 +156,7 @@ struct ProductListRowView: View {
                     Image(systemName: "trash")
                         .font(.footnote)
                         .accessibilityAddTraits(.isButton)
-                        .accessibilityHint("")
+                        .accessibilityHint("ACDeleteButtonHint")
                 }
                 .buttonStyle(.borderless)
             }
