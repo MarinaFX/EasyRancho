@@ -43,7 +43,8 @@ struct AddCollaboratorSheetView: View {
                                 Text("AddCollabTextTip")
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
-                                
+                                    .foregroundColor(.primary)
+
                                 Button(action: {
                                     self.showShareActionSheet.toggle()
                                     shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name!)
@@ -68,6 +69,7 @@ struct AddCollaboratorSheetView: View {
                             } else {
                                 Text("ExitCollabTextTip")
                                     .frame(maxWidth: .infinity, alignment: .leading)
+                                    .foregroundColor(.primary)
                                     .padding(EdgeInsets(top: 8, leading: 20, bottom: 16, trailing: 16))
                             }
                         }
@@ -81,7 +83,7 @@ struct AddCollaboratorSheetView: View {
                                     }
                                     .listRowBackground(Color("InsetGroupedBackground"))
                                 }
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
                                 .padding(.vertical, 16)
                                 .frame(width: geometry.size.width, height: geometry.size.height * 0.45)
                                 .listStyle(.insetGrouped)
@@ -105,6 +107,7 @@ struct AddCollaboratorSheetView: View {
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.horizontal, 16)
+                            .foregroundColor(.primary)
                         
                         Button(action: {
                             guard let list = list else {
@@ -116,12 +119,12 @@ struct AddCollaboratorSheetView: View {
                         }, label: {
                             HStack(alignment: .center) {
                                 Text("ShareListButton")
-                                    .foregroundColor(.black)
-                                
+                                    .foregroundColor(.primary)
+
                                 Spacer()
                                 
                                 Image(systemName: "square.and.arrow.up")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.primary)
                                     .padding(8)
                             }
                             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
