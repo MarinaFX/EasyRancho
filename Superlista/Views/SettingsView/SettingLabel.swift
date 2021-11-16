@@ -70,7 +70,7 @@ struct SettingLabel: View {
                 .background(Color("ButtonBG"))
                 .cornerRadius(13)
             }
-            Button(action: SharedButton) {
+            Button(action: sharedButton) {
                 HStack {
                     Text("SettingLabelC")
                         .foregroundColor(.primary)
@@ -89,7 +89,7 @@ struct SettingLabel: View {
         }
     }
     
-    func SharedButton(){
+    func sharedButton(){
         let urlShare = URL(string: "https://apps.apple.com/br/app/easyrancho-lista-de-compras/id1568546773")
         
         let activityVC = UIActivityViewController(activityItems: [NSLocalizedString("InviteMessage", comment: "InviteMessage"), urlShare], applicationActivities: nil)
