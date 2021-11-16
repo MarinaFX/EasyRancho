@@ -58,7 +58,12 @@
 "SettingLabelA" = "Profil bearbeiten";
 "SettingLabelB" = "Kontakt";
 "SettingLabelC" = "Freund einladen";
-"InviteMessage" = "Sieh sich die App an, mit der ich meine Einkaufslisten erstelle. Lade es auch herunter! =)";
+"SettingLabelD" = "Language";
+"InviteMessage" = "Siehst du sich die App an, mit der ich meine Einkaufslisten erstelle. Lädst du es auch herunter! =)";
+"Deutsch" = "Deutsch";
+"English" = "Englisch";
+"Portuguese" = "Portugiesisch";
+"SettingLabelDHint" = "Wähle die gewünschte Sprache:";
 
 // MARK: - EditProfileView
 "EditProfileTitle" = "Profil bearbeiten";

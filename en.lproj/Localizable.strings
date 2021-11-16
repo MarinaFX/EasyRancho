@@ -58,7 +58,12 @@
 "SettingLabelA" = "Edit profile";
 "SettingLabelB" = "Contact";
 "SettingLabelC" = "Invite a Friend";
+"SettingLabelD" = "Language";
 "InviteMessage" = "Take a look at the app I'm using to create my groceries lists. Download now =)";
+"Deutsch" = "Deutsch";
+"English" = "English";
+"Portuguese" = "Portuguese";
+"SettingLabelDHint" = "Choose the language that you want:";
 
 // MARK: - EditProfileView
 "EditProfileTitle" = "Edit Profile";
