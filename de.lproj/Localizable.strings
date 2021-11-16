@@ -14,11 +14,11 @@
 "itemNotFoundMessage" = "Produkt nicht gefunden";
 "itemNotFoundButton" = "Erstelle neues Produkt";
 "ACItemNotFoundButtonHint" = "Doppeltippe, um zum Bildschirm 'Produkt erstellen' zu gelangen";
-"ACDeleteButtonHint" = "Toque duas vezes para deletar esse produto da sua lista de produtos customizados";
-"deletionAlertTitle" = "Você tem certeza que deseja apagar este item?";
-"deletionAlertMessage" = "O item personalizado será apagado permanentemente das suas listas.";
-"deletionAlertDestructive" = "Apagar";
-"deletionAlertCancel" = "Cancelar";
+"ACDeleteButtonHint" = "Doppeltippe, um dieses Produkt aus Ihrer Liste der benutzerdefinierten Produkte zu entfernen.";
+"deletionAlertTitle" = "Bist du sicher, dass du diesen Artikel entfernen möchtest?";
+"deletionAlertMessage" = "Das angepasste Posten wird dauerhaft aus Ihren Listen gelöscht.";
+"deletionAlertDestructive" = "Entfernen";
+"deletionAlertCancel" = "Abbrechen";
 
 //MARK: - CreateNewCustomProductView screen
 "createProductScreenTitle" = "Produkt erstellen";
