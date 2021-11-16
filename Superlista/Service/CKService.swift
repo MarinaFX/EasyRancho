@@ -63,13 +63,17 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Refresh Return User
+    let ds = DispatchSemaphore(value: 1)
     func refreshUser(_ completion: @escaping (Result<CKUserModel,CKError>) -> Void) {
+        self.ds.wait()
+        print("entrou refresh user")
         var userStatus: UserStatus = .none
         
         let dispatchSemaphore = DispatchSemaphore(value: 1)
         dispatchSemaphore.wait()
         
         self.verifyAccount { status in
+            print("entrou verify account")
             userStatus = status
             dispatchSemaphore.signal()
         }
@@ -78,10 +82,13 @@ class CKService: ObservableObject {
         
         if userStatus == .available {
             getUser { result in
+                print("entrou get user")
                 switch result {
                 case .success(let user):
+                    self.ds.signal()
                     completion(.success(user))
                 case .failure(let error):
+                    self.ds.signal()
                     completion(.failure(error))
                 }
                 dispatchSemaphore.signal()
@@ -130,6 +137,7 @@ class CKService: ObservableObject {
         var recordID: CKRecord.ID?
         
         self.container.fetchUserRecordID { cloudRecordID, error in
+            print("entrou get user fetch user record id")
             guard let localRecordID = cloudRecordID else {
                 let ckError = error as? CKError
                 completion(.failure(ckError ?? CKError(.internalError)))
@@ -149,6 +157,7 @@ class CKService: ObservableObject {
         }
         
         self.publicDB.fetch(withRecordID: recordID) { record, error in
+            print("entrou get user fetch")
             guard let record = record, error == nil else {
                 let ckerror = error as? CKError
                 completion(.failure(ckerror ?? CKError(.internalError)))
@@ -157,6 +166,7 @@ class CKService: ObservableObject {
             }
             
             let _ = CKUserModel(record: record) { user in
+                print("entrou completion user")
                 completion(.success(user))
                 dispatchSemaphore.signal()
             }
@@ -352,9 +362,7 @@ class CKService: ObservableObject {
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
-                        self.refresh { error in
-                            completion(.success(record!.recordID))
-                        }
+                        completion(.success(record!.recordID))
                     } else {
                         completion(.failure(error as! CKError))
                     }
@@ -536,7 +544,7 @@ class CKService: ObservableObject {
         }
     }
     
-    func updateList(listItems: [String], listName: String, listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func updateList(listItems: [String], listName: String, listID: CKRecord.ID, shouldRefresh: Bool = true, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.fetch(withRecordID: listID) { record, error in
             if error == nil {
                 record!.setValue(listName, forKey: "ListName")
@@ -544,7 +552,11 @@ class CKService: ObservableObject {
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
-                        self.refresh { error in
+                        if shouldRefresh {
+                            self.refresh { error in
+                                completion(.success(record!.recordID))
+                            }
+                        } else {
                             completion(.success(record!.recordID))
                         }
                     } else {

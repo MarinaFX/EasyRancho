@@ -18,7 +18,7 @@ struct ListCard: View {
     @State var showAlertDuplicate = false
     
     var body: some View {
-        NavigationLink(destination: ListView(listId: list.id), label: {
+        NavigationLink(destination: ListView(listId: list.id, list: list), label: {
             ZStack(alignment: .leading) {
                 
                 // MARK: - list card

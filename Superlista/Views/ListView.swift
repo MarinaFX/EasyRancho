@@ -50,6 +50,7 @@ struct ListView: View {
                 NetworkMonitor.shared.startMonitoring { path in
                     if let sharedWith = list?.sharedWith {
                         if path.status == .satisfied && !sharedWith.isEmpty {
+                            print("refresh collab")
                             dataService.refreshUser()
                         }
                     }
@@ -57,7 +58,7 @@ struct ListView: View {
             }
             .onChange(of: list) { newValue in
                 if let updatedList = newValue {
-                    dataService.updateCKListItems(of: updatedList)
+                    dataService.updateList(of: updatedList)
                 }
             }
     }
