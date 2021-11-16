@@ -63,6 +63,7 @@
 "Deutsch" = "Alemão";
 "English" = "Inglês";
 "Portuguese" = "Português";
+"SettingLabelDHint" = "Escolha o idioma que você deseja:";
 
 // MARK: - EditProfileView
 "EditProfileTitle" = "Editar Perfil";

@@ -83,6 +83,12 @@ struct SettingLabel: View {
                         .foregroundColor(.primary)
                         .font(.system(size: 20.0, weight: .bold))
                 }
+                .padding(20)
+                .foregroundColor(.white)
+                .background(Color("ButtonBG"))
+                .cornerRadius(13)
+            }
+            
             Button(action: {
                choosingLanguage = true
             }) {
@@ -105,25 +111,14 @@ struct SettingLabel: View {
                     .background(Color("ButtonBG"))
                     .cornerRadius(13)
                 }
-            if choosingLanguage {
-                HStack {
-                    Button {
-                        languageSettings.selectedLanguage = .en
-                    } label: {
-                        Text("English")
-                    }
-                    Button {
-                        languageSettings.selectedLanguage = .ptBR
-                    } label: {
-                        Text("Portuguese")
-                    }
-                    Button {
-                        languageSettings.selectedLanguage = .de
-                    } label: {
-                        Text("Deutsch")
-                    }
-                }
-            }
+        }
+        .actionSheet(isPresented: $choosingLanguage) {
+            ActionSheet(title: Text("SettingLabelD"), message: Text("SettingLabelDHint"), buttons: [
+                .default(Text("English")) { languageSettings.selectedLanguage = .en },
+                .default(Text("Portuguese")) { languageSettings.selectedLanguage = .ptBR },
+                .default(Text("Deutsch")) {  languageSettings.selectedLanguage = .de },
+                .cancel()
+            ])
         }
     }
     
