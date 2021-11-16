@@ -76,8 +76,10 @@ struct ItemCommentView: View {
                                 .frame(width: textBubbleWidth, height: textBubbleHeight)
                                 .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
                                 .onTapGesture {
-                                    if (networkMonitor.status == .satisfied) {
-                                        isCommenting = true
+                                    if let sharedWith = list?.sharedWith {
+                                        if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty) {
+                                            isCommenting = true
+                                        }
                                     }
                                 }
                                 .accessibilityAddTraits(AccessibilityTraits.isButton)
@@ -132,11 +134,13 @@ struct CheckmarkWithTextView: View {
             .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
             .font(.body)
             .onTapGesture {
-                if (networkMonitor.status == .satisfied) {      
-                    if let list = list {
-                        let newList = list.toggleCompletion(of: item)
-                        self.list = newList
-                    } 
+                if let sharedWith = list?.sharedWith {
+                    if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty) {
+                        if let list = list {
+                            let newList = list.toggleCompletion(of: item)
+                            self.list = newList
+                        }
+                    }
                 }
             }
             .accessibilityAddTraits(AccessibilityTraits.isButton)
@@ -162,7 +166,7 @@ struct ItemQuantityView: View {
     @ScaledMetric var plusSymbolHeight: CGFloat = 17
     @ScaledMetric var minusSymbolWidth: CGFloat = 17
     @ScaledMetric var minusSymbolHeight: CGFloat = 1.5
-
+    
     let networkMonitor = NetworkMonitor.shared
     
     var item: ItemModel
@@ -177,10 +181,12 @@ struct ItemQuantityView: View {
         }
         .frame(width: minusSymbolWidth, height: minusSymbolWidth)
         .onTapGesture {
-            if (networkMonitor.status == .satisfied) {
-                if let list = list {
-                    let newList = list.removeQuantity(of: item)
-                    self.list = newList
+            if let sharedWith = list?.sharedWith {
+                if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty) {
+                    if let list = list {
+                        let newList = list.removeQuantity(of: item)
+                        self.list = newList
+                    }
                 }
             }
         }
@@ -204,10 +210,12 @@ struct ItemQuantityView: View {
             .frame(width: plusSymbolWidth, height: plusSymbolHeight)
             .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
             .onTapGesture {
-                if (networkMonitor.status == .satisfied) {
-                    if let list = list {
-                        let newList = list.addQuantity(of: item)
-                        self.list = newList
+                if let sharedWith = list?.sharedWith {
+                    if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty) {
+                        if let list = list {
+                            let newList = list.addQuantity(of: item)
+                            self.list = newList
+                        }
                     }
                 }
             }

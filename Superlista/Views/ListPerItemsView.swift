@@ -39,10 +39,12 @@ struct ListPerItemsView: View {
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
                     .onDelete { row in
-                        if (networkMonitor.status == .satisfied) { 
-                            if let list = list {
-                                let newList = list.removeItem(from: row, of: category)
-                                self.list = newList
+                        if let sharedWith = list?.sharedWith {
+                            if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty)  {
+                                if let list = list {
+                                    let newList = list.removeItem(from: row, of: category)
+                                    self.list = newList
+                                }
                             }
                         }
                     }
