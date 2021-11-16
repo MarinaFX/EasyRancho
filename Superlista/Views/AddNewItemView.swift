@@ -3,10 +3,8 @@ import Foundation
 
 struct AddNewItemView: View {
     @Environment(\.presentationMode) var presentationMode
-        
-    var list: ListModel
     
-    @Binding var hasChangedItems: Bool
+    @Binding var list: ListModel?
     
     @State var searchText: String
     
@@ -16,10 +14,9 @@ struct AddNewItemView: View {
         GeometryReader { geometry in
             MainScreen(customView:
                 VStack {
+                    ProductListView(filter: $searchText, list: self.$list)
                     
-                    ProductListView(list: list, filter: $searchText, hasChangedItems: $hasChangedItems)
-                    
-                    Button(action: prontoButtonPressed, label: {
+                    Button(action: readyButtonPressed, label: {
                         Text("AddNewItemViewBottomButtonLabel")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -30,7 +27,7 @@ struct AddNewItemView: View {
                     })
                     .padding(.bottom, geometry.size.height * 0.12)
                     .padding(.top, geometry.size.height * (0.01))
-                    
+                
                 }
             )
             .toolbar {
@@ -42,7 +39,7 @@ struct AddNewItemView: View {
         }
     }
     
-    func prontoButtonPressed() {
+    func readyButtonPressed() {
         presentationMode.wrappedValue.dismiss()
     }
 }

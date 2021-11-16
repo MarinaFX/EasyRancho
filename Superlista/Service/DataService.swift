@@ -24,7 +24,7 @@ class DataService: ObservableObject {
     let networkMonitor = NetworkMonitor.shared
     
     var userSubscription: AnyCancellable?
-    
+        
     init() {
         getDataIntegration()
     }
@@ -78,9 +78,9 @@ class DataService: ObservableObject {
             self.user = UserModel(id: currentUser.id, name: newUsername, customProducts: currentUser.customProducts, myLists: currentUser.myLists, sharedWithMe: currentUser.sharedWithMe)
         }
         
-            if networkMonitor.status == .satisfied {
-                CKService.currentModel.updateUserImageAndName(image: picture, name: newUsername) { result in }
-            }
+        if networkMonitor.status == .satisfied {
+            CKService.currentModel.updateUserImageAndName(image: picture, name: newUsername) { result in }
+        }
         
     }
     
@@ -89,10 +89,10 @@ class DataService: ObservableObject {
             self.user = UserModel(id: currentUser.id, name: newUsername, customProducts: currentUser.customProducts, myLists: currentUser.myLists, sharedWithMe: currentUser.sharedWithMe)
         }
         
-
+        
         if networkMonitor.status == .satisfied {
-                CKService.currentModel.updateUserName(name: newUsername) { result in }
-            }
+            CKService.currentModel.updateUserName(name: newUsername) { result in }
+        }
         
     }
     
@@ -103,10 +103,9 @@ class DataService: ObservableObject {
             lists.remove(at: index)
             
             if networkMonitor.status == .satisfied {
-                    guard let user = self.user else { return }
-                    CloudIntegration.actions.deleteList(list: listModel, userID: user.id)
-                }
-            
+                guard let user = self.user else { return }
+                CloudIntegration.actions.deleteList(list: listModel, userID: user.id)
+            }
         }
     }
     
@@ -115,8 +114,7 @@ class DataService: ObservableObject {
             lists[index] = listModel.editTitle(newTitle: newTitle)
             
             if networkMonitor.status == .satisfied {
-                    CloudIntegration.actions.updateListTitle(listModel, newTitle)
-                
+                CloudIntegration.actions.updateListTitle(listModel, newTitle)
             }
         }
     }
@@ -125,8 +123,7 @@ class DataService: ObservableObject {
         lists.append(newList)
         
         if networkMonitor.status == .satisfied {
-                CloudIntegration.actions.createList(newList)
-            
+            CloudIntegration.actions.createList(newList)
         }
     }
     
@@ -140,8 +137,7 @@ class DataService: ObservableObject {
         }
         
         if networkMonitor.status == .satisfied {
-                CloudIntegration.actions.removeCollab(of: list, ownerID: owner.id) 
-            
+            CloudIntegration.actions.removeCollab(of: list, ownerID: owner.id)
         }
     }
     
@@ -154,7 +150,7 @@ class DataService: ObservableObject {
             lists[index] = listWithNewItem
             
             if networkMonitor.status == .satisfied {
-                    CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItem)
+                CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItem)
             }
         }
     }
@@ -166,7 +162,7 @@ class DataService: ObservableObject {
             lists[index] = listWithoutItem
             
             if networkMonitor.status == .satisfied {
-                    CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
+                CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
             }
         }
     }
@@ -178,7 +174,7 @@ class DataService: ObservableObject {
             lists[index] = listWithoutItem
             
             if networkMonitor.status == .satisfied {
-                    CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
+                CloudIntegration.actions.updateCkListItems(updatedList: listWithoutItem)
             }
         }
     }
@@ -190,7 +186,7 @@ class DataService: ObservableObject {
             lists[index] = listWithNewItemComment
             
             if networkMonitor.status == .satisfied {
-                    CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemComment)
+                CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemComment)
             }
         }
     }
@@ -202,7 +198,7 @@ class DataService: ObservableObject {
             lists[index] = listWithItemNewState
             
             if networkMonitor.status == .satisfied {
-                    CloudIntegration.actions.updateCkListItems(updatedList: listWithItemNewState)
+                CloudIntegration.actions.updateCkListItems(updatedList: listWithItemNewState)
             }
         }
     }
@@ -213,7 +209,9 @@ class DataService: ObservableObject {
             
             lists[index] = listWithNewItemQuantity
             
-            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+            if networkMonitor.status == .satisfied {
+                CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+            }
         }
     }
     
@@ -223,7 +221,9 @@ class DataService: ObservableObject {
             
             lists[index] = listWithNewItemQuantity
             
-            CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+            if networkMonitor.status == .satisfied {
+                CloudIntegration.actions.updateCkListItems(updatedList: listWithNewItemQuantity)
+            }
         }
     }
     
@@ -235,6 +235,27 @@ class DataService: ObservableObject {
         addList(newList)
     }
     
+    func updateCustomProducts(withName productName: String, for category: String) -> Bool {
+        if let user = user,
+           let userCustomProducts = user.customProducts {
+            let id: Int = getRandomUniqueID(blacklist: userCustomProducts.map({ $0.id }))
+            let userNewProduct: ProductModel = ProductModel(id: id, name: productName, category: category)
+            
+            if !userCustomProducts.map({ $0.name.lowercased() }).contains(userNewProduct.name.lowercased()) &&
+                !products.map({ $0.name.lowercased() }).contains(userNewProduct.name.lowercased()) {
+                
+                user.customProducts?.append(userNewProduct)
+                
+                if networkMonitor.status == .satisfied {
+                    CloudIntegration.actions.updateUserCustomProducts(withProduct: userNewProduct)
+                }
+                
+                return true
+            }
+        }
+        return false
+    }
+    
     // MARK: - Add Collab Shared List
     func addCollabList(of list: CKListModel) {
         var sharedWith = list.sharedWith
@@ -244,7 +265,9 @@ class DataService: ObservableObject {
         
         sharedWith.append(user)
         
-        CloudIntegration.actions.addCollabList(of: list)
+        if networkMonitor.status == .satisfied {
+            CloudIntegration.actions.addCollabList(of: list)
+        }
         
         //Início da gambiarra
         list.sharedWith = sharedWith
@@ -254,7 +277,9 @@ class DataService: ObservableObject {
     }
     
     func updateCKListItems(of list: ListModel) {
-        CloudIntegration.actions.updateCkListItems(updatedList: list)
+        if networkMonitor.status == .satisfied {
+            CloudIntegration.actions.updateCkListItems(updatedList: list)
+        }
     }
     
     
@@ -263,34 +288,26 @@ class DataService: ObservableObject {
         return userID == list.owner.id
     }
     
-    // MARK: - Get Shared Lists from CK
-    func getSharedLists() {
+    // MARK: - Refresh User, Get Shared Lists from CK
+    func refreshUser() {
         CKService.currentModel.refreshUser { result in
             switch result {
-            case .success(let ckUser):
-                let localUser = UserModelConverter().convertCloudUserToLocal(withUser: ckUser)
-                
-                var localSharedWithMe: [ListModel] = []
-                
-                localUser.sharedWithMe?.forEach { list in
-                    localSharedWithMe.append(list)
-                }
-                
-                var localMyLists: [ListModel] = []
-                
-                localUser.myLists?.forEach { list in
-                    if let sharedWith = list.sharedWith, !sharedWith.isEmpty {
-                        localMyLists.append(list)
+                case .success(let ckUser):
+                    let localUser = UserModelConverter().convertCloudUserToLocal(withUser: ckUser)
+                    
+                    var localSharedWithMe: [ListModel] = []
+                    
+                    localUser.sharedWithMe?.forEach { list in
+                        localSharedWithMe.append(list)
                     }
-                }
-                
-                let localLists = UDService().getUDLists()
-                
-                localLists.forEach { list in
-                    if let sharedWith = list.sharedWith, sharedWith.isEmpty {
-                        localMyLists.append(list)
+                    
+                    var localMyLists: [ListModel] = []
+                    
+                    localUser.myLists?.forEach { list in
+                        if let sharedWith = list.sharedWith, !sharedWith.isEmpty {
+                            localMyLists.append(list)
+                        }
                     }
-                }
                 
                 var newLists: [ListModel] = localSharedWithMe
                 newLists.append(contentsOf: localMyLists)
@@ -299,11 +316,54 @@ class DataService: ObservableObject {
                     self.lists = newLists
                     self.user?.myLists = localMyLists
                     self.user?.sharedWithMe = localSharedWithMe
+                    if let user = self.user {
+                        self.createNewLists(localMyLists: localMyLists)
+                        self.updateUsersLists(localMyLists: localMyLists)
+                        CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user)
+                        self.uploadUsersLists()
+                    }
                 }
                 
             case .failure:
                 return
             }
+        }
+    }
+    
+    // MARK: - Upload Lists do UD para o CK
+    func uploadUsersLists() {
+        CKService.currentModel.uploadUsersLists { result in
+            print(result, "result")
+        }
+    }
+    
+    // MARK: - Create UD Lists on CK
+    func createNewLists(localMyLists: [ListModel]) {
+        var oldLists: [ListModel] = []
+        for ckList in CKService.currentModel.user?.myLists ?? [] {
+            oldLists.append(ListModelConverter().convertCloudListToLocal(withList: ckList))
+        }
+        
+        let indexes = zip(oldLists, localMyLists).enumerated().filter() {
+            $1.1.id == $1.1.id
+        }.map{$0.0}
+        
+        var newLists: [ListModel] = []
+        
+        for index in indexes {
+            newLists.append(localMyLists[index])
+        }
+        
+        for list in newLists {
+            CKService.currentModel.createList(listModel: ListModelConverter().convertLocalListToCloud(withList: list)) { result in }
+        }
+    }
+    
+    // MARK: - Update Users Lists from UD to CK
+    func updateUsersLists(localMyLists: [ListModel]) {
+        for list in localMyLists {
+            let ckList = ListModelConverter().convertLocalListToCloud(withList: list)
+            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID: ckList.id) { result in }
         }
     }
 }

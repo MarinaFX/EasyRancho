@@ -1,51 +1,55 @@
 import SwiftUI
 
 struct ListHeader: View {
-    @EnvironmentObject var dataServive: DataService
+    @ScaledMetric var collabIconWidth: CGFloat = 28
+    @ScaledMetric var collabIconHeight: CGFloat = 24
     
-    @Binding var listaTitulo: String
+    @Binding var listTitle: String
     @State var canComment: Bool = false
-    @State var comentario: String = ""
+    @State var comment: String = ""
     @Binding var canEditTitle: Bool
     @State var showCollabSheetView: Bool = false
     @State var collaborators: [OwnerModel]
     @State var listOwner: OwnerModel
     
-    let purpleColor = Color("Background")
-    let secondary = Color("Secondary")
     let list: ListModel?
     
     @Binding var listId: String
     
     var body: some View {
         HStack (spacing: 5){
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 
                 ZStack(alignment: .leading) {
                     if canEditTitle {
-                        if listaTitulo.isEmpty {
+                        if listTitle.isEmpty {
                             Text("NovaLista")
-                                .foregroundColor(secondary)
-                                .font(.system(size: 24, weight: .bold))
+                                .foregroundColor(Color("Secondary"))
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .accessibility(hint: Text("ListHeaderTitle"))
                             
                         }
                         
-                        TextField("", text: $listaTitulo)
+                        TextField("", text: $listTitle)
                             .foregroundColor(canEditTitle ? Color("PrimaryBackground") : .black)
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.largeTitle)
                             .background(Color("editTitleBackground"))
                             .onTapGesture {
-                                if listaTitulo == NSLocalizedString("NovaLista", comment: "NovaLista") {
-                                    listaTitulo = ""
+                                if listTitle == NSLocalizedString("NovaLista", comment: "NovaLista") {
+                                    listTitle = ""
                                 }
                             }
                     }
                     
-                    if !canEditTitle, let list = list {
+                    if !canEditTitle {
                         HStack {
-                            Text(list.title).font(.system(size: 24, weight: .bold))
+                            Text(listTitle)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
                                 .lineLimit(2)
                                 .foregroundColor(Color.primary)
+                                .accessibility(hint: Text("ListHeaderTitle"))
                             Spacer()
                         }
                         
@@ -61,11 +65,11 @@ struct ListHeader: View {
             } label: {
                 Image(systemName: self.collaborators.isEmpty ? "person.crop.circle.badge.plus" : "person.crop.circle.badge.checkmark")
                     .resizable()
-                    .frame(width: 28, height: 24)
+                    .frame(width: collabIconWidth, height: collabIconHeight)
                     .foregroundColor(.black)
             }
-            .sheet(isPresented: $showCollabSheetView)
-            { }
+            .accessibility(label: Text(self.collaborators.isEmpty ? "ListHeaderCollabButton1" : "ListHeaderCollabButton2"))
+            .sheet(isPresented: $showCollabSheetView) { }
             content: {
                 AddCollaboratorSheetView(showCollabSheetView: self.$showCollabSheetView, collaborators: self.$collaborators, listOwner: self.$listOwner, list: self.list)
             }
@@ -73,7 +77,7 @@ struct ListHeader: View {
         .padding(.horizontal, 30)
         .onAppear {            
             if let list = list {
-                listaTitulo = list.title
+                listTitle = list.title
                 canEditTitle = false
                 collaborators = list.sharedWith ?? []
             }

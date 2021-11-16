@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 //MARK: - ProductModelConverter Class
 
@@ -16,8 +17,7 @@ class ProductModelConverter {
             let name: String = contents[0]
             let category: String = contents[1]
             
-            #warning("ver a necessidade de subir o ID do produto para o banco de dados")
-            let newProduct: ProductModel = ProductModel(id: 935, name: name, category: category)
+            let newProduct: ProductModel = ProductModel(id: random(), name: name, category: category)
             localProduct.append(newProduct)
         }
         
@@ -34,5 +34,13 @@ class ProductModelConverter {
         }
         
         return cloudProducts
+    }
+    
+    func convertLocalProductsToString(withProduct product: ProductModel) -> String {
+        var cloudProduct: String = ""
+        
+        cloudProduct = product.name + ";" + product.category
+        
+        return cloudProduct
     }
 }

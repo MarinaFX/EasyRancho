@@ -1,0 +1,390 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body {
+  font-family: SF Pro Display, sans-serif;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+#first-section {
+  background-color: #afbe3d;
+}
+
+#second-section {
+  background-color: #00a0ad;
+}
+
+#third-section {
+  background-color: #f89357;
+  position: relative;
+}
+
+section {
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+
+.ig-container {
+  display: flex;
+  align-items: center;
+}
+
+.ig-container .ig-btn {
+  width: 32%;
+  height: 32%;
+  max-width: 29.07px;
+  margin-right: 5px;
+}
+
+.padded {
+  padding: 50px 0px;
+}
+
+.half-padded {
+  padding: 100px 0px 0px 0px;
+}
+
+#section-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1440px;
+  height: inherit;
+  margin: 0 auto;
+  padding: 0px 95px;
+}
+
+.logo {
+  width: 80%;
+  max-width: 293px;
+  min-width: 200px;
+  margin-bottom: 40px;
+}
+
+p {
+  font-family: SF Pro Text, sans-serif;
+  font-weight: 400;
+  font-size: 2.3em;
+  line-height: 1.5em;
+  margin: 34px 0px 34px 0px;
+}
+
+h1 {
+  font-size: 4em;
+  font-weight: 700;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+  margin: 10px 30px 0px 30px;
+}
+
+footer p {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  font-weight: 200;
+  margin: 0;
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  margin-left: 40px;
+}
+
+#first-section .illustration-img {
+  width: 100%;
+}
+
+#second-section .illustration-img {
+  width: 39%;
+  align-self: flex-end;
+  max-width: 542px;
+}
+
+#third-section .illustration-img {
+  width: 33%;
+}
+
+.apple-btn {
+  width: 28%;
+  max-width: 162px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: inherit;
+  flex-wrap: wrap;
+  width: 50%;
+}
+
+.rows {
+  display: flex;
+  justify-content: space-between;
+}
+
+#second-section .rows {
+  height: 100%;
+}
+
+#third-section .apple-btn {
+  width: 71%;
+  max-width: 347px;
+  margin: 60px 0px 48px 0px;
+}
+
+#third-section .content {
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+#third-section h1 {
+  font-weight: 500;
+}
+
+#third-section footer {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}
+
+#third-section footer .ig-btn {
+  width: 47%;
+  height: 47%;
+  max-width: 42px;
+}
+
+.apple-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 80%;
+  }
+
+  section {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  .img-container {
+    display: none;
+  }
+
+  .rows {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .padded {
+    padding: 30px 0px;
+  }
+
+  .half-padded {
+    padding: 60px 0px 0px 0px;
+  }
+
+  #section-content,
+  .content {
+    padding: 0;
+    width: 90%;
+  }
+
+  p {
+    font-size: 1.8em;
+  }
+
+  #first-section,
+  #third-section {
+    height: 90vh;
+  }
+
+  #second-section {
+    height: auto;
+  }
+
+  #first-section .apple-btn {
+    width: 100%;
+  }
+
+  #first-section footer {
+    margin: 0;
+  }
+
+  #second-section .illustration-img {
+    width: 100%;
+    align-self: center;
+    max-width: 372px;
+  }
+
+  #third-section .illustration-img {
+    width: 60%;
+  }
+
+  #third-section {
+    position: static;
+  }
+
+  #third-section footer {
+    position: static;
+    margin: 0;
+    padding: 20px 0px 10px 0px;
+    justify-content: center;
+    border-top: 1px solid #fff;
+  }
+
+  #third-section .ig-container .ig-btn {
+    width: 22%;
+    height: 22%;
+  }
+
+  #first-section .ig-container {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 1099px) {
+  body {
+    font-size: 80%;
+  }
+
+  section {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+
+  #second-section .rows {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .padded {
+    padding: 30px 0px;
+  }
+
+  .half-padded {
+    padding: 60px 0px 0px 0px;
+  }
+
+  #section-content,
+  .content {
+    padding: 0;
+    width: 80%;
+  }
+
+  p {
+    font-size: 1.8em;
+  }
+
+  #first-section,
+  #third-section {
+    height: 90vh;
+  }
+
+  #second-section {
+    height: auto;
+  }
+
+  #first-section .apple-btn {
+    width: 100%;
+  }
+
+  #first-section footer {
+    margin: 0;
+  }
+
+  #second-section .illustration-img {
+    width: 50%;
+    align-self: center;
+  }
+
+  #second-section .content {
+    text-align: center;
+  }
+
+  #third-section .illustration-img {
+    width: 60%;
+    max-width: 300px;
+  }
+
+  #third-section {
+    position: static;
+  }
+
+  #third-section footer {
+    position: static;
+    margin: 0;
+    padding: 20px 0px 10px 0px;
+    justify-content: center;
+    border-top: 1px solid #fff;
+  }
+
+  #third-section .ig-container .ig-btn {
+    width: 22%;
+    height: 22%;
+  }
+
+  #first-section .ig-container {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-height: 800px) {
+  #first-section,
+  #second-section,
+  #third-section {
+    height: auto;
+  }
+
+  #third-section .illustration-img {
+    width: 20%;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  #second-section .rows {
+    flex-direction: row;
+  }
+
+  #second-section .content {
+    text-align: left;
+    margin-left: 50px;
+  }
+}
+
+@media only screen and (min-width: 1100px) and (max-width: 1439px) {
+  #second-section {
+    height: auto;
+  }
+
+  #second-section .illustration-img {
+    width: 40%;
+    align-self: flex-end;
+    padding-right: 50px;
+  }
+}
