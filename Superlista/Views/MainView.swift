@@ -132,7 +132,7 @@ struct MainView: View {
     func createNewListAction() {
         guard let user = dataService.user else { return }
         
-        let newOwner: OwnerModel = OwnerModel(id: user.id, name: user.name ?? "")
+        let newOwner: OwnerModel = OwnerModel(id: user.id, name: user.name ?? getNickname())
         
         let title = NSLocalizedString("CreateListAlertTitle", comment: "")
         let msg = NSLocalizedString("CreateListAlertText", comment: "")

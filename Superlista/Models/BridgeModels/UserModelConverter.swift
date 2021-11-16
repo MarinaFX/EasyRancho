@@ -28,7 +28,7 @@ class UserModelConverter {
         let sharedWithMe: [ListModel] = []
         
         id = user.id.recordName
-        name = user.name ?? "arrumar esse inferno krl merda cu"
+        name = user.name ?? getNickname()
         
         let localUser: UserModel = UserModel(id: id, name: name, customProducts: customProducts, myLists: myLists, sharedWithMe: sharedWithMe)
         
@@ -42,7 +42,6 @@ class UserModelConverter {
      - user: the cloud user to be converted - CKUserModel
      - Returns: the local version of the given cloud user - UserModel
      */
-#warning("reavaliar funcao. Ela esta chamando outras recursivamente e portanto nunca sai daqui")
     func convertCloudUserToLocal(withUser user: CKUserModel) -> UserModel {
         let id: String
         let name: String
@@ -51,7 +50,7 @@ class UserModelConverter {
         var sharedWithMe: [ListModel] = []
         
         id = user.id.recordName
-        name = user.name ?? ""
+        name = user.name ?? getNickname()
         customProducts = ProductModelConverter().convertStringToProducts(withString: user.customProductsString ?? [])
         
         if let userMyLists = user.myLists {
@@ -110,7 +109,7 @@ class UserModelConverter {
         var sharedWithMe: [CKListModel] = []
         
         id = CKRecord.ID(recordName: user.id)
-        name = user.name ?? ""
+        name = user.name ?? getNickname()
         customProductsString = ProductModelConverter().convertLocalProductsToString(withProducts: user.customProducts ?? [])
         
         if let userMyLists = user.myLists {
