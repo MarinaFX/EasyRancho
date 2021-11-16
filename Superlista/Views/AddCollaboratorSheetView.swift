@@ -49,7 +49,7 @@ struct AddCollaboratorSheetView: View {
                             
                             Button(action: {
                                 self.showShareActionSheet.toggle()
-                                shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name!)
+                                shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name ?? getNickname())
                             }, label: {
                                 HStack(alignment: .center) {
                                     Image(systemName: "plus.circle.fill")
@@ -82,7 +82,7 @@ struct AddCollaboratorSheetView: View {
                         if !collaborators.isEmpty {
                             List {
                                 ForEach(0..<self.collaborators.count, id: \.self) { index in
-                                    CollaboratorListView(collaborators: self.$collaborators, list: list, name: collaborators[index].name!, index: index)
+                                    CollaboratorListView(collaborators: self.$collaborators, list: list, name: collaborators[index].name ?? getNickname(), index: index)
                                 }
                                 .listRowBackground(Color("InsetGroupedBackground"))
                             }
@@ -116,7 +116,7 @@ struct AddCollaboratorSheetView: View {
                         }
                         
                         self.showShareActionSheet.toggle()
-                        shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: listOwner.name!)
+                        shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: listOwner.name ?? getNickname())
                     }, label: {
                         HStack(alignment: .center) {
                             Text("ShareListButton")
