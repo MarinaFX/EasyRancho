@@ -8,6 +8,8 @@ struct ListPerItemsView: View {
     @Binding var list: ListModel?
     var categories: [CategoryModel] { list?.items.keys.map { $0 } ?? [] }
     
+    let networkMonitor = NetworkMonitor.shared
+    
     var body: some View {
         List {
             ForEach(getCategories(), id: \.self) { category in
@@ -37,9 +39,11 @@ struct ListPerItemsView: View {
                             .padding(.bottom, isLast(item, from: category) ? 8 : 0)
                     }
                     .onDelete { row in
-                        if let list = list {
-                            let newList = list.removeItem(from: row, of: category)
-                            self.list = newList
+                        if (networkMonitor.status == .satisfied) { 
+                            if let list = list {
+                                let newList = list.removeItem(from: row, of: category)
+                                self.list = newList
+                            }
                         }
                     }
                     .listRowBackground(Color("PrimaryBackground"))

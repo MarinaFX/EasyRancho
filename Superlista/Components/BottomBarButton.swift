@@ -20,6 +20,7 @@ struct BottomBarButton: View {
         self._buttonHeight = ScaledMetric.init(wrappedValue: buttonHeight)
     }
     
+    
     var body: some View {
         Button(action: buttonAction) {
             VStack(alignment: .trailing) {

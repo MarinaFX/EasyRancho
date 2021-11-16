@@ -7,6 +7,8 @@ struct ItemCommentView: View {
     @ScaledMetric var textBubbleHeight: CGFloat = 18
     @ScaledMetric var textBubbleWidth: CGFloat = 18
     
+    let networkMonitor = NetworkMonitor.shared
+    
     @State var isCommenting: Bool = false
     @State var comment: String = ""
     
@@ -72,9 +74,11 @@ struct ItemCommentView: View {
                             Image(systemName: "text.bubble")
                                 .resizable()
                                 .frame(width: textBubbleWidth, height: textBubbleHeight)
-                                .foregroundColor(Color("Comment"))
+                                .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
                                 .onTapGesture {
-                                    isCommenting = true
+                                    if (networkMonitor.status == .satisfied) {
+                                        isCommenting = true
+                                    }
                                 }
                                 .accessibilityAddTraits(AccessibilityTraits.isButton)
                                 .accessibilityRemoveTraits(AccessibilityTraits.isImage)
@@ -116,6 +120,10 @@ struct ItemCommentView: View {
 
 //MARK: - CheckmarkWithTextView
 struct CheckmarkWithTextView: View {
+    @EnvironmentObject var dataService: DataService
+    
+    let networkMonitor = NetworkMonitor.shared
+    
     var item: ItemModel
     @Binding var list: ListModel?
     
@@ -124,9 +132,11 @@ struct CheckmarkWithTextView: View {
             .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
             .font(.body)
             .onTapGesture {
-                if let list = list {
-                    let newList = list.toggleCompletion(of: item)
-                    self.list = newList
+                if (networkMonitor.status == .satisfied) {      
+                    if let list = list {
+                        let newList = list.toggleCompletion(of: item)
+                        self.list = newList
+                    } 
                 }
             }
             .accessibilityAddTraits(AccessibilityTraits.isButton)
@@ -152,6 +162,8 @@ struct ItemQuantityView: View {
     @ScaledMetric var plusSymbolHeight: CGFloat = 17
     @ScaledMetric var minusSymbolWidth: CGFloat = 17
     @ScaledMetric var minusSymbolHeight: CGFloat = 1.5
+
+    let networkMonitor = NetworkMonitor.shared
     
     var item: ItemModel
     @Binding var list: ListModel?
@@ -161,13 +173,15 @@ struct ItemQuantityView: View {
             Image(systemName: "minus")
                 .resizable()
                 .frame(width: minusSymbolWidth, height: minusSymbolHeight)
-                .foregroundColor(((item.quantity ?? 1) > 1) ? Color("Comment") : Color(UIColor.secondaryLabel))
+                .foregroundColor((((item.quantity ?? 1) <= 1) || !(networkMonitor.status == .satisfied)) ? Color(UIColor.secondaryLabel) : Color("Comment"))
         }
         .frame(width: minusSymbolWidth, height: minusSymbolWidth)
         .onTapGesture {
-            if let list = list {
-                let newList = list.removeQuantity(of: item)
-                self.list = newList
+            if (networkMonitor.status == .satisfied) {
+                if let list = list {
+                    let newList = list.removeQuantity(of: item)
+                    self.list = newList
+                }
             }
         }
         .accessibilityAddTraits(AccessibilityTraits.isButton)
@@ -188,11 +202,13 @@ struct ItemQuantityView: View {
         Image(systemName: "plus")
             .resizable()
             .frame(width: plusSymbolWidth, height: plusSymbolHeight)
-            .foregroundColor(Color("Comment"))
+            .foregroundColor((networkMonitor.status == .satisfied) ? Color("Comment") : Color(UIColor.secondaryLabel))
             .onTapGesture {
-                if let list = list {
-                    let newList = list.addQuantity(of: item)
-                    self.list = newList
+                if (networkMonitor.status == .satisfied) {
+                    if let list = list {
+                        let newList = list.addQuantity(of: item)
+                        self.list = newList
+                    }
                 }
             }
             .accessibilityAddTraits(AccessibilityTraits.isButton)

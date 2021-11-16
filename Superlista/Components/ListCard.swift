@@ -19,6 +19,8 @@ struct ListCard: View {
     @State var editNavigation = false
     @State var showAlertDuplicate = false
     
+    let networkMonitor = NetworkMonitor.shared
+    
     @ScaledMetric var scaledWidthtRect: CGFloat = 171
     @ScaledMetric var scaledHeightRect: CGFloat = 117
     
@@ -97,7 +99,7 @@ struct ListCard: View {
                                 .accessibility(hint: Text("Option2Hint"))
                                 
                                 if let user = dataService.user {
-                                    if dataService.isOwner(of: list, userID: user.id) {
+                                    if dataService.isOwner(of: list, userID: user.id) && (networkMonitor.status == .satisfied) {
                                         Button {
                                             guard let ownerName = list.owner.name else { return }
                                             shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
@@ -118,14 +120,18 @@ struct ListCard: View {
                                 .accessibilityLabel(Text("Option4"))
                                 .accessibility(hint: Text("Option4Hint"))
                                 
-                                Button {
-                                    dataService.currentList = list
-                                    showAlertDelete = true
-                                } label: {
-                                    Label("ContextMenu5", systemImage: "trash")
+                                if let sharedWith = list.sharedWith {
+                                    if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
+                                        Button {
+                                            dataService.currentList = list
+                                            showAlertDelete = true
+                                        } label: {
+                                            Label("ContextMenu5", systemImage: "trash")
+                                        }
+                                        .accessibilityLabel(Text("Option5"))
+                                        .accessibility(hint: Text("Option5Hint"))
+                                    }
                                 }
-                                .accessibilityLabel(Text("Option5"))
-                                .accessibility(hint: Text("Option5Hint"))
                             }
                             .accessibilityLabel(Text("Options"))
                             .accessibility(hint: Text("MoreOptions"))
@@ -155,18 +161,22 @@ struct ListCard: View {
                 }
                 
                 if isEditing {
-                    Image(systemName: "minus.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(Color(.systemGray))
-                        .offset(x: 150, y: -45)
-                        .onTapGesture {
-                            dataService.currentList = list
-                            showAlertDelete = true
+                    if let sharedWith = list.sharedWith {
+                        if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(Color(.systemGray))
+                                .offset(x: 150, y: -45)
+                                .onTapGesture {
+                                    dataService.currentList = list
+                                    showAlertDelete = true
+                                }
+                                .accessibility(label: Text("LabelMinusCircle"))
+                                .accessibility(hint: Text("HintMinusCircle"))
+                                .accessibility(addTraits: .isButton)
+                                .accessibility(removeTraits: .isImage)
                         }
-                          .accessibility(label: Text("LabelMinusCircle"))
-                        .accessibility(hint: Text("HintMinusCircle"))
-                        .accessibility(addTraits: .isButton)
-                        .accessibility(removeTraits: .isImage)
+                    }
                 }
             }
             .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
