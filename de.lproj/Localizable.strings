@@ -61,9 +61,9 @@
 "SettingLabelD" = "Language";
 "InviteMessage" = "Siehst du sich die App an, mit der ich meine Einkaufslisten erstelle. Lädst du es auch herunter! =)";
 "Deutsch" = "Deutsch";
-"English" = "English";
-"Portuguese" = "Portuguese";
-"SettingLabelDHint" = "Choose the language that you want:";
+"English" = "Englisch";
+"Portuguese" = "Portugiesisch";
+"SettingLabelDHint" = "Wähle die gewünschte Sprache:";
 
 // MARK: - EditProfileView
 "EditProfileTitle" = "Profil bearbeiten";
