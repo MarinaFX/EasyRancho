@@ -15,7 +15,7 @@ struct CustomTextFieldStyle: ViewModifier {
     func body(content: Content) -> some View {
         return content
             .padding(20)
-            .foregroundColor(.black)
+            .foregroundColor(.primary)
             .background(Color("ButtonBG"))
             .cornerRadius(15)
             .overlay(RoundedRectangle(cornerRadius: 10.0)
