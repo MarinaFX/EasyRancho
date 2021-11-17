@@ -16,7 +16,7 @@ struct SplashView: View {
             if self.isLogged {
                 MainView()
 
-            } else if !self.isActive || !self.isLogged {
+            }  else if !self.isLogged && self.isActive {
                 OnboardingView()
             } else {
                 VStack {
