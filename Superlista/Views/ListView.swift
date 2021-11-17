@@ -46,9 +46,9 @@ struct ListView: View {
                         editTitle()
                     } label: {
                         Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
-                            .foregroundColor(((networkMonitor.status == .satisfied) || (list!.sharedWith!.isEmpty)) ? Color.primary : Color(UIColor.secondaryLabel))
+                            .foregroundColor(getForegroundColor(list: list, networkMonitor: networkMonitor) ? Color.primary : Color(UIColor.secondaryLabel))
                     }
-                    .disabled(!(networkMonitor.status == .satisfied) && !(list!.sharedWith!.isEmpty))
+                    .disabled(!getForegroundColor(list: list, networkMonitor: networkMonitor))
                 }
             }
             .onAppear {
