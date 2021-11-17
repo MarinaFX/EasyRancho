@@ -13,8 +13,7 @@ struct MainScreen<Content: View>: View {
         ZStack() {
             headerColor
                 .edgesIgnoringSafeArea(.top)
-                
-            
+                         
             VStack {
                 customView
                     .padding(.vertical)
