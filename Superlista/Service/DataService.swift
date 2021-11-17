@@ -42,29 +42,31 @@ class DataService: ObservableObject {
             var localLists = UDService().getUDLists()
             
             ckUserModel.sharedWithMe?.forEach { list in
-                let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                
-                let ids = localLists.map(\.id)
-                
-                if let index = ids.firstIndex(of: list.id.recordName) {
-                    localLists[index] = localList
-                }
-                else {
-                    localLists.append(localList)
+                if let localList = ListModelConverter().convertCloudListToLocal(withList: list) {
+                    
+                    let ids = localLists.map(\.id)
+                    
+                    if let index = ids.firstIndex(of: list.id.recordName) {
+                        localLists[index] = localList
+                    }
+                    else {
+                        localLists.append(localList)
+                    }
                 }
             }
             
             
             ckUserModel.myLists?.forEach { list in
-                let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-                
-                let ids = localLists.map(\.id)
-                
-                if let index = ids.firstIndex(of: list.id.recordName) {
-                    localLists[index] = localList
-                }
-                else {
-                    localLists.append(localList)
+                if let localList = ListModelConverter().convertCloudListToLocal(withList: list) {
+                    
+                    let ids = localLists.map(\.id)
+                    
+                    if let index = ids.firstIndex(of: list.id.recordName) {
+                        localLists[index] = localList
+                    }
+                    else {
+                        localLists.append(localList)
+                    }
                 }
             }
             
@@ -273,8 +275,9 @@ class DataService: ObservableObject {
         
         //Início da gambiarra
         list.sharedWith = sharedWith
-        let localList = ListModelConverter().convertCloudListToLocal(withList: list)
-        lists.append(localList)
+        if let localList = ListModelConverter().convertCloudListToLocal(withList: list) {
+            lists.append(localList)
+        }
         //Fim da gambiarra
     }
     
@@ -302,49 +305,49 @@ class DataService: ObservableObject {
     func refreshUser() {
         CKService.currentModel.refreshUser { result in
             switch result {
-            case .success(let ckUser):
-                let localUser = UserModelConverter().convertCloudUserToLocal(withUser: ckUser)
-                
-                var localSharedWithMe: [ListModel] = []
-                
-                localUser.sharedWithMe?.forEach { list in
-                    localSharedWithMe.append(list)
-                }
-                
-                var localMyLists: [ListModel] = []
-                
-                localUser.myLists?.forEach { list in
-                    if let sharedWith = list.sharedWith, !sharedWith.isEmpty {
-                        localMyLists.append(list)
+                case .success(let ckUser):
+                    let localUser = UserModelConverter().convertCloudUserToLocal(withUser: ckUser)
+                    
+                    var localSharedWithMe: [ListModel] = []
+                    
+                    localUser.sharedWithMe?.forEach { list in
+                        localSharedWithMe.append(list)
                     }
-                }
-                
-                if let user = self.user {
-                    user.myLists?.forEach { list in
-                        if let sharedWith = list.sharedWith, sharedWith.isEmpty {
+                    
+                    var localMyLists: [ListModel] = []
+                    
+                    localUser.myLists?.forEach { list in
+                        if let sharedWith = list.sharedWith, !sharedWith.isEmpty {
                             localMyLists.append(list)
                         }
                     }
-                }
-                
-                var newLists: [ListModel] = localSharedWithMe
-                newLists.append(contentsOf: localMyLists)
-                
-                DispatchQueue.main.async {
-                    self.lists = newLists
-                    self.user?.myLists = localMyLists
-                    self.user?.sharedWithMe = localSharedWithMe
+                    
                     if let user = self.user {
-                        self.createNewLists(localMyLists: localMyLists)
-                        self.deleteOldLists(localMyLists: localMyLists)
-                        self.updateUsersLists(localMyLists: localMyLists)
-                        CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user)
-                        self.uploadUsersLists()
+                        user.myLists?.forEach { list in
+                            if let sharedWith = list.sharedWith, sharedWith.isEmpty {
+                                localMyLists.append(list)
+                            }
+                        }
                     }
-                }
-                
-            case .failure:
-                return
+                    
+                    var newLists: [ListModel] = localSharedWithMe
+                    newLists.append(contentsOf: localMyLists)
+                    
+                    DispatchQueue.main.async {
+                        self.lists = newLists
+                        self.user?.myLists = localMyLists
+                        self.user?.sharedWithMe = localSharedWithMe
+                        if let user = self.user {
+                            self.createNewLists(localMyLists: localMyLists)
+                            self.deleteOldLists(localMyLists: localMyLists)
+                            self.updateUsersLists(localMyLists: localMyLists)
+                            CKService.currentModel.user = UserModelConverter().convertLocalUserToCloud(withUser: user)
+                            self.uploadUsersLists()
+                        }
+                    }
+                      
+                    case .failure:
+                        return
             }
         }
     }
@@ -358,7 +361,9 @@ class DataService: ObservableObject {
     func createNewLists(localMyLists: [ListModel]) {
         var oldLists: [ListModel] = []
         for ckList in CKService.currentModel.user?.myLists ?? [] {
-            oldLists.append(ListModelConverter().convertCloudListToLocal(withList: ckList))
+            if let localList = ListModelConverter().convertCloudListToLocal(withList: ckList) {
+                oldLists.append(localList)
+            }
         }
         
         let oldListsIDs = Set(oldLists.map(\.id))
@@ -375,8 +380,11 @@ class DataService: ObservableObject {
     // MARK: - Delete UD Lists on CK
     func deleteOldLists(localMyLists: [ListModel]) {
         var oldLists: [ListModel] = []
+        
         for ckList in CKService.currentModel.user?.myLists ?? [] {
-            oldLists.append(ListModelConverter().convertCloudListToLocal(withList: ckList))
+            if let localList = ListModelConverter().convertCloudListToLocal(withList: ckList) {
+                oldLists.append(localList)
+            }
         }
         
         let newListsIDs = Set(localMyLists.map(\.id))
