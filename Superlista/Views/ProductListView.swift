@@ -225,25 +225,15 @@ struct ProductQuantityView: View {
         }
         .frame(width: symbolSize, height: symbolSize)
         .onTapGesture {
-            //master
             let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
             if let list = list {
                 let newList = list.removeQuantity(of: selectedItems[index])
                 self.list = newList
             }
-            if selectedItems[index].quantity! > 1 {
-                selectedItems[index].quantity = selectedItems[index].quantity! - 1
+            
+            if let quantity = selectedItems[index].quantity, quantity > 1 {
+                selectedItems[index].quantity = quantity - 1
             }
-            //master
-
-//            let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-//                if let list = list {
-//                    let newList = list.removeQuantity(of: selectedItems[index])
-//                    self.list = newList
-//                }
-//                if selectedItems[index].quantity! > 1 {
-//                    selectedItems[index].quantity = selectedItems[index].quantity! - 1
-//                }
         }
         .accessibilityLabel(Text("remove"))
         .accessibility(hint: Text("removeOneItem"))
@@ -260,19 +250,13 @@ struct ProductQuantityView: View {
             .frame(width: symbolSize, height: symbolSize)
             .foregroundColor(Color("Button"))
             .onTapGesture {
-                //master
-                let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) ?? 0
-                if let list = list {
+                if let list = list,
+                   let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) {
                     let newList = list.addQuantity(of: selectedItems[index])
                     self.list = newList
+                    
+                    selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
                 }
-                selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
-                //master
-//                if let index = selectedItems.firstIndex(where: { $0.product.name == item.name }) {
-//                    dataService.addQuantity(of: selectedItems[index], from: list)
-//                    selectedItems[index].quantity = (selectedItems[index].quantity ?? 1) + 1
-//                }
-                
             }
             .accessibilityLabel(Text("add"))
             .accessibility(hint: Text("addOneItem"))
