@@ -52,7 +52,7 @@ struct EditProfileView: View {
                                 Circle()
                                     .stroke()
                                     .frame(width: 140, height: 140)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.clear)
                             }
                         }
                         .sheet(isPresented: $isShowGallery) {

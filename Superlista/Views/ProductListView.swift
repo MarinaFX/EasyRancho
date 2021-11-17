@@ -295,6 +295,7 @@ struct ProductNotFoundView: View {
             CreateNewCustomProductView(showCreateNewProductView: self.$showCreateNewCustomProductView, didCreateNewProduct: $receivedNewProduct)
         }
         }
+        .listRowBackground(Color("PrimaryBackground"))
         .accessibilityElement(children: .combine)
         .accessibilityHint("ACItemNotFoundButtonHint")
     }

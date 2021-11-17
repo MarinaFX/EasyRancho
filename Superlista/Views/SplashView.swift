@@ -13,10 +13,12 @@ struct SplashView: View {
     
     var body: some View {
         VStack {
-            if self.isActive && self.isLogged {
+            if self.isLogged {
                 MainView()
 
-            } else if !self.isActive {
+            } else if !self.isActive || !self.isLogged {
+                OnboardingView()
+            } else {
                 VStack {
                     Spacer()
                     
@@ -27,8 +29,6 @@ struct SplashView: View {
                     
                     Spacer()
                 }
-            } else {
-                OnboardingView()
             }
         }
     }
