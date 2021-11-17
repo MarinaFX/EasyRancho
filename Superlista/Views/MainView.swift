@@ -130,7 +130,6 @@ struct MainView: View {
         }
     }
     
-#warning("quando criar uma lista sem estar na internet o newOwner deve ser o user do userdefaults")
     func createNewListAction() {
         guard let user = dataService.user else { return }
         

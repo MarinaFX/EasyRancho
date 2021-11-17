@@ -165,3 +165,15 @@ extension Array where Element: Equatable {
         return uniqueValues
     }
 }
+
+// MARK: - Get ForegroundColor for buttons
+func getForegroundColor(list: ListModel?, networkMonitor: NetworkMonitor) -> Bool {
+    if let sharedWith = list?.sharedWith {
+        if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
+            return true // verde
+        } else {
+            return false
+        }
+    }
+    return true
+}
