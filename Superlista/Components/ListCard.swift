@@ -146,9 +146,9 @@ struct ListCard: View {
                     }
                 }
                 .alert(isPresented: $showAlertDelete){
-                    let title = (dataService.currentList != nil) ? dataService.currentList?.title : ""
+                    let title = (dataService.currentList != nil) ? dataService.currentList!.title : ""
                     
-                    let text = "\(NSLocalizedString("Remover", comment: "Remover")) \(String(describing: title))?";
+                    let text = "\(NSLocalizedString("Remover", comment: "Remover")) '\(String(describing: title))'?";
                     
                     return Alert(title: Text(text), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action: {
                         if let currentList = dataService.currentList {
@@ -160,9 +160,9 @@ struct ListCard: View {
                 
                 ZStack {}
                 .alert(isPresented: $showAlertDuplicate){
-                    let title = (dataService.currentList != nil) ? dataService.currentList?.title : ""
+                    let title = (dataService.currentList != nil) ? dataService.currentList!.title : ""
                     
-                    let text = "\(NSLocalizedString("Duplicar", comment: "Duplicar")) \(String(describing: title))?";
+                    let text = "\(NSLocalizedString("Duplicar", comment: "Duplicar")) '\(String(describing: title))'?";
                     
                     return Alert(title: Text(text), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action: {
                         if let currentList = dataService.currentList {
