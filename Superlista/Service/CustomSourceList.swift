@@ -1,7 +1,7 @@
 import UIKit
 import LinkPresentation
 
-class CustomSource: NSObject, UIActivityItemSource {
+class CustomSourceList: NSObject, UIActivityItemSource {
     let url: URL
     let listID: String
     let option: String

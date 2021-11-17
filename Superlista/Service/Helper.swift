@@ -60,8 +60,8 @@ func CKAssetToUIImage(ckImage: CKAsset?) -> UIImage? {
 }
 
 // MARK: - ShareSheet
-func shareSheet(listID: String, option: String, listName: String, ownerName: String) {
-    let activityVC = UIActivityViewController(activityItems: [CustomSource(listID: listID, option: option, listName: listName, ownerName: ownerName)], applicationActivities: nil)
+func shareSheetList(listID: String, option: String, listName: String, ownerName: String) {
+    let activityVC = UIActivityViewController(activityItems: [CustomSourceList(listID: listID, option: option, listName: listName, ownerName: ownerName)], applicationActivities: nil)
     let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
     var topController = keyWindow?.rootViewController
     
@@ -71,6 +71,22 @@ func shareSheet(listID: String, option: String, listName: String, ownerName: Str
     }
     
     topController?.present(activityVC, animated: true, completion: nil)
+}
+
+// MARK: - ShareSheetAppStore
+func shareSheetAppStore(){
+    let activityVC = UIActivityViewController(activityItems: [CustomSourceAppStore()], applicationActivities: nil)
+    
+    let keyWindow = UIApplication.shared.windows.first(where: \.isKeyWindow)
+    
+    var topController = keyWindow?.rootViewController
+    
+    while let presentedViewController = topController?.presentedViewController {
+        topController = presentedViewController
+    }
+    topController?.present(activityVC, animated: true, completion: nil)
+    
+    activityVC.isModalInPresentation = true
 }
 
 // MARK: - Get Color Categories

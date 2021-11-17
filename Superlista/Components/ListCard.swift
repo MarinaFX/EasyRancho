@@ -161,7 +161,7 @@ struct ListCard: View {
                 if dataService.isOwner(of: list, userID: user.id) && (networkMonitor.status == .satisfied) {
                     Button {
                         guard let ownerName = list.owner.name else { return }
-                        shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
+                        shareSheetList(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
                     } label: {
                         Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
                     }
@@ -172,7 +172,7 @@ struct ListCard: View {
             
             Button {
                 guard let ownerName = list.owner.name else { return }
-                shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
+                shareSheetList(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
             } label: {
                 Label("ContextMenu4", systemImage: "square.and.arrow.up")
             }

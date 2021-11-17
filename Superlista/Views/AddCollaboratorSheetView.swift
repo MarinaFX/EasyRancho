@@ -49,7 +49,7 @@ struct AddCollaboratorSheetView: View {
                             
                             Button(action: {
                                 self.showShareActionSheet.toggle()
-                                shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name ?? getNickname())
+                                shareSheetList(listID: list.id, option: "1", listName: list.title, ownerName: listOwner.name ?? getNickname())
                             }, label: {
                                 HStack(alignment: .center) {
                                     Image(systemName: "plus.circle.fill")
@@ -116,7 +116,7 @@ struct AddCollaboratorSheetView: View {
                         }
                         
                         self.showShareActionSheet.toggle()
-                        shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: listOwner.name ?? getNickname())
+                        shareSheetList(listID: list.id, option: "2", listName: list.title, ownerName: listOwner.name ?? getNickname())
                     }, label: {
                         HStack(alignment: .center) {
                             Text("ShareListButton")
