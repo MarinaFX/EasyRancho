@@ -14,6 +14,11 @@
 "itemNotFoundMessage" = "Produkt nicht gefunden";
 "itemNotFoundButton" = "Erstelle neues Produkt";
 "ACItemNotFoundButtonHint" = "Doppeltippe, um zum Bildschirm 'Produkt erstellen' zu gelangen";
+"ACDeleteButtonHint" = "Doppeltippe, um dieses Produkt aus Ihrer Liste der benutzerdefinierten Produkte zu entfernen.";
+"deletionAlertTitle" = "Bist du sicher, dass du diesen Artikel entfernen möchtest?";
+"deletionAlertMessage" = "Das angepasste Posten wird dauerhaft aus Ihren Listen gelöscht.";
+"deletionAlertDestructive" = "Entfernen";
+"deletionAlertCancel" = "Abbrechen";
 
 //MARK: - CreateNewCustomProductView screen
 "createProductScreenTitle" = "Produkt erstellen";
