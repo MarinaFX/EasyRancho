@@ -13,7 +13,8 @@
 		0914B984270B84E8008E297F /* CKItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B983270B84E8008E297F /* CKItemModel.swift */; };
 		0914B986270CC7D2008E297F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B985270CC7D2008E297F /* Helper.swift */; };
 		0914B988270E0C7B008E297F /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914B987270E0C7B008E297F /* DeepLink.swift */; };
-		0914E8352718AAF9006E5DB8 /* CustomSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914E8342718AAF9006E5DB8 /* CustomSource.swift */; };
+		0914E8352718AAF9006E5DB8 /* CustomSourceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0914E8342718AAF9006E5DB8 /* CustomSourceList.swift */; };
+		09248A7D2745AE42001C6C40 /* CustomSourceAppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09248A7C2745AE42001C6C40 /* CustomSourceAppStore.swift */; };
 		0944BDED27079529006634B9 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0944BDEC27079529006634B9 /* CloudKit.framework */; };
 		09725B0526446C710006D410 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B0426446C710006D410 /* CustomNavigationBar.swift */; };
 		09725B09264470EE0006D410 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09725B08264470EE0006D410 /* MainScreen.swift */; };
@@ -104,7 +105,8 @@
 		0914B983270B84E8008E297F /* CKItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CKItemModel.swift; sourceTree = "<group>"; };
 		0914B985270CC7D2008E297F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0914B987270E0C7B008E297F /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
-		0914E8342718AAF9006E5DB8 /* CustomSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSource.swift; sourceTree = "<group>"; };
+		0914E8342718AAF9006E5DB8 /* CustomSourceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSourceList.swift; sourceTree = "<group>"; };
+		09248A7C2745AE42001C6C40 /* CustomSourceAppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSourceAppStore.swift; sourceTree = "<group>"; };
 		0944BDEA270794F5006634B9 /* Superlista.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Superlista.entitlements; sourceTree = "<group>"; };
 		0944BDEC27079529006634B9 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		09725B0426446C710006D410 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
@@ -213,8 +215,9 @@
 				0914B985270CC7D2008E297F /* Helper.swift */,
 				0914B97B270B6B90008E297F /* CKService.swift */,
 				0914B987270E0C7B008E297F /* DeepLink.swift */,
-				0914E8342718AAF9006E5DB8 /* CustomSource.swift */,
+				0914E8342718AAF9006E5DB8 /* CustomSourceList.swift */,
 				382E7F59271DEF4600EE4E5D /* UserArrays.swift */,
+				09248A7C2745AE42001C6C40 /* CustomSourceAppStore.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				897BE543273ABA31009D0158 /* ListCard.swift in Sources */,
 				1B43E5B3264B13BE002C6D64 /* DropViewDelegate.swift in Sources */,
 				0914B982270B8016008E297F /* CKListModel.swift in Sources */,
+				09248A7D2745AE42001C6C40 /* CustomSourceAppStore.swift in Sources */,
 				898D645B264316300019ABCE /* ProductListViewModel.swift in Sources */,
 				1BE5B6E4270E126A00338A02 /* ListModelConverter.swift in Sources */,
 				097704122728C80800232F9D /* OwnerModelConverter.swift in Sources */,
@@ -613,7 +617,7 @@
 				1B32EF0F26600AA1006AE70B /* NoItemsView.swift in Sources */,
 				0914B988270E0C7B008E297F /* DeepLink.swift in Sources */,
 				89398DE3272342B000C395E5 /* OnboardingFieldsView.swift in Sources */,
-				0914E8352718AAF9006E5DB8 /* CustomSource.swift in Sources */,
+				0914E8352718AAF9006E5DB8 /* CustomSourceList.swift in Sources */,
 				382E7F5627189A9500EE4E5D /* NetworkMonitor.swift in Sources */,
 				89398DE5272344EF00C395E5 /* MediumButtonStyle.swift in Sources */,
 				1B37FE21272C6A28007A1B8A /* CreateNewCustomProductView.swift in Sources */,
@@ -799,7 +803,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bglmt.EasyRancho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = EasyRanchoDev;
@@ -826,7 +830,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bglmt.EasyRancho;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = EasyRanchoDev;
