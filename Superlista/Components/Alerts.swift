@@ -20,9 +20,9 @@ func textFieldAlert(title: String, message: String, placeholder: String, actionH
         actionHandler(alert.textFields?.first?.text)
     }))
     
-    let viewController = UIApplication.shared.windows.first!.rootViewController!
-    
-    viewController.present(alert, animated: true)
+    if let first = UIApplication.shared.windows.first, let viewController = first.rootViewController {
+        viewController.present(alert, animated: true)
+    }
 }
 
 /**
@@ -43,7 +43,7 @@ func alertMessage(title: String, message: String, actions: [UIAlertAction]) {
         alert.addAction(action)
     }
     
-    let viewController = UIApplication.shared.windows.first!.rootViewController!
-    
-    viewController.present(alert, animated: true)
+    if let first = UIApplication.shared.windows.first, let viewController = first.rootViewController {
+        viewController.present(alert, animated: true)
+    }
 }

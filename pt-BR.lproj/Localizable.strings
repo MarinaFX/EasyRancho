@@ -107,6 +107,7 @@
 
 // MARK: - MainView Deletion Alert
 "Remover %@" = "Deseja remover %@?";
+"Remover" = "Deseja remover";
 "DeleteListAlertText"= "A lista removida não poderá ser recuperada após sua exclusão";
 "DeleteListAlertButton"= "Apagar";
 
@@ -121,6 +122,8 @@
 "DuplicateListAlertText" = "Tem certeza que deseja duplicar esta lista?";
 "DuplicateListAlertButton" = "Duplicar";
 "Duplicar %@" = "Deseja duplicar %@?";
+"Duplicar" = "Deseja duplicar";
+
 
 // MARK: - MainView Creation Alert
 "CreateListAlertCancelButton" = "Cancelar";

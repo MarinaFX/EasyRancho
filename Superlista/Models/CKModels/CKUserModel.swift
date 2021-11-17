@@ -28,7 +28,7 @@ class CKUserModel {
     let itemConverter: ItemModelConverter = ItemModelConverter()
     let ListConverter: ListModelConverter = ListModelConverter()
     let productConverter: ProductModelConverter = ProductModelConverter()
-
+    
     
     init(record: CKRecord, completion: ((CKUserModel) -> Void)? = nil) {
         
@@ -42,11 +42,11 @@ class CKUserModel {
         
         customProductsString = record["CustomItems"] as? [String] ?? []
         customProducts = productConverter.convertStringToProducts(withString: customProductsString ?? [])
-                
+        
         group.enter()
         
         myListsRef = record["MyLists"] as? [CKRecord.Reference] ?? []
-                
+        
         ListConverter.convertListReferenceToCloudList(withList: myListsRef ?? []) { result in
             switch result {
                 case .success(let lists):
@@ -89,15 +89,19 @@ class CKUserModel {
         self.myLists = myLists
         self.myListsRef = []
         
-        for list in myLists! {
-            myListsRef?.append((CKRecord.Reference(recordID: list.id, action: CKRecord.ReferenceAction.none)))
+        if let userMyLists = myLists {
+            for list in userMyLists {
+                myListsRef?.append((CKRecord.Reference(recordID: list.id, action: CKRecord.ReferenceAction.none)))
+            }
         }
         
         self.sharedWithMe = sharedWithMe
         self.sharedWithMeRef = []
         
-        for list in sharedWithMe! {
-            sharedWithMeRef?.append((CKRecord.Reference(recordID: list.id, action: CKRecord.ReferenceAction.none)))
+        if let userSharedWithMe = sharedWithMe {
+            for list in userSharedWithMe {
+                sharedWithMeRef?.append((CKRecord.Reference(recordID: list.id, action: CKRecord.ReferenceAction.none)))
+            }
         }
     }
 }

@@ -221,7 +221,7 @@ struct CollaboratorListView: View {
                 }
                 .alert(isPresented: self.$showDeleteCollabAlert) {
                     Alert(
-                        title: Text("DeleteCollabAlertTitle \(collaborators[index].name!)"),
+                        title: Text("DeleteCollabAlertTitle \(collaborators[index].name ?? getNickname())"),
                         message: Text("DeleteCollabAlertMessage"),
                         primaryButton: .destructive(Text("DeleteCollabAlertPrimaryButton"), action: {
                             dataService.removeCollab(of: list, owner: collaborators[index])
