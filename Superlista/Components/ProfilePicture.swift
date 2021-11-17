@@ -16,6 +16,8 @@ struct ProfilePicture: View {
     var circleWidth: CGFloat?
     var circleHeight: CGFloat?
     
+    var backgroundColor: Color
+    
     var body: some View {
         GeometryReader { geometryReader in
             ZStack {
@@ -23,7 +25,7 @@ struct ProfilePicture: View {
                     .clipShape(Circle())
                 
                 Circle()
-                    .stroke(Color.white, style: StrokeStyle(lineWidth: 5))
+                    .stroke(backgroundColor, style: StrokeStyle(lineWidth: 5))
                     .frame(width: circleWidth ?? 140, height: circleHeight ?? 140)
                 
                 let initialName = username.prefix(1)

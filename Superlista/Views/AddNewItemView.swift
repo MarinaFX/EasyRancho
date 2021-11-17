@@ -19,7 +19,7 @@ struct AddNewItemView: View {
                     Button(action: readyButtonPressed, label: {
                         Text("AddNewItemViewBottomButtonLabel")
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(Color("PrimaryBackground"))
                             .frame(height: geometry.size.height * 0.06)
                             .frame(width: geometry.size.height * 0.25)
                             .background(Color("Button"))
