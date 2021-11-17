@@ -260,6 +260,26 @@ class DataService: ObservableObject {
         return false
     }
     
+    func deleteCustomProduct(of deletedProduct: ProductModel) -> Bool {
+        if let user = user,
+           let userCustomProducts = user.customProducts {
+            
+            for index in 0..<userCustomProducts.count {
+                if userCustomProducts[index].name.lowercased() == deletedProduct.name.lowercased() {
+                    
+                    user.customProducts?.remove(at: index)
+                    
+                    if networkMonitor.status == .satisfied {
+                        CloudIntegration.actions.deleteUserCustomProduct(of: deletedProduct)
+                    }
+                    
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
     // MARK: - Add Collab Shared List
     func addCollabList(of list: CKListModel) {
         var sharedWith = list.sharedWith

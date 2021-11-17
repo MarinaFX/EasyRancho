@@ -142,6 +142,26 @@ class CloudIntegration: ObservableObject {
         }
     }
     
+    func deleteUserCustomProduct(of deleteProduct: ProductModel) {
+        let productModelConverter: ProductModelConverter = ProductModelConverter()
+        var ckCustomProducts: [String] = CKService.currentModel.user?.customProductsString ?? []
+
+        let customProductString: String = productModelConverter.convertLocalProductsToString(withProduct: deleteProduct)
+        
+        if let productIndex = ckCustomProducts.firstIndex(where: { $0.lowercased() == customProductString.lowercased() }) {
+            ckCustomProducts.remove(at: productIndex)
+            
+            CKService.currentModel.updateCustomItems(customItems: ckCustomProducts) { result in
+                switch result {
+                case .success(let result):
+                    print("Updated custom products successfully. Result: \(result)")
+                case .failure(let error):
+                    print("Error while trying to update custom products. Error: \(error)")
+                }
+            }
+        }
+    }
+    
     func addCollabList(of list: CKListModel) {
         CKService.currentModel.saveListUsersList(listID: list.id, key: .SharedWithMe) { result in }
         guard let ckUser = CKService.currentModel.user, let ckUserName = ckUser.name else { return }
