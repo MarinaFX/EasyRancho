@@ -74,7 +74,7 @@ struct ItemCommentView: View {
                             Image(systemName: "text.bubble")
                                 .resizable()
                                 .frame(width: textBubbleWidth, height: textBubbleHeight)
-                                .foregroundColor(getForegroundColor() ? Color("Comment") : Color(UIColor.secondaryLabel))
+                                .foregroundColor(getForegroundColor(list: list, networkMonitor: networkMonitor) ? Color("Comment") : Color(UIColor.secondaryLabel))
                                 .onTapGesture {
                                     if let sharedWith = list?.sharedWith {
                                         if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty) {
@@ -117,18 +117,6 @@ struct ItemCommentView: View {
                 .padding(.vertical, 5)
             }
         }
-    }
-    
-    
-    func getForegroundColor() -> Bool {
-        if let sharedWith = list?.sharedWith {
-            if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
-                return true // verde
-            } else {
-                return false
-            }
-        }
-        return true
     }
 }
 
@@ -189,7 +177,7 @@ struct ItemQuantityView: View {
             Image(systemName: "minus")
                 .resizable()
                 .frame(width: minusSymbolWidth, height: minusSymbolHeight)
-                .foregroundColor((((item.quantity ?? 1) <= 1) || !getForegroundColor()) ? Color(UIColor.secondaryLabel) : Color("Comment"))
+                .foregroundColor((((item.quantity ?? 1) <= 1) || !getForegroundColor(list: list, networkMonitor: networkMonitor)) ? Color(UIColor.secondaryLabel) : Color("Comment"))
         }
         .frame(width: minusSymbolWidth, height: minusSymbolWidth)
         .onTapGesture {
@@ -220,7 +208,7 @@ struct ItemQuantityView: View {
         Image(systemName: "plus")
             .resizable()
             .frame(width: plusSymbolWidth, height: plusSymbolHeight)
-            .foregroundColor(getForegroundColor() ? Color("Comment") : Color(UIColor.secondaryLabel))
+            .foregroundColor(getForegroundColor(list: list, networkMonitor: networkMonitor) ? Color("Comment") : Color(UIColor.secondaryLabel))
             .onTapGesture {
                 if let sharedWith = list?.sharedWith {
                     if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty) {
@@ -235,17 +223,6 @@ struct ItemQuantityView: View {
             .accessibilityRemoveTraits(AccessibilityTraits.isImage)
             .accessibilityLabel(Text("Add"))
             .accessibility(hint: Text("AddOneItem"))
-    }
-    
-    func getForegroundColor() -> Bool {
-        if let sharedWith = list?.sharedWith {
-            if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
-                return true // verde
-            } else {
-                return false
-            }
-        }
-        return true
     }
 }
 

@@ -46,9 +46,9 @@ struct ListView: View {
                         editTitle()
                     } label: {
                         Text(canEditTitle ? "ListViewLabelA" : "ListViewLabelB")
-                            .foregroundColor(getForegroundColor() ? Color.primary : Color(UIColor.secondaryLabel))
+                            .foregroundColor(getForegroundColor(list: list, networkMonitor: networkMonitor) ? Color.primary : Color(UIColor.secondaryLabel))
                     }
-                    .disabled(!getForegroundColor())
+                    .disabled(!getForegroundColor(list: list, networkMonitor: networkMonitor))
                 }
             }
             .onAppear {
@@ -96,19 +96,6 @@ struct ListView: View {
     
     func addNewItemAction() {
         self.isPresentedAddNewItems = true
-    }
-    
-    
-    // MARK: - getForegroundColor()
-    func getForegroundColor() -> Bool {
-        if let sharedWith = list?.sharedWith {
-            if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
-                return true // preto
-            } else {
-                return false
-            }
-        }
-        return true
     }
 }
 
