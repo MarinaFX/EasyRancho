@@ -395,7 +395,7 @@ class DataService: ObservableObject {
     func updateUsersLists(localMyLists: [ListModel]) {
         for list in localMyLists {
             let ckList = ListModelConverter().convertLocalListToCloud(withList: list)
-            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID: ckList.id, shouldRefresh: false) { result in }
+            CKService.currentModel.updateList(listItems: ckList.itemsString, listName: ckList.name ?? "NovaLista", listID:  ckList.id, shouldRefresh: false) { result in } 
         }
     }
 }
