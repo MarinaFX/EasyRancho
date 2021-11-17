@@ -8,7 +8,7 @@ struct MediumButtonStyle: ButtonStyle {
     let backgroundColor: Color?
     let foregroundColor: Color?
     
-    init(background: Color = .white, foreground: Color = .black, buttonWidth: CGFloat = 150) {
+    init(background: Color = Color("PrimaryBackground"), foreground: Color = .primary, buttonWidth: CGFloat = 150) {
         self.backgroundColor = background
         self.foregroundColor = foreground
         self._buttonWidth = ScaledMetric.init(wrappedValue: buttonWidth)
