@@ -86,7 +86,7 @@ struct AddCollaboratorSheetView: View {
                                 }
                                 .listRowBackground(Color("InsetGroupedBackground"))
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                             .padding(.vertical, 16)
                             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45)
                             .listStyle(.insetGrouped)
@@ -121,12 +121,12 @@ struct AddCollaboratorSheetView: View {
                         HStack(alignment: .center) {
                             Text("ShareListButton")
                                 .font(.body)
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
                             
                             Spacer()
                             
                             Image(systemName: "square.and.arrow.up")
-                                .foregroundColor(.black)
+                                .foregroundColor(.primary)
                                 .padding(8)
                         }
                         .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
@@ -174,6 +174,7 @@ struct AddCollaboratorSheetView: View {
         .onAppear {
             CKService.currentModel.refresh { result in }
         }
+        .foregroundColor(.primary)
     }
 }
 
@@ -201,7 +202,7 @@ struct CollaboratorListView: View {
                     .frame(width: 46, height: 46)
             }
             else {
-                ProfilePicture(username: name, viewWidth: 46, viewHeight: 46, circleWidth: 37, circleHeight: 37)
+                ProfilePicture(username: name, viewWidth: 46, viewHeight: 46, circleWidth: 37, circleHeight: 37, backgroundColor: Color("InsetGroupedBackground"))
             }
             
             Text(name)

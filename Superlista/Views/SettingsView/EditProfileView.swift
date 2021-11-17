@@ -40,8 +40,8 @@ struct EditProfileView: View {
                         }
                         else {
                             if let newusername = newUsername{
-                                ProfilePicture(username: newusername.isEmpty || newusername == "" ? username : newusername)
-                                    .padding()
+                                ProfilePicture(username: newusername.isEmpty || newusername == "" ? username : newusername, backgroundColor: Color("ButtonBG"))
+                                .padding()
                             }
                         }
                         

@@ -41,7 +41,7 @@ struct BottomBarButton: View {
                 
             }
             .frame(width: UIScreen.main.bounds.width, height: buttonHeight)
-            .background(Color("ButtonBG"))
+            .background(Color("BottomButton"))
             .overlay(
                 Rectangle()
                     .fill(Color(UIColor.systemGray5))

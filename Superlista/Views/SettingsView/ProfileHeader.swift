@@ -28,7 +28,7 @@ struct ProfileHeader: View {
                         .padding(.top, 100)
                 }
                 else{
-                    ProfilePicture(username: username)
+                    ProfilePicture(username: username, backgroundColor: Color("ButtonBG"))
                         .padding(.top, 100)
                 }
             }

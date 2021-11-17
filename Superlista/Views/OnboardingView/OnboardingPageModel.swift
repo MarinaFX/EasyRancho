@@ -24,6 +24,6 @@ let onboardingPages = [
         image: NSLocalizedString("OnboardingC", comment: "Onboarding C Image"),
         title: NSLocalizedString("OnboardingCTitle", comment: "Onboarding C Title"),
         text: NSLocalizedString("OnboardingCText", comment: "Onboarding C Text"),
-        color: Color("Button")
+        color: Color("Onboarding")
     )
 ]
