@@ -78,63 +78,6 @@ struct ListCard: View {
                         Image(systemName: "ellipsis.circle.fill")
                             .font(.body)
                             .foregroundColor(Color.white)
-                            .contextMenu {
-                                Button {
-                                    dataService.currentList = list
-                                    editNavigation = true
-                                } label: {
-                                    Label("ContextMenu1", systemImage: "pencil")
-                                }
-                                .accessibility(hidden: false)
-                                .accessibilityLabel(Text("Option1"))
-                                .accessibility(hint: Text("Option1Hint"))
-                                
-                                Button {
-                                    dataService.currentList = list
-                                    showAlertDuplicate = true
-                                } label: {
-                                    Label("ContextMenu2", systemImage: "doc.on.doc")
-                                }
-                                .accessibilityLabel(Text("Option2"))
-                                .accessibility(hint: Text("Option2Hint"))
-                                
-                                if let user = dataService.user {
-                                    if dataService.isOwner(of: list, userID: user.id) && (networkMonitor.status == .satisfied) {
-                                        Button {
-                                            guard let ownerName = list.owner.name else { return }
-                                            shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
-                                        } label: {
-                                            Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
-                                        }
-                                        .accessibilityLabel(Text("Option3"))
-                                        .accessibility(hint: Text("Option3Hint"))
-                                    }
-                                }
-                                
-                                Button {
-                                    guard let ownerName = list.owner.name else { return }
-                                    shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
-                                } label: {
-                                    Label("ContextMenu4", systemImage: "square.and.arrow.up")
-                                }
-                                .accessibilityLabel(Text("Option4"))
-                                .accessibility(hint: Text("Option4Hint"))
-                                
-                                if let sharedWith = list.sharedWith {
-                                    if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
-                                        Button {
-                                            dataService.currentList = list
-                                            showAlertDelete = true
-                                        } label: {
-                                            Label("ContextMenu5", systemImage: "trash")
-                                        }
-                                        .accessibilityLabel(Text("Option5"))
-                                        .accessibility(hint: Text("Option5Hint"))
-                                    }
-                                }
-                            }
-                            .accessibilityLabel(Text("Options"))
-                            .accessibility(hint: Text("MoreOptions"))
                     }
                     .padding(.horizontal, 20)
                     
@@ -194,7 +137,63 @@ struct ListCard: View {
             .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
             
         }
-        )
+        ).contextMenu {
+            Button {
+                dataService.currentList = list
+                editNavigation = true
+            } label: {
+                Label("ContextMenu1", systemImage: "pencil")
+            }
+            .accessibility(hidden: false)
+            .accessibilityLabel(Text("Option1"))
+            .accessibility(hint: Text("Option1Hint"))
+            
+            Button {
+                dataService.currentList = list
+                showAlertDuplicate = true
+            } label: {
+                Label("ContextMenu2", systemImage: "doc.on.doc")
+            }
+            .accessibilityLabel(Text("Option2"))
+            .accessibility(hint: Text("Option2Hint"))
+            
+            if let user = dataService.user {
+                if dataService.isOwner(of: list, userID: user.id) && (networkMonitor.status == .satisfied) {
+                    Button {
+                        guard let ownerName = list.owner.name else { return }
+                        shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
+                    } label: {
+                        Label("ContextMenu3", systemImage: "person.crop.circle.badge.plus")
+                    }
+                    .accessibilityLabel(Text("Option3"))
+                    .accessibility(hint: Text("Option3Hint"))
+                }
+            }
+            
+            Button {
+                guard let ownerName = list.owner.name else { return }
+                shareSheet(listID: list.id, option: "2", listName: list.title, ownerName: ownerName)
+            } label: {
+                Label("ContextMenu4", systemImage: "square.and.arrow.up")
+            }
+            .accessibilityLabel(Text("Option4"))
+            .accessibility(hint: Text("Option4Hint"))
+            
+            if let sharedWith = list.sharedWith {
+                if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
+                    Button {
+                        dataService.currentList = list
+                        showAlertDelete = true
+                    } label: {
+                        Label("ContextMenu5", systemImage: "trash")
+                    }
+                    .accessibilityLabel(Text("Option5"))
+                    .accessibility(hint: Text("Option5Hint"))
+                }
+            }
+        }
+        .accessibilityLabel(Text("Options"))
+        .accessibility(hint: Text("MoreOptions"))
     }
 }
 
