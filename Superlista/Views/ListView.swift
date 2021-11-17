@@ -68,8 +68,10 @@ struct ListView: View {
                 }
             }
             .onChange(of: list) { newValue in
-                if let updatedList = newValue {
-                    dataService.updateList(of: updatedList)
+                DispatchQueue.main.async {
+                    if let updatedList = newValue {
+                        dataService.updateList(of: updatedList)
+                    }
                 }
             }
     }
