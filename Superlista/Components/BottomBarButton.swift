@@ -48,6 +48,7 @@ struct BottomBarButton: View {
                     .frame(width: UIScreen.main.bounds.width, height: 1), alignment: .top
             )
         }
+        .accessibility(hint: Text("HintBarButton"))
     }
     
     func buttonAction() {

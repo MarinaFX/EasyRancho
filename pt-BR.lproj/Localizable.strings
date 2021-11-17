@@ -159,6 +159,8 @@
 "HintListCard" = "Abrir lista";
 "LabelMinusCircle" = "Remover lista selecionada";
 "HintMinusCircle" = "Removerá a lista selecionada";
+"HintBarButton" = "Criar uma nova lista";
+"SettingsIconLabel" = "Tela de configurações/perfil";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Insira um comentário";

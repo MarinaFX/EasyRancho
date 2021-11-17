@@ -47,6 +47,8 @@ struct MainView: View {
         NavigationView {
             VStack {
                 ZStack {
+                    Color("PrimaryBackground")
+                        .ignoresSafeArea()
                     NavigationLink(destination: ListView(listId: listId),
                                    isActive: $isCreatingList,
                                    label: { EmptyView() }
@@ -92,6 +94,7 @@ struct MainView: View {
                             }, label: {
                                 Image(systemName: "gearshape.fill")
                             })
+                                .accessibility(label: Text("SettingsIconLabel"))
                         }
                         
                         ToolbarItem(placement: .navigationBarTrailing){
@@ -119,6 +122,7 @@ struct MainView: View {
                     }
                 }
                 BottomBarButton(action: createNewListAction, text: "AddListMainButton")
+                    .padding(.top, -10)
                 
             }
             .edgesIgnoringSafeArea(.bottom)
