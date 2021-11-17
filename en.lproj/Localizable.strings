@@ -156,6 +156,9 @@
 "HintListCard" = "Abrir lista";
 "LabelMinusCircle" = "Remove selected list";
 "HintMinusCircle" = "The selected list will be removed";
+"HintBarButton" = "Create a new list";
+"SettingsIconLabel" = "Settings/profile page";
+
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Add a comment";

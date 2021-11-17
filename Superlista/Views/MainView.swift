@@ -94,7 +94,7 @@ struct MainView: View {
                                     self.hasClickedSettings = true
                                 }, label: {
                                     Image(systemName: "gearshape.fill")
-                                })
+                                }).accessibility(label: Text("SettingsIconLabel"))
                             }
                             
                             ToolbarItem(placement: .navigationBarTrailing){
