@@ -88,12 +88,14 @@ class ListModelConverter {
      - list: the cloud list to be converted - CKListModel
      - Returns: the ListModel version of the given CKListModel list
      */
-    func convertCloudListToLocal(withList list: CKListModel) -> ListModel {
+    func convertCloudListToLocal(withList list: CKListModel) -> ListModel? {
         let localList: ListModel
-        
+                
         let localItems = itemModelConverter.convertCloudItemsToLocal(withItems: list.itemsModel)
        
-        let localOwner = OwnerModelConverter().convertCKOwnerToLocal(withUser: list.owner!)
+        guard let listOwner = list.owner else { return nil }
+        
+        let localOwner = OwnerModelConverter().convertCKOwnerToLocal(withUser: listOwner)
         
         var localSharedWith: [OwnerModel] = []
         for shared in list.sharedWith {

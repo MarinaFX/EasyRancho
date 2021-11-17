@@ -63,7 +63,9 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Refresh Return User
+    let ds = DispatchSemaphore(value: 1)
     func refreshUser(_ completion: @escaping (Result<CKUserModel,CKError>) -> Void) {
+        self.ds.wait()
         var userStatus: UserStatus = .none
         
         let dispatchSemaphore = DispatchSemaphore(value: 1)
@@ -80,8 +82,10 @@ class CKService: ObservableObject {
             getUser { result in
                 switch result {
                 case .success(let user):
+                    self.ds.signal()
                     completion(.success(user))
                 case .failure(let error):
+                    self.ds.signal()
                     completion(.failure(error))
                 }
                 dispatchSemaphore.signal()
@@ -210,7 +214,7 @@ class CKService: ObservableObject {
     func updateUserImage(image: UIImage, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         guard let user = user else {
             return
-            
+
         }
         self.publicDB.fetch(withRecordID: user.id) { record, error in
             if error == nil {
@@ -258,23 +262,20 @@ class CKService: ObservableObject {
     func deleteUsersList(listId: CKRecord.ID, key: UsersList, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         var usersLists: [CKRecord.Reference] = []
         
-        if key == UsersList.MyLists {
-            usersLists = user!.myListsRef!
+        guard let user = user else { return }
+        
+        if key == UsersList.MyLists, let myListsRef = user.myListsRef {
+            usersLists = myListsRef
             
-        } else if key == UsersList.SharedWithMe {
-            usersLists = user!.sharedWithMeRef!
+        } else if key == UsersList.SharedWithMe, let sharedWithMeRef = user.sharedWithMeRef {
+            usersLists = sharedWithMeRef
         }
         
         if let listToDeleteIndex = usersLists.firstIndex(where: { $0.recordID.recordName == listId.recordName }) {
             usersLists.remove(at: listToDeleteIndex)
         }
         
-        guard let userID = user?.id else {
-            completion(.failure(CKError.init(CKError.operationCancelled)))
-            return
-        }
-        
-        publicDB.fetch(withRecordID: userID) { record, error in
+        publicDB.fetch(withRecordID: user.id) { record, error in
             
             if error == nil {
                 
@@ -299,24 +300,20 @@ class CKService: ObservableObject {
     func addUsersList(list: CKListModel, key: UsersList, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         var usersLists: [CKRecord.Reference] = []
         
+        guard let user = user else { return }
+        
         let listToAddRef = ListModelConverter().convertCloudListToReference(withList: list)
         
-        if key == UsersList.MyLists {
-            usersLists = user!.myListsRef!
+        if key == UsersList.MyLists, let myListsRef = user.myListsRef {
+            usersLists = myListsRef
             
-        } else if key == UsersList.SharedWithMe {
-            usersLists = user!.sharedWithMeRef!
-            
+        } else if key == UsersList.SharedWithMe, let sharedWithMeRef = user.sharedWithMeRef {
+            usersLists = sharedWithMeRef
         }
         
         usersLists.append(listToAddRef)
         
-        guard let userID = user?.id else {
-            completion(.failure(CKError.init(CKError.operationCancelled)))
-            return
-        }
-        
-        publicDB.fetch(withRecordID: userID) { record, error in
+        publicDB.fetch(withRecordID: user.id) { record, error in
             if error == nil {
                 record!.setValue(usersLists, forKey: key.rawValue)
                 
@@ -352,9 +349,7 @@ class CKService: ObservableObject {
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
-                        self.refresh { error in
-                            completion(.success(record!.recordID))
-                        }
+                        completion(.success(record!.recordID))
                     } else {
                         completion(.failure(error as! CKError))
                     }
@@ -433,24 +428,20 @@ class CKService: ObservableObject {
     // MARK: - Save List in Users Lists
     func saveListUsersList(listID: CKRecord.ID, key: UsersList, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         
+        guard let user = user else { return }
+        
         var usersLists: [CKRecord.Reference] = []
         
-        if key == UsersList.MyLists {
-            usersLists = user!.myListsRef!
+        if key == UsersList.MyLists, let myListsRef = user.myListsRef {
+            usersLists = myListsRef
             
-        } else if key == UsersList.SharedWithMe {
-            usersLists = user!.sharedWithMeRef!
-            
+        } else if key == UsersList.SharedWithMe, let sharedWithMeRef = user.sharedWithMeRef {
+            usersLists = sharedWithMeRef
         }
         
         usersLists.append(CKRecord.Reference(recordID: listID, action: CKRecord.ReferenceAction.none))
         
-        guard let userID = user?.id else {
-            completion(.failure(CKError.init(CKError.operationCancelled)))
-            return
-        }
-        
-        publicDB.fetch(withRecordID: userID) { record, error in
+        publicDB.fetch(withRecordID: user.id) { record, error in
             if error == nil {
                 record!.setValue(usersLists, forKey: key.rawValue)
                 
@@ -536,7 +527,7 @@ class CKService: ObservableObject {
         }
     }
     
-    func updateList(listItems: [String], listName: String, listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func updateList(listItems: [String], listName: String, listID: CKRecord.ID, shouldRefresh: Bool = true, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.fetch(withRecordID: listID) { record, error in
             if error == nil {
                 record!.setValue(listName, forKey: "ListName")
@@ -544,7 +535,11 @@ class CKService: ObservableObject {
                 
                 self.publicDB.save(record!) { savedUserList, error in
                     if error == nil {
-                        self.refresh { error in
+                        if shouldRefresh {
+                            self.refresh { error in
+                                completion(.success(record!.recordID))
+                            }
+                        } else {
                             completion(.success(record!.recordID))
                         }
                     } else {
@@ -558,11 +553,15 @@ class CKService: ObservableObject {
     }
     
     // MARK: - Delete List
-    func deleteList(listID: CKRecord.ID, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
+    func deleteList(listID: CKRecord.ID, shouldRefresh: Bool = true, completion: @escaping (Result<CKRecord.ID,CKError>) -> Void) {
         publicDB.delete(withRecordID: listID) { deleteRecordID, error in
             if error == nil {
                 DispatchQueue.main.async {
-                    self.refresh { error in
+                    if shouldRefresh {
+                        self.refresh { error in
+                            completion(.success(deleteRecordID!))
+                        }
+                    } else {
                         completion(.success(deleteRecordID!))
                     }
                 }

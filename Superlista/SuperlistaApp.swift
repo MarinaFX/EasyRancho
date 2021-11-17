@@ -17,6 +17,8 @@ struct SuperlistaApp: App {
     @State var presentCollabAlert: Bool = false
     @State var presentSharedAlert: Bool = false
     
+    @State var isFirstAppear: Bool = true
+    
     let newListLocalizedLabel = NSLocalizedString("NovaLista", comment: "NovaLista")
     
     var body: some Scene {
@@ -73,8 +75,8 @@ struct SuperlistaApp: App {
                                      secondaryButton: .default(
                                         Text(NSLocalizedString("AlertSecondaryButtonLabel", comment: "")),
                                         action: {
-                                            guard let list = list else { return }
-                                            let newList = ListModelConverter().convertCloudListToLocal(withList: list)
+                                            guard let list = list, let newList = ListModelConverter().convertCloudListToLocal(withList: list) else { return }
+                                            
                                             dataService.duplicateList(of: newList)
                                             presentSharedAlert = false
                                         }
@@ -86,15 +88,18 @@ struct SuperlistaApp: App {
             .accentColor(Color("Link"))
             .environmentObject(dataService)
             .onAppear {
+                guard isFirstAppear else { return }
+                isFirstAppear = false
                 NetworkMonitor.shared.startMonitoring { path in
                     print(path.status, "status on appear")
                     if path.status == .satisfied {
                         if CKService.currentModel.user != nil {
                             dataService.refreshUser()
+                        } else {
+                            loadData()
                         }
                     }
                 }
-                loadData()
             }
             
         }
@@ -112,19 +117,19 @@ struct SuperlistaApp: App {
         
         CKService.currentModel.getList(listID: CKRecord.ID(recordName: listID)) { result in
             switch result {
-            case .success(let list):
-                self.list = list
-                
-                /* alerta para confirmar se quer adicionar nas listas do usuário passando como parâmetro o nome do usuário e da lista */
-                
-                if option == "1" {
-                    presentCollabAlert = true
-                } else if option == "2" {
-                    presentSharedAlert = true
-                }
-            case .failure:
-                // mensagem de erro não rolou
-                return
+                case .success(let list):
+                    self.list = list
+                    
+                    /* alerta para confirmar se quer adicionar nas listas do usuário passando como parâmetro o nome do usuário e da lista */
+                    
+                    if option == "1" {
+                        presentCollabAlert = true
+                    } else if option == "2" {
+                        presentSharedAlert = true
+                    }
+                case .failure:
+                    // mensagem de erro não rolou
+                    return
             }
             
         }

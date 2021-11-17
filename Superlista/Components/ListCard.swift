@@ -19,13 +19,15 @@ struct ListCard: View {
     @State var editNavigation = false
     @State var showAlertDuplicate = false
     
+    let networkMonitor = NetworkMonitor.shared
+    
     @ScaledMetric var scaledWidthtRect: CGFloat = 171
     @ScaledMetric var scaledHeightRect: CGFloat = 117
     
     @ScaledMetric(relativeTo: .callout) var scaledTitle: CGFloat = 10
     
     var body: some View {
-        NavigationLink(destination: ListView(listId: list.id), label: {
+        NavigationLink(destination: ListView(listId: list.id, list: list), label: {
             ZStack(alignment: .leading) {
                 // MARK: - list card
                 Rectangle()
@@ -72,7 +74,7 @@ struct ListCard: View {
                         }
                         
                         Spacer()
-                                                
+                        
                         Image(systemName: "ellipsis.circle.fill")
                             .font(.body)
                             .foregroundColor(Color.white)
@@ -97,7 +99,7 @@ struct ListCard: View {
                                 .accessibility(hint: Text("Option2Hint"))
                                 
                                 if let user = dataService.user {
-                                    if dataService.isOwner(of: list, userID: user.id) {
+                                    if dataService.isOwner(of: list, userID: user.id) && (networkMonitor.status == .satisfied) {
                                         Button {
                                             guard let ownerName = list.owner.name else { return }
                                             shareSheet(listID: list.id, option: "1", listName: list.title, ownerName: ownerName)
@@ -118,20 +120,24 @@ struct ListCard: View {
                                 .accessibilityLabel(Text("Option4"))
                                 .accessibility(hint: Text("Option4Hint"))
                                 
-                                Button {
-                                    dataService.currentList = list
-                                    showAlertDelete = true
-                                } label: {
-                                    Label("ContextMenu5", systemImage: "trash")
+                                if let sharedWith = list.sharedWith {
+                                    if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
+                                        Button {
+                                            dataService.currentList = list
+                                            showAlertDelete = true
+                                        } label: {
+                                            Label("ContextMenu5", systemImage: "trash")
+                                        }
+                                        .accessibilityLabel(Text("Option5"))
+                                        .accessibility(hint: Text("Option5Hint"))
+                                    }
                                 }
-                                .accessibilityLabel(Text("Option5"))
-                                .accessibility(hint: Text("Option5Hint"))
                             }
                             .accessibilityLabel(Text("Options"))
                             .accessibility(hint: Text("MoreOptions"))
                     }
                     .padding(.horizontal, 20)
-
+                    
                 }
                 
                 ZStack {
@@ -140,33 +146,49 @@ struct ListCard: View {
                     }
                 }
                 .alert(isPresented: $showAlertDelete){
-                    Alert(title: Text("Remover \(dataService.currentList!.title)"), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action:{
-                        dataService.removeList(dataService.currentList!)
-                        showAlertDelete = false
+                    let title = (dataService.currentList != nil) ? dataService.currentList?.title : ""
+                    
+                    let text = "\(NSLocalizedString("Remover", comment: "Remover")) \(String(describing: title))?";
+                    
+                    return Alert(title: Text(text), message: Text("DeleteListAlertText"), primaryButton: .cancel(), secondaryButton: .destructive(Text("DeleteListAlertButton"), action: {
+                        if let currentList = dataService.currentList {
+                            dataService.removeList(currentList)
+                            showAlertDelete = false
+                        }
                     }))
                 }
                 
                 ZStack {}
                 .alert(isPresented: $showAlertDuplicate){
-                    Alert(title: Text("Duplicar \(dataService.currentList!.title)"), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action:{
-                        dataService.duplicateList(of: dataService.currentList!)
-                        showAlertDuplicate = false
+                    let title = (dataService.currentList != nil) ? dataService.currentList?.title : ""
+                    
+                    let text = "\(NSLocalizedString("Duplicar", comment: "Duplicar")) \(String(describing: title))?";
+                    
+                    return Alert(title: Text(text), message: Text("DuplicateListAlertText"), primaryButton: .cancel(), secondaryButton: .default(Text("DuplicateListAlertButton"), action: {
+                        if let currentList = dataService.currentList {
+                            dataService.duplicateList(of: currentList)
+                            showAlertDuplicate = false
+                        }
                     }))
                 }
                 
                 if isEditing {
-                    Image(systemName: "minus.circle.fill")
-                        .font(.title2)
-                        .foregroundColor(Color(.systemGray))
-                        .offset(x: 150, y: -45)
-                        .onTapGesture {
-                            dataService.currentList = list
-                            showAlertDelete = true
+                    if let sharedWith = list.sharedWith {
+                        if (networkMonitor.status == .satisfied) || sharedWith.isEmpty {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(Color(.systemGray))
+                                .offset(x: 150, y: -45)
+                                .onTapGesture {
+                                    dataService.currentList = list
+                                    showAlertDelete = true
+                                }
+                                .accessibility(label: Text("LabelMinusCircle"))
+                                .accessibility(hint: Text("HintMinusCircle"))
+                                .accessibility(addTraits: .isButton)
+                                .accessibility(removeTraits: .isImage)
                         }
-                          .accessibility(label: Text("LabelMinusCircle"))
-                        .accessibility(hint: Text("HintMinusCircle"))
-                        .accessibility(addTraits: .isButton)
-                        .accessibility(removeTraits: .isImage)
+                    }
                 }
             }
             .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
