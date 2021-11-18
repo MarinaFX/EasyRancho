@@ -32,6 +32,7 @@ struct SettingsView: View {
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .padding(.top, 10)
+                    .accessibilityHint("SettingsViewNameHint")
                 
                 // Premium desativado temporariamente
                 //            HStack {
@@ -57,15 +58,13 @@ struct SettingsView: View {
                             .font(.body)
                             .fontWeight(.medium)
                             .foregroundColor(Color.primary)
+                            .accessibilityHint("SettingsViewToolbarTrailingHint")
                     }
-                    
                 }
             }
-            
         }
         .onAppear {
             getUsername()
         }
-        
     }
 }

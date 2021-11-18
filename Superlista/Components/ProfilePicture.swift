@@ -29,10 +29,14 @@ struct ProfilePicture: View {
                     .frame(width: circleWidth ?? 140, height: circleHeight ?? 140)
                 
                 let initialName = username.prefix(1)
+                
                 Text(String(initialName))
                     .foregroundColor(.white)
                     .font(.system(size: geometryReader.size.height > geometryReader.size.width ? geometryReader.size.width * 0.5: geometryReader.size.height * 0.5))
-                
+                    .accessibilityRemoveTraits(.isStaticText)
+                    .accessibilityAddTraits(.isImage)
+                    .accessibilityLabel("InitialNameLabel")
+                    .accessibilityHint("InitialNameHint \(String(initialName))")
             }
         }
         .frame(width: viewWidth ?? 160, height: viewHeight ?? 160)

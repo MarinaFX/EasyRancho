@@ -55,13 +55,15 @@ struct EditProfileView: View {
                                     .foregroundColor(.clear)
                             }
                         }
+                        .accessibilityLabel("EditProfileImagePickerLabel")
                         .sheet(isPresented: $isShowGallery) {
                             ImagePicker(image: self.$picture)
                         }
                     }
                     TextField(LocalizedStringKey("EditProfileFieldPlaceholder"), text: $newUsername)
                         .modifier(CustomTextFieldStyle())
-
+                        .accessibilityLabel("EditProfileTextFieldLabel")
+                        .accessibilityHint("EditProfileTextFieldHint")
                     
                     Text("EditProfileText")
                         .padding(.horizontal)

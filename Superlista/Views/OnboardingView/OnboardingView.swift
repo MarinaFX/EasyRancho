@@ -1,12 +1,24 @@
 import SwiftUI
 
-struct OnboardingView: View {    
+struct OnboardingView: View {
+    @Environment(\.sizeCategory) var sizeCategory
+    
     @State private var currentPage = 0
     @State private var currentColor: Color = onboardingPages[0].color
     @State private var picture: UIImage? = nil
     
+    let width = UIScreen.main.bounds.width
+    let height = UIScreen.main.bounds.height
+    
     init() {
         UIScrollView.appearance().bounces = false
+    }
+    
+    var paddingProportion: Double {
+        if sizeCategory > .large {
+            return 0.1
+        }
+        return 1
     }
     
     var body: some View {
@@ -22,11 +34,12 @@ struct OnboardingView: View {
                     }
                     .tabViewStyle(PageTabViewStyle())
                     .onChange(of: currentPage, perform: changeColor)
+                    .accessibilityHint("OnboardingViewPageIndicator")
                     
                     NavigationLink("OnboardingViewButtonLabel", destination: OnboardingFieldsView(picture: $picture))
                         .buttonStyle(MediumButtonStyle(background: .white, foreground: currentColor))
                         .padding(.top)
-                        .padding(.bottom, 48)
+                        .padding(.bottom, 48 * paddingProportion)
                 }
             }
             .foregroundColor(.white)
@@ -43,13 +56,59 @@ struct OnboardingView: View {
 }
 
 struct OnboardingPageView: View {
+    @Environment(\.sizeCategory) var sizeCategory
+    
     let index: Int
+    
+    let height = UIScreen.main.bounds.height
+    let width = UIScreen.main.bounds.width
+    
+    @ScaledMetric var scaledImage: CGFloat = ((260*UIScreen.main.bounds.height)/844)
+    @ScaledMetric var scaledImagePadding: CGFloat = ((56*UIScreen.main.bounds.height)/844)
+    @ScaledMetric var textTopPadding: CGFloat = ((27*UIScreen.main.bounds.height)/844)
+    @ScaledMetric var textBottomPadding: CGFloat = ((12*UIScreen.main.bounds.height)/844)
+
+    var imgProportion: Double {
+        switch sizeCategory {
+            case .extraLarge:
+                return 0.8
+            case .extraExtraLarge:
+                return 0.7
+            case .extraExtraExtraLarge:
+                return 0.6
+            case .accessibilityMedium:
+                return 0.5
+            case .accessibilityLarge, .accessibilityExtraLarge, .accessibilityExtraExtraLarge, .accessibilityExtraExtraExtraLarge:
+                return 0.4
+            default:
+                return 1
+        }
+    }
+    
+    var paddingProportion: Double {
+        if sizeCategory > .large {
+            return 0.1
+        }
+        return 1
+    }
+    
+    func getProportion(varValue: Double) -> Double {
+        return ((varValue * height)/844)
+    }
     
     var body: some View {
         VStack {
-            Image(onboardingPages[index].image)
-                .frame(width: UIScreen.main.bounds.width, height: 260)
-                .padding(.bottom, 56)
+            Spacer()
+            
+            if sizeCategory < .accessibilityLarge {
+                Image(onboardingPages[index].image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: width * imgProportion, height: scaledImage * imgProportion)
+                    .padding(.bottom, scaledImagePadding * paddingProportion)
+                    .accessibilityLabel(onboardingPages[index].imageLabel)
+                    .accessibilityHint(onboardingPages[index].imageHint)
+            }
             
             Text(onboardingPages[index].title)
                 .font(.largeTitle)
@@ -59,8 +118,10 @@ struct OnboardingPageView: View {
             Text(onboardingPages[index].text)
                 .font(.title3)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 27)
-                .padding(.top, 12)
+                .padding(.horizontal, textTopPadding * paddingProportion)
+                .padding(.top, textBottomPadding * paddingProportion)
+            
+            Spacer()
         }
         .tag(index)
     }

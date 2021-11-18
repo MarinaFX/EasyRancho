@@ -39,6 +39,9 @@
 // MARK: - OnboardingView
 "OnboardingViewButtonLabel" = "Get Started";
 
+// MARK: - OnboardingView - VoiceOver
+"OnboardingViewPageIndicator" = "Current Page Marking";
+
 // MARK: - OnboardingFieldsView
 "OnboardingFieldsTitle" = "Personalize your profile";
 "OnboardingFieldsText" = "Add a name and a profile picture for you to be easily identified.";
@@ -46,18 +49,30 @@
 "OnboardingBottomButtonLabel" = "Save";
 "OnboardingTrailingNavigationLabel" = "Skip";
 
+// MARK: - OnboardingFieldsView - VoiceOver
+"OnboardingProfilePictureLabel" = "Profile picture";
+"OnboardingUploadProfilePictureLabel" = "Add profile picture";
+"OnboardingFieldLabel" = "Text Field";
+"OnboardingFieldHint" = "Enter your name";
+
 // MARK: - OnboardingPageModel
 "OnboardingA" = "OnboardingA";
 "OnboardingATitle" = "Welcome";
 "OnboardingAText" = "Create categorized grocery lists in a easy and simple way!";
+"OnboardingAImageHint" = "Illustration of a full shopping cart above a large smartphone on a green background.";
+"OnboardingAImageLabel" = "Shopping Cart";
 
 "OnboardingB" = "OnboardingB";
 "OnboardingBTitle" = "Collaborative Lists";
 "OnboardingBText" = "Create shared lists and add collaborators to edit lists in real time.";
+"OnboardingBImageHint" = "Illustration of a woman holding a smartphone accompanied by another person pushing a shopping cart on a blue background.";
+"OnboardingBImageLabel" = "Shopping";
 
 "OnboardingC" = "OnboardingC";
 "OnboardingCTitle" = "Personalize Items";
 "OnboardingCText" = "Add new products, quantities and comments to your lists.";
+"OnboardingCImageHint" = "Illustration of a brown basket of products";
+"OnboardingCImageLabel" = "Basket of products";
 
 // MARK: - SettingLabel
 "SettingLabelA" = "Edit profile";
@@ -71,6 +86,11 @@
 "EditProfileText" = "Add a name and a profile picture for you to be easily identified when sharing a list or being added to one.";
 "EditProfileLeadingNavigationLabel" = "Cancel";
 "EditProfileTrailingNavigationLabel" = "Save";
+
+// MARK: - EditProfileView - VoiceOver
+"EditProfileImagePickerLabel" = "Add profile picture";
+"EditProfileTextFieldLabel" = "Text field";
+"EditProfileTextFieldHint" = "Enter your name";
 
 // MARK: - ListView
 "ListViewLabelA" = "Save";
@@ -158,7 +178,7 @@
 "HintMinusCircle" = "The selected list will be removed";
 "HintBarButton" = "Create a new list";
 "SettingsIconLabel" = "Settings/profile page";
-
+"MainViewNewListAlertHint" = "Enter a name for your list";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Add a comment";
@@ -240,3 +260,17 @@
 "addCollabListText" = "Be a collaborator on my list";
 "easyRanchoText" = "on the app EasyRancho";
 "acesse" = "Access";
+
+// MARK: - Alerts - VoiceOver
+"TextFieldAlertLabel" = "Text field";
+
+// MARK: - ProfilePicture - VoiceOver
+"InitialNameLabel" = "Default profile image";
+"InitialNameHint %@" = "Circle with orange background and the letter %@ centered";
+
+// MARK: - ProfileHeader - VoiceOver
+"ProfileHeaderImageLabel" = "Your profile picture";
+
+// MARK: - SettingsView - VoiceOver
+"SettingsViewNameHint" = "Your name";
+"SettingsViewToolbarTrailingHint" = "Close Settings Screen";
