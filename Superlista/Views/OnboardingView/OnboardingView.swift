@@ -12,7 +12,6 @@ struct OnboardingView: View {
     
     init() {
         UIScrollView.appearance().bounces = false
-        print(height)
     }
     
     var paddingProportion: Double {
