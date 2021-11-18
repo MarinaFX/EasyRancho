@@ -61,7 +61,7 @@ struct CreateNewCustomProductView: View {
                                 .font(.title3)
                                 .fontWeight(.semibold)
                                 .font(.system(size: 20))
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color("Button"))
                                 .accessibilityHint("ACDoneButtonHint")
                             
                         })
@@ -82,7 +82,7 @@ struct CreateNewCustomProductView: View {
                         } label: {
                             Text("leadingCancel")
                                 .font(.body)
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color("Button"))
                                 .accessibilityHint("ACCancelButtonHint")
                         }
                     }
@@ -95,7 +95,7 @@ struct CreateNewCustomProductView: View {
                                 Text("trailingDone")
                                     .font(.body)
                                     .bold()
-                                    .foregroundColor(.blue)
+                                    .foregroundColor(Color("Button"))
                                     .accessibilityHint("ACDoneButtonHint")
                             })
                     }

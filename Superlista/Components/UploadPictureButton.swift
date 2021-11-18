@@ -11,7 +11,7 @@ struct UploadPictureButton: View {
                     .background(Circle().fill(Color.blue.opacity(0.15)))
                 
                 Image(systemName: "photo.on.rectangle")
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color("Button"))
                     .font(.system(size: geometryReader.size.height > geometryReader.size.width ? geometryReader.size.width * 0.4: geometryReader.size.height * 0.4))
                     .accessibilityHidden(true)
             }

@@ -70,7 +70,7 @@ struct OnboardingFieldsView: View {
                 Button(action: { saveInfos() }) {
                     Text("OnboardingTrailingNavigationLabel")
                         .underline()
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("Button"))
                 }
             }
         }

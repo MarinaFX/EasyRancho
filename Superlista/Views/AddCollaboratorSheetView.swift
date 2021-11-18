@@ -151,7 +151,7 @@ struct AddCollaboratorSheetView: View {
                         } label: {
                             Text("AddCollaboratorLeadingNavigationLabel")
                                 .font(.body)
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color("Button"))
                         }
                     }
                     
@@ -163,7 +163,7 @@ struct AddCollaboratorSheetView: View {
                             Text("AddCollaboratorTrailingNavigationLabel")
                                 .font(.body)
                                 .bold()
-                                .foregroundColor(.blue)
+                                .foregroundColor(Color("Button"))
                         }
                     }
                 }
