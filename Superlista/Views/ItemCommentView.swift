@@ -143,6 +143,7 @@ struct CheckmarkWithTextView: View {
                     }
                 }
             }
+        
             .accessibilityAddTraits(AccessibilityTraits.isButton)
             .accessibilityRemoveTraits(AccessibilityTraits.isImage)
             .accessibilityLabel(Text(item.isCompleted ? "CheckedItemIconLabel1" : "CheckedItemIconLabel2"))

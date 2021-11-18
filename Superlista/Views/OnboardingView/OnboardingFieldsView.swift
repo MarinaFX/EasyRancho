@@ -33,6 +33,7 @@ struct OnboardingFieldsView: View {
                         .clipShape(Circle())
                         .scaledToFill()
                         .frame(width: 140, height: 140)
+                        .accessibilityLabel("Foto de perfil")
                 } else {
                     UploadPictureButton()
                 }
@@ -47,6 +48,7 @@ struct OnboardingFieldsView: View {
                             .foregroundColor(.white)
                     }
                 }
+                .accessibilityLabel("Adicionar foto de perfil")
                 .sheet(isPresented: $isShowGallery) {
                     ImagePicker(image: self.$picture)
                 }
@@ -54,6 +56,8 @@ struct OnboardingFieldsView: View {
             
             TextField(NSLocalizedString("OnboardingFieldPlaceholder", comment: "OnboardingFieldPlaceholder"), text: $newUsername)
                 .modifier(CustomTextFieldStyle())
+                .accessibilityLabel("Campo de texto")
+                .accessibilityHint("Informe seu nome")
             
             Spacer()
             

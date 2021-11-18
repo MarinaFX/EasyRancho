@@ -105,6 +105,10 @@ struct ListCard: View {
                         Image(systemName: "ellipsis.circle.fill")
                             .font(.body)
                             .foregroundColor(Color.white)
+                            .accessibilityLabel(Text("Options"))
+                            .accessibility(hint: Text("MoreOptions"))
+                            .accessibilityRemoveTraits(.isImage)
+                            .accessibilityAddTraits(.isButton)
                     }
                     .padding(.horizontal, 20)
                     
@@ -218,8 +222,7 @@ struct ListCard: View {
                 }
             }
         }
-        .accessibilityLabel(Text("Options"))
-        .accessibility(hint: Text("MoreOptions"))
+        
     }
 }
 

@@ -8,6 +8,7 @@ class DataService: ObservableObject {
     @Published var user: UserModel? {
         didSet {
             UDService().saveUserOnUD(user: user)
+            print(user)
         }
     }
     
