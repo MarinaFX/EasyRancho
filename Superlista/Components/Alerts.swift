@@ -7,13 +7,15 @@
 
 import UIKit
 
-func textFieldAlert(title: String, message: String, placeholder: String, actionHandler: @escaping (String?) -> Void) {
+func textFieldAlert(title: String, message: String, placeholder: String, fieldHint: String, actionHandler: @escaping (String?) -> Void) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     
     alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertCancelButton", comment: ""), style: .cancel, handler: nil))
     
     alert.addTextField { textField in
         textField.placeholder = placeholder
+        textField.accessibilityLabel = "Campo de texto"
+        textField.accessibilityHint = fieldHint
     }
     
     alert.addAction(UIAlertAction(title: NSLocalizedString("CreateListAlertMainButton", comment: ""), style: .default, handler: { action in

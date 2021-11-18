@@ -130,31 +130,31 @@ struct CheckmarkWithTextView: View {
     @Binding var list: ListModel?
     
     var body: some View {
-        Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
-            .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
-            .font(.body)
-            .onTapGesture {
-                if let sharedWith = list?.sharedWith {
-                    if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty) {
-                        if let list = list {
-                            let newList = list.toggleCompletion(of: item)
-                            self.list = newList
-                        }
+        HStack {
+            Image(systemName: item.isCompleted ? "checkmark.circle" : "circle")
+                .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
+                .font(.body)
+                .accessibilityAddTraits(AccessibilityTraits.isButton)
+                .accessibilityRemoveTraits(AccessibilityTraits.isImage)
+                .accessibilityLabel(Text(item.isCompleted ? "CheckedItemIconLabel1" : "CheckedItemIconLabel2"))
+                .accessibility(hint: Text(item.isCompleted ? "CheckedItemIconHint1" : "CheckedItemIconHint2"))
+            
+            Text(item.product.name)
+                .strikethrough(item.isCompleted)
+                .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
+                .font(.body)
+                .fontWeight(.bold)
+                .accessibility(hint: Text(item.isCompleted ? "CheckedItemLabelHint \(item.product.name)" : ""))
+        }.onTapGesture {
+            if let sharedWith = list?.sharedWith {
+                if ((networkMonitor.status == .satisfied) || sharedWith.isEmpty) {
+                    if let list = list {
+                        let newList = list.toggleCompletion(of: item)
+                        self.list = newList
                     }
                 }
             }
-        
-            .accessibilityAddTraits(AccessibilityTraits.isButton)
-            .accessibilityRemoveTraits(AccessibilityTraits.isImage)
-            .accessibilityLabel(Text(item.isCompleted ? "CheckedItemIconLabel1" : "CheckedItemIconLabel2"))
-            .accessibility(hint: Text(item.isCompleted ? "CheckedItemIconHint1" : "CheckedItemIconHint2"))
-        
-        Text(item.product.name)
-            .strikethrough(item.isCompleted)
-            .foregroundColor(item.isCompleted ? Color(UIColor.secondaryLabel) : Color.primary)
-            .font(.body)
-            .fontWeight(.bold)
-            .accessibility(hint: Text(item.isCompleted ? "CheckedItemLabelHint \(item.product.name)" : ""))
+        }
     }
 }
 

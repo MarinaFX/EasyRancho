@@ -143,7 +143,7 @@ struct MainView: View {
         let msg = NSLocalizedString("CreateListAlertText", comment: "")
         let placeholder = NSLocalizedString("NovaLista", comment: "")
         
-        textFieldAlert(title: title, message: msg, placeholder: placeholder) { text in
+        textFieldAlert(title: title, message: msg, placeholder: placeholder, fieldHint: "Informe um nome para sua lista") { text in
             if let title = text {
                 let listTitle = title != "" ? title : placeholder
 

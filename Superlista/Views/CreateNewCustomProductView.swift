@@ -25,7 +25,7 @@ struct CreateNewCustomProductView: View {
     @State var duplicatedName: String = ""
     
     let categories: [String] = loadCategoryKeys()
-
+    
     var body: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
@@ -58,21 +58,21 @@ struct CreateNewCustomProductView: View {
                         action: saveProduct,
                         label: {
                             Text("trailingDone")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .font(.system(size: 20))
-                            .foregroundColor(.blue)
-                            .accessibilityHint("ACDoneButtonHint")
-
-                    })
-                    .frame(width: UIScreen.main.bounds.width * 0.9, height: buttonHeight)
-                    .background(Color("InsetGroupedBackground"))
-                    .cornerRadius(14)
-                    .padding(.bottom, 20)
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .font(.system(size: 20))
+                                .foregroundColor(.blue)
+                                .accessibilityHint("ACDoneButtonHint")
+                            
+                        })
+                        .frame(width: UIScreen.main.bounds.width * 0.9, height: buttonHeight)
+                        .background(Color("InsetGroupedBackground"))
+                        .cornerRadius(14)
+                        .padding(.bottom, 20)
                     
                 }
                 .frame(maxWidth: UIScreen.main.bounds.width, minHeight: UIScreen.main.bounds.height * 0.85)
-
+                
                 //MARK: Sheet's top buttons
                 .toolbar {
                     //MARK: Leading cancel
@@ -90,26 +90,28 @@ struct CreateNewCustomProductView: View {
                     //MARK: Trailing done
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button (
-                        action: saveProduct,
-                        label: {
-                            Text("trailingDone")
-                                .font(.body)
-                                .bold()
-                                .foregroundColor(.blue)
-                                .accessibilityHint("ACDoneButtonHint")
-                        })
+                            action: saveProduct,
+                            label: {
+                                Text("trailingDone")
+                                    .font(.body)
+                                    .bold()
+                                    .foregroundColor(.blue)
+                                    .accessibilityHint("ACDoneButtonHint")
+                            })
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
             }
-        }
+        }.foregroundColor(.primary)
         
     }
     
     func saveProduct() {
         guard let lastSelectedItem = lastSelectedItem else {
+            self.didLeaveNameTextFieldEmpty = true
             return
         }
+        
         if !productName.isEmpty {
             didAddProductSuccessfully = dataService.updateCustomProducts(withName: productName, for: categories[lastSelectedItem])
             
@@ -121,6 +123,8 @@ struct CreateNewCustomProductView: View {
             }
             
             duplicatedName = productName
+        } else {
+            self.didLeaveNameTextFieldEmpty = true
         }
     }
 }
@@ -133,7 +137,7 @@ struct CreateNewCustomProductView_Previews: PreviewProvider {
 
 struct FormView: View {
     @Environment(\.sizeCategory) var sizeCategory
-
+    
     @ScaledMetric var textViewHeight: CGFloat = UIScreen.main.bounds.height * 0.1
     
     @Binding var productName: String
@@ -148,15 +152,14 @@ struct FormView: View {
     var body: some View {
         //MARK: Required field text when textfield is empty
         Text("textFieldRequired")
-            .opacity(didLeaveNameTextFieldEmpty == true ? 0.0 : 1.0)
             .font(.callout)
-            .foregroundColor(.red)
+            .foregroundColor(didLeaveNameTextFieldEmpty ? .red : .gray)
             .padding(.bottom, -24)
             .padding(.trailing,
                      sizeCategory > ContentSizeCategory.accessibilityExtraLarge ?
                      UIScreen.main.bounds.width * 0.25 :
                         (sizeCategory < ContentSizeCategory.extraExtraLarge ? UIScreen.main.bounds.width * 0.6 : UIScreen.main.bounds.width * 0.55)
-                     )
+            )
             .accessibility(hidden: true)
         
         //MARK: Product name TextField
@@ -169,7 +172,7 @@ struct FormView: View {
                 }
             }
         )
-            .modifier(CustomTextFieldStyle(strokeColor: !productName.isEmpty ? Color.gray : Color.red))
+            .modifier(CustomTextFieldStyle(strokeColor: didLeaveNameTextFieldEmpty ? .red : .gray))
             .padding(.bottom, -16)
             .accessibilityHint("ACtextFieldRequiredHint")
         
