@@ -262,7 +262,7 @@
 "acesse" = "Access";
 
 // MARK: - Alerts - VoiceOver
-"TextFieldAlertLabel" = "Campo de texto";
+"TextFieldAlertLabel" = "Text field";
 
 // MARK: - ProfilePicture - VoiceOver
 "InitialNameLabel" = "Default profile image";
