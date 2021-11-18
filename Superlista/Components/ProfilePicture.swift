@@ -36,7 +36,7 @@ struct ProfilePicture: View {
                     .accessibilityRemoveTraits(.isStaticText)
                     .accessibilityAddTraits(.isImage)
                     .accessibilityLabel("InitialNameLabel")
-                    .accessibilityHint("InitialNameHint")
+                    .accessibilityHint("InitialNameHint \(String(initialName))")
             }
         }
         .frame(width: viewWidth ?? 160, height: viewHeight ?? 160)

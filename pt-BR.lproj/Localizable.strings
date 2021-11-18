@@ -268,7 +268,7 @@
 
 // MARK: - ProfilePicture - VoiceOver
 "InitialNameLabel" = "Imagem de perfil padrão";
-"InitialNameHint" = "Círculo com fundo laranja e a letra T centralizada";
+"InitialNameHint %@" = "Círculo com fundo laranja e a letra %@ centralizada";
 
 // MARK: - ProfileHeader - VoiceOver
 "ProfileHeaderImageLabel" = "Sua foto de perfil";

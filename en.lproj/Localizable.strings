@@ -40,7 +40,7 @@
 "OnboardingViewButtonLabel" = "Get Started";
 
 // MARK: - OnboardingView - VoiceOver
-"OnboardingViewPageIndicator" = "Marcação da página atual";
+"OnboardingViewPageIndicator" = "Current Page Marking";
 
 // MARK: - OnboardingFieldsView
 "OnboardingFieldsTitle" = "Personalize your profile";
@@ -266,7 +266,7 @@
 
 // MARK: - ProfilePicture - VoiceOver
 "InitialNameLabel" = "Default profile image";
-"InitialNameHint" = "Circle with orange background and the letter T centered";
+"InitialNameHint %@" = "Circle with orange background and the letter %@ centered";
 
 // MARK: - ProfileHeader - VoiceOver
 "ProfileHeaderImageLabel" = "Your profile picture";
