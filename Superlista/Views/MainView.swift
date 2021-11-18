@@ -20,8 +20,8 @@ struct MainView: View {
     @Environment(\.sizeCategory) var sizeCategory
 
     
-    var columns: Array<GridItem>{
-        Array(repeating: GridItem(.flexible()), count: sizeCategory >= ContentSizeCategory.extraExtraLarge ? 1 : 2)
+    var columns: Array<GridItem> {
+        Array(repeating: GridItem(.flexible()), count: sizeCategory >= ContentSizeCategory.extraLarge ? 1 : 2)
     }
     
     let networkMonitor = NetworkMonitor.shared

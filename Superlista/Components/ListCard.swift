@@ -21,10 +21,37 @@ struct ListCard: View {
     
     let networkMonitor = NetworkMonitor.shared
     
-    @ScaledMetric var scaledWidthtRect: CGFloat = 171
+    @ScaledMetric var scaledWidthtRect: CGFloat = UIScreen.main.bounds.width * 0.42
     @ScaledMetric var scaledHeightRect: CGFloat = 117
     
     @ScaledMetric(relativeTo: .callout) var scaledTitle: CGFloat = 10
+    
+    var percentage: Double {
+        switch sizeCategory {
+            case .small, .extraSmall:
+                return 0.42
+            case .accessibilityExtraLarge, .accessibilityExtraExtraLarge, .accessibilityExtraExtraExtraLarge:
+                return 0.92
+            default:
+                return 1
+        }
+    }
+    
+    var width: Double {
+        if sizeCategory <= .small || sizeCategory >= .accessibilityExtraLarge {
+            return UIScreen.main.bounds.width * percentage
+        }
+        
+        return scaledWidthtRect
+    }
+
+    var offsetX: Double {
+        return width * 0.88
+    }
+    
+    var offsetY: Double {
+        return -(scaledHeightRect * 0.4)
+    }
     
     var body: some View {
         NavigationLink(destination: ListView(listId: list.id, list: list), label: {
@@ -32,7 +59,7 @@ struct ListCard: View {
                 // MARK: - list card
                 Rectangle()
                     .fill(Color("Background"))
-                    .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
+                    .frame(width: width, height: scaledHeightRect)
                     .cornerRadius(30)
                     .shadow(color: Color("Shadow"), radius: 12)
                     .accessibility(hint: Text("HintListCard"))
@@ -121,7 +148,7 @@ struct ListCard: View {
                             Image(systemName: "minus.circle.fill")
                                 .font(.title2)
                                 .foregroundColor(Color(.systemGray))
-                                .offset(x: 150, y: -45)
+                                .offset(x: offsetX, y: offsetY)
                                 .onTapGesture {
                                     dataService.currentList = list
                                     showAlertDelete = true
@@ -134,8 +161,7 @@ struct ListCard: View {
                     }
                 }
             }
-            .frame(width: sizeCategory >= ContentSizeCategory.accessibilityExtraLarge ? UIScreen.main.bounds.width * 0.92 : scaledWidthtRect, height: scaledHeightRect)
-            
+            .frame(width: width, height: scaledHeightRect)
         }
         ).contextMenu {
             Button {
