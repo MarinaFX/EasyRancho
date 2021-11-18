@@ -14,7 +14,7 @@ func textFieldAlert(title: String, message: String, placeholder: String, fieldHi
     
     alert.addTextField { textField in
         textField.placeholder = placeholder
-        textField.accessibilityLabel = "Campo de texto"
+        textField.accessibilityLabel = NSLocalizedString("TextFieldAlertLabel", comment: "TextFieldAlertLabel")
         textField.accessibilityHint = fieldHint
     }
     

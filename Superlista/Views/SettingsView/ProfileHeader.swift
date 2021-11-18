@@ -26,7 +26,7 @@ struct ProfileHeader: View {
                         .scaledToFill()
                         .frame(width:140, height: 140)
                         .padding(.top, 100)
-                        .accessibilityLabel("Sua foto de perfil")
+                        .accessibilityLabel("ProfileHeaderImageLabel")
                 }
                 else{
                     ProfilePicture(username: username, backgroundColor: Color("ButtonBG"))

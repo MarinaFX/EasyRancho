@@ -15,23 +15,23 @@ let onboardingPages = [
         title: NSLocalizedString("OnboardingATitle", comment: "Onboarding A Title"),
         text: NSLocalizedString("OnboardingAText", comment: "Onboarding A Text"),
         color: Color("Background"),
-        imageHint: "Ilustração de um carrinho de compras cheio acima de um grande smartphone em um fundo verde.",
-        imageLabel: "Carrinho de Compras"
+        imageHint: NSLocalizedString("OnboardingAImageHint", comment: "Onboarding A Image Hint"),
+        imageLabel: NSLocalizedString("OnboardingAImageLabel", comment: "Onboarding A Image Label")
     ),
     OnboardingPage(
         image: NSLocalizedString("OnboardingB", comment: "Onboarding B Image"),
         title: NSLocalizedString("OnboardingBTitle", comment: "Onboarding B Title"),
         text: NSLocalizedString("OnboardingBText", comment: "Onboarding B Text"),
         color: Color("Higieneebeleza"),
-        imageHint: "Ilustração de uma mulher segurando um smartphone acompanhada por outra pessoa que empurra um carrinho de compras em um fundo azul.",
-        imageLabel: "Compras"
+        imageHint: NSLocalizedString("OnboardingBImageHint", comment: "Onboarding B Image Hint"),
+        imageLabel: NSLocalizedString("OnboardingBImageLabel", comment: "Onboarding B Image Label")
     ),
     OnboardingPage(
         image: NSLocalizedString("OnboardingC", comment: "Onboarding C Image"),
         title: NSLocalizedString("OnboardingCTitle", comment: "Onboarding C Title"),
         text: NSLocalizedString("OnboardingCText", comment: "Onboarding C Text"),
         color: Color("Onboarding"),
-        imageHint: "Ilustração de um cesto de produtos marrom",
-        imageLabel: "Cesto de produtos"
+        imageHint: NSLocalizedString("OnboardingCImageHint", comment: "Onboarding C Image Hint"),
+        imageLabel: NSLocalizedString("OnboardingCImageLabel", comment: "Onboarding C Image Label")
     )
 ]

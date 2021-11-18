@@ -39,6 +39,9 @@
 // MARK: - OnboardingView
 "OnboardingViewButtonLabel" = "Começar";
 
+// MARK: - OnboardingView - VoiceOver
+"OnboardingViewPageIndicator" = "Marcação da página atual";
+
 // MARK: - OnboardingFieldsView
 "OnboardingFieldsTitle" = "Personalize seu perfil";
 "OnboardingFieldsText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente.";
@@ -46,18 +49,30 @@
 "OnboardingBottomButtonLabel" = "Salvar";
 "OnboardingTrailingNavigationLabel" = "Pular";
 
+// MARK: - OnboardingFieldsView - VoiceOver
+"OnboardingProfilePictureLabel" = "Foto de perfil";
+"OnboardingUploadProfilePictureLabel" = "Adicionar foto de perfil";
+"OnboardingFieldLabel" = "Campo de texto";
+"OnboardingFieldHint" = "Informe seu nome";
+
 // MARK: - OnboardingPageModel
 "OnboardingA" = "OnboardingA";
 "OnboardingATitle" = "Bem-vindo";
 "OnboardingAText" = "Crie listas de supermercado categorizadas de maneira fácil e simples!";
+"OnboardingAImageHint" = "Ilustração de um carrinho de compras cheio acima de um grande smartphone em um fundo verde.";
+"OnboardingAImageLabel" = "Carrinho de Compras";
 
 "OnboardingB" = "OnboardingB";
 "OnboardingBTitle" = "Listas Colaborativas";
 "OnboardingBText" = "Crie listas compartilhadas e adicione colaboradores para que possam editar em tempo real.";
+"OnboardingBImageHint" = "Ilustração de uma mulher segurando um smartphone acompanhada por outra pessoa que empurra um carrinho de compras em um fundo azul.";
+"OnboardingBImageLabel" = "Compras";
 
 "OnboardingC" = "OnboardingC";
 "OnboardingCTitle" = "Personalize Itens";
 "OnboardingCText" = "Adicione novos produtos, quantidades e comentários a sua lista.";
+"OnboardingCImageHint" = "Ilustração de um cesto de produtos marrom";
+"OnboardingCImageLabel" = "Cesto de produtos";
 
 // MARK: - SettingLabel
 "SettingLabelA" = "Editar perfil";
@@ -71,6 +86,11 @@
 "EditProfileText" = "Adicione um nome e uma foto ao seu perfil para que você possa ser identificado mais facilmente quando compartilhar ou for adicionado à uma lista.";
 "EditProfileLeadingNavigationLabel" = "Cancelar";
 "EditProfileTrailingNavigationLabel" = "Salvar";
+
+// MARK: - EditProfileView - VoiceOver
+"EditProfileImagePickerLabel" = "Adicionar foto de perfil";
+"EditProfileTextFieldLabel" = "Campo de texto";
+"EditProfileTextFieldHint" = "Informe seu nome";
 
 // MARK: - ListView
 "ListViewLabelA" = "Salvar";
@@ -129,7 +149,6 @@
 "Duplicar %@" = "Deseja duplicar %@?";
 "Duplicar" = "Deseja duplicar";
 
-
 // MARK: - MainView Creation Alert
 "CreateListAlertCancelButton" = "Cancelar";
 "CreateListAlertMainButton" = "Criar";
@@ -161,6 +180,7 @@
 "HintMinusCircle" = "Removerá a lista selecionada";
 "HintBarButton" = "Criar uma nova lista";
 "SettingsIconLabel" = "Tela de configurações/perfil";
+"MainViewNewListAlertHint" = "Informe um nome para sua lista";
 
 // MARK: - ItemCommentView
 "ItemCommentViewPlaceholder"= "Insira um comentário";
@@ -242,3 +262,17 @@
 "addCollabListText" = "Seja colaborador da minha lista";
 "easyRanchoText" = "no aplicativo EasyRancho";
 "acesse" = "Acesse";
+
+// MARK: - Alerts - VoiceOver
+"TextFieldAlertLabel" = "Campo de texto";
+
+// MARK: - ProfilePicture - VoiceOver
+"InitialNameLabel" = "Imagem de perfil padrão";
+"InitialNameHint" = "Círculo com fundo laranja e a letra T centralizada";
+
+// MARK: - ProfileHeader - VoiceOver
+"ProfileHeaderImageLabel" = "Sua foto de perfil";
+
+// MARK: - SettingsView - VoiceOver
+"SettingsViewNameHint" = "Seu nome";
+"SettingsViewToolbarTrailingHint" = "Fechar tela de Configurações";

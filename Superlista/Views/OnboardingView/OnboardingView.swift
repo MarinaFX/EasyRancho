@@ -35,7 +35,7 @@ struct OnboardingView: View {
                     }
                     .tabViewStyle(PageTabViewStyle())
                     .onChange(of: currentPage, perform: changeColor)
-                    .accessibilityHint("Marcação da página atual")
+                    .accessibilityHint("OnboardingViewPageIndicator")
                     
                     NavigationLink("OnboardingViewButtonLabel", destination: OnboardingFieldsView(picture: $picture))
                         .buttonStyle(MediumButtonStyle(background: .white, foreground: currentColor))

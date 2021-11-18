@@ -35,8 +35,8 @@ struct ProfilePicture: View {
                     .font(.system(size: geometryReader.size.height > geometryReader.size.width ? geometryReader.size.width * 0.5: geometryReader.size.height * 0.5))
                     .accessibilityRemoveTraits(.isStaticText)
                     .accessibilityAddTraits(.isImage)
-                    .accessibilityLabel("Imagem de perfil padrão")
-                    .accessibilityHint("Círculo com fundo laranja e a letra T centralizada")
+                    .accessibilityLabel("InitialNameLabel")
+                    .accessibilityHint("InitialNameHint")
             }
         }
         .frame(width: viewWidth ?? 160, height: viewHeight ?? 160)
