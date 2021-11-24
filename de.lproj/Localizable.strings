@@ -220,7 +220,7 @@
 
 "ExitCollabTextTip" = "Wenn du nicht zu dieser Liste beitragen möchtest, kannst Sie sie einfach aus Ihren Listen entfernen.";
 
-"Owner" = "Eigenaar";
+"Owner" = "Eigentümer";
 
 // MARK: - SuperlistaApp Alerts
 "CollabAlertText" = "Du bist eingeladen worden, an einer Liste mitzuwirken. Möchtest du einen Beitrag zu dieser Liste leisten?";
