@@ -220,6 +220,8 @@
 
 "ExitCollabTextTip" = "If you don't want to be a collaborator on this list anymore, you can simply delete it from your lists.";
 
+"Owner" = "Owner";
+
 // MARK: - SuperlistaApp Alerts
 "CollabAlertText" = "You have been invited to collaborate on a list. Do you want to become a contributor to this list?";
 

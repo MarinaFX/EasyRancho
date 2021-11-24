@@ -81,6 +81,9 @@ struct AddCollaboratorSheetView: View {
                     if let collaborators = collaborators {
                         if !collaborators.isEmpty {
                             List {
+                                OwnerView(name: listOwner.name ?? getNickname())
+                                    .listRowBackground(Color("InsetGroupedBackground"))
+                                
                                 ForEach(0..<self.collaborators.count, id: \.self) { index in
                                     CollaboratorListView(collaborators: self.$collaborators, list: list, name: collaborators[index].name ?? getNickname(), index: index)
                                 }
@@ -178,7 +181,7 @@ struct AddCollaboratorSheetView: View {
     }
 }
 
-
+// MARK: - Collaborator List View
 struct CollaboratorListView: View {
     @EnvironmentObject var dataService: DataService
     
@@ -238,6 +241,35 @@ struct CollaboratorListView: View {
                 .disabled(!(networkMonitor.status == .satisfied))
                 }
             }
+        }
+    }
+}
+
+// MARK: - Collaborator List View
+struct OwnerView: View {
+    let name: String
+    var collabImage: UIImage?
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 16) {
+            //TODO: user picture
+            if let collabImage = collabImage {
+                Image(uiImage: collabImage)
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: 46, height: 46)
+            }
+            else {
+                ProfilePicture(username: name, viewWidth: 46, viewHeight: 46, circleWidth: 37, circleHeight: 37, backgroundColor: Color("InsetGroupedBackground"))
+            }
+            
+            Text(name)
+                .bold()
+            
+            Spacer()
+
+            Text("Owner")
+                .foregroundColor(Color(UIColor.secondaryLabel))
         }
     }
 }
