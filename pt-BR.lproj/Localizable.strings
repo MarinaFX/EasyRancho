@@ -222,6 +222,8 @@
 
 "ExitCollabTextTip" = "Se você não quer mais ser colaborador desta lista, você pode simplesmente deletá-la de suas listas.";
 
+"Owner" = "Dono";
+
 // MARK: - SuperlistaApp Alerts
 "CollabAlertText" = "Você foi convidado para colaborar em uma lista. Deseja se tornar um colaborador desta lista?";
 
